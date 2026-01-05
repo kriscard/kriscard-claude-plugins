@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Content creation toolkit: blog posts, documentation, and conference talks",
   "author": {
-    "name": "Kris Card"
+    "name": "Chris Cardoso",
+    "email": "contact@christophercardoso.dev"
   },
   "keywords": ["blog", "content", "talks", "documentation", "writing"]
 }

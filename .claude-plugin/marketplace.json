@@ -1,7 +1,8 @@
 {
   "name": "kriscard",
   "owner": {
-    "name": "Kris Card"
+    "name": "Chris Cardoso",
+    "email": "contact@christophercardoso.dev"
   },
   "metadata": {
     "description": "Personal Claude Code plugins for maximum productivity",
@@ -14,7 +15,8 @@
       "description": "LLM/RAG development and prompt engineering toolkit",
       "version": "1.0.0",
       "author": {
-        "name": "Kris Card"
+        "name": "Chris Cardoso",
+        "email": "contact@christophercardoso.dev"
       },
       "keywords": ["ai", "llm", "rag", "prompts", "embeddings"]
     },
@@ -24,7 +26,8 @@
       "description": "System design, technical leadership, and architecture documentation toolkit",
       "version": "1.0.0",
       "author": {
-        "name": "Kris Card"
+        "name": "Chris Cardoso",
+        "email": "contact@christophercardoso.dev"
       },
       "keywords": ["architecture", "design", "cto", "leadership", "strategy"]
     },
@@ -34,7 +37,8 @@
       "description": "Content creation toolkit: blog posts, documentation, and conference talks",
       "version": "1.0.0",
       "author": {
-        "name": "Kris Card"
+        "name": "Chris Cardoso",
+        "email": "contact@christophercardoso.dev"
       },
       "keywords": ["blog", "content", "talks", "documentation", "writing"]
     },
@@ -44,7 +48,8 @@
       "description": "Development agents for coding, frontend, and debugging",
       "version": "1.0.0",
       "author": {
-        "name": "Kris Card"
+        "name": "Chris Cardoso",
+        "email": "contact@christophercardoso.dev"
       },
       "keywords": ["coding", "typescript", "frontend", "debugging", "nextjs"]
     },
@@ -54,7 +59,8 @@
       "description": "Core workflow tools - commits, research, deep thinking, PRs, and discipline enforcement",
       "version": "1.0.0",
       "author": {
-        "name": "Kris Card"
+        "name": "Chris Cardoso",
+        "email": "contact@christophercardoso.dev"
       },
       "keywords": ["git", "commit", "research", "ultrathink", "pr", "workflow", "productivity"]
     },
@@ -64,7 +70,8 @@
       "description": "Transform brain dumps into structured implementation artifacts: contracts, phased PRDs, and implementation specs",
       "version": "1.0.0",
       "author": {
-        "name": "Kris Card"
+        "name": "Chris Cardoso",
+        "email": "contact@christophercardoso.dev"
       },
       "keywords": ["ideation", "brain-dump", "planning", "prd", "specification"]
     },
@@ -74,7 +81,8 @@
       "description": "Unit, integration, and E2E testing specialists",
       "version": "1.0.0",
       "author": {
-        "name": "Kris Card"
+        "name": "Chris Cardoso",
+        "email": "contact@christophercardoso.dev"
       },
       "keywords": ["testing", "unit", "integration", "e2e", "automation"]
     }

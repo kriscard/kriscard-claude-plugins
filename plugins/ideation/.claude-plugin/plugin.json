@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Transform brain dumps into structured implementation artifacts: contracts, phased PRDs, and implementation specs",
   "author": {
-    "name": "Kris Card"
+    "name": "Chris Cardoso",
+    "email": "contact@christophercardoso.dev"
   },
   "keywords": ["ideation", "brain-dump", "planning", "prd", "specification"]
 }

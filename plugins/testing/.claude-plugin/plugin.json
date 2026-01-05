@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Unit, integration, and E2E testing specialists",
   "author": {
-    "name": "Kris Card"
+    "name": "Chris Cardoso",
+    "email": "contact@christophercardoso.dev"
   },
   "keywords": ["testing", "unit", "integration", "e2e", "automation"]
 }

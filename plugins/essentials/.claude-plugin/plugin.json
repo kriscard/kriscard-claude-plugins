@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Core workflow tools - commits, research, deep thinking, PRs, and discipline enforcement",
   "author": {
-    "name": "Kris Card"
+    "name": "Chris Cardoso",
+    "email": "contact@christophercardoso.dev"
   },
   "keywords": [
     "git",
