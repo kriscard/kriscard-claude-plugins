@@ -5,6 +5,5 @@
   "author": {
     "name": "Kris Card"
   },
-  "keywords": ["ai", "llm", "rag", "prompts", "embeddings"],
-  "category": "ai"
+  "keywords": ["ai", "llm", "rag", "prompts", "embeddings"]
 }

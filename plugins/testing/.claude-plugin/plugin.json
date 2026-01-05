@@ -5,6 +5,5 @@
   "author": {
     "name": "Kris Card"
   },
-  "keywords": ["testing", "unit", "integration", "e2e", "automation"],
-  "category": "testing"
+  "keywords": ["testing", "unit", "integration", "e2e", "automation"]
 }
