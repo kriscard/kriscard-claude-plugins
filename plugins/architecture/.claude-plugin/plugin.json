@@ -1,0 +1,10 @@
+{
+  "name": "architecture",
+  "version": "1.0.0",
+  "description": "System design, technical leadership, and architecture documentation toolkit",
+  "author": {
+    "name": "Kris Card"
+  },
+  "keywords": ["architecture", "design", "cto", "leadership", "strategy"],
+  "category": "architecture"
+}

@@ -1,0 +1,10 @@
+{
+  "name": "testing",
+  "version": "1.0.0",
+  "description": "Unit, integration, and E2E testing specialists",
+  "author": {
+    "name": "Kris Card"
+  },
+  "keywords": ["testing", "unit", "integration", "e2e", "automation"],
+  "category": "testing"
+}

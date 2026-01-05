@@ -1,0 +1,132 @@
+{
+  "name": "kriscard",
+  "owner": {
+    "name": "Kris Card"
+  },
+  "metadata": {
+    "description": "Personal Claude Code plugins for maximum productivity",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "ai-development",
+      "source": "./plugins/ai-development",
+      "description": "LLM/RAG development and prompt engineering toolkit",
+      "version": "1.0.0",
+      "author": {
+        "name": "Kris Card"
+      },
+      "keywords": [
+        "ai",
+        "llm",
+        "rag",
+        "prompts",
+        "embeddings"
+      ],
+      "category": "ai"
+    },
+    {
+      "name": "architecture",
+      "source": "./plugins/architecture",
+      "description": "System design, technical leadership, and architecture documentation toolkit",
+      "version": "1.0.0",
+      "author": {
+        "name": "Kris Card"
+      },
+      "keywords": [
+        "architecture",
+        "design",
+        "cto",
+        "leadership",
+        "strategy"
+      ],
+      "category": "architecture"
+    },
+    {
+      "name": "content",
+      "source": "./plugins/content",
+      "description": "Content creation toolkit: blog posts, documentation, and conference talks",
+      "version": "1.0.0",
+      "author": {
+        "name": "Kris Card"
+      },
+      "keywords": [
+        "blog",
+        "content",
+        "talks",
+        "documentation",
+        "writing"
+      ],
+      "category": "content"
+    },
+    {
+      "name": "developer-tools",
+      "source": "./plugins/developer-tools",
+      "description": "Development agents for coding, frontend, and debugging",
+      "version": "1.0.0",
+      "author": {
+        "name": "Kris Card"
+      },
+      "keywords": [
+        "coding",
+        "typescript",
+        "frontend",
+        "debugging",
+        "nextjs"
+      ],
+      "category": "development"
+    },
+    {
+      "name": "essentials",
+      "source": "./plugins/essentials",
+      "description": "Core workflow tools - commits, research, deep thinking, PRs, and discipline enforcement",
+      "version": "1.0.0",
+      "author": {
+        "name": "Kris Card"
+      },
+      "keywords": [
+        "git",
+        "commit",
+        "research",
+        "ultrathink",
+        "pr",
+        "workflow",
+        "productivity"
+      ]
+    },
+    {
+      "name": "ideation",
+      "source": "./plugins/ideation",
+      "description": "Transform brain dumps into structured implementation artifacts: contracts, phased PRDs, and implementation specs",
+      "version": "1.0.0",
+      "author": {
+        "name": "Kris Card"
+      },
+      "keywords": [
+        "ideation",
+        "brain-dump",
+        "planning",
+        "prd",
+        "specification"
+      ],
+      "category": "planning"
+    },
+    {
+      "name": "testing",
+      "source": "./plugins/testing",
+      "description": "Unit, integration, and E2E testing specialists",
+      "version": "1.0.0",
+      "author": {
+        "name": "Kris Card"
+      },
+      "keywords": [
+        "testing",
+        "unit",
+        "integration",
+        "e2e",
+        "automation"
+      ],
+      "category": "testing"
+    }
+  ]
+}

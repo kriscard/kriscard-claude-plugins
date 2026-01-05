@@ -1,0 +1,10 @@
+{
+  "name": "ai-development",
+  "version": "1.0.0",
+  "description": "LLM/RAG development and prompt engineering toolkit",
+  "author": {
+    "name": "Kris Card"
+  },
+  "keywords": ["ai", "llm", "rag", "prompts", "embeddings"],
+  "category": "ai"
+}

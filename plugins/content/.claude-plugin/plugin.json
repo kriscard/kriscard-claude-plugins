@@ -1,0 +1,10 @@
+{
+  "name": "content",
+  "version": "1.0.0",
+  "description": "Content creation toolkit: blog posts, documentation, and conference talks",
+  "author": {
+    "name": "Kris Card"
+  },
+  "keywords": ["blog", "content", "talks", "documentation", "writing"],
+  "category": "content"
+}

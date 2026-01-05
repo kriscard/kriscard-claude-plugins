@@ -1,0 +1,10 @@
+{
+  "name": "developer-tools",
+  "version": "1.0.0",
+  "description": "Development agents for coding, frontend, and debugging",
+  "author": {
+    "name": "Kris Card"
+  },
+  "keywords": ["coding", "typescript", "frontend", "debugging", "nextjs"],
+  "category": "development"
+}

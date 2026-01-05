@@ -1,0 +1,24 @@
+{
+  "name": "kriscard-claude-plugins",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Personal Claude Code plugin marketplace - skills, commands, and agents for maximum productivity",
+  "author": {
+    "name": "Kris Card"
+  },
+  "license": "MIT",
+  "scripts": {
+    "sync": "tsx scripts/sync-marketplace.ts",
+    "typecheck": "tsc --build",
+    "build": "pnpm -r build",
+    "build:all": "pnpm run build && pnpm run sync",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "devDependencies": {
+    "prettier": "^3.4.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}
