@@ -18,7 +18,13 @@
         "name": "Chris Cardoso",
         "email": "contact@christophercardoso.dev"
       },
-      "keywords": ["ai", "llm", "rag", "prompts", "embeddings"]
+      "keywords": [
+        "ai",
+        "llm",
+        "rag",
+        "prompts",
+        "embeddings"
+      ]
     },
     {
       "name": "architecture",
@@ -29,7 +35,13 @@
         "name": "Chris Cardoso",
         "email": "contact@christophercardoso.dev"
       },
-      "keywords": ["architecture", "design", "cto", "leadership", "strategy"]
+      "keywords": [
+        "architecture",
+        "design",
+        "cto",
+        "leadership",
+        "strategy"
+      ]
     },
     {
       "name": "content",
@@ -40,7 +52,13 @@
         "name": "Chris Cardoso",
         "email": "contact@christophercardoso.dev"
       },
-      "keywords": ["blog", "content", "talks", "documentation", "writing"]
+      "keywords": [
+        "blog",
+        "content",
+        "talks",
+        "documentation",
+        "writing"
+      ]
     },
     {
       "name": "developer-tools",
@@ -51,7 +69,13 @@
         "name": "Chris Cardoso",
         "email": "contact@christophercardoso.dev"
       },
-      "keywords": ["coding", "typescript", "frontend", "debugging", "nextjs"]
+      "keywords": [
+        "coding",
+        "typescript",
+        "frontend",
+        "debugging",
+        "nextjs"
+      ]
     },
     {
       "name": "essentials",
@@ -62,18 +86,35 @@
         "name": "Chris Cardoso",
         "email": "contact@christophercardoso.dev"
       },
-      "keywords": ["git", "commit", "research", "ultrathink", "pr", "workflow", "productivity"]
+      "keywords": [
+        "git",
+        "commit",
+        "research",
+        "ultrathink",
+        "pr",
+        "workflow",
+        "productivity"
+      ]
     },
     {
       "name": "ideation",
       "source": "./plugins/ideation",
       "description": "Transform brain dumps into structured implementation artifacts: contracts, phased PRDs, and implementation specs",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "author": {
         "name": "Chris Cardoso",
         "email": "contact@christophercardoso.dev"
       },
-      "keywords": ["ideation", "brain-dump", "planning", "prd", "specification"]
+      "keywords": [
+        "ideation",
+        "brain-dump",
+        "planning",
+        "prd",
+        "specification",
+        "spec",
+        "refinement",
+        "refine"
+      ]
     },
     {
       "name": "testing",
@@ -84,7 +125,13 @@
         "name": "Chris Cardoso",
         "email": "contact@christophercardoso.dev"
       },
-      "keywords": ["testing", "unit", "integration", "e2e", "automation"]
+      "keywords": [
+        "testing",
+        "unit",
+        "integration",
+        "e2e",
+        "automation"
+      ]
     }
   ]
 }
