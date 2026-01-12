@@ -1,0 +1,20 @@
+{
+  "name": "obsidian-second-brain",
+  "version": "0.1.0",
+  "description": "Comprehensive Obsidian vault manager for PARA organization, daily workflows, OKR tracking, and knowledge maintenance",
+  "author": {
+    "name": "Chris Cardoso",
+    "email": "contact@christophercardoso.dev"
+  },
+  "keywords": [
+    "obsidian",
+    "second-brain",
+    "para",
+    "okr",
+    "knowledge-management",
+    "productivity",
+    "pkm",
+    "daily-notes",
+    "vault-organization"
+  ]
+}

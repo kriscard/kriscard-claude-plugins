@@ -1,0 +1,13 @@
+# Local configuration files
+.claude/*.local.md
+
+# Development files
+*.swp
+*.swo
+*~
+.DS_Store
+
+# IDE files
+.idea/
+.vscode/
+*.iml
