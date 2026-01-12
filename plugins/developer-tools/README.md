@@ -1,6 +1,31 @@
 # Developer Tools Plugin
 
-Development agents for coding, frontend, and debugging.
+Development agents for coding, frontend, and debugging with intelligent orchestration.
+
+## Orchestration
+
+### code-assistant (Skill)
+
+**NEW!** Intelligent orchestrator that automatically selects the best specialist agent based on your request.
+
+**How it works:**
+- Analyzes your coding request (language, framework, task type)
+- Automatically selects the optimal agent
+- Coordinates multi-agent workflows for complex tasks
+- Provides fallback options when ambiguous
+
+**Example:**
+```
+You: "I need to debug this React component"
+  → Automatically invokes: debugger agent
+
+You: "Create a secure Next.js form with TypeScript"
+  → Coordinates: nextjs-developer + typescript-coder + frontend-security-coder
+```
+
+**Manual override:** You can still directly request specific agents:
+- "Use typescript-coder for this"
+- "Let the nextjs-developer handle it"
 
 ## Agents
 
