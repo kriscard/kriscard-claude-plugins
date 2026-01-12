@@ -6,5 +6,12 @@
     "name": "Chris Cardoso",
     "email": "contact@christophercardoso.dev"
   },
-  "keywords": ["testing", "unit", "integration", "e2e", "automation"]
+  "keywords": [
+    "testing",
+    "unit",
+    "integration",
+    "e2e",
+    "automation"
+  ],
+  "license": "MIT"
 }

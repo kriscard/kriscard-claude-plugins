@@ -5,14 +5,14 @@
   "type": "module",
   "description": "Personal Claude Code plugin marketplace - skills, commands, and agents for maximum productivity",
   "author": {
-    "name": "Kris Card"
+    "name": "Chris Cardoso",
+    "email": "contact@christophercardoso.dev"
   },
   "license": "MIT",
   "scripts": {
     "sync": "tsx scripts/sync-marketplace.ts",
+    "create-plugin": "tsx scripts/create-plugin.ts",
     "typecheck": "tsc --build",
-    "build": "pnpm -r build",
-    "build:all": "pnpm run build && pnpm run sync",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },

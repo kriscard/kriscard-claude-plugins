@@ -38,9 +38,11 @@ plugins/<name>/
 ## Development Commands
 
 ```bash
-pnpm install       # Install dependencies
-pnpm run sync      # Update marketplace.json from plugins
-pnpm run format    # Format all files
+pnpm install                                          # Install dependencies
+pnpm run create-plugin <name> --description "..."     # Create new plugin
+pnpm run sync                                         # Update marketplace.json from plugins
+pnpm run typecheck                                    # Type check TypeScript files
+pnpm run format                                       # Format all files
 ```
 
 ## Adding Content
