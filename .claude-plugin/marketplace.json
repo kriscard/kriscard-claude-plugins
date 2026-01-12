@@ -19,7 +19,13 @@
         "email": "contact@christophercardoso.dev"
       },
       "license": "MIT",
-      "keywords": ["ai", "llm", "rag", "prompts", "embeddings"]
+      "keywords": [
+        "ai",
+        "llm",
+        "rag",
+        "prompts",
+        "embeddings"
+      ]
     },
     {
       "name": "architecture",
@@ -31,7 +37,13 @@
         "email": "contact@christophercardoso.dev"
       },
       "license": "MIT",
-      "keywords": ["architecture", "design", "cto", "leadership", "strategy"]
+      "keywords": [
+        "architecture",
+        "design",
+        "cto",
+        "leadership",
+        "strategy"
+      ]
     },
     {
       "name": "assistant",
@@ -47,9 +59,7 @@
         "staff-engineer",
         "quality",
         "career",
-        "productivity",
-        "assistant",
-        "standup"
+        "productivity"
       ]
     },
     {
@@ -62,7 +72,13 @@
         "email": "contact@christophercardoso.dev"
       },
       "license": "MIT",
-      "keywords": ["blog", "content", "talks", "documentation", "writing"]
+      "keywords": [
+        "blog",
+        "content",
+        "talks",
+        "documentation",
+        "writing"
+      ]
     },
     {
       "name": "developer-tools",
@@ -74,7 +90,13 @@
         "email": "contact@christophercardoso.dev"
       },
       "license": "MIT",
-      "keywords": ["coding", "typescript", "frontend", "debugging", "nextjs", "react"]
+      "keywords": [
+        "coding",
+        "typescript",
+        "frontend",
+        "debugging",
+        "nextjs"
+      ]
     },
     {
       "name": "dotfiles-optimizer",
@@ -112,8 +134,7 @@
         "ultrathink",
         "pr",
         "workflow",
-        "productivity",
-        "pull request"
+        "productivity"
       ]
     },
     {
@@ -128,7 +149,6 @@
       "license": "MIT",
       "keywords": [
         "ideation",
-        "idea",
         "brain-dump",
         "planning",
         "prd",
@@ -189,7 +209,13 @@
         "email": "contact@christophercardoso.dev"
       },
       "license": "MIT",
-      "keywords": ["testing", "unit", "integration", "e2e", "automation"]
+      "keywords": [
+        "testing",
+        "unit",
+        "integration",
+        "e2e",
+        "automation"
+      ]
     }
   ]
 }
