@@ -1,23 +1,13 @@
 #!/usr/bin/env node
 
-import {
-  mkdirSync,
-  writeFileSync,
-  existsSync,
-  readFileSync,
-} from 'fs';
+import { mkdirSync, writeFileSync, existsSync, readFileSync } from 'fs';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const projectRoot = resolve(__dirname, '..');
 
-type OrchestrationPattern =
-  | 'skill-based'
-  | 'command-based'
-  | 'hybrid'
-  | 'meta'
-  | 'agent-only';
+type OrchestrationPattern = 'skill-based' | 'command-based' | 'hybrid' | 'meta' | 'agent-only';
 
 interface PluginConfig {
   name: string;
@@ -54,10 +44,7 @@ function validatePluginName(name: string): string[] {
 
 function getDefaultAuthor() {
   try {
-    const marketplacePath = resolve(
-      projectRoot,
-      '.claude-plugin/marketplace.json'
-    );
+    const marketplacePath = resolve(projectRoot, '.claude-plugin/marketplace.json');
     const marketplace = JSON.parse(readFileSync(marketplacePath, 'utf-8'));
     return marketplace.owner;
   } catch {
@@ -179,10 +166,7 @@ MIT
   console.log('\nSee docs/ORCHESTRATION-PATTERNS.md for detailed guidance');
 }
 
-function createOrchestratorTemplates(
-  pluginPath: string,
-  config: PluginConfig
-) {
+function createOrchestratorTemplates(pluginPath: string, config: PluginConfig) {
   switch (config.pattern) {
     case 'skill-based':
       createSkillOrchestrator(pluginPath, config);
@@ -557,14 +541,10 @@ See docs/ORCHESTRATION-PATTERNS.md for detailed guidance on choosing patterns.
   // Parse options
   const descriptionIndex = args.indexOf('--description');
   const description =
-    descriptionIndex !== -1 && args[descriptionIndex + 1]
-      ? args[descriptionIndex + 1]
-      : '';
+    descriptionIndex !== -1 && args[descriptionIndex + 1] ? args[descriptionIndex + 1] : '';
 
   if (!description) {
-    console.error(
-      '\n❌ Missing required option: --description "Plugin description"'
-    );
+    console.error('\n❌ Missing required option: --description "Plugin description"');
     process.exit(1);
   }
 
@@ -578,9 +558,7 @@ See docs/ORCHESTRATION-PATTERNS.md for detailed guidance on choosing patterns.
   // Validate pattern
   const validPatterns = ['skill-based', 'command-based', 'hybrid', 'meta', 'agent-only'];
   if (!validPatterns.includes(pattern)) {
-    console.error(
-      `\n❌ Invalid pattern: ${pattern}\nValid options: ${validPatterns.join(', ')}`
-    );
+    console.error(`\n❌ Invalid pattern: ${pattern}\nValid options: ${validPatterns.join(', ')}`);
     process.exit(1);
   }
 

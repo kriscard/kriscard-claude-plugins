@@ -22,17 +22,12 @@ interface PluginManifest {
   category?: string;
 }
 
-function validatePlugin(
-  plugin: PluginManifest,
-  dirName: string
-): string[] {
+function validatePlugin(plugin: PluginManifest, dirName: string): string[] {
   const errors: string[] = [];
 
   // Validate name matches directory
   if (plugin.name !== dirName) {
-    errors.push(
-      `Plugin name "${plugin.name}" doesn't match directory "${dirName}"`
-    );
+    errors.push(`Plugin name "${plugin.name}" doesn't match directory "${dirName}"`);
   }
 
   // Validate kebab-case
@@ -42,9 +37,7 @@ function validatePlugin(
 
   // Validate semver
   if (!/^\d+\.\d+\.\d+/.test(plugin.version)) {
-    errors.push(
-      `Plugin "${plugin.name}" version "${plugin.version}" is not valid semver`
-    );
+    errors.push(`Plugin "${plugin.name}" version "${plugin.version}" is not valid semver`);
   }
 
   // Validate required fields
@@ -77,9 +70,7 @@ function discoverPlugins() {
       if (!statSync(pluginPath).isDirectory()) continue;
 
       try {
-        const pluginJson: PluginManifest = JSON.parse(
-          readFileSync(pluginJsonPath, 'utf-8')
-        );
+        const pluginJson: PluginManifest = JSON.parse(readFileSync(pluginJsonPath, 'utf-8'));
 
         // Validate plugin
         const validationErrors = validatePlugin(pluginJson, entry);
@@ -120,19 +111,14 @@ function discoverPlugins() {
 function syncMarketplace() {
   console.log('🔄 Syncing marketplace...\n');
 
-  const marketplacePath = resolve(
-    projectRoot,
-    '.claude-plugin/marketplace.json'
-  );
+  const marketplacePath = resolve(projectRoot, '.claude-plugin/marketplace.json');
   const marketplace = JSON.parse(readFileSync(marketplacePath, 'utf-8'));
 
   // Discover all plugins in plugins/ directory
   marketplace.plugins = discoverPlugins();
 
   writeFileSync(marketplacePath, JSON.stringify(marketplace, null, 2) + '\n');
-  console.log(
-    `\n✅ Marketplace synced successfully with ${marketplace.plugins.length} plugins`
-  );
+  console.log(`\n✅ Marketplace synced successfully with ${marketplace.plugins.length} plugins`);
 }
 
 syncMarketplace();
