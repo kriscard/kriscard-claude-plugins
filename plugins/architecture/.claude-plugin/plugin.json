@@ -6,12 +6,5 @@
     "name": "Chris Cardoso",
     "email": "contact@christophercardoso.dev"
   },
-  "keywords": [
-    "architecture",
-    "design",
-    "cto",
-    "leadership",
-    "strategy"
-  ],
-  "license": "MIT"
+  "keywords": ["architecture", "design", "cto", "leadership", "strategy"]
 }

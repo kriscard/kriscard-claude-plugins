@@ -6,12 +6,5 @@
     "name": "Chris Cardoso",
     "email": "contact@christophercardoso.dev"
   },
-  "keywords": [
-    "coding",
-    "typescript",
-    "frontend",
-    "debugging",
-    "nextjs"
-  ],
-  "license": "MIT"
+  "keywords": ["coding", "typescript", "frontend", "debugging", "nextjs"]
 }

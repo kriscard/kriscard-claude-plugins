@@ -2,53 +2,6 @@
 
 Transform unstructured brain dumps into actionable implementation artifacts.
 
-## Orchestration
-
-### /validate-output (Command)
-
-Validate ideation workflow outputs for completeness, quality, and consistency.
-
-**Usage:**
-```bash
-# Validate by project name
-/validate-output user-bookmarking
-
-# Validate by path
-/validate-output ./docs/ideation/user-bookmarking
-
-# Validate specific artifact type
-/validate-output user-bookmarking --type contract
-/validate-output user-bookmarking --type prd
-/validate-output user-bookmarking --type spec
-
-# Auto-fix common issues
-/validate-output user-bookmarking --fix
-```
-
-**What it does:**
-1. Discovers artifacts (contract, PRDs, specs) in project directory
-2. Validates contract against template (6 required sections)
-3. Validates PRDs against template (user stories, requirements, metrics)
-4. Validates specs against template (architecture, APIs, implementation)
-5. Checks cross-document consistency (contract ↔ PRD ↔ spec)
-6. Generates validation report with score and actionable fixes
-
-**Validation focus:**
-- Template conformance (all required sections present)
-- Confidence rubric criteria (95%+ confidence reflected)
-- Phased implementation structure (phase boundaries, dependencies)
-- Inter-document traceability (no gaps, no orphans)
-
-**Quality thresholds:**
-- 100%: Ready for implementation
-- 90-99%: Minor fixes recommended
-- 75-89%: Address warnings before coding
-- <75%: Significant rework needed
-
-**Key difference from `architecture/check-spec`:**
-- `ideation/validate-output`: Validates ideation-specific workflow outputs
-- `architecture/check-spec`: Generic specification validation
-
 ## What It Does
 
 Takes messy input (voice transcripts, scattered notes, half-formed ideas) and produces:

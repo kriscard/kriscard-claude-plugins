@@ -6,12 +6,5 @@
     "name": "Chris Cardoso",
     "email": "contact@christophercardoso.dev"
   },
-  "keywords": [
-    "blog",
-    "content",
-    "talks",
-    "documentation",
-    "writing"
-  ],
-  "license": "MIT"
+  "keywords": ["blog", "content", "talks", "documentation", "writing"]
 }

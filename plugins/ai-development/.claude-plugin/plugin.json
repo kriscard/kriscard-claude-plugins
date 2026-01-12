@@ -6,12 +6,5 @@
     "name": "Chris Cardoso",
     "email": "contact@christophercardoso.dev"
   },
-  "keywords": [
-    "ai",
-    "llm",
-    "rag",
-    "prompts",
-    "embeddings"
-  ],
-  "license": "MIT"
+  "keywords": ["ai", "llm", "rag", "prompts", "embeddings"]
 }
