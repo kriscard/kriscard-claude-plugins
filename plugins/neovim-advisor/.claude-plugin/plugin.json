@@ -6,5 +6,13 @@
     "name": "Chris Cardoso",
     "email": "contact@christophercardoso.dev"
   },
-  "keywords": ["neovim", "nvim", "configuration", "best-practices", "performance", "lsp", "lazy.nvim"]
+  "keywords": [
+    "neovim",
+    "nvim",
+    "configuration",
+    "best-practices",
+    "performance",
+    "lsp",
+    "lazy.nvim"
+  ]
 }
