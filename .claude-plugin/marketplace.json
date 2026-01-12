@@ -46,6 +46,23 @@
       ]
     },
     {
+      "name": "assistant",
+      "source": "./plugins/assistant",
+      "description": "Personal AI assistant for Staff Engineer workflow - proactive suggestions, status generation, quality enforcement, and career tracking",
+      "version": "0.1.0",
+      "author": {
+        "name": "Chris Cardoso",
+        "email": "contact@christophercardoso.dev"
+      },
+      "keywords": [
+        "workflow",
+        "staff-engineer",
+        "quality",
+        "career",
+        "productivity"
+      ]
+    },
+    {
       "name": "content",
       "source": "./plugins/content",
       "description": "Content creation toolkit: blog posts, documentation, and conference talks",

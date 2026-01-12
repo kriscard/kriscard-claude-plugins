@@ -1,0 +1,5 @@
+# User-specific configuration (contains personal settings)
+.claude/assistant.local.md
+
+# Context save files (contains work-in-progress state)
+.claude/assistant/contexts/
