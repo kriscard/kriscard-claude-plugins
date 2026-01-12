@@ -43,7 +43,7 @@
         "hooks": [
           {
             "type": "prompt",
-            "prompt": "Track git activity for status generation and Staff progress.\n\nCommand executed: $TOOL_INPUT\nCommand output: $TOOL_RESULT\n\nDetect if this was a git operation:\n- git commit: Extract commit message, count as accomplishment\n- git merge/pull: Note PR activity\n- gh pr create/merge: Track PR creation/merging\n- gh pr review: Track code review activity\n\nIf significant git activity detected:\n{\"systemMessage\": \"Tracked: [brief description of git activity for status/progress tracking]\"}\n\nIf not git-related:\n{\"suppressOutput\": true}\n\nThis feeds into /standup and /staff-progress commands.",
+            "prompt": "Track git activity for status generation and Staff progress.\n\nCommand executed: $TOOL_INPUT\nCommand output: $TOOL_RESULT\n\nDetect if this was a git operation:\n- git commit: Extract commit message, count as accomplishment\n- git merge/pull: Note PR activity\n- gh pr create/merge: Track PR creation/merging\n- gh pr review: Track code review activity\n\nIMPORTANT: Always allow continuation. Never stop Claude from continuing.\n\nIf significant git activity detected:\nReturn: {\"systemMessage\": \"Tracked: [brief description of git activity for status/progress tracking]\"}\n\nIf not git-related:\nReturn: {} (empty response, allow continuation silently)\n\nThis feeds into /standup and /staff-progress commands.",
             "timeout": 20
           }
         ]

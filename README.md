@@ -31,7 +31,7 @@ claude plugin install obsidian-second-brain@kriscard # Knowledge management
 | Plugin | Description | How to Use |
 |--------|-------------|------------|
 | [essentials](./plugins/essentials) | Core workflow tools - commits, research, deep thinking, PRs, and discipline enforcement | **Commands:** `/commit`, `/pr`, `/ultrathink`, `/de-slopify`, `/search-web`, `/issue`<br>**Auto-enforces:** Skill usage across all interactions |
-| [assistant](./plugins/assistant) | Staff Engineer workflow assistant - standups, career tracking, quality checks, context management | **Commands:** `/standup`, `/weekly-summary`, `/quality-check`, `/context-save`, `/staff-progress`<br>**Auto-suggests:** Actions after commits/PRs, learning from your patterns |
+| [assistant](./plugins/assistant) | Engineer workflow assistant - standups, career tracking, quality checks, context management | **Commands:** `/standup`, `/weekly-summary`, `/quality-check`, `/context-save`, `/staff-progress`<br>**Auto-suggests:** Actions after commits/PRs, learning from your patterns |
 | [ideation](./plugins/ideation) | Transform brain dumps into structured implementation artifacts | **Natural language:** "I want to build..."<br>**Commands:** `/refine-spec`, `/validate-output`<br>**Workflow:** Confidence → Questions → Contract → PRDs → Specs |
 | [content](./plugins/content) | Blog posts, documentation, and conference talks | **Commands:** `/write-blog`, `/create-talk`<br>**Natural language:** "Write a blog about...", "Help me document..." |
 | [architecture](./plugins/architecture) | System design, technical leadership, and architecture documentation | **Commands:** `/arch-doc`, `/check-spec`, `/analyze-repo`, `/explain-codebase`<br>**Skills:** Senior architect, CTO advisor, product strategist |
