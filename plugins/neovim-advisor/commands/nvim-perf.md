@@ -1,5 +1,5 @@
 ---
-name: analyze-performance
+name: nvim-perf
 description: Analyze Neovim startup performance, identify slow plugins, and provide optimization recommendations
 argument-hint: "[--detailed]"
 allowed-tools:

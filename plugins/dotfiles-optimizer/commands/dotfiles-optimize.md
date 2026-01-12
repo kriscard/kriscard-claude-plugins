@@ -1,5 +1,5 @@
 ---
-name: optimize
+name: dotfiles-optimize
 description: Comprehensive dotfiles optimization workflow - analyze configurations, recommend improvements, and apply fixes
 argument-hint: "[component] [--apply] [--security|--performance|--modern-tools]"
 allowed-tools: ["Read", "Write", "Edit", "Grep", "Glob", "Bash", "AskUserQuestion", "Skill"]

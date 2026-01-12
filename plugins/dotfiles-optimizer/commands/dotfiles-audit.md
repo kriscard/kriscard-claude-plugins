@@ -1,5 +1,5 @@
 ---
-name: audit
+name: dotfiles-audit
 description: Read-only dotfiles health check and analysis - comprehensive reporting without modifications
 argument-hint: "[component] [--verbose] [--security|--performance|--modern-tools]"
 allowed-tools: ["Read", "Grep", "Glob", "Bash", "Skill"]

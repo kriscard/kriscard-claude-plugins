@@ -1,5 +1,5 @@
 ---
-name: check-config
+name: nvim-check-config
 description: Validate Neovim configuration for file structure, plugin syntax, best practices, and common mistakes
 argument-hint: "[path-to-config]"
 allowed-tools:

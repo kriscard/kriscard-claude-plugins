@@ -1,5 +1,5 @@
 ---
-name: recommend-plugins
+name: nvim-plugins
 description: Get personalized plugin recommendations based on workflow or existing configuration analysis
 argument-hint: "[workflow|config]"
 allowed-tools:

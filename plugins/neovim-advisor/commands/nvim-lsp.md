@@ -1,5 +1,5 @@
 ---
-name: setup-lsp
+name: nvim-lsp
 description: Interactive LSP configuration for specific languages with Mason integration
 argument-hint: "[language]"
 allowed-tools:
