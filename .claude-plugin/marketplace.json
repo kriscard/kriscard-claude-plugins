@@ -42,7 +42,15 @@
         "name": "Chris Cardoso",
         "email": "contact@christophercardoso.dev"
       },
-      "keywords": ["workflow", "staff-engineer", "quality", "career", "productivity"]
+      "keywords": [
+        "workflow",
+        "staff-engineer",
+        "quality",
+        "career",
+        "productivity",
+        "assistant",
+        "standup"
+      ]
     },
     {
       "name": "content",
@@ -66,7 +74,7 @@
         "email": "contact@christophercardoso.dev"
       },
       "license": "MIT",
-      "keywords": ["coding", "typescript", "frontend", "debugging", "nextjs"]
+      "keywords": ["coding", "typescript", "frontend", "debugging", "nextjs", "react"]
     },
     {
       "name": "dotfiles-optimizer",
@@ -97,7 +105,16 @@
         "email": "contact@christophercardoso.dev"
       },
       "license": "MIT",
-      "keywords": ["git", "commit", "research", "ultrathink", "pr", "workflow", "productivity"]
+      "keywords": [
+        "git",
+        "commit",
+        "research",
+        "ultrathink",
+        "pr",
+        "workflow",
+        "productivity",
+        "pull request"
+      ]
     },
     {
       "name": "ideation",
@@ -111,6 +128,7 @@
       "license": "MIT",
       "keywords": [
         "ideation",
+        "idea",
         "brain-dump",
         "planning",
         "prd",
