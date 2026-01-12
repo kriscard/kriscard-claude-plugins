@@ -7,6 +7,62 @@ import { fileURLToPath } from 'url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const projectRoot = resolve(__dirname, '..');
 
+interface PluginManifest {
+  name: string;
+  version: string;
+  description: string;
+  author: {
+    name: string;
+    email: string;
+  };
+  homepage?: string;
+  repository?: string;
+  license?: string;
+  keywords?: string[];
+  category?: string;
+}
+
+function validatePlugin(
+  plugin: PluginManifest,
+  dirName: string
+): string[] {
+  const errors: string[] = [];
+
+  // Validate name matches directory
+  if (plugin.name !== dirName) {
+    errors.push(
+      `Plugin name "${plugin.name}" doesn't match directory "${dirName}"`
+    );
+  }
+
+  // Validate kebab-case
+  if (!/^[a-z][a-z0-9-]*$/.test(plugin.name)) {
+    errors.push(`Plugin name "${plugin.name}" is not kebab-case`);
+  }
+
+  // Validate semver
+  if (!/^\d+\.\d+\.\d+/.test(plugin.version)) {
+    errors.push(
+      `Plugin "${plugin.name}" version "${plugin.version}" is not valid semver`
+    );
+  }
+
+  // Validate required fields
+  if (!plugin.description?.trim()) {
+    errors.push(`Plugin "${plugin.name}" missing description`);
+  }
+
+  if (!plugin.author?.name?.trim()) {
+    errors.push(`Plugin "${plugin.name}" missing author.name`);
+  }
+
+  if (!plugin.author?.email?.trim()) {
+    errors.push(`Plugin "${plugin.name}" missing author.email`);
+  }
+
+  return errors;
+}
+
 function discoverPlugins() {
   const pluginsDir = resolve(projectRoot, 'plugins');
   const plugins = [];
@@ -21,7 +77,17 @@ function discoverPlugins() {
       if (!statSync(pluginPath).isDirectory()) continue;
 
       try {
-        const pluginJson = JSON.parse(readFileSync(pluginJsonPath, 'utf-8'));
+        const pluginJson: PluginManifest = JSON.parse(
+          readFileSync(pluginJsonPath, 'utf-8')
+        );
+
+        // Validate plugin
+        const validationErrors = validatePlugin(pluginJson, entry);
+        if (validationErrors.length > 0) {
+          console.error(`\n❌ Validation errors for ${entry}:`);
+          validationErrors.forEach((err) => console.error(`  - ${err}`));
+          process.exit(1);
+        }
 
         const plugin: any = {
           name: pluginJson.name,
@@ -38,9 +104,9 @@ function discoverPlugins() {
         if (pluginJson.category) plugin.category = pluginJson.category;
 
         plugins.push(plugin);
-        console.log(`Discovered plugin: ${pluginJson.name}`);
+        console.log(`✓ Discovered plugin: ${pluginJson.name}`);
       } catch (err) {
-        console.warn(`Skipping ${entry}: no valid plugin.json`);
+        console.warn(`⚠ Skipping ${entry}: no valid plugin.json`);
       }
     }
   } catch (err) {
@@ -52,6 +118,8 @@ function discoverPlugins() {
 }
 
 function syncMarketplace() {
+  console.log('🔄 Syncing marketplace...\n');
+
   const marketplacePath = resolve(
     projectRoot,
     '.claude-plugin/marketplace.json'
@@ -63,7 +131,7 @@ function syncMarketplace() {
 
   writeFileSync(marketplacePath, JSON.stringify(marketplace, null, 2) + '\n');
   console.log(
-    `Marketplace synced successfully with ${marketplace.plugins.length} plugins`
+    `\n✅ Marketplace synced successfully with ${marketplace.plugins.length} plugins`
   );
 }
 

@@ -30,3 +30,9 @@ pnpm-debug.log*
 # Cache
 .cache/
 .turbo/
+
+# Claude Code local settings
+.claude/
+
+# Plugin local configuration
+*.local.md

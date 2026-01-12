@@ -38,9 +38,11 @@ plugins/<name>/
 ## Development Commands
 
 ```bash
-pnpm install       # Install dependencies
-pnpm run sync      # Update marketplace.json from plugins
-pnpm run format    # Format all files
+pnpm install                                          # Install dependencies
+pnpm run create-plugin <name> --description "..."     # Create new plugin
+pnpm run sync                                         # Update marketplace.json from plugins
+pnpm run typecheck                                    # Type check TypeScript files
+pnpm run format                                       # Format all files
 ```
 
 ## Adding Content
@@ -58,3 +60,73 @@ When adding new skills, commands, or agents:
 - Command files: kebab-case.md (e.g., `init-ultrathink.md`)
 - Skill directories: kebab-case (e.g., `using-superpowers/`)
 - Agent files: kebab-case.md (e.g., `code-simplifier.md`)
+
+## Orchestration Philosophy
+
+This marketplace uses **context-appropriate orchestration** - different patterns for different plugin types.
+
+### Orchestration Patterns
+
+| Pattern | When to Use | Entry Point | Example Plugin |
+|---------|-------------|-------------|----------------|
+| **Skill-based** | Workflow should start implicitly on user intent | Natural language | `ideation`, `content` |
+| **Command-based** | Users need explicit control over workflow | `/command` | `obsidian-second-brain` |
+| **Hybrid** | Need both implicit and explicit entry points | Skills + Commands | `architecture`, `ai-development` |
+| **Meta-orchestration** | System-level enforcement across ALL interactions | Always-on | `essentials/using-superpowers` |
+| **Agent-only** | Components work independently, no coordination needed | Context-based | `developer-tools`* |
+
+*Developer-tools now includes `code-assistant` skill orchestrator for intelligent agent selection.
+
+### Design Principles
+
+1. **Single Responsibility**: Orchestrators coordinate, they don't do the work
+2. **Progressive Enhancement**: Components work alone, orchestrator provides "happy path"
+3. **Clear Entry Points**: Obvious what to invoke and when
+4. **User Control**: Can always access components directly if preferred
+
+### When to Add Orchestration
+
+Add an orchestrator when:
+- ✅ Multiple components must coordinate to complete a workflow
+- ✅ Users need guidance on which component to use
+- ✅ Complex multi-step processes benefit from automation
+- ✅ Workflow has a clear "entry point" that makes sense to users
+
+Skip orchestration when:
+- ❌ Components work perfectly fine independently
+- ❌ Orchestration adds complexity without value
+- ❌ Users know exactly which specialist they need
+
+### Layered Architecture
+
+```
+Meta-Layer (essentials/using-superpowers)
+  ↓ [Always enforces skill checking]
+
+Orchestration Layer (skills/commands)
+  ↓ [Coordinates workflows]
+
+Component Layer (agents, sub-skills, MCP)
+  ↓ [Execute specific tasks]
+
+Output Layer (files, summaries, actions)
+```
+
+### Examples from This Marketplace
+
+**Skill-based Orchestration:**
+- `ideation` - Confidence scoring → questions → contract → PRDs → specs
+- `blog-writer` - Brain dump → polished blog post with SEO
+- `code-assistant` - Auto-selects best specialist agent for coding task
+
+**Command-based Orchestration:**
+- `/daily-startup` - Coordinates agents + skills + MCP for morning workflow
+- `/test-suite` - Runs unit + integration + E2E tests in sequence
+
+**Meta-orchestration:**
+- `using-superpowers` - Forces skill checking before ANY response
+
+**Hybrid:**
+- `architecture` - Commands for docs, skills for advisory
+
+See [docs/ORCHESTRATION-PATTERNS.md](./docs/ORCHESTRATION-PATTERNS.md) for detailed guidance.
