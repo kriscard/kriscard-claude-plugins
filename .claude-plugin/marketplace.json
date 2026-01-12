@@ -82,6 +82,25 @@
       ]
     },
     {
+      "name": "dotfiles-optimizer",
+      "source": "./plugins/dotfiles-optimizer",
+      "description": "Analyze, optimize, and secure dotfiles with best practices, modern tool recommendations, and configuration auditing",
+      "version": "0.1.0",
+      "author": {
+        "name": "Chris Cardoso",
+        "email": "contact@christophercardoso.dev"
+      },
+      "keywords": [
+        "dotfiles",
+        "shell",
+        "optimization",
+        "security",
+        "configuration",
+        "best-practices",
+        "modern-tools"
+      ]
+    },
+    {
       "name": "essentials",
       "source": "./plugins/essentials",
       "description": "Core workflow tools - commits, research, deep thinking, PRs, and discipline enforcement",
@@ -120,6 +139,25 @@
         "spec",
         "refinement",
         "refine"
+      ]
+    },
+    {
+      "name": "neovim-advisor",
+      "source": "./plugins/neovim-advisor",
+      "description": "Neovim configuration advisor providing best practice validation, plugin recommendations, and performance analysis",
+      "version": "0.1.0",
+      "author": {
+        "name": "Chris Cardoso",
+        "email": "contact@christophercardoso.dev"
+      },
+      "keywords": [
+        "neovim",
+        "nvim",
+        "configuration",
+        "best-practices",
+        "performance",
+        "lsp",
+        "lazy.nvim"
       ]
     },
     {
