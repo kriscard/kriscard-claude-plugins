@@ -31,7 +31,7 @@
         "hooks": [
           {
             "type": "prompt",
-            "prompt": "Before session ends, check if user should take any wrap-up actions.\n\nContext from session:\n- Work done: $TOOL_INPUT\n- Current context: Check if mid-task or completed something\n\nSuggest (if appropriate):\n1. /context-save if clearly mid-task with work in progress\n2. /standup if shipped features/fixes (for tomorrow's standup)\n3. Document decisions if made architectural choices\n\nReturn:\n{\"decision\": \"approve\", \"systemMessage\": \"[Suggestion if applicable, otherwise encouraging wrap-up message]\"}\n\nBe helpful but respect if user wants to just stop.",
+            "prompt": "Before session ends, check if user should take any wrap-up actions.\n\nContext from session:\n- Work done: $TOOL_INPUT\n- Current context: Check if mid-task or completed something\n\nSuggest (if appropriate):\n1. /context-save if clearly mid-task with work in progress\n2. /standup if shipped features/fixes (for tomorrow's standup)\n3. Document decisions if made architectural choices\n\nReturn:\n{\"ok\": true, \"systemMessage\": \"[Suggestion if applicable, otherwise encouraging wrap-up message]\"}\n\nBe helpful but respect if user wants to just stop.",
             "timeout": 30
           }
         ]
