@@ -11,7 +11,8 @@
     "rootDir": "./scripts",
     "declaration": true,
     "declarationMap": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "types": ["node"]
   },
   "include": ["scripts/**/*.ts"],
   "exclude": ["node_modules", "dist", "plugins"]
