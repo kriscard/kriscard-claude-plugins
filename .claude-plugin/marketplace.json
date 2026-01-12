@@ -19,7 +19,13 @@
         "email": "contact@christophercardoso.dev"
       },
       "license": "MIT",
-      "keywords": ["ai", "llm", "rag", "prompts", "embeddings"]
+      "keywords": [
+        "ai",
+        "llm",
+        "rag",
+        "prompts",
+        "embeddings"
+      ]
     },
     {
       "name": "architecture",
@@ -31,7 +37,13 @@
         "email": "contact@christophercardoso.dev"
       },
       "license": "MIT",
-      "keywords": ["architecture", "design", "cto", "leadership", "strategy"]
+      "keywords": [
+        "architecture",
+        "design",
+        "cto",
+        "leadership",
+        "strategy"
+      ]
     },
     {
       "name": "assistant",
@@ -42,7 +54,13 @@
         "name": "Chris Cardoso",
         "email": "contact@christophercardoso.dev"
       },
-      "keywords": ["workflow", "staff-engineer", "quality", "career", "productivity"]
+      "keywords": [
+        "workflow",
+        "staff-engineer",
+        "quality",
+        "career",
+        "productivity"
+      ]
     },
     {
       "name": "content",
@@ -54,7 +72,13 @@
         "email": "contact@christophercardoso.dev"
       },
       "license": "MIT",
-      "keywords": ["blog", "content", "talks", "documentation", "writing"]
+      "keywords": [
+        "blog",
+        "content",
+        "talks",
+        "documentation",
+        "writing"
+      ]
     },
     {
       "name": "developer-tools",
@@ -66,7 +90,13 @@
         "email": "contact@christophercardoso.dev"
       },
       "license": "MIT",
-      "keywords": ["coding", "typescript", "frontend", "debugging", "nextjs"]
+      "keywords": [
+        "coding",
+        "typescript",
+        "frontend",
+        "debugging",
+        "nextjs"
+      ]
     },
     {
       "name": "dotfiles-optimizer",
@@ -97,7 +127,15 @@
         "email": "contact@christophercardoso.dev"
       },
       "license": "MIT",
-      "keywords": ["git", "commit", "research", "ultrathink", "pr", "workflow", "productivity"]
+      "keywords": [
+        "git",
+        "commit",
+        "research",
+        "ultrathink",
+        "pr",
+        "workflow",
+        "productivity"
+      ]
     },
     {
       "name": "ideation",
@@ -171,7 +209,13 @@
         "email": "contact@christophercardoso.dev"
       },
       "license": "MIT",
-      "keywords": ["testing", "unit", "integration", "e2e", "automation"]
+      "keywords": [
+        "testing",
+        "unit",
+        "integration",
+        "e2e",
+        "automation"
+      ]
     }
   ]
 }
