@@ -2,8 +2,12 @@
   "hooks": {
     "SessionStart": [
       {
-        "type": "prompt",
-        "prompt": "Check if today's daily note exists at path '1 - Notes/Daily Notes/YYYY-MM-DD.md' (where YYYY-MM-DD is today's date). If the daily note does NOT exist, provide a gentle reminder: '💡 Tip: Run /daily-startup to begin your day with today's daily note, inbox check, and priority setting.' If the daily note already exists, say nothing and proceed normally with the conversation."
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "Check if today's daily note exists at path '1 - Notes/Daily Notes/YYYY-MM-DD.md' (where YYYY-MM-DD is today's date). If the daily note does NOT exist, provide a gentle reminder: '💡 Tip: Run /daily-startup to begin your day with today's daily note, inbox check, and priority setting.' If the daily note already exists, say nothing and proceed normally with the conversation."
+          }
+        ]
       }
     ]
   }
