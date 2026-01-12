@@ -1,0 +1,13 @@
+# Claude Code local settings
+.claude/*.local.md
+
+# OS files
+.DS_Store
+
+# Editor files
+*.swp
+*.swo
+*~
+
+# Log files
+*.log
