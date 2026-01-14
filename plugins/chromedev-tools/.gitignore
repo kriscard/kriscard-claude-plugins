@@ -9,7 +9,7 @@ package-lock.json
 screenshots/
 traces/
 *.png
-*.json
+traces/*.json
 
 # OS files
 .DS_Store

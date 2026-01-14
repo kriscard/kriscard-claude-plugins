@@ -1,0 +1,10 @@
+{
+  "name": "chromedev-tools",
+  "version": "0.1.0",
+  "description": "Chrome DevTools integration for frontend development - inspect pages, debug console, analyze performance, monitor network",
+  "author": {
+    "name": "Chris Cardoso",
+    "email": "contact@christophercardoso.dev"
+  },
+  "keywords": ["chrome", "devtools", "frontend", "debugging", "performance", "inspection"]
+}
