@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "description": "Complete startup workflow from idea to MVP - coordinates product strategy, requirements, tech selection, and implementation",
   "author": {
-    "name": "Kris Card",
-    "email": "kris@example.com"
+    "name": "Chris Cardoso",
+    "email": "contact@christophercardoso.dev"
   },
   "keywords": [
     "startup",
@@ -15,9 +15,6 @@
     "product-strategy",
     "tech-stack"
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/kriscard/kriscard-claude-plugins"
-  },
+  "repository": "https://github.com/kriscard/kriscard-claude-plugins",
   "license": "MIT"
 }
