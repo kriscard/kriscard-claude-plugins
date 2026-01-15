@@ -25,6 +25,7 @@ claude plugin install neovim-advisor@kriscard       # Neovim optimization
 claude plugin install dotfiles-optimizer@kriscard   # Dotfiles analysis
 claude plugin install obsidian-second-brain@kriscard # Knowledge management
 claude plugin install chromedev-tools@kriscard      # Chrome DevTools integration
+claude plugin install studio-startup@kriscard       # Project startup orchestration
 ```
 
 ## Plugins
@@ -43,6 +44,7 @@ claude plugin install chromedev-tools@kriscard      # Chrome DevTools integratio
 | [dotfiles-optimizer](./plugins/dotfiles-optimizer) | Analyze and optimize dotfiles with security checks and modern tool recommendations | **Commands:** `/dotfiles-optimize`, `/dotfiles-audit`<br>**Natural language:** "Check my dotfiles", "Optimize my shell config" |
 | [obsidian-second-brain](./plugins/obsidian-second-brain) | Obsidian vault manager - PARA, daily workflows, OKR tracking | **Commands:** `/daily-startup`, `/process-inbox`, `/review-okrs`, `/maintain-vault`, `/apply-template`<br>**Auto-runs:** Daily note reminder on startup |
 | [chromedev-tools](./plugins/chromedev-tools) | Chrome DevTools integration for frontend development - inspect pages, debug console, analyze performance | **Commands:** `/chromedev:inspect`, `/chromedev:screenshot`, `/chromedev:performance`, `/chromedev:console`<br>**Natural language:** "Inspect the page", "Check console errors", "Analyze performance" |
+| [studio-startup](./plugins/studio-startup) | Complete startup workflow orchestration from idea to MVP - coordinates product strategy, requirements, tech stack selection, architecture, and implementation across web, mobile, API, and CLI projects | **Commands:** `/studio-startup:new`<br>**Natural language:** "Start a project", "New startup", "Build an MVP", "Create an app"<br>**Workflow:** Strategy → Requirements → Tech → Validation → Design → Implementation |
 
 **Legend:** Commands use `/command` syntax. Natural language triggers work automatically. ⭐ marks primary entry points.
 

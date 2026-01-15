@@ -218,6 +218,30 @@
       ]
     },
     {
+      "name": "studio-startup",
+      "source": "./plugins/studio-startup",
+      "description": "Complete startup workflow from idea to MVP - coordinates product strategy, requirements, tech selection, and implementation",
+      "version": "0.1.0",
+      "author": {
+        "name": "Kris Card",
+        "email": "kris@example.com"
+      },
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/kriscard/kriscard-claude-plugins"
+      },
+      "license": "MIT",
+      "keywords": [
+        "startup",
+        "mvp",
+        "project-creation",
+        "workflow",
+        "orchestration",
+        "product-strategy",
+        "tech-stack"
+      ]
+    },
+    {
       "name": "testing",
       "source": "./plugins/testing",
       "description": "Unit, integration, and E2E testing specialists",
