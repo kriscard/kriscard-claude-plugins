@@ -4,8 +4,8 @@
       {
         "hooks": [
           {
-            "type": "prompt",
-            "prompt": "SKILL DISCIPLINE ACTIVE: Before responding to ANY user message, you MUST check if a skill applies. Even a 1% chance means invoke the Skill tool first. This includes clarifying questions. Do NOT rationalize skipping skills with thoughts like 'this is simple' or 'I'll just do this quickly'. If a skill exists for the task, USE IT."
+            "type": "command",
+            "command": "echo '{\"hookSpecificOutput\":{\"hookEventName\":\"SessionStart\",\"additionalContext\":\"SKILL DISCIPLINE ACTIVE: Before responding to ANY user message, you MUST check if a skill applies. Even a 1% chance means invoke the Skill tool first. This includes clarifying questions. Do NOT rationalize skipping skills with thoughts like this is simple or I will just do this quickly. If a skill exists for the task, USE IT.\"}}'"
           }
         ]
       }
