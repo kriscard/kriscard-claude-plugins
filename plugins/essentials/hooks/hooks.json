@@ -4,8 +4,8 @@
       {
         "hooks": [
           {
-            "type": "prompt",
-            "prompt": "IMMEDIATELY invoke the Skill tool with skill: 'using-superpowers' to load the skill discipline rules. Do this BEFORE responding to the user's first message."
+            "type": "command",
+            "command": "echo 'IMMEDIATELY invoke the Skill tool with skill: using-superpowers to load the skill discipline rules. Do this BEFORE responding to the user first message.'"
           }
         ]
       }
