@@ -27,6 +27,8 @@ Analyzes your request to determine:
 - **Task type** (new code, debugging, refactoring, review, design)
 - **Complexity** (single agent vs multi-agent coordination)
 - **Security sensitivity** (client-side security concerns)
+- **Performance concerns** (waterfalls, bundle size, RSC optimization)
+- **Code audit requests** (best practices check, review for patterns)
 
 ### Phase 2: Agent Selection
 
@@ -37,6 +39,8 @@ Based on analysis, selects the optimal specialist:
 | TypeScript code | `typescript-coder` | Type-safe, idiomatic TypeScript |
 | React/Vue components | `frontend-developer` | Modern frontend patterns |
 | Next.js specific | `nextjs-developer` | App Router, RSC expertise |
+| React/Next.js performance | `react-best-practices` skill | Waterfall elimination, bundle optimization |
+| React best practices audit | `react-best-practices` skill | Code review against 45 Vercel rules |
 | Client-side security | `frontend-security-coder` | XSS prevention, sanitization |
 | Debugging issues | `debugger` | Error analysis specialist |
 | Code review needed | `code-reviewer` | Quality assurance |
@@ -107,6 +111,12 @@ Delivers complete, secure, well-typed component
 ```
 IF request contains ["Next.js", "App Router", "Server Component"]
    → nextjs-developer
+
+ELSE IF request contains ["React" AND ("best practices" OR "audit" OR "optimize" OR "performance")]
+   → react-best-practices skill
+
+ELSE IF request contains ["waterfall", "bundle size", "re-render", "RSC optimization"]
+   → react-best-practices skill
 
 ELSE IF request contains ["TypeScript" AND (complex types OR generics)]
    → typescript-coder

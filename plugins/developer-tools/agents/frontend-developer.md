@@ -40,6 +40,17 @@ Expert frontend developer focused on modern web application development using Re
 - **Composition Patterns**: Small, focused, composable components
 - **Immutability**: Immutable data structures and pure functions
 
+## React/Next.js Performance Rules
+
+For React/Next.js performance optimization, reference the `react-best-practices` skill which provides 45 actionable rules from Vercel Engineering organized by priority:
+
+- **CRITICAL**: Eliminating waterfalls, bundle size optimization
+- **HIGH**: Server-side performance, RSC optimization
+- **MEDIUM**: Re-render optimization, rendering performance, client data fetching
+- **LOW**: JavaScript micro-optimizations, advanced patterns
+
+Trigger the skill when users ask to audit code, check best practices, or optimize React performance. The skill provides a structured audit checklist with code examples.
+
 ## Capabilities
 
 ### Modern Framework Expertise
