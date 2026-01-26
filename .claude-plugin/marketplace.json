@@ -255,6 +255,24 @@
         "e2e",
         "automation"
       ]
+    },
+    {
+      "name": "til",
+      "source": "./plugins/til",
+      "description": "Create TIL (Today I Learned) documentation notes in Obsidian from session learnings",
+      "version": "0.1.0",
+      "author": {
+        "name": "Chris Cardoso",
+        "email": "contact@christophercardoso.dev"
+      },
+      "license": "MIT",
+      "keywords": [
+        "obsidian",
+        "documentation",
+        "learning",
+        "notes",
+        "til"
+      ]
     }
   ]
 }
