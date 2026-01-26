@@ -19,31 +19,19 @@
         "email": "contact@christophercardoso.dev"
       },
       "license": "MIT",
-      "keywords": [
-        "ai",
-        "llm",
-        "rag",
-        "prompts",
-        "embeddings"
-      ]
+      "keywords": ["ai", "llm", "rag", "prompts", "embeddings"]
     },
     {
       "name": "architecture",
       "source": "./plugins/architecture",
       "description": "System design, technical leadership, and architecture documentation toolkit",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "author": {
         "name": "Chris Cardoso",
         "email": "contact@christophercardoso.dev"
       },
       "license": "MIT",
-      "keywords": [
-        "architecture",
-        "design",
-        "cto",
-        "leadership",
-        "strategy"
-      ]
+      "keywords": ["architecture", "design", "cto", "leadership", "strategy"]
     },
     {
       "name": "assistant",
@@ -54,13 +42,7 @@
         "name": "Chris Cardoso",
         "email": "contact@christophercardoso.dev"
       },
-      "keywords": [
-        "workflow",
-        "staff-engineer",
-        "quality",
-        "career",
-        "productivity"
-      ]
+      "keywords": ["workflow", "staff-engineer", "quality", "career", "productivity"]
     },
     {
       "name": "chromedev-tools",
@@ -71,14 +53,7 @@
         "name": "Chris Cardoso",
         "email": "contact@christophercardoso.dev"
       },
-      "keywords": [
-        "chrome",
-        "devtools",
-        "frontend",
-        "debugging",
-        "performance",
-        "inspection"
-      ]
+      "keywords": ["chrome", "devtools", "frontend", "debugging", "performance", "inspection"]
     },
     {
       "name": "content",
@@ -90,31 +65,19 @@
         "email": "contact@christophercardoso.dev"
       },
       "license": "MIT",
-      "keywords": [
-        "blog",
-        "content",
-        "talks",
-        "documentation",
-        "writing"
-      ]
+      "keywords": ["blog", "content", "talks", "documentation", "writing"]
     },
     {
       "name": "developer-tools",
       "source": "./plugins/developer-tools",
       "description": "Development agents for coding, frontend, and debugging",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "author": {
         "name": "Chris Cardoso",
         "email": "contact@christophercardoso.dev"
       },
       "license": "MIT",
-      "keywords": [
-        "coding",
-        "typescript",
-        "frontend",
-        "debugging",
-        "nextjs"
-      ]
+      "keywords": ["coding", "typescript", "frontend", "debugging", "nextjs"]
     },
     {
       "name": "dotfiles-optimizer",
@@ -139,21 +102,13 @@
       "name": "essentials",
       "source": "./plugins/essentials",
       "description": "Core workflow tools - commits, research, deep thinking, PRs, and discipline enforcement",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "author": {
         "name": "Chris Cardoso",
         "email": "contact@christophercardoso.dev"
       },
       "license": "MIT",
-      "keywords": [
-        "git",
-        "commit",
-        "research",
-        "ultrathink",
-        "pr",
-        "workflow",
-        "productivity"
-      ]
+      "keywords": ["git", "commit", "research", "ultrathink", "pr", "workflow", "productivity"]
     },
     {
       "name": "ideation",
@@ -185,13 +140,7 @@
         "name": "Chris Cardoso",
         "email": "contact@christophercardoso.dev"
       },
-      "keywords": [
-        "learning",
-        "tutorial",
-        "documentation",
-        "obsidian",
-        "education"
-      ]
+      "keywords": ["learning", "tutorial", "documentation", "obsidian", "education"]
     },
     {
       "name": "neovim-advisor",
@@ -216,7 +165,7 @@
       "name": "obsidian-second-brain",
       "source": "./plugins/obsidian-second-brain",
       "description": "Comprehensive Obsidian vault manager for PARA organization, daily workflows, OKR tracking, and knowledge maintenance",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "author": {
         "name": "Chris Cardoso",
         "email": "contact@christophercardoso.dev"
@@ -265,13 +214,7 @@
         "email": "contact@christophercardoso.dev"
       },
       "license": "MIT",
-      "keywords": [
-        "testing",
-        "unit",
-        "integration",
-        "e2e",
-        "automation"
-      ]
+      "keywords": ["testing", "unit", "integration", "e2e", "automation"]
     },
     {
       "name": "til",
@@ -283,13 +226,7 @@
         "email": "contact@christophercardoso.dev"
       },
       "license": "MIT",
-      "keywords": [
-        "obsidian",
-        "documentation",
-        "learning",
-        "notes",
-        "til"
-      ]
+      "keywords": ["obsidian", "documentation", "learning", "notes", "til"]
     }
   ]
 }
