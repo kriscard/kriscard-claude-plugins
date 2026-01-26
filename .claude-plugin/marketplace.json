@@ -177,6 +177,23 @@
       ]
     },
     {
+      "name": "interactive-learning",
+      "source": "./plugins/interactive-learning",
+      "description": "Interactive tutorial system for learning technologies through guided Q&A with automatic documentation fetching and Obsidian note creation",
+      "version": "1.0.0",
+      "author": {
+        "name": "Chris Cardoso",
+        "email": "contact@christophercardoso.dev"
+      },
+      "keywords": [
+        "learning",
+        "tutorial",
+        "documentation",
+        "obsidian",
+        "education"
+      ]
+    },
+    {
       "name": "neovim-advisor",
       "source": "./plugins/neovim-advisor",
       "description": "Neovim configuration advisor providing best practice validation, plugin recommendations, and performance analysis",
