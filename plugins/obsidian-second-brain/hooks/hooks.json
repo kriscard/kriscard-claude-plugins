@@ -6,7 +6,7 @@
           {
             "type": "command",
             "async": true,
-            "command": "TODAY=$(date +%Y-%m-%d) && FILE=\"/Users/kriscard/obsidian-vault-kriscard/1 - Notes/Daily Notes/$TODAY.md\" && [ ! -f \"$FILE\" ] && echo \"Tip: Run /daily-startup to begin your day with today's daily note, inbox check, and priority setting.\" || true"
+            "command": "VAULT=\"/Users/kriscard/obsidian-vault-kriscard\"; TODAY=$(date +%Y-%m-%d); DOW=$(date +%u); DAILY=\"$VAULT/1 - Notes/Daily Notes/$TODAY.md\"; MISSING=\"\"; [ ! -f \"$DAILY\" ] && MISSING=\"daily\"; if [ \"$DOW\" = \"1\" ]; then WEEK=$(date +%G-W%V); WEEKLY=\"$VAULT/1 - Notes/Weekly Notes/$WEEK.md\"; [ ! -f \"$WEEKLY\" ] && MISSING=\"${MISSING:+$MISSING and }weekly\"; fi; [ -n \"$MISSING\" ] && echo \"Tip: Run /daily-startup to create your $MISSING note.\" || true"
           }
         ]
       }
