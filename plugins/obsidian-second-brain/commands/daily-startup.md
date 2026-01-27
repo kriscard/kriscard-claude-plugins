@@ -10,236 +10,201 @@ Run an interactive daily startup session to begin the day with clarity and focus
 
 ## Purpose
 
-Guide the user through their daily startup routine in an interactive, personalized way. Intelligently create all relevant periodic notes (daily, weekly if Monday, monthly if 1st, quarterly if quarter start), surface relevant information, and set priorities for the day.
+Guide the user through their daily startup routine efficiently. Auto-create all relevant periodic notes, then interactively surface relevant information and set priorities.
 
 ## Workflow
 
-Execute the following steps interactively, asking the user for confirmation at each stage:
+### Step 1: Batch Check & Create Periodic Notes (FAST)
 
-### Step 1: Create Periodic Notes
+**IMPORTANT: Execute this step efficiently with minimal round-trips.**
 
-Intelligently detect which periods are starting today and offer to create missing periodic notes.
+**1a. Detect which periods apply today (single date calculation):**
 
-**Detection Logic:**
+```bash
+# Calculate all dates at once
+TODAY=$(date +%Y-%m-%d)
+DOW=$(date +%u)           # 1=Monday
+DOM=$(date +%d)           # Day of month
+MONTH=$(date +%m)
+YEAR=$(date +%Y)
+WEEK=$(date +%G-W%V)      # ISO week
+QUARTER=$((($MONTH - 1) / 3 + 1))
+```
 
-1. Get today's date and day of week
-2. Determine which periods are starting:
-   - **Quarterly**: If today is Jan 1, Apr 1, Jul 1, or Oct 1
-   - **Monthly**: If today is the 1st of any month
-   - **Weekly**: If today is Monday
-   - **Daily**: Always
+Periods to check:
+- **Quarterly**: If MONTH is 01, 04, 07, or 10 AND DOM is 01
+- **Monthly**: If DOM is 01
+- **Weekly**: If DOW is 1 (Monday)
+- **Daily**: Always
 
-**Creation Order (ask separately for each missing note):**
+**1b. Batch check existence (PARALLEL):**
 
-**Quarterly Note** (if Q1/Q2/Q3/Q4 starts today):
-- Path: `1 - Notes/Quarterly Notes/YYYY-QQ.md` (e.g., 2026-Q1.md)
-- Template: `Templates/Quarterly Notes.md`
-- Check if exists, ask: "Create quarterly note for Q[N] YYYY?"
-- Format: `2026-Q1`, `2026-Q2`, etc.
+Make ONE call to list each relevant directory, then check results locally:
+- `obsidian_list_files_in_dir` for `1 - Notes/Daily Notes/`
+- `obsidian_list_files_in_dir` for `1 - Notes/Weekly Notes/` (if Monday)
+- `obsidian_list_files_in_dir` for `1 - Notes/Monthly Notes/` (if 1st)
+- `obsidian_list_files_in_dir` for `1 - Notes/Quarterly Notes/` (if quarter start)
 
-**Monthly Note** (if month starts today):
-- Path: `1 - Notes/Monthly Notes/YYYY-MM.md` (e.g., 2026-01.md)
-- Template: `Templates/Monthly Notes.md`
-- Check if exists, ask: "Create monthly note for [Month YYYY]?"
-- Format: `2026-01`, `2026-02`, etc.
+**1c. Batch fetch templates (PARALLEL, only for missing notes):**
 
-**Weekly Note** (if Monday):
-- Path: `1 - Notes/Weekly Notes/YYYY-Www.md` (e.g., 2026-W02.md)
-- Template: `Templates/Weekly Notes.md`
-- Check if exists, ask: "Create weekly note for Week [W]?"
-- Format: ISO week number: `2026-W01`, `2026-W02`, etc.
-- Use ISO 8601 week numbering (Monday as week start)
+If notes are missing, fetch all needed templates in parallel:
+- `obsidian_get_file_contents` for `Templates/Daily Notes.md`
+- `obsidian_get_file_contents` for `Templates/Weekly Notes.md` (if needed)
+- `obsidian_get_file_contents` for `Templates/Monthly Notes.md` (if needed)
+- `obsidian_get_file_contents` for `Templates/Quarterly Notes.md` (if needed)
 
-**Daily Note** (always):
-- Path: `1 - Notes/Daily Notes/YYYY-MM-DD.md` (e.g., 2026-01-12.md)
-- Template: `Templates/Daily Notes.md`
-- Check if exists, ask: "Create today's daily note?"
-- Format: `2026-01-12`
+**1d. Auto-create missing notes (no confirmation needed):**
 
-**Behavior:**
+For each missing note, create using the template content:
+- Replace template variables: `{{date}}`, `{{title}}`, `{{week}}`, `{{month}}`, `{{quarter}}`, `{{year}}`
+- Use `obsidian_append_content` to create each note
+- **CRITICAL**: Always use the full template content - never create empty or partial notes
 
-- Check each applicable period in order (quarterly → monthly → weekly → daily)
-- For each missing note:
-  - Ask user if they want to create it
-  - If yes: Read template, create note, confirm creation
-  - If no: Skip and continue to next period
-  - If already exists: Inform user, ask if they want to open for review
-- Be conversational: "Today starts Q1 2026. Create quarterly note?"
-- Handle special case where it's already exists gracefully
+**1e. Report what was created:**
 
-### Step 2: Check Inbox
+Single summary: "Created: daily (2026-01-27), weekly (2026-W05)" or "All periodic notes already exist."
 
-1. Count notes in `0 - PARA/0 - Inbox/`
-2. Report to user: "You have X notes in your inbox"
-3. If X > 0:
-   - Ask: "Would you like to process inbox notes now?"
-   - If yes: Suggest running `/process-inbox` command
-   - If no: Add to today's tasks as reminder
-4. If X = 0:
-   - Celebrate: "Inbox is empty!"
+**Note Paths & Formats:**
 
-### Step 3: Surface Active Projects
+| Type | Path | Format | Template |
+|------|------|--------|----------|
+| Quarterly | `1 - Notes/Quarterly Notes/YYYY-QN.md` | `2026-Q1` | `Templates/Quarterly Notes.md` |
+| Monthly | `1 - Notes/Monthly Notes/YYYY-MM.md` | `2026-01` | `Templates/Monthly Notes.md` |
+| Weekly | `1 - Notes/Weekly Notes/YYYY-Www.md` | `2026-W05` | `Templates/Weekly Notes.md` |
+| Daily | `1 - Notes/Daily Notes/YYYY-MM-DD.md` | `2026-01-27` | `Templates/Daily Notes.md` |
 
-1. List notes from `0 - PARA/1 - Projects/` (exclude Archives)
-2. Show user: "Active projects: [list of 3-5 most recent projects]"
-3. Ask: "Which projects are you focusing on today?"
-4. Let user select 1-3 projects
-5. Add selected projects to daily note as links
+### Step 2: Gather Context (PARALLEL)
 
-### Step 4: Review OKRs (Optional)
+**Fetch inbox count and projects in parallel:**
 
-1. Ask user: "Check OKRs for the day?"
-2. If yes:
-   - Look for most recent OKR notes in `1 - Notes/OKRS/`
-   - Show relevant quarterly/monthly/weekly goals
-   - Highlight any goals due this week
-3. If no: Skip to next step
+- `obsidian_list_files_in_dir` for `0 - PARA/0 - Inbox/`
+- `obsidian_list_files_in_dir` for `0 - PARA/1 - Projects/`
 
-### Step 5: Set Today's Focus
+**Report combined:**
+- "Inbox: X notes" (if X > 0, mention `/process-inbox`)
+- "Active projects: [list top 5]"
 
-1. Ask user: "What are your top 3 priorities for today?"
-2. Let user input priorities
-3. Add to daily note under "Today's Focus" section
+### Step 3: Interactive Focus Setting
 
-### Step 6: Open Daily Note
+Now engage the user (this is the interactive part):
 
-1. Ask user: "Open today's daily note?"
-2. If yes: Provide path and suggest opening
-3. Summarize startup session:
-   - Periodic notes created (daily/weekly/monthly/quarterly)
-   - Inbox count
-   - Active projects identified
-   - Priorities set
+**Use AskUserQuestion** with multiSelect for project focus:
+```
+Question: "Which projects are you focusing on today?"
+Options: [top 3-4 active projects from Step 2]
+multiSelect: true
+```
+
+### Step 4: Set Priorities
+
+**Use AskUserQuestion:**
+```
+Question: "Top priority for today?"
+Options:
+- "[Project 1 related task]"
+- "[Project 2 related task]"
+- "Something else (I'll type it)"
+```
+
+Or simply ask: "What are your top 3 priorities?" and let them type.
+
+### Step 5: Update Daily Note & Summarize
+
+1. Add focus projects and priorities to daily note
+2. Provide final summary:
+
+```
+✓ Notes: daily, weekly (if created)
+✓ Inbox: X notes
+✓ Focus: [selected projects]
+✓ Priorities: [listed]
+```
 
 ## Configuration
 
-Read configuration from `.claude/obsidian-second-brain.local.md`:
-- `vault_path` - Path to Obsidian vault
-
-Default: `/Users/kriscard/obsidian-vault-kriscard`
+Vault path: `/Users/kriscard/obsidian-vault-kriscard`
 
 ## Tools Usage
 
-**Obsidian MCP tools:**
-- `obsidian_get_file_contents` - Read periodic note templates (Daily/Weekly/Monthly/Quarterly)
-- `obsidian_list_files_in_dir` - List inbox notes, projects, check for existing periodic notes
-- `obsidian_append_content` - Create or update periodic notes
-- `obsidian_get_periodic_note` - Get current periodic notes (daily, weekly, monthly, quarterly)
+**Obsidian MCP tools (use in parallel where possible):**
+- `obsidian_list_files_in_dir` - Batch check existence of notes, list inbox/projects
+- `obsidian_get_file_contents` - Fetch templates (parallel for all needed)
+- `obsidian_append_content` - Create notes from templates
 
-**Read tool:**
-- Read plugin configuration
-- Read template file if Obsidian MCP not available
+**AskUserQuestion tool:**
+- Project focus selection (multiSelect)
+- Priority setting
 
-**Bash tool:**
-- Count inbox notes
-- List projects
-- Use only if Obsidian MCP unavailable
+## Performance Guidelines
 
-## Best Practices
+1. **Batch operations**: Check all note existence in parallel, not sequentially
+2. **Fetch templates in parallel**: If 3 notes missing, fetch 3 templates at once
+3. **Auto-create notes**: Don't ask permission for each periodic note - just create missing ones
+4. **Single interactive phase**: All user questions come AFTER notes are created
+5. **Minimize round-trips**: Prefer fewer MCP calls with more data over many small calls
 
-- **Be conversational**: Ask questions naturally, don't script responses
-- **Be flexible**: Let user skip steps they don't need
-- **Be concise**: Keep summaries brief and actionable
-- **Link everything**: Add [[wiki links]] to projects, areas, OKRs
-- **Respect preferences**: Remember if user consistently skips certain steps
+## Template Handling (CRITICAL)
+
+**ALWAYS use templates when creating notes:**
+
+1. Fetch template content from `Templates/[Type] Notes.md`
+2. Replace variables in template:
+   - `{{date}}` → `2026-01-27`
+   - `{{title}}` → Note title
+   - `{{week}}` → `W05`
+   - `{{month}}` → `January`
+   - `{{quarter}}` → `Q1`
+   - `{{year}}` → `2026`
+3. Create note with full processed template content
+4. **NEVER create empty notes** - if template fetch fails, report error
 
 ## Error Handling
 
-- **Missing templates**: Use basic note structure if periodic templates not found (Daily/Weekly/Monthly/Quarterly Notes.md)
-- **Vault path not configured**: Ask user for vault path
-- **Obsidian MCP unavailable**: Fall back to bash/read tools for checking/creating periodic notes
-- **No active projects**: Suggest creating first project
-- **Invalid week/quarter calculations**: Use ISO 8601 standards, handle edge cases (Dec 29-Jan 4)
-
-## Related Skills
-
-- **obsidian-workflows** - For PARA and second brain principles
-- **vault-structure** - For vault path and folder structure
-- **template-patterns** - For daily note template usage
+- **Missing template**: Report error, don't create empty note
+- **MCP unavailable**: Fall back to Bash + Read tools
+- **No projects**: Skip project selection step
 
 ## Example Interactions
 
-### Example 1: Regular Monday (Week + Day)
+### Example 1: Monday (Fast Auto-Create)
 ```
-Assistant: Good morning! Let's start your day.
+Assistant: Good morning!
 
-Today is Monday, the start of a new week. Create weekly note for Week 2? (2026-W02)
-User: Yes
+✓ Created: weekly (2026-W02), daily (2026-01-12)
+Inbox: 3 notes (run /process-inbox when ready)
+Active projects: Website Redesign, API Documentation, Team Onboarding
 
-Assistant: Weekly note created for 2026-W02.
+[AskUserQuestion: Which projects for today? - multiSelect]
+User: Website Redesign, API Documentation
 
-Create today's daily note? (2026-01-12)
-User: Yes
-
-Assistant: Daily note created for 2026-01-12.
-
-You have 3 notes in your inbox. Would you like to process them now?
-User: No
-
-Assistant: I'll add inbox processing to your tasks.
-
-Active projects:
-1. Website Redesign
-2. API Documentation
-3. Team Onboarding Guide
-
-Which projects are you focusing on today?
-User: 1 and 2
-
-Assistant: Added Website Redesign and API Documentation to your daily note.
-
-What are your top 3 priorities for today?
-User: 
-1. Finish homepage mockups
-2. Review API endpoints
-3. Team standup at 10am
-
-Assistant: Priorities added to your daily note.
+[AskUserQuestion: Top priority?]
+User: Finish homepage mockups
 
 Summary:
-- Created weekly note (2026-W02) and daily note (2026-01-12)
-- 3 notes in inbox (reminder added)
-- Focus projects: Website Redesign, API Documentation
-- Priorities set for the day
-
-Ready to start your day\!
+✓ Notes: weekly, daily
+✓ Inbox: 3 notes
+✓ Focus: Website Redesign, API Documentation
+✓ Priority: Finish homepage mockups
 ```
 
-### Example 2: First Day of Quarter (Jan 1 - Quarterly + Monthly + Weekly + Daily)
+### Example 2: Quarter Start (Jan 1)
 ```
-Assistant: Good morning\! Happy New Year\!
+Assistant: Good morning! Happy New Year!
 
-Today starts Q1 2026. Create quarterly note?
-User: Yes
+✓ Created: quarterly (2026-Q1), monthly (2026-01), weekly (2026-W01), daily (2026-01-01)
+Inbox: 0 notes
+Active projects: [list]
 
-Assistant: Quarterly note created for 2026-Q1.
-
-First day of January. Create monthly note?
-User: Yes
-
-Assistant: Monthly note created for 2026-01.
-
-Today is Monday, start of a new week. Create weekly note for Week 1?
-User: Yes
-
-Assistant: Weekly note created for 2026-W01.
-
-Create today's daily note? (2026-01-01)
-User: Yes
-
-Assistant: Daily note created for 2026-01-01.
-
-[Continues with inbox, projects, OKRs, priorities...]
+[Continues with focus/priority questions...]
 ```
 
-### Example 3: Regular Tuesday (Daily Only)
+### Example 3: Regular Tuesday
 ```
-Assistant: Good morning\! Let's start your day.
+Assistant: Good morning!
 
-Create today's daily note? (2026-01-13)
-User: Yes
+✓ Created: daily (2026-01-13)
+Inbox: 5 notes (run /process-inbox when ready)
+Active projects: [list]
 
-Assistant: Daily note created for 2026-01-13.
-
-[Continues with inbox, projects, priorities...]
+[Continues with focus/priority questions...]
 ```
