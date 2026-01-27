@@ -1,6 +1,7 @@
 ---
 name: status-generator
-description: Use this agent when daily standups, weekly summaries, or any status updates need to be generated from git activity. Creates casual, conversational status updates. Examples:
+description: |
+  Use this agent when daily standups, weekly summaries, or any status updates need to be generated from git activity. Creates casual, conversational status updates. Examples:
 
 <example>
 Context: User ran /standup command to generate daily standup

@@ -1,6 +1,7 @@
 ---
 name: context-manager
-description: Use this agent when saving or restoring task context during context switches. Captures mental models, related links, and TODO lists. Examples:
+description: |
+  Use this agent when saving or restoring task context during context switches. Captures mental models, related links, and TODO lists. Examples:
 
 <example>
 Context: User is about to switch from one task to another and wants to save their current state

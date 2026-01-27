@@ -1,6 +1,7 @@
 ---
 name: quality-enforcer
-description: Use this agent when code quality validation is needed for TypeScript, React, or general frontend code patterns. This agent provides advisory feedback on code quality, never blocking. Examples:
+description: |
+  Use this agent when code quality validation is needed for TypeScript, React, or general frontend code patterns. This agent provides advisory feedback on code quality, never blocking. Examples:
 
 <example>
 Context: User ran /quality-check command on their current branch

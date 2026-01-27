@@ -1,6 +1,7 @@
 ---
 name: career-tracker
-description: Use this agent when tracking progress toward Staff Engineer goals, measuring technical writing, code reviews, system ownership, or cross-team impact. Syncs with Obsidian goals (read-only). Examples:
+description: |
+  Use this agent when tracking progress toward Staff Engineer goals, measuring technical writing, code reviews, system ownership, or cross-team impact. Syncs with Obsidian goals (read-only). Examples:
 
 <example>
 Context: User ran /staff-progress command to check career progress

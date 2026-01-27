@@ -1,6 +1,22 @@
 ---
 name: coder
-description: Use this agent when you need to implement features based on detailed specifications (PRD, ADR, UI/UX briefs). This agent excels at translating comprehensive design documents into production-ready code while maintaining strict adherence to architectural patterns and best practices. <example>\nContext: The user has a set of design documents and needs to implement a new feature.\nuser: "I have a PRD for a user profile feature, an ADR defining our microservices architecture, and UI/UX mockups. Please implement the profile management functionality."\nassistant: "I'll use the coder agent to implement this feature based on your specifications."\n<commentary>\nSince the user has detailed specifications that need to be translated into code, use the coder agent to ensure proper implementation following all design documents.\n</commentary>\n</example>\n<example>\nContext: The user needs to implement a feature with strict architectural requirements.\nuser: "Here's the specification for our new payment processing module. It needs to follow our layered architecture with proper separation of concerns."\nassistant: "Let me use the coder agent to implement this payment module according to your specifications and architectural requirements."\n<commentary>\nThe user has specifications that require careful adherence to architectural patterns, making this a perfect use case for the coder agent.\n</commentary>\n</example>
+description: |
+  Use this agent when you need to implement features based on detailed specifications (PRD, ADR, UI/UX briefs). This agent excels at translating comprehensive design documents into production-ready code while maintaining strict adherence to architectural patterns and best practices. <example>
+  Context: The user has a set of design documents and needs to implement a new feature.
+  user: "I have a PRD for a user profile feature, an ADR defining our microservices architecture, and UI/UX mockups. Please implement the profile management functionality."
+  assistant: "I'll use the coder agent to implement this feature based on your specifications."
+  <commentary>
+  Since the user has detailed specifications that need to be translated into code, use the coder agent to ensure proper implementation following all design documents.
+  </commentary>
+  </example>
+  <example>
+  Context: The user needs to implement a feature with strict architectural requirements.
+  user: "Here's the specification for our new payment processing module. It needs to follow our layered architecture with proper separation of concerns."
+  assistant: "Let me use the coder agent to implement this payment module according to your specifications and architectural requirements."
+  <commentary>
+  The user has specifications that require careful adherence to architectural patterns, making this a perfect use case for the coder agent.
+  </commentary>
+  </example>
 color: purple
 ---
 
