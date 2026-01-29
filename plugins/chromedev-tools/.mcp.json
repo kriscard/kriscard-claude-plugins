@@ -1,5 +1,5 @@
 {
-  "chrome-devtools": {
+  "cdt": {
     "command": "npx",
     "args": ["-y", "chrome-devtools-mcp@latest", "--headless"]
   }
