@@ -6,7 +6,7 @@
           {
             "type": "command",
             "async": true,
-            "command": "VAULT=\"/Users/kriscard/obsidian-vault-kriscard\"; TODAY=$(date +%Y-%m-%d); DOW=$(date +%u); DAILY=\"$VAULT/1 - Notes/Daily Notes/$TODAY.md\"; MISSING=\"\"; [ ! -f \"$DAILY\" ] && MISSING=\"daily\"; if [ \"$DOW\" = \"1\" ]; then WEEK=$(date +%G-W%V); WEEKLY=\"$VAULT/1 - Notes/Weekly Notes/$WEEK.md\"; [ ! -f \"$WEEKLY\" ] && MISSING=\"${MISSING:+$MISSING and }weekly\"; fi; [ -n \"$MISSING\" ] && echo \"Tip: Run /daily-startup to create your $MISSING note.\" || true"
+            "command": "VAULT=\"/Users/kriscard/obsidian-vault-kriscard\"; TODAY=$(date +%Y-%m-%d); DOW=$(date +%u); DAILY=\"$VAULT/1 - Notes/Daily Notes/$TODAY.md\"; MISSING=\"\"; [ ! -f \"$DAILY\" ] && MISSING=\"daily\"; if [ \"$DOW\" = \"1\" ]; then WEEK=$(date +%G-W%V); MONTH_NUM=$(date +%-m); MONTH_NAME=$(date +%B); YEAR=$(date +%Y); WEEKLY_DIR=\"$VAULT/1 - Notes/Weekly Planning/$MONTH_NUM - $MONTH_NAME $YEAR\"; WEEKLY=\"$WEEKLY_DIR/$WEEK.md\"; [ ! -f \"$WEEKLY\" ] && MISSING=\"${MISSING:+$MISSING and }weekly\"; fi; [ -n \"$MISSING\" ] && echo \"Tip: Run /daily-startup to create your $MISSING note.\" || true"
           }
         ]
       }

@@ -223,10 +223,31 @@ For complete PARA guidance, reference **PARA Method Implementation.md**.
 
 **Location:** `1 - Notes/OKRS/`
 
+**Folder structure:**
+```
+1 - Notes/OKRS/
+├── Quaterly Goals/              # Note: typo in folder name (preserve)
+│   └── Quaterly Goals - Q1 2026.md
+├── Monthly Goals/
+│   ├── 1 - January 2026.md
+│   └── 2 - February 2026.md
+├── Yearly Goals/
+└── 0_Archives/
+```
+
+**Weekly planning is separate:**
+```
+1 - Notes/Weekly Planning/
+├── 1 - January 2026/
+│   └── 2026-W01.md
+└── 2 - February 2026/
+    └── 2026-W06.md
+```
+
 **OKR hierarchy:**
-- **Quarterly Goals** - Major objectives, reviewed quarterly
-- **Monthly Goals** - Progress checks, reviewed monthly
-- **Weekly Planning** - Task-level, reviewed weekly
+- **Quarterly Goals** - `1 - Notes/OKRS/Quaterly Goals/Quaterly Goals - QN YYYY.md`
+- **Monthly Goals** - `1 - Notes/OKRS/Monthly Goals/M - Month YYYY.md`
+- **Weekly Planning** - `1 - Notes/Weekly Planning/M - Month YYYY/YYYY-Www.md`
 
 **Templates:**
 - Use `Quarterly Goals.md` for quarterly reviews
@@ -323,7 +344,9 @@ vault_path: /Users/kriscard/obsidian-vault-kriscard
 - Daily notes: `1 - Notes/Daily Notes/`
 - Inbox: `0 - PARA/0 - Inbox/`
 - Templates: `Templates/` (root) and `0 - PARA/Templates/`
-- OKRs: `1 - Notes/OKRS/`
+- Quarterly OKRs: `1 - Notes/OKRS/Quaterly Goals/`
+- Monthly Goals: `1 - Notes/OKRS/Monthly Goals/`
+- Weekly Planning: `1 - Notes/Weekly Planning/M - Month YYYY/`
 
 ## Common Vault Operations
 

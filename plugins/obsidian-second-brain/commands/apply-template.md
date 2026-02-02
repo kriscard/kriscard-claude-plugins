@@ -169,8 +169,9 @@ Would you like to apply another template?
 
 **Daily/Planning templates** (Daily Notes, Weekly Planning, Monthly/Quarterly Goals):
 - Daily Notes → `1 - Notes/Daily Notes/`
-- Weekly Planning → `1 - Notes/Weekly Planning/`
-- OKRs → `1 - Notes/OKRS/`
+- Weekly Planning → `1 - Notes/Weekly Planning/M - Month YYYY/`
+- Monthly Goals → `1 - Notes/OKRS/Monthly Goals/`
+- Quarterly Goals → `1 - Notes/OKRS/Quaterly Goals/`
 
 **Organization templates** (MOC Template, People):
 - MOC → `0 - PARA/MOCs/`
@@ -235,9 +236,9 @@ No agents typically involved, but:
 - Auto-fill date placeholders
 
 **OKR templates:**
-- Quarterly: `Q[1-4] YYYY Goals.md`
-- Monthly: `YYYY-MM Goals.md`
-- Weekly: `Week YYYY-Www.md`
+- Quarterly: `Quaterly Goals - QN YYYY.md` (in `1 - Notes/OKRS/Quaterly Goals/`)
+- Monthly: `M - Month YYYY.md` (in `1 - Notes/OKRS/Monthly Goals/`)
+- Weekly: `YYYY-Www.md` (in `1 - Notes/Weekly Planning/M - Month YYYY/`)
 
 **Project templates:**
 - Suggest asking for project name

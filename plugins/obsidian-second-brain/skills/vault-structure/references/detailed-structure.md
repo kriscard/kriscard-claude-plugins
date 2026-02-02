@@ -154,21 +154,36 @@ Temporal tracking and relationship notes.
 #### OKRS/
 - **Purpose**: Goal tracking and reviews
 - **Structure**:
-  - Quarterly goals (major objectives)
-  - Monthly goals (progress checks)
-  - Weekly planning (task-level)
+  ```
+  OKRS/
+  ├── Quaterly Goals/        # Note: typo in folder name (preserve)
+  │   └── Quaterly Goals - Q1 2026.md
+  ├── Monthly Goals/
+  │   ├── 1 - January 2026.md
+  │   └── 2 - February 2026.md
+  ├── Yearly Goals/
+  └── 0_Archives/
+  ```
 - **Templates**:
   - `Quarterly Goals.md`
   - `Monthly Goals.md`
-  - `Weekly Planning.md`
 - **Review cadence**:
   - Quarterly: Major planning
   - Monthly: Progress checks
-  - Weekly: Task reviews
 
 #### Weekly Planning/
 - **Purpose**: Weekly review notes
 - **Template**: `Weekly Planning.md`
+- **Structure**:
+  ```
+  Weekly Planning/
+  ├── 1 - January 2026/
+  │   └── 2026-W01.md
+  └── 2 - February 2026/
+      └── 2026-W06.md
+  ```
+- **Naming**: `YYYY-Www.md` in month subfolders `M - Month YYYY/`
+- **Tags**: `#weekly-planning`
 - **Content**:
   - Week review and planning
   - Inbox processing notes

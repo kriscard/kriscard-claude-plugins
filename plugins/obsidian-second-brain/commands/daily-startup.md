@@ -41,17 +41,17 @@ Periods to check:
 
 Make ONE call to list each relevant directory, then check results locally:
 - `obsidian_list_files_in_dir` for `1 - Notes/Daily Notes/`
-- `obsidian_list_files_in_dir` for `1 - Notes/Weekly Notes/` (if Monday)
-- `obsidian_list_files_in_dir` for `1 - Notes/Monthly Notes/` (if 1st)
-- `obsidian_list_files_in_dir` for `1 - Notes/Quarterly Notes/` (if quarter start)
+- `obsidian_list_files_in_dir` for `1 - Notes/Weekly Planning/M - Month YYYY/` (if Monday, e.g., `2 - February 2026`)
+- `obsidian_list_files_in_dir` for `1 - Notes/OKRS/Monthly Goals/` (if 1st)
+- `obsidian_list_files_in_dir` for `1 - Notes/OKRS/Quaterly Goals/` (if quarter start)
 
 **1c. Batch fetch templates (PARALLEL, only for missing notes):**
 
 If notes are missing, fetch all needed templates in parallel:
 - `obsidian_get_file_contents` for `Templates/Daily Notes.md`
-- `obsidian_get_file_contents` for `Templates/Weekly Notes.md` (if needed)
-- `obsidian_get_file_contents` for `Templates/Monthly Notes.md` (if needed)
-- `obsidian_get_file_contents` for `Templates/Quarterly Notes.md` (if needed)
+- `obsidian_get_file_contents` for `Templates/Weekly Planning.md` (if needed)
+- `obsidian_get_file_contents` for `Templates/Monthly Goals.md` (if needed)
+- `obsidian_get_file_contents` for `Templates/Quarterly Goals.md` (if needed)
 
 **1d. Auto-create missing notes (no confirmation needed):**
 
@@ -68,10 +68,12 @@ Single summary: "Created: daily (2026-01-27), weekly (2026-W05)" or "All periodi
 
 | Type | Path | Format | Template |
 |------|------|--------|----------|
-| Quarterly | `1 - Notes/Quarterly Notes/YYYY-QN.md` | `2026-Q1` | `Templates/Quarterly Notes.md` |
-| Monthly | `1 - Notes/Monthly Notes/YYYY-MM.md` | `2026-01` | `Templates/Monthly Notes.md` |
-| Weekly | `1 - Notes/Weekly Notes/YYYY-Www.md` | `2026-W05` | `Templates/Weekly Notes.md` |
-| Daily | `1 - Notes/Daily Notes/YYYY-MM-DD.md` | `2026-01-27` | `Templates/Daily Notes.md` |
+| Quarterly | `1 - Notes/OKRS/Quaterly Goals/Quaterly Goals - QN YYYY.md` | `Quaterly Goals - Q1 2026` | `Templates/Quarterly Goals.md` |
+| Monthly | `1 - Notes/OKRS/Monthly Goals/M - Month YYYY.md` | `1 - January 2026` | `Templates/Monthly Goals.md` |
+| Weekly | `1 - Notes/Weekly Planning/M - Month YYYY/YYYY-Www.md` | `2 - February 2026/2026-W06` | `Templates/Weekly Planning.md` |
+| Daily | `1 - Notes/Daily Notes/YYYY-MM-DD.md` | `2026-02-02` | `Templates/Daily Notes.md` |
+
+**Note:** The quarterly folder has a typo ("Quaterly" instead of "Quarterly") - preserve this to match existing vault structure.
 
 ### Step 2: Gather Context (PARALLEL)
 
