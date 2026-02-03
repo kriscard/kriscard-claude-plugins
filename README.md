@@ -38,7 +38,7 @@ To get the latest plugin changes, manually clear the cache:
 rm -rf ~/.claude/plugins/cache/kriscard
 ```
 
-Then reinstall the plugins you need. This workaround is needed because Claude Code's automatic plugin updates don't always work correctly.
+Then reinstall the plugins you need. This workaround is needed because Claude Code's automatic plugin updates don't always work correctly ([tracking issue](https://github.com/anthropics/claude-code/issues/17361)).
 
 ## Plugins
 
