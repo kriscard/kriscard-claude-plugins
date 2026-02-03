@@ -30,6 +30,16 @@ claude plugin install til@kriscard                  # TIL documentation
 claude plugin install interactive-learning@kriscard # Learning tutorials
 ```
 
+### Updating Plugins
+
+To get the latest plugin changes, manually clear the cache:
+
+```bash
+rm -rf ~/.claude/plugins/cache/kriscard
+```
+
+Then reinstall the plugins you need. This workaround is needed because Claude Code's automatic plugin updates don't always work correctly.
+
 ## Plugins
 
 | Plugin | Description | How to Use |
