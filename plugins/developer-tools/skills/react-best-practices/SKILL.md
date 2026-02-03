@@ -1,11 +1,11 @@
 ---
 name: react-best-practices
-description: This skill should be used when the user asks to "check react best practices", "audit this component", "review for performance", "does this follow best practices", "optimize this React code", or mentions React/Next.js performance optimization. Provides 45 actionable rules from Vercel Engineering.
+description: This skill should be used when the user asks to "check react best practices", "audit this component", "review for performance", "does this follow best practices", "optimize this React code", or mentions React/Next.js performance optimization. Provides 57 actionable rules from Vercel Engineering.
 ---
 
 # React Best Practices Audit
 
-Performance optimization guide for React and Next.js, maintained by Vercel Engineering. 45 actionable rules organized by priority.
+Performance optimization guide for React and Next.js, maintained by Vercel Engineering. 57 actionable rules organized by priority.
 
 ## When to Use
 
@@ -76,6 +76,9 @@ Determine what's being audited:
 - [ ] Extract to memoized components
 - [ ] No unnecessary useMemo wrapping
 - [ ] Default params extracted to constants
+- [ ] Derived state calculated during render (not useEffect)
+- [ ] Interaction logic in event handlers (not state + effect)
+- [ ] useRef for transient values (mouse trackers, intervals)
 
 **MEDIUM - Rendering Performance:**
 - [ ] content-visibility for long lists
@@ -84,6 +87,7 @@ Determine what's being audited:
 - [ ] Activity component for show/hide
 - [ ] Explicit conditional rendering
 - [ ] Prevent hydration mismatch without flickering
+- [ ] suppressHydrationWarning for known server/client differences
 - [ ] Animate SVG wrapper (not element itself)
 - [ ] SVG precision optimized
 
@@ -104,6 +108,7 @@ Determine what's being audited:
 **LOW - Advanced Patterns:**
 - [ ] Event handlers in refs for stable references
 - [ ] useEffectEvent for stable callback refs
+- [ ] App initialization with module-level guards (not useEffect)
 
 ### 3. Report Format
 
@@ -137,7 +142,7 @@ After checking all rules, provide:
 ## Quick Reference
 
 For detailed rule explanations with code examples, see:
-- `references/vercel-rules.md` - All 45 rules with incorrect/correct patterns
+- `references/vercel-rules.md` - All 57 rules with incorrect/correct patterns
 
 ## Attribution
 

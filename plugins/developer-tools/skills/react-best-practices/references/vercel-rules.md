@@ -1,6 +1,6 @@
 # Vercel React Best Practices - Complete Rules Reference
 
-45 actionable performance rules from Vercel Engineering, organized by priority with incorrect/correct code examples.
+57 actionable performance rules from Vercel Engineering, organized by priority with incorrect/correct code examples.
 
 ---
 
@@ -668,7 +668,7 @@ function useSettings() {
 
 ---
 
-## MEDIUM: Re-render Optimization (9 rules)
+## MEDIUM: Re-render Optimization (12 rules)
 
 Preventing unnecessary component re-renders.
 
@@ -913,13 +913,112 @@ function Search() {
 }
 ```
 
+### 31. Calculate derived state during rendering
+
+Don't store computed values in state or sync them via effects.
+
+```tsx
+// Incorrect - Derived state in useEffect
+function Form() {
+  const [firstName, setFirstName] = useState('First')
+  const [lastName, setLastName] = useState('Last')
+  const [fullName, setFullName] = useState('')
+
+  useEffect(() => {
+    setFullName(firstName + ' ' + lastName)
+  }, [firstName, lastName])
+
+  return <p>{fullName}</p>
+}
+```
+
+```tsx
+// Correct - Calculate during render
+function Form() {
+  const [firstName, setFirstName] = useState('First')
+  const [lastName, setLastName] = useState('Last')
+  const fullName = firstName + ' ' + lastName
+
+  return <p>{fullName}</p>
+}
+```
+
+### 32. Put interaction logic in event handlers
+
+Don't model user actions as state + effect. Run side effects directly in handlers.
+
+```tsx
+// Incorrect - State + effect for user action
+function Form({ theme }) {
+  const [submitted, setSubmitted] = useState(false)
+
+  useEffect(() => {
+    if (submitted) {
+      sendAnalytics('form_submit')
+    }
+  }, [submitted, theme]) // Re-runs when theme changes!
+
+  const handleSubmit = () => setSubmitted(true)
+}
+```
+
+```tsx
+// Correct - Side effect in handler
+function Form({ theme }) {
+  const handleSubmit = () => {
+    sendAnalytics('form_submit')
+    // ... rest of submit logic
+  }
+}
+```
+
+### 33. Use useRef for transient values
+
+Store frequently-changing values in refs when re-renders are undesirable.
+
+```tsx
+// Incorrect - useState causes re-render on every mouse move
+function Tracker() {
+  const [x, setX] = useState(0)
+
+  useEffect(() => {
+    const handler = (e) => setX(e.clientX)
+    window.addEventListener('mousemove', handler)
+    return () => window.removeEventListener('mousemove', handler)
+  }, [])
+
+  return <div style={{ transform: `translateX(${x}px)` }} />
+}
+```
+
+```tsx
+// Correct - useRef avoids re-renders
+function Tracker() {
+  const xRef = useRef(0)
+  const elRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const handler = (e) => {
+      xRef.current = e.clientX
+      if (elRef.current) {
+        elRef.current.style.transform = `translateX(${xRef.current}px)`
+      }
+    }
+    window.addEventListener('mousemove', handler)
+    return () => window.removeEventListener('mousemove', handler)
+  }, [])
+
+  return <div ref={elRef} />
+}
+```
+
 ---
 
-## MEDIUM: Rendering Performance (8 rules)
+## MEDIUM: Rendering Performance (9 rules)
 
 Optimizing what and how React renders.
 
-### 31. Animate SVG wrapper instead of SVG element
+### 34. Animate SVG wrapper instead of SVG element
 
 Animating SVG elements is expensive; animate a wrapper instead.
 
@@ -939,7 +1038,7 @@ Animating SVG elements is expensive; animate a wrapper instead.
 </motion.div>
 ```
 
-### 32. CSS content-visibility for long lists
+### 35. CSS content-visibility for long lists
 
 Use CSS content-visibility to skip rendering off-screen items.
 
@@ -969,7 +1068,7 @@ function LongList({ items }) {
 }
 ```
 
-### 33. Hoist static JSX elements
+### 36. Hoist static JSX elements
 
 Move static elements outside components.
 
@@ -999,7 +1098,7 @@ function Button({ onClick, children }) {
 }
 ```
 
-### 34. Optimize SVG precision
+### 37. Optimize SVG precision
 
 Reduce SVG path precision for smaller files.
 
@@ -1013,7 +1112,7 @@ Reduce SVG path precision for smaller files.
 <path d="M12 24 L36.12 48.79" />
 ```
 
-### 35. Prevent hydration mismatch without flickering
+### 38. Prevent hydration mismatch without flickering
 
 Handle client-only values without layout shift.
 
@@ -1037,7 +1136,31 @@ function Timestamp({ date }) {
 }
 ```
 
-### 36. Use Activity component for show/hide
+### 39. Suppress expected hydration mismatches
+
+For known server/client differences (timestamps, random IDs), suppress warnings explicitly.
+
+```tsx
+// Incorrect - Console warning noise
+function Timestamp() {
+  return <span>{new Date().toLocaleString()}</span>
+}
+```
+
+```tsx
+// Correct - Suppress known mismatch
+function Timestamp() {
+  return (
+    <span suppressHydrationWarning>
+      {new Date().toLocaleString()}
+    </span>
+  )
+}
+```
+
+**Note:** Only use for known differences. Don't mask real bugs.
+
+### 40. Use Activity component for show/hide
 
 Use Activity (or similar) to preserve state when hiding.
 
@@ -1069,7 +1192,7 @@ function Tabs({ activeTab }) {
 }
 ```
 
-### 37. Use explicit conditional rendering
+### 41. Use explicit conditional rendering
 
 Be explicit about render conditions.
 
@@ -1088,7 +1211,7 @@ function List({ items }) {
 }
 ```
 
-### 38. Use useTransition over manual loading states
+### 42. Use useTransition over manual loading states
 
 Let React manage pending states.
 
@@ -1126,7 +1249,7 @@ function Form() {
 
 Micro-optimizations that add up in hot paths.
 
-### 39. Avoid layout thrashing
+### 43. Avoid layout thrashing
 
 Batch reads and writes to DOM.
 
@@ -1146,7 +1269,7 @@ elements.forEach((el, i) => {
 })
 ```
 
-### 40. Build index maps for repeated lookups
+### 44. Build index maps for repeated lookups
 
 Create lookup maps for repeated finds.
 
@@ -1165,7 +1288,7 @@ users.forEach(user => {
 })
 ```
 
-### 41. Cache property access in loops
+### 45. Cache property access in loops
 
 Extract property access outside loops.
 
@@ -1185,7 +1308,7 @@ for (let i = 0; i < length; i++) {
 }
 ```
 
-### 42. Cache repeated function calls
+### 46. Cache repeated function calls
 
 Don't call same function multiple times with same args.
 
@@ -1204,7 +1327,7 @@ if (checkResult && otherCondition) {
 }
 ```
 
-### 43. Cache storage API calls
+### 47. Cache storage API calls
 
 localStorage and sessionStorage calls are synchronous and slow.
 
@@ -1227,7 +1350,7 @@ function getSettings() {
 }
 ```
 
-### 44. Combine multiple array iterations
+### 48. Combine multiple array iterations
 
 Reduce iterations over large arrays.
 
@@ -1248,7 +1371,7 @@ const names = users
   .sort()
 ```
 
-### 45. Early length check for array comparisons
+### 49. Early length check for array comparisons
 
 Check length before comparing arrays.
 
@@ -1267,7 +1390,7 @@ function arraysEqual(a, b) {
 }
 ```
 
-### 46. Early return from functions
+### 50. Early return from functions
 
 Exit early to avoid unnecessary computation.
 
@@ -1293,7 +1416,7 @@ function process(data) {
 }
 ```
 
-### 47. Hoist RegExp creation
+### 51. Hoist RegExp creation
 
 Don't create RegExp in loops or hot paths.
 
@@ -1313,7 +1436,7 @@ function validate(input) {
 }
 ```
 
-### 48. Use loop for min/max instead of sort
+### 52. Use loop for min/max instead of sort
 
 Don't sort just to find min/max.
 
@@ -1329,7 +1452,7 @@ const max = Math.max(...numbers)
 const max = numbers.reduce((m, n) => n > m ? n : m, -Infinity)
 ```
 
-### 49. Use Set/Map for O(1) lookups
+### 53. Use Set/Map for O(1) lookups
 
 Replace array includes/find with Set/Map.
 
@@ -1345,7 +1468,7 @@ const activeIds = new Set(users.filter(u => u.active).map(u => u.id))
 posts.filter(p => activeIds.has(p.userId)) // O(n)
 ```
 
-### 50. Use toSorted() instead of sort()
+### 54. Use toSorted() instead of sort()
 
 Prefer immutable sort to avoid mutation.
 
@@ -1363,9 +1486,9 @@ const sorted = items.toSorted((a, b) => a.name.localeCompare(b.name))
 
 ---
 
-## LOW: Advanced Patterns (2 rules)
+## LOW: Advanced Patterns (3 rules)
 
-### 51. Store event handlers in refs
+### 55. Store event handlers in refs
 
 Avoid recreating handlers that don't need to change.
 
@@ -1393,7 +1516,7 @@ function Scroller({ onScroll }) {
 }
 ```
 
-### 52. useEffectEvent for stable callback refs
+### 56. useEffectEvent for stable callback refs
 
 Use useEffectEvent for callbacks that shouldn't trigger effect re-runs.
 
@@ -1416,6 +1539,34 @@ function Timer({ onTick }) {
     const id = setInterval(tick, 1000)
     return () => clearInterval(id)
   }, []) // tick is stable, effect doesn't re-run
+}
+```
+
+### 57. Initialize app once, not per mount
+
+Don't place app-wide initialization in useEffect([]). Components can remount.
+
+```tsx
+// Incorrect - Runs on every mount (twice in StrictMode)
+function App() {
+  useEffect(() => {
+    loadFromStorage()
+    checkAuthToken()
+  }, [])
+}
+```
+
+```tsx
+// Correct - Module-level guard ensures once
+let didInit = false
+
+function App() {
+  useEffect(() => {
+    if (didInit) return
+    didInit = true
+    loadFromStorage()
+    checkAuthToken()
+  }, [])
 }
 ```
 
