@@ -22,8 +22,8 @@ FILENAME="$1"
 
 # Try common locations
 LOCATIONS=(
-    "0 - PARA/$FILENAME"
-    "0 - PARA/MOCs/$FILENAME"
+    "3 - Resources/Obsidian org/$FILENAME"
+    "MOCs/$FILENAME"
     "$FILENAME"
 )
 

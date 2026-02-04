@@ -47,7 +47,7 @@ Templates/Learning Tech Template.md
 
 ### 3. Create the Note
 
-Create a new note in `0 - PARA/0 - Inbox/` with filename:
+Create a new note in `0 - Inbox/` with filename:
 ```
 Learn [Topic] - YYYY-MM-DD.md
 ```

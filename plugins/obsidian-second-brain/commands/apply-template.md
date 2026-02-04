@@ -87,7 +87,7 @@ Where should this template be applied?
 
 **Option 2: Specify path**
 - Ask: "Enter note path (relative to vault root)"
-- Example: `0 - PARA/1 - Projects/New Project.md`
+- Example: `1 - Projects/New Project.md`
 - Validate path
 - Check if note exists:
   - If yes: Ask "Note exists. Append template or replace content?"
@@ -95,11 +95,11 @@ Where should this template be applied?
 
 **Option 3: Create new note**
 - Ask: "Enter new note name and location"
-- Example: `New Project` in `0 - PARA/1 - Projects/`
+- Example: `New Project` in `1 - Projects/`
 - Suggest appropriate PARA location based on template type:
   - Project templates → `1 - Projects/`
   - Learning templates → `3 - Resources/`
-  - Daily/Planning → `1 - Notes/Daily Notes/` or `1 - Notes/OKRS/`
+  - Daily/Planning → `2 - Areas/Daily Ops/` or `2 - Areas/Goals/`
   - Meeting → Varies, ask user
 - Create note with template
 
@@ -140,7 +140,7 @@ Report to user:
 ```
 Template applied successfully!
 
-Note: 0 - PARA/1 - Projects/New Project.md
+Note: 1 - Projects/New Project.md
 Template: Project Brief
 Action: Created new note
 
@@ -155,27 +155,27 @@ Would you like to apply another template?
 ## Template Type → Location Suggestions
 
 **Project templates** (Project Brief, Project Planning, Feature Implementation, Bug Fix):
-- Suggest: `0 - PARA/1 - Projects/[Project Name]/`
+- Suggest: `1 - Projects/[Project Name]/`
 - Ask for project name if creating new
 
 **Learning templates** (Learning, Learning Tech Template, Book Reviews):
-- Suggest: `0 - PARA/3 - Resources/`
+- Suggest: `3 - Resources/`
 - Good for reference materials
 
 **Meeting templates** (Meeting Notes, 1-on-1):
 - Suggest asking user for location
 - Could be in project folder or area folder
-- Or `1 - Notes/` if general
+- 1-on-1s typically go in `2 - Areas/Careers/1on1/`
 
 **Daily/Planning templates** (Daily Notes, Weekly Planning, Monthly/Quarterly Goals):
-- Daily Notes → `1 - Notes/Daily Notes/`
-- Weekly Planning → `1 - Notes/Weekly Planning/M - Month YYYY/`
-- Monthly Goals → `1 - Notes/OKRS/Monthly Goals/`
-- Quarterly Goals → `1 - Notes/OKRS/Quaterly Goals/`
+- Daily Notes → `2 - Areas/Daily Ops/`
+- Weekly Planning → `2 - Areas/Daily Ops/Weekly/M - Month YYYY/`
+- Monthly Goals → `2 - Areas/Goals/Monthly/`
+- Quarterly Goals → `2 - Areas/Goals/Quarterly/`
 
 **Organization templates** (MOC Template, People):
-- MOC → `0 - PARA/MOCs/`
-- People → `1 - Notes/People/`
+- MOC → `MOCs/`
+- People → `2 - Areas/Relationships/`
 
 **General Notes**:
 - Ask user for appropriate location
@@ -232,17 +232,17 @@ No agents typically involved, but:
 
 **Daily Notes template:**
 - Should be named with date: `YYYY-MM-DD.md`
-- Location: `1 - Notes/Daily Notes/`
+- Location: `2 - Areas/Daily Ops/`
 - Auto-fill date placeholders
 
 **OKR templates:**
-- Quarterly: `Quaterly Goals - QN YYYY.md` (in `1 - Notes/OKRS/Quaterly Goals/`)
-- Monthly: `M - Month YYYY.md` (in `1 - Notes/OKRS/Monthly Goals/`)
-- Weekly: `YYYY-Www.md` (in `1 - Notes/Weekly Planning/M - Month YYYY/`)
+- Quarterly: `Quaterly Goals - QN YYYY.md` (in `2 - Areas/Goals/Quarterly/`)
+- Monthly: `M - Month YYYY.md` (in `2 - Areas/Goals/Monthly/`)
+- Weekly: `YYYY-Www.md` (in `2 - Areas/Daily Ops/Weekly/M - Month YYYY/`)
 
 **Project templates:**
 - Suggest asking for project name
-- Create in: `0 - PARA/1 - Projects/[Project Name]/`
+- Create in: `1 - Projects/[Project Name]/`
 - May create project folder if doesn't exist
 
 ## Example Interaction

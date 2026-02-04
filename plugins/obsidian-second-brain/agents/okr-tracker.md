@@ -46,21 +46,21 @@ You understand:
 
 ### Time Horizons
 
-**Quarterly OKRs** (`1 - Notes/OKRS/Quaterly Goals/Quaterly Goals - QN YYYY.md`)
+**Quarterly OKRs** (`2 - Areas/Goals/Quarterly/Quaterly Goals - QN YYYY.md`)
 - Major objectives for 3-month period
 - 3-5 high-level objectives
 - 2-4 key results per objective
 - Review quarterly
 - Note: Folder uses "Quaterly" spelling (preserve existing vault structure)
 
-**Monthly Goals** (`1 - Notes/OKRS/Monthly Goals/M - Month YYYY.md`)
+**Monthly Goals** (`2 - Areas/Goals/Monthly/M - Month YYYY.md`)
 - Breakdown of quarterly OKRs
 - Monthly milestones
 - Progress check-ins
 - Review monthly
 - Example: `1 - January 2026.md`, `2 - February 2026.md`
 
-**Weekly Planning** (`1 - Notes/Weekly Planning/M - Month YYYY/YYYY-Www.md`)
+**Weekly Planning** (`2 - Areas/Daily Ops/Weekly/M - Month YYYY/YYYY-Www.md`)
 - Task-level priorities
 - Weekly actions supporting monthly goals
 - Review weekly

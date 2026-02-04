@@ -459,7 +459,7 @@ Changes:
 ### /daily-startup Command
 
 Uses `Daily Notes.md` template automatically:
-- Creates note in `1 - Notes/Daily Notes/`
+- Creates note in `2 - Areas/Daily Ops/`
 - Names as `YYYY-MM-DD.md`
 - Applies template
 - Opens for editing

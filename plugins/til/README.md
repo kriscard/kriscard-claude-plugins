@@ -22,7 +22,7 @@ Create a TIL note from the current session.
 
 ## Output Location
 
-Notes are created at: `1 - Notes/TIL/til-YYYY-MM-DD.md`
+Notes are created at: `3 - Resources/TIL/til-YYYY-MM-DD.md`
 
 ## Prerequisites
 

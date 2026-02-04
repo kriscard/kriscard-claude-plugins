@@ -32,19 +32,19 @@ Based on selection, proceed with appropriate workflow.
 ## Quarterly Review Workflow
 
 **Template:** `Quarterly Goals.md`
-**Location:** `1 - Notes/OKRS/Quaterly Goals/`
+**Location:** `2 - Areas/Goals/Quarterly/`
 **Naming:** `Quaterly Goals - QN YYYY.md` (e.g., "Quaterly Goals - Q1 2026.md")
 **Note:** Folder uses "Quaterly" spelling - preserve existing vault structure
 
 ### Steps:
 
 1. **Check for existing note**
-   - Look for current quarter note in `1 - Notes/OKRS/Quaterly Goals/`
+   - Look for current quarter note in `2 - Areas/Goals/Quarterly/`
    - If exists: Ask "Review note already exists. Open it or create new?"
 
 2. **Create review note**
    - Read template: `Templates/Quarterly Goals.md`
-   - Create note: `1 - Notes/OKRS/Quaterly Goals/Quaterly Goals - QN YYYY.md`
+   - Create note: `2 - Areas/Goals/Quarterly/Quaterly Goals - QN YYYY.md`
    - Apply template
 
 3. **Review previous quarter** (if applicable)
@@ -73,18 +73,18 @@ Based on selection, proceed with appropriate workflow.
 ## Monthly Check-in Workflow
 
 **Template:** `Monthly Goals.md`
-**Location:** `1 - Notes/OKRS/Monthly Goals/`
+**Location:** `2 - Areas/Goals/Monthly/`
 **Naming:** `M - Month YYYY.md` (e.g., "1 - January 2026.md", "2 - February 2026.md")
 
 ### Steps:
 
 1. **Check for existing note**
-   - Look for current month note in `1 - Notes/OKRS/Monthly Goals/`
+   - Look for current month note in `2 - Areas/Goals/Monthly/`
    - If exists: Open for review
 
 2. **Create monthly note**
    - Read template: `Templates/Monthly Goals.md`
-   - Create note: `1 - Notes/OKRS/Monthly Goals/M - Month YYYY.md`
+   - Create note: `2 - Areas/Goals/Monthly/M - Month YYYY.md`
    - Apply template
 
 3. **Review quarterly progress**
@@ -114,21 +114,21 @@ Based on selection, proceed with appropriate workflow.
 ## Weekly Review Workflow
 
 **Template:** `Weekly Planning.md`
-**Location:** `1 - Notes/Weekly Planning/M - Month YYYY/`
+**Location:** `2 - Areas/Daily Ops/Weekly/M - Month YYYY/`
 **Naming:** `YYYY-Www.md` (e.g., "2026-W06.md" in folder "2 - February 2026")
 
 ### Steps:
 
 1. **Check for existing note**
-   - Determine current month subfolder: `1 - Notes/Weekly Planning/M - Month YYYY/`
-   - Example: `1 - Notes/Weekly Planning/2 - February 2026/`
+   - Determine current month subfolder: `2 - Areas/Daily Ops/Weekly/M - Month YYYY/`
+   - Example: `2 - Areas/Daily Ops/Weekly/2 - February 2026/`
    - Look for current week note: `YYYY-Www.md`
    - If exists: Open for review
 
 2. **Create weekly note**
    - Read template: `Templates/Weekly Planning.md`
    - Create month subfolder if it doesn't exist
-   - Create note: `1 - Notes/Weekly Planning/M - Month YYYY/YYYY-Www.md`
+   - Create note: `2 - Areas/Daily Ops/Weekly/M - Month YYYY/YYYY-Www.md`
    - Apply template
 
 3. **Review last week** (if applicable)
@@ -142,7 +142,7 @@ Based on selection, proceed with appropriate workflow.
    - Break into specific tasks
 
 5. **Review active projects**
-   - List notes from `0 - PARA/1 - Projects/`
+   - List notes from `1 - Projects/`
    - For each project: What's the next action?
    - Prioritize top 3-5 projects for the week
 

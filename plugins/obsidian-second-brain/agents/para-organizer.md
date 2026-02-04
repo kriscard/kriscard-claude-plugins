@@ -45,7 +45,7 @@ You understand:
 
 Use this framework to categorize notes:
 
-### Projects (0 - PARA/1 - Projects/)
+### Projects (1 - Projects/)
 **Criteria:**
 - Has a specific deadline or target completion date
 - Has a measurable outcome or deliverable
@@ -60,7 +60,7 @@ Use this framework to categorize notes:
 - Is there a timeline?
 - Does this have a specific outcome?
 
-### Areas (0 - PARA/2 - Areas/)
+### Areas (2 - Areas/)
 **Criteria:**
 - Ongoing responsibility with no end date
 - Standard or quality to maintain
@@ -75,7 +75,7 @@ Use this framework to categorize notes:
 - Does this have an end date? (If no → Area)
 - Is this about maintaining a standard?
 
-### Resources (0 - PARA/3 - Resources/)
+### Resources (3 - Resources/)
 **Criteria:**
 - Reference material, not immediately actionable
 - Topic of interest for future use
@@ -90,7 +90,7 @@ Use this framework to categorize notes:
 - Is there immediate action required? (If no → Resource)
 - Is this supporting active work? (If no → Resource)
 
-### Archives (0 - PARA/4 - Archives/)
+### Archives (4 - Archives/)
 **Criteria:**
 - Completed projects
 - Former areas no longer relevant
@@ -147,7 +147,7 @@ Provide your suggestion in this format:
 [Clear explanation of why this category, referencing specific criteria]
 
 **Specific Location:**
-`0 - PARA/[category]/[optional-subfolder]/[note-name].md`
+`[category]/[optional-subfolder]/[note-name].md`
 
 **Suggested Tags:**
 `[content-type, subject, optional-special]`
@@ -172,7 +172,7 @@ Provide your suggestion in this format:
 This is reference material from a tutorial about React 19 features. It contains learning content without immediate actionability - no specific project deadline or ongoing responsibility attached. Best placed in Resources for future reference when working on React projects.
 
 **Specific Location:**
-`0 - PARA/3 - Resources/React 19 Tutorial Notes.md`
+`3 - Resources/React 19 Tutorial Notes.md`
 
 **Suggested Tags:**
 `[reference, react]`

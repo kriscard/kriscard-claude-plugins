@@ -80,7 +80,7 @@ Suggestions:
 
 **Exclusions:**
 - Files in `Templates/`
-- Files in `0 - PARA/Templates/`
+- Files in `Templates/`
 - Tag Taxonomy, Tag MOC, organizational docs
 - Daily notes less than 7 days old
 - Files in `temporary/`
@@ -119,47 +119,53 @@ Suggestions:
 
 ### Step 4: Check Tag Consistency
 
-**Goal:** Ensure tags follow Tag Taxonomy rules.
+**Goal:** Ensure tags follow PARA-aligned Tag Taxonomy rules.
 
 **Method:**
-1. Read Tag Taxonomy from `0 - PARA/Tag Taxonomy.md`
+1. Read Tag Taxonomy from `3 - Resources/Obsidian org/Tag Taxonomy.md`
 2. Get all notes with tags
 3. For each note:
    - Count total tags (should be ≤4)
-   - Check for required tags (content type + subject)
+   - Check for redundant folder-type tags (project, area, reference, daily, moc - these should be removed)
+   - Check for subject tags present
    - Check for invalid tags (not in taxonomy)
-   - Check for deprecated hierarchical tags
+   - Check TIL notes have `til/` prefix
 
 **Report format:**
 ```
 ## Tag Inconsistencies Found: X
 
-1. Daily Notes/2025-01-10.md
-   - Issue: Missing content type tag
-   - Current tags: [career, active]
-   - Suggested: Add #daily
+1. Projects/Website Launch.md
+   - Issue: Redundant folder-type tag
+   - Current tags: [project, career, active, web, react]
+   - Suggested: Remove `project` (folder handles this) → [career, react, active]
 
-2. Projects/Website Launch.md
-   - Issue: Too many tags (6)
-   - Current tags: [project, career, active, web, react, javascript]
-   - Suggested: Keep [project, career, active] (max 4)
+2. Resources/Old Tutorial.md
+   - Issue: Redundant folder-type tag
+   - Current tags: [reference, react]
+   - Suggested: Remove `reference` → [react]
 
-3. Resources/Old Tutorial.md
-   - Issue: Using deprecated hierarchical tag
-   - Current tags: [tech/frontend/react]
-   - Suggested: Replace with [reference, react]
+3. TIL/til-2026-01-15.md
+   - Issue: Missing til/ prefix on topic tags
+   - Current tags: [react, architecture]
+   - Suggested: Add til/ prefix → [til/react, til/architecture]
+
+4. Areas/Career.md
+   - Issue: Too many tags (5)
+   - Current tags: [area, career, active, interview, personal]
+   - Suggested: Remove `area`, keep max 4 → [career, active, interview]
 
 Tag Usage Summary:
-- Most used: career (45), project (32), react (28)
+- Redundant tags to remove: project (32), reference (28), daily (15)
+- Valid subjects: career (45), react (28)
 - Rarely used: old-tag (2) - Consider removing
-- Invalid tags: unknown-tag (1)
 ```
 
 **For each inconsistency:**
 - Show note name
 - Describe issue
 - Show current tags
-- Suggest corrections
+- Suggest corrections (remove folder-type tags, keep subject/status tags)
 - Explain reasoning
 
 ### Step 5: Summary Report
@@ -268,7 +274,7 @@ Overall health: Needs attention
 
 Most critical:
 1. [[Project Plan]] - Referenced 8 times but doesn't exist
-   Suggested: Create in 0 - PARA/1 - Projects/
+   Suggested: Create in 1 - Projects/
 
 2. Resources/Important Article.md - No backlinks
    Suggested: Link from [[Web Development MOC]]

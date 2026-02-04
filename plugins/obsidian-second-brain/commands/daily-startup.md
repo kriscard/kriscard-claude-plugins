@@ -40,10 +40,10 @@ Periods to check:
 **1b. Batch check existence (PARALLEL):**
 
 Make ONE call to list each relevant directory, then check results locally:
-- `obsidian_list_files_in_dir` for `1 - Notes/Daily Notes/`
-- `obsidian_list_files_in_dir` for `1 - Notes/Weekly Planning/M - Month YYYY/` (if Monday, e.g., `2 - February 2026`)
-- `obsidian_list_files_in_dir` for `1 - Notes/OKRS/Monthly Goals/` (if 1st)
-- `obsidian_list_files_in_dir` for `1 - Notes/OKRS/Quaterly Goals/` (if quarter start)
+- `obsidian_list_files_in_dir` for `2 - Areas/Daily Ops/`
+- `obsidian_list_files_in_dir` for `2 - Areas/Daily Ops/Weekly/M - Month YYYY/` (if Monday, e.g., `2 - February 2026`)
+- `obsidian_list_files_in_dir` for `2 - Areas/Goals/Monthly/` (if 1st)
+- `obsidian_list_files_in_dir` for `2 - Areas/Goals/Quarterly/` (if quarter start)
 
 **1c. Batch fetch templates (PARALLEL, only for missing notes):**
 
@@ -68,10 +68,10 @@ Single summary: "Created: daily (2026-01-27), weekly (2026-W05)" or "All periodi
 
 | Type | Path | Format | Template |
 |------|------|--------|----------|
-| Quarterly | `1 - Notes/OKRS/Quaterly Goals/Quaterly Goals - QN YYYY.md` | `Quaterly Goals - Q1 2026` | `Templates/Quarterly Goals.md` |
-| Monthly | `1 - Notes/OKRS/Monthly Goals/M - Month YYYY.md` | `1 - January 2026` | `Templates/Monthly Goals.md` |
-| Weekly | `1 - Notes/Weekly Planning/M - Month YYYY/YYYY-Www.md` | `2 - February 2026/2026-W06` | `Templates/Weekly Planning.md` |
-| Daily | `1 - Notes/Daily Notes/YYYY-MM-DD.md` | `2026-02-02` | `Templates/Daily Notes.md` |
+| Quarterly | `2 - Areas/Goals/Quarterly/Quaterly Goals - QN YYYY.md` | `Quaterly Goals - Q1 2026` | `Templates/Quarterly Goals.md` |
+| Monthly | `2 - Areas/Goals/Monthly/M - Month YYYY.md` | `1 - January 2026` | `Templates/Monthly Goals.md` |
+| Weekly | `2 - Areas/Daily Ops/Weekly/M - Month YYYY/YYYY-Www.md` | `2 - February 2026/2026-W06` | `Templates/Weekly Planning.md` |
+| Daily | `2 - Areas/Daily Ops/YYYY-MM-DD.md` | `2026-02-02` | `Templates/Daily Notes.md` |
 
 **Note:** The quarterly folder has a typo ("Quaterly" instead of "Quarterly") - preserve this to match existing vault structure.
 
@@ -79,8 +79,8 @@ Single summary: "Created: daily (2026-01-27), weekly (2026-W05)" or "All periodi
 
 **Fetch inbox count and projects in parallel:**
 
-- `obsidian_list_files_in_dir` for `0 - PARA/0 - Inbox/`
-- `obsidian_list_files_in_dir` for `0 - PARA/1 - Projects/`
+- `obsidian_list_files_in_dir` for `0 - Inbox/`
+- `obsidian_list_files_in_dir` for `1 - Projects/`
 
 **Report combined:**
 - "Inbox: X notes" (if X > 0, mention `/process-inbox`)

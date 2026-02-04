@@ -68,7 +68,7 @@ Referenced in:
 Total references: 3
 
 Suggestions:
-1. Create "[[Missing Note]]" in: 0 - PARA/1 - Projects/ (if project-related)
+1. Create "[[Missing Note]]" in: 1 - Projects/ (if project-related)
 2. Did you mean: [[Similar Existing Note]]?
 3. Remove link if no longer needed
 4. Fix typo if misspelled
@@ -99,7 +99,7 @@ Priority: High (3 references)
 📝 Orphaned Note Found
 
 Note: Resources/React Patterns.md
-Path: 0 - PARA/3 - Resources/React Patterns.md
+Path: 3 - Resources/React Patterns.md
 Created: 2024-12-15
 Tags: [reference, react]
 Last modified: 2025-01-05

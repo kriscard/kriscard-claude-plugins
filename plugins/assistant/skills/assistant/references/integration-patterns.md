@@ -268,13 +268,13 @@ Reference ideation, don't duplicate it.
 Query Obsidian via MCP (read-only access):
 
 1. Read annual goals:
-   obsidian_get_file_contents("0 - PARA/1 - Projects/2026 goals.md")
+   obsidian_get_file_contents("1 - Projects/2026 goals.md")
 
 2. Read quarterly goals:
-   obsidian_get_file_contents("1 - Notes/OKRS/Quarterly Goals/Quarterly Goals - Q1 2026.md")
+   obsidian_get_file_contents("2 - Areas/Goals/Quarterly Goals/Quarterly Goals - Q1 2026.md")
 
 3. Read current monthly goals:
-   obsidian_get_file_contents("1 - Notes/OKRS/Monthly Goals/1 - January 2026.md")
+   obsidian_get_file_contents("2 - Areas/Goals/Monthly Goals/1 - January 2026.md")
 
 4. Extract relevant sections:
    - Career objectives (Staff track)

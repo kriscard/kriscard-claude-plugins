@@ -6,434 +6,231 @@ Comprehensive breakdown of the vault's folder hierarchy, files, and organization
 
 ```
 obsidian-vault-kriscard/
-├── 0 - PARA/
-│   ├── 0 - Inbox/              # Unprocessed capture zone
-│   ├── 1 - Projects/            # Active projects with deadlines
-│   ├── 2 - Areas/               # Ongoing responsibilities
-│   ├── 3 - Resources/           # Reference materials
-│   ├── 4 - Archives/            # Completed/inactive items
-│   ├── MOCs/                    # Maps of Content
-│   ├── Templates/               # Organizational templates
-│   ├── PARA Method Implementation.md
-│   ├── Tag MOC.md
-│   ├── Tag Taxonomy.md
-│   ├── Tag Migration Script.md
-│   ├── Vault Maintenance Guide.md
-│   └── Vault Organization Guide.md
-├── 1 - Notes/
-│   ├── 0_Archives/              # Archived daily notes
-│   ├── Daily Notes/             # Daily journal entries
-│   ├── OKRS/                    # Goal tracking
-│   ├── People/                  # Relationship notes
-│   ├── Weekly Planning/         # Weekly reviews
-│   └── React Composition Over Inheritance Tutorial.md
-├── Canvas/                      # Visual mind maps
-├── Fitness/                     # Training and health
-├── Side Project/                # Personal projects
-├── Templates/                   # Note templates (main location)
-│   ├── Archive/
-│   ├── 1-on-1 Meeting Notes.md
-│   ├── Book Reviews.md
-│   ├── Bug Fix.md
-│   ├── Communicate your work.md
+├── 0 - Inbox/                  # Unprocessed capture zone
+├── 1 - Projects/               # Active projects with deadlines
+├── 2 - Areas/                  # Ongoing responsibilities
+│   ├── Careers/                # Professional development
+│   │   └── 1on1/               # 1-on-1 meeting notes
+│   ├── Daily Ops/              # Daily notes
+│   │   └── Weekly/             # Weekly planning by month
+│   │       ├── 1 - January 2026/
+│   │       └── 2 - February 2026/
+│   ├── Goals/                  # OKR tracking
+│   │   ├── Monthly/            # Monthly goals
+│   │   ├── Quarterly/          # Quarterly OKRs
+│   │   └── Yearly/             # Annual goals
+│   ├── Health and self care/   # Health tracking
+│   └── Relationships/          # People notes
+├── 3 - Resources/              # Reference materials
+│   ├── Coding/                 # Development resources
+│   ├── Obsidian org/           # Vault organization docs
+│   │   ├── PARA Method Implementation.md
+│   │   ├── Tag MOC.md
+│   │   ├── Tag Taxonomy.md
+│   │   ├── Vault Maintenance Guide.md
+│   │   └── Vault Organization Guide.md
+│   └── TIL/                    # Today I Learned notes
+├── 4 - Archives/               # Completed/inactive items
+│   ├── Daily Notes/            # Old daily notes
+│   └── Projects - YYYY/        # Archived projects by year
+├── MOCs/                       # Maps of Content
+│   ├── Master MOC.md
+│   ├── TIL Index.md
+│   └── [Topic] MOC.md
+├── Templates/                  # Note templates
 │   ├── Daily Notes.md
-│   ├── Feature Implementation.md
-│   ├── General Notes.md
-│   ├── Learning Tech Template.md
-│   ├── Learning.md
-│   ├── MOC Template.md
-│   ├── Meeting Notes.md
-│   ├── Monthly Goals.md
-│   ├── People.md
-│   ├── Problem Solving.md
-│   ├── Project Brief.md
-│   ├── Project Planning.md
-│   ├── Quarterly Goals.md
 │   ├── Weekly Planning.md
-│   └── Weekly Workout.md
-├── temporary/                   # Scratch space
-├── Hyrox Hybrid workout 2025-2026 Plan.md
-├── README.md
-└── tag-analysis.py
+│   ├── Monthly Goals.md
+│   ├── Quarterly Goals.md
+│   └── [Other templates...]
+└── README.md
 ```
 
 ## Folder Purposes
 
-### 0 - PARA/ (Primary Organization)
-
-Main organizational structure following PARA methodology.
-
-#### 0 - Inbox/
+### 0 - Inbox/
 - **Purpose**: Capture zone for unprocessed notes
 - **Workflow**: Process weekly, move to appropriate PARA category
 - **Target**: Empty every week
-- **Tags**: `#inbox` or `#to-process`
+- **Tags**: None needed (processing determines tags)
 
-#### 1 - Projects/
+### 1 - Projects/
 - **Purpose**: Active work with specific outcomes and deadlines
 - **Criteria**:
   - Has clear deadline or target date
   - Has specific, measurable outcome
   - Requires multiple steps
   - Will move to Archives when complete
-- **Tags**: `#project` + subject tag + optional `#active`
+- **Tags**: Subject tag + optional `#active`
 - **Examples**: "Launch website", "Complete course", "Job search"
 
-#### 2 - Areas/
+### 2 - Areas/
 - **Purpose**: Ongoing responsibilities without end dates
-- **Criteria**:
-  - Ongoing responsibility
-  - Standard to maintain
-  - Part of role or identity
-  - Continues indefinitely
-- **Tags**: `#area` + subject tag
-- **Examples**: "Career development", "Health & fitness", "Personal development"
+- **Structure**:
+  - `Careers/` - Professional development
+  - `Careers/1on1/` - Meeting notes
+  - `Daily Ops/` - Daily notes
+  - `Daily Ops/Weekly/` - Weekly planning
+  - `Goals/` - OKRs (quarterly, monthly, yearly)
+  - `Health and self care/` - Wellness tracking
+  - `Relationships/` - People notes
+- **Tags**: Subject tag only (e.g., `#career`, `#personal`)
 
-#### 3 - Resources/
+### 3 - Resources/
 - **Purpose**: Reference materials and passive information
-- **Criteria**:
-  - Topics of interest but not actively working on
-  - Reference materials for future use
-  - Learning materials and study notes
-  - Best practices and methodologies
-- **Tags**: `#reference` + subject tag
-- **Examples**: "Coding patterns", "Technical articles", "Book notes"
+- **Structure**:
+  - `Coding/` - Development resources
+  - `Obsidian org/` - Vault organization docs
+  - `TIL/` - Today I Learned notes
+- **Tags**: Subject tag only (e.g., `#react`, `#tools`)
+- **TIL tags**: Use `til/` prefix (e.g., `#til/react`, `#til/architecture`)
 
-#### 4 - Archives/
+### 4 - Archives/
 - **Purpose**: Completed or inactive items
 - **Organization**: By year or category
-  - `Projects - 2024/`
-  - `Projects - 2023/`
-  - `Areas - Inactive/`
-  - `Resources - Deprecated/`
+  - `Projects - 2026/`
+  - `Daily Notes/`
 - **When to archive**:
   - Projects: Completed or abandoned
-  - Areas: No longer responsibility
-  - Resources: Outdated or irrelevant
+  - Daily notes: After 90+ days
 
-#### MOCs/
+### MOCs/
 - **Purpose**: Maps of Content for navigation
 - **Use cases**:
   - Topic has 10+ related notes
   - Need overview of knowledge area
   - Connecting multiple projects/areas
 - **Naming**: `[Topic] MOC.md`
-- **Special MOCs**:
-  - **Tag MOC.md**: Tag hierarchy browser with Dataview queries
-  - **Master MOC**: Main navigation hub (if exists)
+- **Key MOCs**:
+  - `Master MOC.md` - Main navigation hub
+  - `TIL Index.md` - TIL notes organized by topic
 
-#### Templates/
-- Organizational templates specific to PARA
-- Supplement main Templates/ folder
+### Templates/
+- Central location for all note templates
+- Applied via Templater plugin based on folder
 
-#### Organizational Documents
-Located directly in `0 - PARA/`:
-- **PARA Method Implementation.md**: Vault-specific PARA guide
-- **Tag Taxonomy.md**: Complete tagging system (3-4 tag max)
-- **Tag MOC.md**: Tag hierarchy and Dataview queries
-- **Tag Migration Script.md**: Tag consolidation guide
-- **Vault Organization Guide.md**: Organization patterns
-- **Vault Maintenance Guide.md**: Maintenance checklists
+## PARA-Aligned Tag Taxonomy
 
-### 1 - Notes/ (Temporal & Relational)
+**Core principle**: Tags complement folders—don't duplicate them.
 
-Temporal tracking and relationship notes.
+> **Folders = "What type"** (project, area, resource)
+> **Tags = "What about"** (React, career, interview)
 
-#### Daily Notes/
-- **Purpose**: Daily journal and planning
-- **Format**: `YYYY-MM-DD.md`
-- **Template**: `Daily Notes.md`
-- **Content**:
-  - Links to active projects and areas
-  - Task list or priorities
-  - Quick capture section
-  - Reflection or review
-- **Tags**: `#daily`
-- **Archiving**: Move to `0_Archives/` after 90+ days
+### Subject Tags (Pick 1-2)
+- `javascript` - JavaScript ecosystem
+- `react` - React framework
+- `css` - Styling and design
+- `typescript` - TypeScript features
+- `web` - General web dev
+- `career` - Professional development
+- `personal` - Health, goals, life
+- `tools` - Dev tools and workflows
 
-#### OKRS/
-- **Purpose**: Goal tracking and reviews
-- **Structure**:
-  ```
-  OKRS/
-  ├── Quaterly Goals/        # Note: typo in folder name (preserve)
-  │   └── Quaterly Goals - Q1 2026.md
-  ├── Monthly Goals/
-  │   ├── 1 - January 2026.md
-  │   └── 2 - February 2026.md
-  ├── Yearly Goals/
-  └── 0_Archives/
-  ```
-- **Templates**:
-  - `Quarterly Goals.md`
-  - `Monthly Goals.md`
-- **Review cadence**:
-  - Quarterly: Major planning
-  - Monthly: Progress checks
+### Status Tags (Optional)
+- `active` - Currently working on
+- `interview` - Job interview prep
 
-#### Weekly Planning/
-- **Purpose**: Weekly review notes
-- **Template**: `Weekly Planning.md`
-- **Structure**:
-  ```
-  Weekly Planning/
-  ├── 1 - January 2026/
-  │   └── 2026-W01.md
-  └── 2 - February 2026/
-      └── 2026-W06.md
-  ```
-- **Naming**: `YYYY-Www.md` in month subfolders `M - Month YYYY/`
-- **Tags**: `#weekly-planning`
-- **Content**:
-  - Week review and planning
-  - Inbox processing notes
-  - Project updates
-  - Area check-ins
+### Flashcard Tags
+- `flashcards` + `[topic]_flashcards`
+- Essential for spaced repetition
 
-#### People/
-- **Purpose**: Relationship and networking notes
-- **Template**: `People.md`
-- **Use cases**:
-  - Professional contacts
-  - 1-on-1 meeting notes
-  - Relationship context
-- **Tags**: Often combined with `#meeting` or `#career`
+### TIL Tags
+- Use `til/` prefix: `til/react`, `til/architecture`, `til/testing`
 
-#### 0_Archives/
-- **Purpose**: Old daily notes and temporal notes
-- **Organization**: By year or quarter
-- **Cleanup**: Review annually
-
-### Templates/ (Main Template Library)
-
-Central location for all note templates.
-
-#### Template Categories
-
-**Meeting Templates:**
-- `1-on-1 Meeting Notes.md`
-- `Meeting Notes.md`
-
-**Project Templates:**
-- `Project Brief.md`
-- `Project Planning.md`
-- `Feature Implementation.md`
-- `Bug Fix.md`
-
-**Learning Templates:**
-- `Learning.md`
-- `Learning Tech Template.md`
-- `Book Reviews.md`
-
-**Goal Templates:**
-- `Daily Notes.md`
-- `Weekly Planning.md`
-- `Monthly Goals.md`
-- `Quarterly Goals.md`
-
-**Other Templates:**
-- `MOC Template.md`
-- `People.md`
-- `General Notes.md`
-- `Problem Solving.md`
-- `Communicate your work.md`
-- `Weekly Workout.md`
-
-#### Archive/
-Old or deprecated templates.
-
-### Other Folders
-
-#### Canvas/
-- Visual mind maps and diagrams
-- Obsidian Canvas files
-
-#### Fitness/
-- Training plans
-- Workout logs
-- Health tracking
-
-#### Side Project/
-- Personal projects outside main PARA structure
-- Experimental or informal work
-
-#### temporary/
-- Scratch space
-- Temporary files
-- Testing area
+### Tags NOT to Use
+Folder already handles these:
+- ~~`project`~~ → `1 - Projects/`
+- ~~`area`~~ → `2 - Areas/`
+- ~~`reference`~~ → `3 - Resources/`
+- ~~`daily`~~ → `2 - Areas/Daily Ops/`
+- ~~`moc`~~ → `MOCs/`
+- ~~`meeting`~~ → File location
 
 ## File Naming Conventions
 
 ### Daily Notes
 ```
-YYYY-MM-DD.md
+2 - Areas/Daily Ops/YYYY-MM-DD.md
 ```
-Examples: `2025-01-11.md`, `2025-01-12.md`
 
-### Project Notes
+### Weekly Planning
 ```
-[Project Name].md
-[Project Name] - [Aspect].md
+2 - Areas/Daily Ops/Weekly/M - Month YYYY/YYYY-Www.md
 ```
-Examples: `Launch Website.md`, `Launch Website - Design.md`
+Example: `2 - Areas/Daily Ops/Weekly/2 - February 2026/2026-W06.md`
 
-### Area Notes
+### Monthly Goals
 ```
-[Area Name].md
+2 - Areas/Goals/Monthly/M - Month YYYY.md
 ```
-Examples: `Career Development.md`, `Health & Fitness.md`
+Example: `2 - Areas/Goals/Monthly/2 - February 2026.md`
 
-### Resource Notes
+### Quarterly Goals
 ```
-[Topic].md
-[Topic] - [Subtopic].md
+2 - Areas/Goals/Quarterly/Quaterly Goals - QN YYYY.md
 ```
-Examples: `React Patterns.md`, `React Patterns - Hooks.md`
+Note: Typo "Quaterly" is preserved for compatibility
+
+### TIL Notes
+```
+3 - Resources/TIL/til-YYYY-MM-DD.md
+```
+
+### Projects
+```
+1 - Projects/[Project Name]/[Note Name].md
+```
 
 ### MOCs
 ```
-[Topic] MOC.md
+MOCs/[Topic] MOC.md
 ```
-Examples: `Web Development MOC.md`, `Tag MOC.md`
-
-### Templates
-```
-[Template Purpose].md
-```
-Examples: `Daily Notes.md`, `Meeting Notes.md`
 
 ## Metadata Patterns
 
-### Frontmatter
-
-**Standard fields:**
+### Project Notes (in 1 - Projects/)
 ```yaml
 ---
-created: YYYY-MM-DD
-modified: YYYY-MM-DD
-tags: [tag1, tag2, tag3]
-status: active|completed|on-hold
----
-```
-
-**Project-specific:**
-```yaml
----
-created: 2025-01-11
-modified: 2025-01-11
-tags: [project, career, active]
+created: 2026-01-15
+tags: [react, active]  # Subject + status only
 status: active
-deadline: 2025-03-01
-area: "[[Career Development]]"
+deadline: 2026-03-01
 ---
 ```
 
-**Resource-specific:**
+### Resource Notes (in 3 - Resources/)
 ```yaml
 ---
-created: 2025-01-11
-tags: [reference, react]
+created: 2026-01-15
+tags: [react]  # Subject only
 source: https://example.com
-author: Author Name
 ---
 ```
 
-**Daily note:**
+### TIL Notes (in 3 - Resources/TIL/)
 ```yaml
 ---
-date: 2025-01-11
-tags: [daily]
+date: "2026-01-15"
+tags:
+  - til/react
+  - til/hooks
+  - til/architecture
 ---
 ```
 
-## Linking Patterns
-
-### Internal Links
-
-**Standard wiki links:**
-```markdown
-[[Note Name]]
-[[Note Name|Display Text]]
+### Flashcard Notes
+```yaml
+---
+tags: [flashcards, react, react_flashcards, interview]
+---
 ```
-
-**Heading links:**
-```markdown
-[[Note Name#Heading]]
-```
-
-**Block references:**
-```markdown
-This is important. ^key-point
-
-Referenced as: [[Note Name#^key-point]]
-```
-
-### Cross-PARA Linking
-
-**Project → Area (parent):**
-```markdown
-# Project: Launch Website
-
-**Parent Area:** [[Career Development]]
-```
-
-**Project → Resource (reference):**
-```markdown
-# Project: Launch Website
-
-## Resources
-- [[React Patterns]]
-- [[Web Design Principles]]
-```
-
-**Area → Projects (active work):**
-```markdown
-# Area: Career Development
-
-## Active Projects
-- [[Launch Website]]
-- [[Complete Online Course]]
-```
-
-### Backlinks
-
-- Every note implicitly tracks incoming links
-- Use backlinks to discover unexpected connections
-- Identify orphaned notes (no backlinks) during maintenance
-
-## Tag Hierarchy
-
-### Simplified System (Current)
-
-**Maximum 3-4 tags per note**
-
-**Layer 1: Content Type (Required)**
-- `flashcards`, `reference`, `project`, `area`, `meeting`, `daily`, `moc`
-
-**Layer 2: Subject (Required)**
-- `javascript`, `react`, `css`, `typescript`, `web`, `career`, `personal`, `tools`
-
-**Layer 3: Flashcard Type (Conditional)**
-- `javascript_flashcards`, `react_flashcards`, etc.
-
-**Layer 4: Special Purpose (Optional)**
-- `interview`, `active`, `meta`
-
-### Legacy Hierarchical Tags
-
-Being phased out but still present:
-- `tech/frontend/javascript` → `javascript`
-- `tech/frontend/react` → `react`
-- `career/networking` → `career`
-
-Preserved in existing notes for backward compatibility, especially flashcards.
 
 ## Dataview Query Patterns
 
 ### Active Projects
 ```dataview
 TABLE status, deadline
-FROM "0 - PARA/1 - Projects"
+FROM "1 - Projects"
 WHERE !contains(file.folder, "Archive")
 SORT deadline ASC
 ```
@@ -441,29 +238,31 @@ SORT deadline ASC
 ### Unprocessed Inbox
 ```dataview
 LIST
-FROM "0 - PARA/0 - Inbox"
+FROM "0 - Inbox"
 ```
 
 ### Recent Daily Notes
 ```dataview
 LIST
-FROM "1 - Notes/Daily Notes"
+FROM "2 - Areas/Daily Ops"
+WHERE !contains(file.folder, "Weekly")
 SORT file.name DESC
 LIMIT 7
 ```
 
-### Orphaned Notes
+### TIL Notes by Topic
 ```dataview
-TABLE file.inlinks as "Backlinks"
-WHERE length(file.inlinks) = 0
-AND !contains(file.folder, "Archive")
+TABLE file.tags as "Topics"
+FROM "3 - Resources/TIL"
+WHERE contains(tags, "til/react")
+SORT file.name DESC
 ```
 
-### Notes by Tag
+### All React Content (Cross-Category)
 ```dataview
 LIST
 FROM #react
-SORT file.name ASC
+SORT file.mtime DESC
 ```
 
 ## Maintenance Patterns
@@ -478,96 +277,46 @@ SORT file.name ASC
 - [ ] Review all areas
 - [ ] Archive completed projects
 - [ ] Update MOCs
-- [ ] Clean up tags
+- [ ] Remove redundant folder-type tags
 - [ ] Check broken links
 
 ### Quarterly Checklist
 - [ ] Review quarterly OKRs
-- [ ] Archive old daily notes
+- [ ] Archive old daily notes (90+ days)
 - [ ] Consolidate resources
 - [ ] Vault structure review
 
-## Special Patterns
+## Template to Folder Mapping
 
-### Flashcard System
+Configured in Templater plugin:
 
-**Critical for spaced repetition:**
-- Always include both `flashcards` and `[topic]_flashcards` tags
-- Never modify or remove flashcard tags
-- Flashcard files often use legacy hierarchical tags (preserved)
-
-### Meeting Notes
-
-**Standard structure:**
-- Use `Meeting Notes.md` or `1-on-1 Meeting Notes.md` template
-- Tag with `#meeting` + subject tag
-- Link to relevant project or area
-- Link to people notes when relevant
-
-### Learning Materials
-
-**Progressive summarization:**
-- Capture full source in resources
-- Apply highlighting layers over time
-- Extract evergreen notes to separate files
-- Link to projects when applied
+| Folder | Template |
+|--------|----------|
+| `3 - Resources/Books` | `Book Reviews.md` |
+| `3 - Resources/Coding` | `Learning.md` |
+| `2 - Areas/Relationships` | `People.md` |
+| `2 - Areas/Careers/1on1` | `1-on-1 Meeting Notes.md` |
+| `0 - Inbox` | `General Notes.md` |
 
 ## Common Operations
 
-### Moving Notes Between Categories
-
-**When to move:**
-- Project complete → Archive
-- Resource becomes active → Project
-- Project becomes ongoing → Area
-
-**How to move:**
-1. Use Obsidian file move (preserves links)
-2. Update metadata (tags, status)
-3. Update parent/child links
-4. Update relevant MOCs
-
 ### Creating New Projects
-
 1. Create note in `1 - Projects/[Project Name]/`
 2. Use `Project Brief.md` template
-3. Tag: `#project` + subject + `#active`
+3. Tag: Subject + `#active` (e.g., `[react, active]`)
 4. Link to parent area
-5. Link to relevant resources
-6. Add to weekly planning
+5. Add to weekly planning
 
 ### Processing Inbox
-
 1. Read note content
-2. Decide: Delete, Archive, or Elaborate
-3. If elaborating:
-   - Add context and links
-   - Apply appropriate tags
-   - Move to PARA category
-4. Target: Weekly inbox zero
+2. Decide PARA category based on actionability
+3. Move to appropriate folder
+4. Add subject tag only (folder handles content type)
+5. Link to related notes
 
-## Vault Statistics
+### Moving Notes Between Categories
+1. Use Obsidian file move (preserves links)
+2. Update tags (remove old folder-type tags if any)
+3. Update relevant MOCs
 
-Use these patterns to understand vault health:
-
-**Total notes by category:**
-```bash
-find "0 - PARA/1 - Projects" -name "*.md" | wc -l
-find "0 - PARA/2 - Areas" -name "*.md" | wc -l
-find "0 - PARA/3 - Resources" -name "*.md" | wc -l
-```
-
-**Unprocessed inbox count:**
-```bash
-find "0 - PARA/0 - Inbox" -name "*.md" | wc -l
-```
-
-**Recent activity:**
-```bash
-find vault/ -name "*.md" -mtime -7  # Modified in last 7 days
-```
-
-**Orphaned notes:**
-Use Dataview query or graph view to identify notes with no incoming links.
-
-This detailed structure serves as a complete reference for understanding the vault's organization, patterns, and conventions.
+This detailed structure serves as a complete reference for understanding the vault's organization, patterns, and conventions aligned with pure PARA methodology.

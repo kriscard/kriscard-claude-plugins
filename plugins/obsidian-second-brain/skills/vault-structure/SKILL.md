@@ -16,45 +16,38 @@ This skill provides detailed knowledge of the user's specific Obsidian vault str
 
 The vault implements a modified PARA method with additional organizational folders:
 
-### Primary Organization (0 - PARA/)
+### Primary Organization ()
 
 ```
-0 - PARA/
+
 ├── 0 - Inbox/              # Unprocessed notes, process weekly
 ├── 1 - Projects/           # Active work with deadlines
 ├── 2 - Areas/              # Ongoing responsibilities
+│   ├── Daily Ops/          # Daily notes, weekly planning
+│   │   ├── [Daily notes]   # YYYY-MM-DD.md files
+│   │   └── Weekly/         # Weekly planning by month
+│   ├── Goals/              # OKR tracking
+│   │   ├── Quarterly/      # Quarterly goals
+│   │   └── Monthly/        # Monthly goals
+│   └── Relationships/      # People notes
 ├── 3 - Resources/          # Reference materials
+│   └── TIL/                # Today I Learned notes
 ├── 4 - Archives/           # Completed/inactive items
-├── MOCs/                   # Maps of Content (navigation)
-├── Templates/              # Vault-wide templates
-└── [Organization Docs]/    # PARA guides, taxonomies
-```
-
-### Secondary Folders (1 - Notes/)
-
-```
-1 - Notes/
-├── Daily Notes/            # Daily journal and planning
-├── OKRS/                   # Goal tracking (quarterly, monthly, weekly)
-├── Weekly Planning/        # Weekly reviews and plans
-├── People/                 # Relationship notes
-└── 0_Archives/             # Archived daily notes
+└── MOCs/                   # Maps of Content (navigation)
 ```
 
 ### Additional Folders
 
 ```
-Canvas/                     # Visual mind maps
-Fitness/                    # Training plans and logs
-Side Project/               # Personal projects
 Templates/                  # Note templates
-temporary/                  # Scratch space
 ```
+
+Note: Canvas files, Fitness content, and Side Projects have been consolidated into PARA folders.
 
 ### Key Organizational Documents
 
-Located in `0 - PARA/`:
-- **Tag Taxonomy.md** - Simplified 3-4 tag system, tagging guidelines
+Located in `3 - Resources/Obsidian org/`:
+- **Tag Taxonomy.md** - PARA-aligned tagging (subject tags, not content type)
 - **Tag MOC.md** - Tag hierarchy browser with Dataview queries
 - **PARA Method Implementation.md** - Vault-specific PARA guide
 - **Vault Organization Guide.md** - Maintenance and organization patterns
@@ -62,20 +55,16 @@ Located in `0 - PARA/`:
 
 ## Tagging System
 
-The vault uses a **simplified tag system with maximum 3-4 tags per note**.
+Tags complement PARA folders—they cut **across** folder structure for cross-category discovery.
+
+> **Folders = "What type"** (project, area, resource)
+> **Tags = "What about"** (React, career, interview)
+
+Don't tag what the folder already tells you.
 
 ### Tag Categories
 
-**1. Content Type (Required - Pick One):**
-- `flashcards` - Spaced repetition materials
-- `reference` - Documentation and guides
-- `project` - Active work with deadlines
-- `area` - Ongoing responsibilities
-- `meeting` - Meeting notes
-- `daily` - Daily notes and planning
-- `moc` - Maps of Content
-
-**2. Subject (Required - Pick One):**
+**1. Subject Tags (Pick 1-2):**
 - `javascript` - JavaScript ecosystem
 - `react` - React framework
 - `css` - Styling and design
@@ -85,42 +74,52 @@ The vault uses a **simplified tag system with maximum 3-4 tags per note**.
 - `personal` - Health, goals, life
 - `tools` - Dev tools and workflows
 
-**3. Flashcard Type (Only if content type = flashcards):**
-- `javascript_flashcards`
-- `react_flashcards`
-- `css_flashcards`
-- `typescript_flashcards`
-- `web_flashcards`
-
-**4. Special Purpose (Optional):**
+**2. Status Tags (Optional):**
 - `interview` - Job interview prep
 - `active` - Currently working on
-- `meta` - System organization
+
+**3. Flashcard Tags (For spaced repetition):**
+- `flashcards` - Any spaced repetition content
+- `javascript_flashcards`, `react_flashcards`, `css_flashcards`, `typescript_flashcards`, `web_flashcards`
+
+**4. TIL Tags (For Today I Learned notes):**
+- Use `til/` prefix: `til/react`, `til/architecture`, `til/testing`, `til/debugging`, `til/performance`
+
+### Tags NOT to Use
+
+These duplicate folder structure—let PARA handle them:
+- ~~`project`~~ → `1 - Projects/` folder
+- ~~`area`~~ → `2 - Areas/` folder
+- ~~`reference`~~ → `3 - Resources/` folder
+- ~~`daily`~~ → `2 - Areas/Daily Ops/` folder
+- ~~`moc`~~ → `MOCs/` folder
+- ~~`meeting`~~ → File location handles this
+- ~~`meta`~~ → Vault organization files are obvious
 
 ### Tagging Best Practices
 
-Reference **Tag Taxonomy.md** for complete guidelines:
-
-- Maximum 4 tags per note
-- Always include content type + subject
+- Maximum 3-4 tags per note
+- Subject tags only—don't duplicate folder info
 - Preserve flashcard tags (critical for spaced repetition)
-- Use descriptive titles over micro-tags
+- Use `til/` prefix for TIL discoverability
 - Search first, browse second
-- Clean up unused tags monthly
 
 **Tagging Examples:**
 ```yaml
 # Flashcards
 tags: [flashcards, react, react_flashcards, interview]
 
-# Projects
-tags: [project, career, active]
+# Project notes (in 1 - Projects/)
+tags: [react, active]  # NOT [project, react, active]
 
-# Resources
-tags: [reference, javascript]
+# Resource files (in 3 - Resources/)
+tags: [javascript]  # NOT [reference, javascript]
 
-# Daily notes
-tags: [daily]
+# TIL notes
+tags: [til/react, til/hooks, til/architecture]
+
+# Career meetings (in 2 - Areas/Careers/)
+tags: [career]  # NOT [meeting, career]
 ```
 
 ## Templates
@@ -150,7 +149,7 @@ Contains all note type templates:
 - `Weekly Planning.md`
 - `Weekly Workout.md`
 
-### 2. PARA Templates (0 - PARA/Templates/)
+### 2. PARA Templates (Templates/)
 
 Additional organizational templates.
 
@@ -169,22 +168,22 @@ Additional organizational templates.
 **Decision tree for placement:**
 
 1. **Is this for an active project with a deadline?**
-   → `0 - PARA/1 - Projects/[Project Name]/`
+   → `1 - Projects/[Project Name]/`
 
 2. **Is this an ongoing responsibility?**
-   → `0 - PARA/2 - Areas/[Area Name]/`
+   → `2 - Areas/[Area Name]/`
 
 3. **Is this reference material for future use?**
-   → `0 - PARA/3 - Resources/`
+   → `3 - Resources/`
 
 4. **Is this daily/temporal tracking?**
-   → `1 - Notes/Daily Notes/` or `1 - Notes/OKRS/`
+   → `2 - Areas/Daily Ops/` or `2 - Areas/Goals/`
 
 5. **Is this unprocessed or uncertain?**
-   → `0 - PARA/0 - Inbox/` (process later)
+   → `0 - Inbox/` (process later)
 
 6. **Is this completed or inactive?**
-   → `0 - PARA/4 - Archives/`
+   → `4 - Archives/`
 
 **Key PARA Principles:**
 - **Projects** - Time-bound, specific outcome, will move to Archives
@@ -196,19 +195,19 @@ For complete PARA guidance, reference **PARA Method Implementation.md**.
 
 ## Inbox Processing Workflow
 
-**Inbox location:** `0 - PARA/0 - Inbox/`
+**Inbox location:** `0 - Inbox/`
 
 **Processing steps:**
 1. Read note content
 2. Apply decision tree above
-3. Add appropriate tags (content type + subject)
+3. Add subject tag(s) only (folder handles content type)
 4. Link to related notes or MOCs
 5. Move to proper PARA category
 6. Target: Empty inbox weekly
 
 ## Daily Notes Pattern
 
-**Location:** `1 - Notes/Daily Notes/`
+**Location:** `2 - Areas/Daily Ops/`
 **Template:** `Daily Notes.md`
 **Format:** `YYYY-MM-DD.md`
 
@@ -217,37 +216,34 @@ For complete PARA guidance, reference **PARA Method Implementation.md**.
 2. Link to active projects and areas
 3. Capture tasks and quick notes
 4. Evening reflection
-5. Archive old daily notes quarterly to `1 - Notes/0_Archives/`
+5. Archive old daily notes quarterly to `4 - Archives/Daily Notes/`
 
 ## OKR Structure
 
-**Location:** `1 - Notes/OKRS/`
+**Location:** `2 - Areas/Goals/`
 
 **Folder structure:**
 ```
-1 - Notes/OKRS/
-├── Quaterly Goals/              # Note: typo in folder name (preserve)
-│   └── Quaterly Goals - Q1 2026.md
-├── Monthly Goals/
-│   ├── 1 - January 2026.md
-│   └── 2 - February 2026.md
-├── Yearly Goals/
-└── 0_Archives/
-```
-
-**Weekly planning is separate:**
-```
-1 - Notes/Weekly Planning/
-├── 1 - January 2026/
-│   └── 2026-W01.md
-└── 2 - February 2026/
-    └── 2026-W06.md
+2 - Areas/
+├── Goals/
+│   ├── Quarterly/
+│   │   └── Quarterly Goals - Q1 2026.md
+│   ├── Monthly/
+│   │   ├── 1 - January 2026.md
+│   │   └── 2 - February 2026.md
+│   └── Yearly/
+└── Daily Ops/
+    └── Weekly/
+        ├── 1 - January 2026/
+        │   └── 2026-W01.md
+        └── 2 - February 2026/
+            └── 2026-W06.md
 ```
 
 **OKR hierarchy:**
-- **Quarterly Goals** - `1 - Notes/OKRS/Quaterly Goals/Quaterly Goals - QN YYYY.md`
-- **Monthly Goals** - `1 - Notes/OKRS/Monthly Goals/M - Month YYYY.md`
-- **Weekly Planning** - `1 - Notes/Weekly Planning/M - Month YYYY/YYYY-Www.md`
+- **Quarterly Goals** - `2 - Areas/Goals/Quarterly/Quarterly Goals - QN YYYY.md`
+- **Monthly Goals** - `2 - Areas/Goals/Monthly/M - Month YYYY.md`
+- **Weekly Planning** - `2 - Areas/Daily Ops/Weekly/M - Month YYYY/YYYY-Www.md`
 
 **Templates:**
 - Use `Quarterly Goals.md` for quarterly reviews
@@ -261,7 +257,7 @@ For complete PARA guidance, reference **PARA Method Implementation.md**.
 
 ## Maps of Content (MOCs)
 
-**Location:** `0 - PARA/MOCs/`
+**Location:** `MOCs/`
 
 **Purpose:** Navigation hubs for related content
 
@@ -341,37 +337,43 @@ vault_path: /Users/kriscard/obsidian-vault-kriscard
 ```
 
 **Key paths for commands:**
-- Daily notes: `1 - Notes/Daily Notes/`
-- Inbox: `0 - PARA/0 - Inbox/`
-- Templates: `Templates/` (root) and `0 - PARA/Templates/`
-- Quarterly OKRs: `1 - Notes/OKRS/Quaterly Goals/`
-- Monthly Goals: `1 - Notes/OKRS/Monthly Goals/`
-- Weekly Planning: `1 - Notes/Weekly Planning/M - Month YYYY/`
+- Daily notes: `2 - Areas/Daily Ops/`
+- Inbox: `0 - Inbox/`
+- Templates: `Templates/` (root)
+- TIL notes: `3 - Resources/TIL/`
+- Quarterly OKRs: `2 - Areas/Goals/Quarterly/`
+- Monthly Goals: `2 - Areas/Goals/Monthly/`
+- Weekly Planning: `2 - Areas/Daily Ops/Weekly/M - Month YYYY/`
 
 ## Common Vault Operations
 
 ### Creating Notes
 
 **Daily note:**
-- Location: `1 - Notes/Daily Notes/`
+- Location: `2 - Areas/Daily Ops/`
 - Template: `Daily Notes.md`
 - Name: `YYYY-MM-DD.md`
-- Tags: `#daily`
+- Tags: None needed (folder provides context)
 
 **Project note:**
-- Location: `0 - PARA/1 - Projects/[Project Name]/`
+- Location: `1 - Projects/[Project Name]/`
 - Template: `Project Brief.md` or `Project Planning.md`
-- Tags: `#project` + subject tag
+- Tags: Subject tag + `#active` if currently working
 
 **Meeting note:**
 - Location: Varies (often in project or area folder)
 - Template: `Meeting Notes.md` or `1-on-1 Meeting Notes.md`
-- Tags: `#meeting` + subject tag
+- Tags: Subject tag only (e.g., `#career`)
 
 **Learning note:**
-- Location: `0 - PARA/3 - Resources/`
+- Location: `3 - Resources/`
 - Template: `Learning.md` or `Learning Tech Template.md`
-- Tags: `#reference` + subject tag
+- Tags: Subject tag only (e.g., `#react`)
+
+**TIL note:**
+- Location: `3 - Resources/TIL/`
+- Template: None (created by /til command)
+- Tags: `til/` prefixed topic tags (e.g., `#til/react`, `#til/architecture`)
 
 ### Moving Notes
 
@@ -391,8 +393,8 @@ When PARA category changes:
 - Daily notes: After 90+ days
 
 **Archive locations:**
-- Projects: `0 - PARA/4 - Archives/Projects - YYYY/`
-- Daily notes: `1 - Notes/0_Archives/`
+- Projects: `4 - Archives/Projects - YYYY/`
+- Daily notes: `4 - Archives/Daily Notes/`
 
 ## Reading Vault Files
 
@@ -405,7 +407,7 @@ bash ${CLAUDE_PLUGIN_ROOT}/scripts/read-vault-file.sh "PARA Method Implementatio
 
 Or use Obsidian MCP directly:
 ```
-mcp__mcp-obsidian__obsidian_get_file_contents("0 - PARA/Tag Taxonomy.md")
+mcp__mcp-obsidian__obsidian_get_file_contents("Tag Taxonomy.md")
 ```
 
 ## Additional Resources
@@ -422,10 +424,10 @@ For complete vault structure documentation:
 ### Vault Documentation
 
 Always reference these files when available:
-- **Tag Taxonomy.md** (`0 - PARA/Tag Taxonomy.md`)
-- **Tag MOC.md** (`0 - PARA/Tag MOC.md`)
-- **PARA Method Implementation.md** (`0 - PARA/PARA Method Implementation.md`)
-- **Vault Organization Guide.md** (`0 - PARA/Vault Organization Guide.md`)
-- **Vault Maintenance Guide.md** (`0 - PARA/Vault Maintenance Guide.md`)
+- **Tag Taxonomy.md** (`3 - Resources/Obsidian org/Tag Taxonomy.md`)
+- **Tag MOC.md** (`3 - Resources/Obsidian org/Tag MOC.md`)
+- **PARA Method Implementation.md** (`3 - Resources/Obsidian org/PARA Method Implementation.md`)
+- **Vault Organization Guide.md** (`3 - Resources/Obsidian org/Vault Organization Guide.md`)
+- **Vault Maintenance Guide.md** (`3 - Resources/Obsidian org/Vault Maintenance Guide.md`)
 
 Use this vault structure knowledge when guiding note placement, organization decisions, and vault maintenance tasks.

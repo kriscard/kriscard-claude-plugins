@@ -21,7 +21,7 @@ allowed-tools:
 **If argument is "done":**
 1. Use the `learning-summarizer` agent to create an Obsidian note from this session
 2. The agent will extract key concepts, code snippets, and takeaways from the conversation
-3. Note is saved to `0 - PARA/0 - Inbox/` using the Learning Tech Template
+3. Note is saved to `0 - Inbox/` using the Learning Tech Template
 
 **If argument is a topic:**
 1. Use the `doc-researcher` agent to fetch latest documentation on the topic

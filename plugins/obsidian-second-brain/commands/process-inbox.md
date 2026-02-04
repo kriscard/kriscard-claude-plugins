@@ -16,7 +16,7 @@ Help user achieve "inbox zero" by reviewing each note, suggesting appropriate PA
 
 ### Step 1: Initialize
 
-1. Count notes in `0 - PARA/0 - Inbox/`
+1. Count notes in `0 - Inbox/`
 2. Report: "Found X notes to process"
 3. If X = 0:
    - Celebrate: "Inbox is empty!"
@@ -49,10 +49,10 @@ Reasoning: This note appears to be related to [project] and contains actionable 
 
 **2.3 Suggest Tags**
 
-Based on content, suggest appropriate tags following Tag Taxonomy:
-- Content type (project/area/reference/etc.)
-- Subject (javascript/react/career/etc.)
-- Special purpose (active/interview/etc.)
+Based on content, suggest appropriate tags following PARA-aligned Tag Taxonomy:
+- Subject only (javascript/react/career/etc.) - folder handles content type
+- Status if relevant (active/interview)
+- Flashcard tags if applicable
 
 **2.4 Get User Decision**
 
@@ -109,29 +109,40 @@ Remaining in inbox: X
 Reference this decision tree:
 
 **Is this for an active project with a deadline?**
-→ YES: `0 - PARA/1 - Projects/[Project Name]/`
+→ YES: `1 - Projects/[Project Name]/`
 
 **Is this an ongoing responsibility?**
-→ YES: `0 - PARA/2 - Areas/[Area Name]/`
+→ YES: `2 - Areas/[Area Name]/`
 
 **Is this reference material for future use?**
-→ YES: `0 - PARA/3 - Resources/`
+→ YES: `3 - Resources/`
 
 **Is this completed or inactive?**
-→ YES: `0 - PARA/4 - Archives/`
+→ YES: `4 - Archives/`
 
 **Still unsure?**
 → Skip, leave in inbox
 
 ## Tag Suggestion Logic
 
-Follow Tag Taxonomy rules:
+Follow PARA-aligned Tag Taxonomy:
 - **Maximum 3-4 tags**
-- **Required**: Content type + Subject
-- **Optional**: Special purpose
+- **Subject tags only** - Don't duplicate folder info
+- **Optional**: Status tags (active, interview)
 
-Content types: flashcards, reference, project, area, meeting, daily, moc
-Subjects: javascript, react, css, typescript, web, career, personal, tools
+**Use these tags:**
+- Subjects: javascript, react, css, typescript, web, career, personal, tools
+- Status: active, interview
+- Flashcards: flashcards, [topic]_flashcards
+- TIL: til/[topic]
+
+**DON'T use these tags (folder handles them):**
+- ~~project~~ → `1 - Projects/` folder
+- ~~area~~ → `2 - Areas/` folder
+- ~~reference~~ → `3 - Resources/` folder
+- ~~daily~~ → `2 - Areas/Daily Ops/` folder
+- ~~moc~~ → `MOCs/` folder
+- ~~meeting~~ → File location
 
 ## Tools Usage
 
@@ -181,9 +192,9 @@ Assistant: Found 5 notes in inbox. Let's process them!
 [1/5] Note: "React 19 features to explore"
 Content: New features in React 19 including...
 
-Suggested placement: 0 - PARA/3 - Resources/
+Suggested placement: 3 - Resources/
 Reasoning: Reference material about React features, no immediate action needed.
-Suggested tags: [reference, react]
+Suggested tags: [react] (folder handles "reference")
 
 What would you like to do?
 1. Move to Resources

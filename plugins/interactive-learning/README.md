@@ -24,7 +24,7 @@ Interactive tutorial system for developers to learn new technologies through gui
 /learn done
 ```
 
-This creates a note in `0 - PARA/0 - Inbox/` with:
+This creates a note in `0 - Inbox/` with:
 - Key concepts learned
 - Code snippets from the session
 - Resources and documentation links

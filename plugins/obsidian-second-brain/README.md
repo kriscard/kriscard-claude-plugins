@@ -147,22 +147,20 @@ Select from all templates in your Templates/ folder and apply to the current not
 
 ## Vault Structure Assumptions
 
-This plugin works best with the following structure (fully configurable):
+This plugin works best with pure PARA at root level:
 
 ```
 vault/
-├── 0 - PARA/
-│   ├── 0 - Inbox/          # Unprocessed notes
-│   ├── 1 - Projects/       # Active projects
-│   ├── 2 - Areas/          # Ongoing responsibilities
-│   ├── 3 - Resources/      # Reference materials
-│   ├── 4 - Archives/       # Completed/inactive items
-│   └── MOCs/               # Maps of Content
-├── 1 - Notes/
-│   ├── Daily Notes/        # Daily journal entries
-│   ├── OKRs/               # Goal tracking
-│   ├── Weekly Planning/    # Weekly reviews
-│   └── People/             # Relationship notes
+├── 0 - Inbox/              # Unprocessed notes
+├── 1 - Projects/           # Active projects
+├── 2 - Areas/              # Ongoing responsibilities
+│   ├── Daily Ops/          # Daily notes, weekly planning
+│   ├── Goals/              # OKRs (quarterly, monthly)
+│   └── Relationships/      # People notes
+├── 3 - Resources/          # Reference materials
+│   └── TIL/                # Today I Learned notes
+├── 4 - Archives/           # Completed/inactive items
+├── MOCs/                   # Maps of Content
 └── Templates/              # Note templates
 ```
 
