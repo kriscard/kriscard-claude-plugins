@@ -1,7 +1,7 @@
 ---
 description: Check console errors and warnings
 argument-hint: <url>
-allowed-tools: mcp__chrome-devtools__navigate_page, mcp__chrome-devtools__wait_for, mcp__chrome-devtools__list_console_messages
+allowed-tools: mcp__plugin_chromedev-tools_cdt__navigate_page, mcp__plugin_chromedev-tools_cdt__wait_for, mcp__plugin_chromedev-tools_cdt__list_console_messages
 model: haiku
 ---
 
@@ -10,13 +10,13 @@ Check console errors and warnings for $ARGUMENTS:
 ## Workflow
 
 1. Navigate to page:
-   - Use `mcp__chrome-devtools__navigate_page` with url: "$ARGUMENTS"
+   - Use `mcp__plugin_chromedev-tools_cdt__navigate_page` with url: "$ARGUMENTS"
 
 2. Wait for JavaScript execution:
-   - Use `mcp__chrome-devtools__wait_for` with time: 3 (allows time for JavaScript to run and log messages)
+   - Use `mcp__plugin_chromedev-tools_cdt__wait_for` with time: 3 (allows time for JavaScript to run and log messages)
 
 3. Get console messages:
-   - Use `mcp__chrome-devtools__list_console_messages` with level: "warning" (includes both errors and warnings)
+   - Use `mcp__plugin_chromedev-tools_cdt__list_console_messages` with level: "warning" (includes both errors and warnings)
 
 ## Output Format
 

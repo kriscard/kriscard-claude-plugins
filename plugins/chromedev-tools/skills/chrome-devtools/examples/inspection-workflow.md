@@ -9,10 +9,10 @@ The standard inspection workflow provides comprehensive visibility into page sta
 ### Step 1: Navigate and Wait
 
 ```
-mcp__chrome-devtools__navigate_page
+mcp__plugin_chromedev-tools_cdt__navigate_page
 Parameters: {url: "https://localhost:3000"}
 
-mcp__chrome-devtools__wait_for
+mcp__plugin_chromedev-tools_cdt__wait_for
 Parameters: {time: 2}
 ```
 
@@ -26,7 +26,7 @@ Parameters: {time: 2}
 ### Step 2: Capture Visual State
 
 ```
-mcp__chrome-devtools__take_screenshot
+mcp__plugin_chromedev-tools_cdt__take_screenshot
 Parameters: {
   fullPage: true,
   filename: "inspection-screenshot.png",
@@ -43,7 +43,7 @@ Parameters: {
 ### Step 3: Get DOM Structure
 
 ```
-mcp__chrome-devtools__take_snapshot
+mcp__plugin_chromedev-tools_cdt__take_snapshot
 ```
 
 **Returns:**
@@ -60,7 +60,7 @@ mcp__chrome-devtools__take_snapshot
 ### Step 4: Check Console Messages
 
 ```
-mcp__chrome-devtools__list_console_messages
+mcp__plugin_chromedev-tools_cdt__list_console_messages
 Parameters: {level: "warning"}
 ```
 
@@ -80,7 +80,7 @@ Array of messages with:
 ### Step 5: Analyze Network Activity
 
 ```
-mcp__chrome-devtools__list_network_requests
+mcp__plugin_chromedev-tools_cdt__list_network_requests
 Parameters: {includeStatic: false}
 ```
 

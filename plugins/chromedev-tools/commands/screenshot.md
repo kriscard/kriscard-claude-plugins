@@ -1,7 +1,7 @@
 ---
 description: Capture full-page screenshot
 argument-hint: <url>
-allowed-tools: mcp__chrome-devtools__navigate_page, mcp__chrome-devtools__wait_for, mcp__chrome-devtools__take_screenshot
+allowed-tools: mcp__plugin_chromedev-tools_cdt__navigate_page, mcp__plugin_chromedev-tools_cdt__wait_for, mcp__plugin_chromedev-tools_cdt__take_screenshot
 model: haiku
 ---
 
@@ -10,13 +10,13 @@ Capture full-page screenshot of $ARGUMENTS:
 ## Workflow
 
 1. Navigate to page:
-   - Use `mcp__chrome-devtools__navigate_page` with url: "$ARGUMENTS"
+   - Use `mcp__plugin_chromedev-tools_cdt__navigate_page` with url: "$ARGUMENTS"
 
 2. Wait for rendering:
-   - Use `mcp__chrome-devtools__wait_for` with time: 2 (allows page rendering and image loading)
+   - Use `mcp__plugin_chromedev-tools_cdt__wait_for` with time: 2 (allows page rendering and image loading)
 
 3. Capture screenshot:
-   - Use `mcp__chrome-devtools__take_screenshot` with:
+   - Use `mcp__plugin_chromedev-tools_cdt__take_screenshot` with:
      - fullPage: true (capture entire scrollable page)
      - filename: "screenshot.png"
      - type: "png"

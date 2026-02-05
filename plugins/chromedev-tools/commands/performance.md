@@ -1,7 +1,7 @@
 ---
 description: Record performance trace and analyze Core Web Vitals
 argument-hint: <url>
-allowed-tools: mcp__chrome-devtools__navigate_page, mcp__chrome-devtools__wait_for, mcp__chrome-devtools__evaluate_script, mcp__chrome-devtools__list_network_requests
+allowed-tools: mcp__plugin_chromedev-tools_cdt__navigate_page, mcp__plugin_chromedev-tools_cdt__wait_for, mcp__plugin_chromedev-tools_cdt__evaluate_script, mcp__plugin_chromedev-tools_cdt__list_network_requests
 model: sonnet
 ---
 
@@ -10,14 +10,14 @@ Perform comprehensive performance analysis of $ARGUMENTS:
 ## Step 1: Navigate and Measure
 
 1. Navigate to page:
-   - Use `mcp__chrome-devtools__navigate_page` with url: "$ARGUMENTS"
+   - Use `mcp__plugin_chromedev-tools_cdt__navigate_page` with url: "$ARGUMENTS"
 
 2. Wait for page load:
-   - Use `mcp__chrome-devtools__wait_for` with time: 5 (capture full page load cycle)
+   - Use `mcp__plugin_chromedev-tools_cdt__wait_for` with time: 5 (capture full page load cycle)
 
 ## Step 2: Extract Core Web Vitals
 
-Use `mcp__chrome-devtools__evaluate_script` to measure key metrics:
+Use `mcp__plugin_chromedev-tools_cdt__evaluate_script` to measure key metrics:
 
 ### First Contentful Paint (FCP)
 ```javascript
@@ -88,7 +88,7 @@ Use `mcp__chrome-devtools__evaluate_script` to measure key metrics:
 ## Step 3: Analyze Resources
 
 Get network timing for resource analysis:
-- Use `mcp__chrome-devtools__list_network_requests` with includeStatic: true
+- Use `mcp__plugin_chromedev-tools_cdt__list_network_requests` with includeStatic: true
 - Identify large resources (> 100KB)
 - Find slow resources (> 500ms duration)
 - Calculate total bundle sizes (JavaScript, CSS, images)

@@ -4,7 +4,7 @@ Complete reference for all 26 tools provided by the chrome-devtools-mcp server.
 
 ## Navigation Tools (6 tools)
 
-### mcp__chrome-devtools__navigate_page
+### mcp__plugin_chromedev-tools_cdt__navigate_page
 Navigate to a URL.
 
 **Parameters:**
@@ -17,12 +17,12 @@ Navigate to a URL.
 }
 ```
 
-### mcp__chrome-devtools__navigate_page_back
+### mcp__plugin_chromedev-tools_cdt__navigate_page_back
 Go back to the previous page in history.
 
 **Parameters:** None
 
-### mcp__chrome-devtools__browser_tabs
+### mcp__plugin_chromedev-tools_cdt__browser_tabs
 Manage browser tabs - list, create, close, or select.
 
 **Parameters:**
@@ -37,7 +37,7 @@ Manage browser tabs - list, create, close, or select.
 {"action": "close", "index": 1}
 ```
 
-### mcp__chrome-devtools__wait_for
+### mcp__plugin_chromedev-tools_cdt__wait_for
 Wait for text to appear/disappear or for a specified time.
 
 **Parameters:**
@@ -52,12 +52,12 @@ Wait for text to appear/disappear or for a specified time.
 {"textGone": "Loading..."}
 ```
 
-### mcp__chrome-devtools__browser_close
+### mcp__plugin_chromedev-tools_cdt__browser_close
 Close the current browser page.
 
 **Parameters:** None
 
-### mcp__chrome-devtools__browser_resize
+### mcp__plugin_chromedev-tools_cdt__browser_resize
 Resize the browser window.
 
 **Parameters:**
@@ -74,7 +74,7 @@ Resize the browser window.
 
 ## Input Automation Tools (8 tools)
 
-### mcp__chrome-devtools__browser_click
+### mcp__plugin_chromedev-tools_cdt__browser_click
 Perform click on a web page element.
 
 **Parameters:**
@@ -93,7 +93,7 @@ Perform click on a web page element.
 }
 ```
 
-### mcp__chrome-devtools__browser_type
+### mcp__plugin_chromedev-tools_cdt__browser_type
 Type text into an editable element.
 
 **Parameters:**
@@ -113,7 +113,7 @@ Type text into an editable element.
 }
 ```
 
-### mcp__chrome-devtools__browser_fill_form
+### mcp__plugin_chromedev-tools_cdt__browser_fill_form
 Fill multiple form fields at once.
 
 **Parameters:**
@@ -143,7 +143,7 @@ Fill multiple form fields at once.
 }
 ```
 
-### mcp__chrome-devtools__browser_hover
+### mcp__plugin_chromedev-tools_cdt__browser_hover
 Hover over an element.
 
 **Parameters:**
@@ -158,7 +158,7 @@ Hover over an element.
 }
 ```
 
-### mcp__chrome-devtools__browser_press_key
+### mcp__plugin_chromedev-tools_cdt__browser_press_key
 Press a key on the keyboard.
 
 **Parameters:**
@@ -171,7 +171,7 @@ Press a key on the keyboard.
 {"key": "Escape"}
 ```
 
-### mcp__chrome-devtools__browser_select_option
+### mcp__plugin_chromedev-tools_cdt__browser_select_option
 Select an option in a dropdown.
 
 **Parameters:**
@@ -188,7 +188,7 @@ Select an option in a dropdown.
 }
 ```
 
-### mcp__chrome-devtools__browser_drag
+### mcp__plugin_chromedev-tools_cdt__browser_drag
 Perform drag and drop between two elements.
 
 **Parameters:**
@@ -207,7 +207,7 @@ Perform drag and drop between two elements.
 }
 ```
 
-### mcp__chrome-devtools__browser_file_upload
+### mcp__plugin_chromedev-tools_cdt__browser_file_upload
 Upload one or multiple files.
 
 **Parameters:**
@@ -224,7 +224,7 @@ Upload one or multiple files.
 
 ## Performance Tools (3 tools)
 
-### mcp__chrome-devtools__browser_run_code
+### mcp__plugin_chromedev-tools_cdt__browser_run_code
 Run Playwright code snippet for advanced automation.
 
 **Parameters:**
@@ -237,7 +237,7 @@ Run Playwright code snippet for advanced automation.
 }
 ```
 
-### mcp__chrome-devtools__evaluate_script
+### mcp__plugin_chromedev-tools_cdt__evaluate_script
 Evaluate JavaScript in the page context.
 
 **Parameters:**
@@ -252,7 +252,7 @@ Evaluate JavaScript in the page context.
 {"function": "(element) => element.textContent", "element": "Heading", "ref": "h1"}
 ```
 
-### mcp__chrome-devtools__browser_handle_dialog
+### mcp__plugin_chromedev-tools_cdt__browser_handle_dialog
 Handle a browser dialog (alert, confirm, prompt).
 
 **Parameters:**
@@ -268,7 +268,7 @@ Handle a browser dialog (alert, confirm, prompt).
 
 ## Debugging Tools (5 tools)
 
-### mcp__chrome-devtools__take_screenshot
+### mcp__plugin_chromedev-tools_cdt__take_screenshot
 Take a screenshot of the current page.
 
 **Parameters:**
@@ -285,7 +285,7 @@ Take a screenshot of the current page.
 {"type": "jpeg", "filename": "page.jpg"}
 ```
 
-### mcp__chrome-devtools__take_snapshot
+### mcp__plugin_chromedev-tools_cdt__take_snapshot
 Capture accessibility snapshot of the page.
 
 **Parameters:**
@@ -297,7 +297,7 @@ Capture accessibility snapshot of the page.
 {"filename": "snapshot.md"}
 ```
 
-### mcp__chrome-devtools__list_console_messages
+### mcp__plugin_chromedev-tools_cdt__list_console_messages
 Get console messages from the browser.
 
 **Parameters:**
@@ -313,7 +313,7 @@ Get console messages from the browser.
 **Returns:**
 Array of console messages with type, text, timestamp, and source location.
 
-### mcp__chrome-devtools__list_network_requests
+### mcp__plugin_chromedev-tools_cdt__list_network_requests
 Get network requests since loading the page.
 
 **Parameters:**
@@ -329,7 +329,7 @@ Get network requests since loading the page.
 **Returns:**
 Array of network requests with URL, method, status, headers, timings, and size.
 
-### mcp__chrome-devtools__browser_get_console_logs
+### mcp__plugin_chromedev-tools_cdt__browser_get_console_logs
 Alternative method to get console logs.
 
 **Parameters:** None
@@ -339,7 +339,7 @@ Array of all console log entries.
 
 ## Emulation Tools (2 tools)
 
-### mcp__chrome-devtools__browser_resize
+### mcp__plugin_chromedev-tools_cdt__browser_resize
 Resize the browser viewport (also listed in Navigation).
 
 **Parameters:**
@@ -426,6 +426,6 @@ Note: Device emulation is available through viewport resizing and user agent con
 
 - All tools with `element` and `ref` parameters require getting a snapshot first to obtain element references
 - Element references come from the accessibility snapshot structure
-- Tools are namespaced with `mcp__chrome-devtools__` prefix when used through MCP
+- Tools are namespaced with `mcp__plugin_chromedev-tools_cdt__` prefix when used through MCP
 - Most tools work in headless mode (no browser UI needed)
 - Screenshots and snapshots are fully functional in headless mode

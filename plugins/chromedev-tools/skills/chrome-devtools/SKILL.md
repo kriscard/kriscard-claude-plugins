@@ -62,14 +62,14 @@ The chrome-devtools-mcp server provides programmatic access to Chrome DevTools f
 
 ### MCP Tool Naming Convention
 
-All Chrome DevTools MCP tools use the prefix `mcp__chrome-devtools__browser_` followed by the action:
+All Chrome DevTools MCP tools use the prefix `mcp__plugin_chromedev-tools_cdt__browser_` followed by the action:
 
-- `mcp__chrome-devtools__navigate_page` - Navigate to URL
-- `mcp__chrome-devtools__take_screenshot` - Capture screenshot
-- `mcp__chrome-devtools__list_console_messages` - Get console logs
-- `mcp__chrome-devtools__take_snapshot` - Get accessibility snapshot
-- `mcp__chrome-devtools__list_network_requests` - Get network requests
-- `mcp__chrome-devtools__evaluate_script` - Run JavaScript
+- `mcp__plugin_chromedev-tools_cdt__navigate_page` - Navigate to URL
+- `mcp__plugin_chromedev-tools_cdt__take_screenshot` - Capture screenshot
+- `mcp__plugin_chromedev-tools_cdt__list_console_messages` - Get console logs
+- `mcp__plugin_chromedev-tools_cdt__take_snapshot` - Get accessibility snapshot
+- `mcp__plugin_chromedev-tools_cdt__list_network_requests` - Get network requests
+- `mcp__plugin_chromedev-tools_cdt__evaluate_script` - Run JavaScript
 
 See `examples/mcp-tools-reference.md` for the complete list of 26 tools.
 
@@ -88,12 +88,12 @@ For comprehensive page inspection (screenshot + DOM + console + network):
 
 Example sequence:
 ```
-1. mcp__chrome-devtools__navigate_page(url)
-2. mcp__chrome-devtools__wait_for(time: 2)
-3. mcp__chrome-devtools__take_screenshot(fullPage: true)
-4. mcp__chrome-devtools__take_snapshot()
-5. mcp__chrome-devtools__list_console_messages(level: "warning")
-6. mcp__chrome-devtools__list_network_requests(includeStatic: false)
+1. mcp__plugin_chromedev-tools_cdt__navigate_page(url)
+2. mcp__plugin_chromedev-tools_cdt__wait_for(time: 2)
+3. mcp__plugin_chromedev-tools_cdt__take_screenshot(fullPage: true)
+4. mcp__plugin_chromedev-tools_cdt__take_snapshot()
+5. mcp__plugin_chromedev-tools_cdt__list_console_messages(level: "warning")
+6. mcp__plugin_chromedev-tools_cdt__list_network_requests(includeStatic: false)
 ```
 
 For quick access, use the `/chromedev:inspect <url>` command which automates this entire workflow.
@@ -172,7 +172,7 @@ Network inspection is useful for:
 Navigate to a localhost development server:
 
 ```
-Use: mcp__chrome-devtools__navigate_page
+Use: mcp__plugin_chromedev-tools_cdt__navigate_page
 Parameters:
   url: "http://localhost:3000"
 ```
@@ -180,7 +180,7 @@ Parameters:
 Wait for page load after navigation:
 
 ```
-Use: mcp__chrome-devtools__wait_for
+Use: mcp__plugin_chromedev-tools_cdt__wait_for
 Parameters:
   time: 2  # seconds
 ```
@@ -190,7 +190,7 @@ Parameters:
 Capture full-page screenshot:
 
 ```
-Use: mcp__chrome-devtools__take_screenshot
+Use: mcp__plugin_chromedev-tools_cdt__take_screenshot
 Parameters:
   fullPage: true
   filename: "screenshot.png"
@@ -203,7 +203,7 @@ The screenshot saves to the current working directory.
 Get console errors and warnings:
 
 ```
-Use: mcp__chrome-devtools__list_console_messages
+Use: mcp__plugin_chromedev-tools_cdt__list_console_messages
 Parameters:
   level: "warning"  # Returns errors + warnings
 ```
@@ -219,7 +219,7 @@ Returns array of console messages with:
 Get DOM structure for inspection:
 
 ```
-Use: mcp__chrome-devtools__take_snapshot
+Use: mcp__plugin_chromedev-tools_cdt__take_snapshot
 ```
 
 Returns accessibility tree showing:
@@ -233,7 +233,7 @@ Returns accessibility tree showing:
 Inspect HTTP requests (excluding static resources):
 
 ```
-Use: mcp__chrome-devtools__list_network_requests
+Use: mcp__plugin_chromedev-tools_cdt__list_network_requests
 Parameters:
   includeStatic: false  # Filter out images, fonts, scripts
 ```
@@ -250,7 +250,7 @@ Returns array of requests with:
 Execute JavaScript in page context:
 
 ```
-Use: mcp__chrome-devtools__evaluate_script
+Use: mcp__plugin_chromedev-tools_cdt__evaluate_script
 Parameters:
   function: "() => document.title"
 ```
@@ -329,7 +329,7 @@ Allow sufficient time for page rendering and JavaScript execution:
 - Heavy JavaScript apps: 3-5 seconds
 - Complex data loading: 5-10 seconds
 
-Use `mcp__chrome-devtools__wait_for` after navigation for dynamic content.
+Use `mcp__plugin_chromedev-tools_cdt__wait_for` after navigation for dynamic content.
 
 ### Console Message Filtering
 
