@@ -1,18 +1,29 @@
 ---
 name: maintain-vault
-description: Comprehensive vault health check - broken links, orphaned notes, tag consistency
+description: Comprehensive vault health check - links, tags, 2-Link Rule, Related/Encounters sections
 allowed-tools: [Read, Bash, obsidian]
 ---
 
 # Maintain Vault Command
 
-Run a comprehensive vault health check to identify and report issues with links, orphaned notes, and tag consistency.
+Run a comprehensive vault health check to identify and report issues with links, tags, and note structure following Obsidian best practices.
 
 ## Purpose
 
 Help user keep vault healthy and organized by identifying:
+
+**Link Health:**
 - Broken wiki links (links to non-existent notes)
 - Orphaned notes (notes with no incoming links)
+- 2-Link Rule violations (notes with <2 outgoing links)
+- Unlinked Mentions (text matching note titles that could be linked)
+
+**Structure Health:**
+- Missing Related sections (concept notes without `## Related`)
+- Missing Encounters sections (learning notes without `# Encounters`)
+- TIL cross-references (TILs mentioning concepts not linked back)
+
+**Tag Health:**
 - Tag inconsistencies (tags not following Tag Taxonomy)
 
 **Note:** This command **reports findings and suggests fixes** but does NOT auto-fix. User maintains full control.
@@ -26,9 +37,20 @@ Inform user:
 Running vault health check...
 
 This will check for:
+
+Link Health:
 1. Broken wiki links
-2. Orphaned notes
-3. Tag consistency
+2. Orphaned notes (no incoming links)
+3. 2-Link Rule violations (<2 outgoing links)
+4. Unlinked Mentions (missed connection opportunities)
+
+Structure Health:
+5. Missing Related sections (concept notes)
+6. Missing Encounters sections (learning notes)
+7. TIL cross-references
+
+Tag Health:
+8. Tag consistency
 
 This is read-only - no changes will be made automatically.
 ```
@@ -117,7 +139,196 @@ Suggestions:
   - "Archive to 4 - Archives/ if outdated"
   - "Delete if no longer useful"
 
-### Step 4: Check Tag Consistency
+### Step 4: Check 2-Link Rule
+
+**Goal:** Find notes that violate the 2-Link Rule (every note should link to at least 2 others).
+
+**Method:**
+1. Get all notes in vault (excluding Templates, Archives, Daily Notes)
+2. For each note, count outgoing wiki links `[[...]]`
+3. Filter notes with <2 outgoing links
+4. Prioritize concept notes in `3 - Resources/Coding/`
+
+**Exclusions:**
+- Files in `Templates/`
+- Files in `4 - Archives/`
+- Daily notes in `2 - Areas/Daily Ops/`
+- MOCs (they link to many, but may have few outgoing)
+
+**Report format:**
+```
+## 2-Link Rule Violations: X
+
+Notes with fewer than 2 outgoing links:
+
+1. 3 - Resources/Coding/React Hooks.md
+   - Outgoing links: 1 ([[JavaScript]])
+   - Suggested connections:
+     - [[useState]] — if discussing state hooks
+     - [[Component Composition]] — if discussing patterns
+   - Action: Open note, check Outgoing Links panel for opportunities
+
+2. 3 - Resources/Coding/CSS Grid.md
+   - Outgoing links: 0
+   - Suggested connections:
+     - [[Flexbox]] — layout comparison
+     - [[Responsive Design]] — common use case
+   - Action: Add ## Related section with 2-5 links
+
+Tip: Use Obsidian's Outgoing Links panel (right sidebar) to discover connections.
+```
+
+**For each violation:**
+- Show note path
+- Show current outgoing link count
+- Suggest 2-3 potential connections based on topic
+- Remind about Outgoing Links panel
+
+### Step 5: Check Unlinked Mentions
+
+**Goal:** Find text in notes that matches existing note titles but isn't linked.
+
+**Method:**
+1. Get list of all note titles (without extension)
+2. For each note, search for text matching other note titles
+3. Exclude text that's already inside `[[...]]` links
+4. Report matches that could be linked
+
+**Focus areas:**
+- `3 - Resources/Coding/` - Concept notes often mention other concepts
+- `3 - Resources/TIL/` - TILs reference concepts that should link
+- `1 - Projects/` - Projects reference concepts and tools
+
+**Report format:**
+```
+## Unlinked Mentions Found: X
+
+Potential connections waiting to be linked:
+
+1. 3 - Resources/TIL/til-2026-02-05.md
+   - Mentions "closure" (5 times) → could link to [[Closure in JavaScript]]
+   - Mentions "React" (3 times) → could link to [[React]]
+
+2. 3 - Resources/Coding/Event Loop.md
+   - Mentions "callback" (2 times) → could link to [[Callbacks]]
+   - Mentions "Promise" (4 times) → could link to [[Promise in JavaScript]]
+
+Tip: In Obsidian, check the Backlinks panel → "Unlinked mentions" section for each note.
+```
+
+**For each unlinked mention:**
+- Show source note
+- Show term and count
+- Show target note that could be linked
+- Remind about Unlinked Mentions panel in Obsidian
+
+### Step 6: Check Missing Related Sections
+
+**Goal:** Find concept notes that lack a `## Related` section for connections.
+
+**Method:**
+1. Get all notes in `3 - Resources/Coding/`
+2. For each note, check if it contains `## Related`
+3. Flag notes without this section
+
+**Report format:**
+```
+## Missing Related Sections: X
+
+Concept notes without ## Related section:
+
+1. 3 - Resources/Coding/Higher-Order Functions.md
+   - Has 3 outgoing links but no Related section
+   - Action: Add ## Related with links + reasons
+
+2. 3 - Resources/Coding/Array Methods.md
+   - Has 0 outgoing links
+   - Action: Add ## Related section:
+     ```
+     ## Related
+     - [[Higher-Order Functions]] — map/filter/reduce are HOFs
+     - [[Functional Programming]] — array methods enable FP patterns
+     ```
+
+Template for Related section:
+```markdown
+## Related
+*Use Outgoing links panel to discover connections. Link 2-5 related notes with a reason why.*
+- [[Note Name]] — brief reason for connection
+```
+```
+
+### Step 7: Check Missing Encounters Sections
+
+**Goal:** Find learning/concept notes that lack an `# Encounters` section for real-world experience.
+
+**Method:**
+1. Get all notes in `3 - Resources/Coding/`
+2. Check if notes follow the Learning template (have Summary, Notes sections)
+3. For each learning note, check if it contains `# Encounters`
+4. Flag notes without this section
+
+**Report format:**
+```
+## Missing Encounters Sections: X
+
+Learning notes without # Encounters section:
+
+1. 3 - Resources/Coding/Closure in JavaScript.md
+   - Has Related section ✓
+   - Missing Encounters section
+   - Action: Add # Encounters to track real-world usage
+
+2. 3 - Resources/Coding/useCallback.md
+   - Has Related section ✓
+   - Missing Encounters section
+   - Tip: Next time you use useCallback, add an encounter entry
+
+Template for Encounters section:
+```markdown
+# Encounters
+*Real-world bugs, usage, and insights. Add entries when you encounter this concept in practice.*
+
+## YYYY-MM-DD - [Brief title]
+[What happened, what you learned]
+Link: [[TIL or project note]]
+```
+```
+
+### Step 8: Check TIL Cross-References
+
+**Goal:** Find TIL notes that mention concepts but those concepts don't link back in their Encounters.
+
+**Method:**
+1. Get all TIL notes from `3 - Resources/TIL/`
+2. For each TIL, extract linked concepts (wiki links)
+3. For each linked concept, check if its Encounters section references the TIL
+4. Report missing cross-references
+
+**Report format:**
+```
+## TIL Cross-References Missing: X
+
+TIL notes not referenced in concept Encounters:
+
+1. til-2026-02-05.md links to [[Closure in JavaScript]]
+   - Closure note has Encounters section ✓
+   - But doesn't reference this TIL
+   - Action: Add encounter entry to Closure note:
+     ```
+     ## 2026-02-05 - [Title from TIL]
+     [Brief summary of the encounter]
+     Link: [[til-2026-02-05]]
+     ```
+
+2. til-2026-01-20.md links to [[React Hooks]]
+   - React Hooks note missing Encounters section
+   - Action: Add Encounters section with this reference
+
+This creates bidirectional connections between learning moments and concepts.
+```
+
+### Step 9: Check Tag Consistency
 
 **Goal:** Ensure tags follow PARA-aligned Tag Taxonomy rules.
 
@@ -168,7 +379,7 @@ Tag Usage Summary:
 - Suggest corrections (remove folder-type tags, keep subject/status tags)
 - Explain reasoning
 
-### Step 5: Summary Report
+### Step 10: Summary Report
 
 After all checks complete:
 
@@ -176,25 +387,49 @@ After all checks complete:
 Vault Health Check Complete!
 
 Summary:
+
+Link Health:
 - Broken links: X found
 - Orphaned notes: Y found
-- Tag issues: Z found
+- 2-Link Rule violations: Z found
+- Unlinked mentions: W found
+
+Structure Health:
+- Missing Related sections: A found
+- Missing Encounters sections: B found
+- TIL cross-references missing: C found
+
+Tag Health:
+- Tag issues: D found
 
 Overall health: Good / Needs attention / Critical
 
-Next steps:
-1. Review broken links - create or fix most critical ones
-2. Link orphaned notes or archive outdated content
-3. Update tags following Tag Taxonomy
-4. Run this check monthly for maintenance
+Priority fixes:
+1. [Most impactful issue]
+2. [Second priority]
+3. [Third priority]
+
+Quick wins:
+- Add Related section to X notes (template provided above)
+- Link Y unlinked mentions
+- Add Z encounter entries from recent TILs
 
 Would you like help fixing any of these issues?
 ```
 
 **Health assessment:**
-- **Good**: <5 issues total
-- **Needs attention**: 5-20 issues
-- **Critical**: >20 issues or many broken links in active notes
+- **Good**: <10 issues total
+- **Needs attention**: 10-30 issues
+- **Critical**: >30 issues or many broken links in active notes
+
+**Priority order for fixes:**
+1. Broken links (breaks navigation)
+2. 2-Link Rule violations (isolated knowledge)
+3. Missing Related sections (easy win)
+4. Unlinked mentions (connection opportunities)
+5. Missing Encounters (living documents)
+6. TIL cross-references (bidirectional links)
+7. Tag issues (organization)
 
 ## Tools Usage
 
@@ -261,23 +496,42 @@ Assistant: Running vault health check...
 
 Checking broken links... ✓
 Checking orphaned notes... ✓
+Checking 2-Link Rule... ✓
+Checking unlinked mentions... ✓
+Checking Related sections... ✓
+Checking Encounters sections... ✓
+Checking TIL cross-references... ✓
 Checking tag consistency... ✓
 
 Vault Health Check Complete!
 
 Summary:
+
+Link Health:
 - Broken links: 3 found
 - Orphaned notes: 5 found
+- 2-Link Rule violations: 12 found
+- Unlinked mentions: 8 found
+
+Structure Health:
+- Missing Related sections: 15 found
+- Missing Encounters sections: 20 found
+- TIL cross-references missing: 4 found
+
+Tag Health:
 - Tag issues: 2 found
 
 Overall health: Needs attention
 
-Most critical:
+Priority fixes:
 1. [[Project Plan]] - Referenced 8 times but doesn't exist
-   Suggested: Create in 1 - Projects/
+2. 12 concept notes have <2 links (knowledge silos)
+3. 15 notes missing Related section (quick win)
 
-2. Resources/Important Article.md - No backlinks
-   Suggested: Link from [[Web Development MOC]]
+Quick wins:
+- Add Related section to 15 notes (template: ## Related + 2-5 links with reasons)
+- Link 8 unlinked mentions (check Obsidian's Unlinked Mentions panel)
+- Add 4 Encounter entries from recent TILs
 
-Would you like help fixing these issues?
+Would you like help fixing any of these issues?
 ```
