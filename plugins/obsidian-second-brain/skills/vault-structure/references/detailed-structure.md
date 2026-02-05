@@ -95,15 +95,30 @@ obsidian-vault-kriscard/
   - Daily notes: After 90+ days
 
 ### MOCs/
-- **Purpose**: Maps of Content for navigation
-- **Use cases**:
+- **Purpose**: Maps of Content for navigation AND system dashboards
+- **Key distinction**: MOCs vs Dashboards (keep separate)
+
+**MOCs (Manual Curation):**
+- Hand-curated navigation with context
+- Links include *why* they're connected
+- Updated when important notes emerge
+- Use cases:
   - Topic has 10+ related notes
-  - Need overview of knowledge area
+  - Need curated overview of knowledge area
   - Connecting multiple projects/areas
 - **Naming**: `[Topic] MOC.md`
-- **Key MOCs**:
-  - `Master MOC.md` - Main navigation hub
-  - `TIL Index.md` - TIL notes organized by topic
+
+**Dashboards (Automation):**
+- Auto-generated via dataview queries
+- Show stats, recent activity, tasks
+- Update automatically, no manual curation
+- **Naming**: `[Purpose] Dashboard.md`
+
+**Key files**:
+- `Master MOC.md` - Curated navigation hub (starred notes, entry points)
+- `Vault Dashboard.md` - Auto-generated system stats (dataview queries)
+- `TIL Index.md` - TIL notes organized by topic
+- `[Topic] MOC.md` - Domain-specific navigation
 
 ### Templates/
 - Central location for all note templates

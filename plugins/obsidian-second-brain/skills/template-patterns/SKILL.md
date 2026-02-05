@@ -153,7 +153,29 @@ attendees: [person1, person2]
 - **Overview/Summary** - Brief description
 - **Details** - Main content area
 - **Actions/Next Steps** - Actionable items
-- **Links** - Related notes
+- **Related** - Connected notes with reasons (see below)
+
+**Essential sections for knowledge notes:**
+
+**Related Section (required for concept notes):**
+```markdown
+## Related
+*Use Outgoing links panel to discover connections. Link 2-5 related notes with a reason why.*
+- [[Note Name]] — brief reason for connection
+- [[Another Note]] — why it relates
+```
+Purpose: Enforces 2-Link Rule, builds knowledge graph
+
+**Encounters Section (for evergreen/learning notes):**
+```markdown
+# Encounters
+*Real-world bugs, usage, and insights. Add entries when you encounter this concept in practice.*
+
+## YYYY-MM-DD - [Brief title]
+[What happened, what you learned]
+Link: [[TIL or project note]]
+```
+Purpose: Makes notes living documents that grow with experience
 
 **Project template sections:**
 - Overview
@@ -173,12 +195,12 @@ attendees: [person1, person2]
 - Follow-up
 
 **Learning template sections:**
-- Source
-- Overview
-- Key Takeaways
-- Examples
-- Related Topics
-- Applications
+- Summary (Layer 1: Definition)
+- Notes (detailed explanation)
+- Schema/Code snippets (optional)
+- Flashcards (optional)
+- Related (Layer 2: Connections with reasons)
+- Encounters (Layer 3: Real-world usage over time)
 
 ### Prompting Questions
 

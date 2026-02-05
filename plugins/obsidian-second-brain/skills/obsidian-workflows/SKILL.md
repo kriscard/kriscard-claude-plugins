@@ -91,7 +91,26 @@ vault/
 
 ### Note Linking Strategies
 
-Obsidian's strength is connections between notes. Implement these linking patterns:
+Obsidian's strength is connections between notes. **Links create meaning, folders create storage.**
+
+**The 2-Link Rule:**
+- Every new note should link to at least 2 existing notes
+- Forces immediate context-building
+- Prevents orphaned notes from creation
+- Ask: "What does this connect to?" before saving
+
+**Discovery Tools (use actively):**
+
+*Unlinked Mentions* - Obsidian's discovery engine:
+- Found in backlinks panel → "Unlinked mentions" section
+- Shows text matching note titles that aren't linked yet
+- Reveals connection opportunities you missed
+- Check regularly when reviewing notes
+
+*Outgoing Links Panel* - Connection audit:
+- Shows what your note mentions without linking
+- Reveals missed link opportunities
+- Use to catch potential connections before closing a note
 
 **Bottom-up linking (organic):**
 - Link notes as connections emerge naturally
@@ -113,27 +132,47 @@ Obsidian's strength is connections between notes. Implement these linking patter
 - Use block references for precise connections
 - Creates fine-grained knowledge graph
 
-### Maps of Content (MOCs)
+### Maps of Content (MOCs) vs Dashboards
 
-MOCs are index notes that organize related notes around a theme:
+**Critical distinction:** MOCs and Dashboards serve different purposes. Keep them separate.
+
+**MOCs = Manual Curation (Navigation)**
+- Hand-curated links with context
+- Updated when important notes emerge
+- Provide intentional navigation paths
+- Links include *why* they're connected
+- Example: Master MOC with "Starred Notes" and "Entry Points"
+
+**Dashboards = Automation (System Views)**
+- Auto-generated via dataview queries
+- Show recent activity, stats, tasks
+- Update automatically
+- No manual curation needed
+- Example: Vault Dashboard with recent notes, inbox count
 
 **When to create MOCs:**
 - Topic has 10+ related notes
 - Need overview of knowledge area
 - Connecting multiple projects/areas
-- Explaining concept to others
+- Want curated navigation (not just a list)
 
 **MOC structure:**
 - Brief overview of topic
-- Organized sections grouping related notes
-- Links to key resources and examples
-- Metadata (tags, creation date, related MOCs)
+- Organized sections with hand-picked links
+- Each link includes reason for connection
+- Related MOCs section
+- Updated when important notes emerge (not constantly)
 
 **MOC vs folder:**
 - Use MOCs for conceptual organization
 - Use folders for PARA categorization
 - MOCs can link across folders
 - One note can appear in multiple MOCs
+
+**MOC vs Dashboard:**
+- MOCs: "Here's what matters and why" (curated)
+- Dashboards: "Here's what's happening" (automated)
+- Keep separate: Master MOC + Vault Dashboard
 
 ### Tags and Metadata
 
@@ -286,14 +325,53 @@ Break knowledge into smallest useful units:
 
 ### Evergreen Notes
 
-Create notes that grow and improve over time:
+Create notes that grow and improve over time. Evergreen notes have **3 layers**:
+
+**Layer 1: Definition (Summary)**
+- What is this concept?
+- Core explanation in your own words
+- Static foundation that rarely changes
+
+**Layer 2: Connections (Related section)**
+- How does this connect to other knowledge?
+- 2-5 links with *reasons* for connection
+- Example: `[[Event Loop]] — closures power async callbacks`
+- Use Outgoing Links panel to discover connections
+
+**Layer 3: Experience (Encounters section)**
+- Real-world usage, bugs, insights
+- Add entries when you use the concept in practice
+- Links to TIL notes or projects where it appeared
+- Example: `## 2026-02-05 - Debugging closure scope issue`
 
 **Characteristics:**
 - Concept-oriented, not source-oriented
 - Own words, not quotes
-- Linked to related concepts
-- Updated with new insights
-- Titled as statements (claims)
+- Linked to related concepts (Layer 2)
+- Updated with encounters over time (Layer 3)
+- Living documents, not static reference cards
+
+**Template pattern:**
+```markdown
+# [Concept Name]
+
+## Summary
+[Layer 1: Definition]
+
+## Notes
+[Detailed explanation]
+
+## Related
+*Link 2-5 related notes with reasons*
+- [[Note]] — why it connects
+
+# Encounters
+*Add real-world usage when you encounter this concept*
+
+## YYYY-MM-DD - [Brief title]
+[What happened, what you learned]
+Link: [[TIL or project note]]
+```
 
 **Example titles:**
 - "Spaced repetition improves long-term retention" (not "Spaced Repetition Notes")
