@@ -180,7 +180,7 @@
       "name": "interactive-learning",
       "source": "./plugins/interactive-learning",
       "description": "Interactive tutorial system for learning technologies through guided Q&A with automatic documentation fetching and Obsidian note creation",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "author": {
         "name": "Chris Cardoso",
         "email": "contact@christophercardoso.dev"
