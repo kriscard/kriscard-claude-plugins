@@ -47,12 +47,12 @@ Templates/Learning Tech Template.md
 
 ### 3. Create the Note
 
-Create a new note in `0 - Inbox/` with filename:
+Create a new note in `3 - Resources/TIL/` with filename:
 ```
-Learn [Topic] - YYYY-MM-DD.md
+til-YYYY-MM-DD.md
 ```
 
-Example: `Learn React useEffect - 2026-01-26.md`
+Example: `til-2026-01-26.md`
 
 ### 4. Fill in Template Sections
 
