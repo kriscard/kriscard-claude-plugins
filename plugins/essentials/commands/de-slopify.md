@@ -1,41 +1,42 @@
 ---
-description: Remove AI-generated code slop from the current branch
+description: Remove AI-generated comments from the current branch
 argument-hint: '[branch]'
 ---
 
-# Remove AI Code Slop
+# Remove AI-Generated Comments
 
 The branch to diff against is $1. If no branch was provided, default to `main`.
 
-Check the diff against the branch, and remove all AI generated slop introduced in this branch.
+Check the diff against the branch and remove AI-generated comments introduced in this branch.
 
-## What to Look For
+## What to Remove
 
-1. **Useless comments** - Extra comments that a human wouldn't add or are inconsistent with the rest of the file (useful doc comments are good to keep)
-2. **Extra defensive code** - Unnecessary try/catch blocks, null checks, or validation that are abnormal for that area of the codebase (especially if called by trusted/validated codepaths)
-3. **Type workarounds** - Casts to `any` to get around type issues
-4. **Style inconsistencies** - Any other style that is inconsistent with the file
+**AI-generated comments** - Comments that exhibit these patterns:
+- Overly verbose explanations of obvious code
+- Comments restating what the code clearly does (e.g., `// increment counter` above `counter++`)
+- Excessive inline documentation a human wouldn't add
+- Comments inconsistent with the file's existing comment style
+- Generic placeholder comments (e.g., `// TODO: implement`, `// Handle error`)
+- Comments with AI-like phrasing ("This function...", "The following code...")
 
-## Removal Process
+## What to Keep
 
-### Comments: Remove automatically
-Remove useless comments without asking. These are low-risk changes that improve readability.
+- **Doc comments** for public APIs (JSDoc, docstrings, etc.)
+- **Meaningful comments** explaining WHY (business logic, workarounds, edge cases)
+- **Comments matching** the file's existing style and density
+- **License headers** and attribution comments
 
-### Code changes: Ask permission first
-For any code removal (defensive checks, type casts, style fixes), you MUST:
-1. Explain what you found and why it's considered slop
-2. Show the specific code you want to remove
-3. Explain the risk if any (usually none for AI slop)
-4. Wait for user approval before removing
+## Restrictions
 
-Example:
-```
-Found: try/catch block in `processUser()` at line 42
-Why slop: This function is only called from validated internal paths. The outer `handleRequest()` already catches errors.
-Risk: None - error handling is already present at the boundary.
-Remove? [y/n]
-```
+**DO NOT modify any code.** Only remove comments. This includes:
+- ❌ No removing try/catch blocks
+- ❌ No removing null checks or validation
+- ❌ No removing type casts
+- ❌ No style/formatting changes to code
+- ❌ No refactoring of any kind
+
+If you see code slop, note it in your summary but do not change it.
 
 ## Output
 
-Report at the end with only a 1-3 sentence summary of what you changed.
+Report a 1-3 sentence summary of comments removed and any code issues you noticed but left unchanged.
