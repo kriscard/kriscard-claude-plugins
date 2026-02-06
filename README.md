@@ -18,22 +18,22 @@ Install plugins you need:
 claude plugin install essentials@kriscard           # Core workflow tools
 claude plugin install developer-tools@kriscard      # Coding agents
 claude plugin install testing@kriscard              # Test specialists
+claude plugin install assistant@kriscard            # Staff Engineer workflow assistant
+claude plugin install chromedev-tools@kriscard      # Chrome DevTools integration
+claude plugin install til@kriscard                  # TIL documentation
+claude plugin install architecture@kriscard         # System design
 ```
 
 ### Optional (install based on your workflow)
 
 ```bash
-claude plugin install assistant@kriscard            # Staff Engineer workflow assistant
 claude plugin install ideation@kriscard             # Brain dumps → specs
 claude plugin install content@kriscard              # Blog posts & talks
-claude plugin install architecture@kriscard         # System design
 claude plugin install ai-development@kriscard       # LLM/RAG tools
 claude plugin install neovim-advisor@kriscard       # Neovim optimization
 claude plugin install dotfiles-optimizer@kriscard   # Dotfiles analysis
 claude plugin install obsidian-second-brain@kriscard # Knowledge management
-claude plugin install chromedev-tools@kriscard      # Chrome DevTools integration
 claude plugin install studio-startup@kriscard       # Project startup orchestration
-claude plugin install til@kriscard                  # TIL documentation
 claude plugin install interactive-learning@kriscard # Learning tutorials
 ```
 
