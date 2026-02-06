@@ -1,7 +1,7 @@
 ---
 description: Write a polished technical blog post from brain dump or outline
 argument-hint: '<topic or outline>'
-allowed-tools: [Skill, Read, Write, Task, Glob, Grep]
+allowed-tools: [Skill, Read, Write, Task, Glob, Grep, AskUserQuestion]
 ---
 
 # Write Blog Post
@@ -41,7 +41,7 @@ Load the `blog-writer` skill to access:
 - Use provided content as starting point
 
 **If no arguments (interactive mode):**
-- Ask user:
+- Use `AskUserQuestion` tool to ask:
   - What topic do you want to write about?
   - What type of post? (tutorial, showcase, opinion, TIL, comparison, case study)
   - Who's the target audience? (beginner, intermediate, advanced)

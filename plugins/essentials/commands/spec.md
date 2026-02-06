@@ -34,7 +34,7 @@ Display a brief summary of fetched context before proceeding.
 
 ## Step 2: Focused Clarification (1-2 questions max)
 
-Ask ONLY if critical information is missing. Skip if the ticket is well-defined.
+**Use `AskUserQuestion` tool** for all clarifying questions. Skip if the ticket is well-defined.
 
 **Ask about**:
 - **Unclear scope**: "The ticket mentions 'improve performance' - is there a specific target (e.g., < 200ms P95)?"

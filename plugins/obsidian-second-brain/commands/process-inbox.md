@@ -1,7 +1,7 @@
 ---
 name: process-inbox
 description: One-by-one inbox review with intelligent PARA placement suggestions
-allowed-tools: [Read, Write, Bash, obsidian]
+allowed-tools: [Read, Write, Bash, obsidian, AskUserQuestion]
 ---
 
 # Process Inbox Command
@@ -56,7 +56,7 @@ Based on content, suggest appropriate tags following PARA-aligned Tag Taxonomy:
 
 **2.4 Get User Decision**
 
-Ask user:
+Use `AskUserQuestion` tool to ask:
 ```
 What would you like to do?
 1. Move to suggested location (1 - Projects/)

@@ -1,7 +1,7 @@
 ---
 description: Create conference talk outline and iA Presenter slides from topic or outline
 argument-hint: '<topic or outline>'
-allowed-tools: [Skill, Read, Write, Task, Glob, Grep]
+allowed-tools: [Skill, Read, Write, Task, Glob, Grep, AskUserQuestion]
 ---
 
 # Create Talk

@@ -1,7 +1,7 @@
 ---
 name: apply-template
 description: Apply templates to notes interactively - select from all available templates
-allowed-tools: [Read, Write, obsidian]
+allowed-tools: [Read, Write, obsidian, AskUserQuestion]
 ---
 
 # Apply Template Command

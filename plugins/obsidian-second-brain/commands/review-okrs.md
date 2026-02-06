@@ -1,7 +1,7 @@
 ---
 name: review-okrs
 description: Multi-level OKR reviews (quarterly, monthly, weekly) with progress tracking
-allowed-tools: [Read, Write, Bash, obsidian]
+allowed-tools: [Read, Write, Bash, obsidian, AskUserQuestion]
 ---
 
 # Review OKRs Command
