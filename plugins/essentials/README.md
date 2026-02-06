@@ -11,14 +11,6 @@ Core workflow tools for daily development - commits, research, deep thinking, PR
 
 ## What's Included
 
-### Skills
-
-#### using-superpowers
-
-Discipline enforcement skill that ensures you check for applicable skills before any action.
-
-**Key principle:** If there's even a 1% chance a skill applies, you must use it.
-
 ### Commands
 
 | Command | Description |
@@ -71,6 +63,6 @@ Creates a pull request with structured summary, motivation, and notes.
 ## Philosophy
 
 - **Proactive Intelligence** - Agents activate automatically when needed
-- **Discipline First** - using-superpowers ensures skills are always checked
+- **Clear Skill Triggers** - Each skill has domain-prefixed descriptions for reliable activation
 - **Excellence-Driven** - ultrathink mode encourages craftsmanship
 - **Context Preservation** - context-manager maintains coherence across sessions

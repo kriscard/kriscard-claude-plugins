@@ -1,14 +1,3 @@
 {
-  "hooks": {
-    "SessionStart": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "echo 'IMMEDIATELY invoke the Skill tool with skill: using-superpowers to load the skill discipline rules. Do this BEFORE responding to the user first message.'"
-          }
-        ]
-      }
-    ]
-  }
+  "hooks": {}
 }
