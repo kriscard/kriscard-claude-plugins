@@ -1,6 +1,6 @@
 ---
 name: Obsidian Workflows & Second Brain Methodology
-description: This skill should be used when the user asks to "organize my notes", mentions "PARA method", "second brain", "knowledge management", "organize my vault", "PKM best practices", "note-taking system", or discusses how to structure and maintain their Obsidian vault effectively.
+description: "Obsidian: Use when organizing vault with PARA method, PKM workflows, or note-taking systems. NOT for vault-specific structure (use vault-structure)."
 version: 0.1.0
 ---
 

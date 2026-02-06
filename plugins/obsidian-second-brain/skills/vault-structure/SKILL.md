@@ -1,6 +1,6 @@
 ---
 name: Vault Structure & Configuration
-description: This skill should be used when needing to understand the user's specific Obsidian vault structure, folder organization, tagging system, or when working with "Tag Taxonomy", "Tag MOC", "PARA Method Implementation", or vault-specific organizational patterns. Load when discussing vault organization, note placement, or referencing vault configuration files.
+description: "Obsidian: Reference for user's vault folders, tags, and templates. Load when needing vault layout context for note operations."
 version: 0.1.0
 ---
 

@@ -1,6 +1,6 @@
 ---
 name: commit
-description: This skill should be used when the user says "commit changes", "commit this", "commit my work", "save to git", "save my changes", "push this", "push my work", "create a commit", or wants to save their work to version control. Handles the full git workflow including staging, committing, and pushing.
+description: "Git: Use for /commit or when committing changes with semantic messages. NOT for PR creation (use /pr) or branch management."
 ---
 
 # Git Commit Workflow

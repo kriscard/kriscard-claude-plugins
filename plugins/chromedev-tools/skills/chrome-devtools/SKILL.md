@@ -1,6 +1,6 @@
 ---
 name: Chrome DevTools
-description: This skill should be used when the user asks to "inspect the page", "take a screenshot", "check how it looks", "check console", "console errors", "JavaScript errors", "debug the page", "analyze performance", "page speed", "performance trace", "why is it slow", "check network", "API calls", "network requests", "loading issues", "check localhost", or mentions frontend debugging, browser inspection, or DevTools analysis.
+description: "Browser: Use when inspecting pages, checking console errors, analyzing network requests, or running performance traces. NOT for writing frontend code."
 version: 0.1.0
 ---
 

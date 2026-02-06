@@ -1,6 +1,6 @@
 ---
 name: conference-talk-builder
-description: Create conference talk outlines and iA Presenter markdown slides using the Story Circle narrative framework. Use when structuring a tech talk, creating presentation slides, or organizing talk ideas into a story-driven format.
+description: "Content: Use when structuring conference talks or creating iA Presenter slides. NOT for written blog posts or docs."
 ---
 
 # Conference Talk Builder

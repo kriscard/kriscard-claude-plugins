@@ -1,6 +1,6 @@
 ---
 name: Lazy.nvim Optimization
-description: This skill should be used when the user asks about "lazy.nvim", "plugin performance", "neovim startup time", "slow neovim", "optimize plugins", "lazy-loading", "startuptime profiling", or wants to improve Neovim performance through better plugin management.
+description: "Neovim/lazy.nvim: Use ONLY for lazy.nvim specific issues - startup profiling, lazy-loading specs, plugin priorities. For general Neovim, use neovim-best-practices."
 version: 0.1.0
 ---
 

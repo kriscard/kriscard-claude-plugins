@@ -1,6 +1,6 @@
 ---
 name: code-assistant
-description: Use when helping with code development, debugging, or refactoring. Automatically selects the best specialist agent based on context and coordinates multi-agent workflows when needed.
+description: "Development: Use when writing, debugging, or refactoring code. Orchestrates specialist agents (TypeScript, React, etc). NOT for architecture decisions."
 ---
 
 # Code Assistant

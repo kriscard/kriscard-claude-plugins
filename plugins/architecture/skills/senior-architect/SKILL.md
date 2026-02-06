@@ -1,6 +1,6 @@
 ---
 name: senior-architect
-description: Comprehensive software architecture for designing scalable, maintainable systems. Use when designing system architecture, making technical decisions, creating architecture diagrams, or evaluating trade-offs.
+description: "Architecture: Use when designing system architecture, creating C4 diagrams, evaluating tech trade-offs, or writing ADRs. NOT for implementation details or coding."
 ---
 
 # Senior Architect

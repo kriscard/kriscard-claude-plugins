@@ -76,7 +76,12 @@ The skill won't proceed until it has 95% confidence it understands your requirem
 
 ## Usage
 
-Just start talking or typing your idea:
+Explicit command:
+```
+/ideation "I have this idea for a feature where users can..."
+```
+
+Or just start talking:
 
 ```
 "okay so i'm thinking about this feature where users can save their
@@ -101,6 +106,14 @@ prd-phase-2.md       # Phase 2 requirements
 spec-phase-1.md      # Phase 1 implementation spec
 spec-phase-2.md      # Phase 2 implementation spec
 ```
+
+## When to Use
+
+| Situation | Command |
+|-----------|---------|
+| Vague idea, messy thoughts | `/ideation` |
+| Existing ticket needs implementation plan | `/spec` (essentials) |
+| Complex ticket needs thorough exploration | `/deep-spec` (essentials) |
 
 ## Skills
 

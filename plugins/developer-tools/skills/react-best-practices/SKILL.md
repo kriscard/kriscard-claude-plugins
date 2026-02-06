@@ -1,6 +1,6 @@
 ---
 name: react-best-practices
-description: This skill should be used when the user asks to "check react best practices", "audit this component", "review for performance", "does this follow best practices", "optimize this React code", or mentions React/Next.js performance optimization. Provides 57 actionable rules from Vercel Engineering.
+description: "React: Use when auditing React components for performance, re-renders, or bundle size. NOT for Vue, Angular, or general TypeScript."
 ---
 
 # React Best Practices Audit

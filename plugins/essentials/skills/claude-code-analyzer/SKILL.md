@@ -1,6 +1,6 @@
 ---
 name: claude-code-analyzer
-description: Analyze Claude Code usage patterns, project structure, and discover community resources for workflow optimization
+description: "Claude Code: Use when analyzing plugin structure, checking Claude Code config, or finding community resources."
 tools: Read, Glob, Grep, Bash
 model: opus
 ---

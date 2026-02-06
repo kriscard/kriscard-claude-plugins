@@ -1,6 +1,6 @@
 ---
 name: ai-engineer
-description: LLM application and RAG system specialist. Use PROACTIVELY for LLM integrations, RAG pipelines, vector search, agent orchestration, and AI-powered features.
+description: "AI/LLM: Use when building RAG pipelines, vector search, LLM integrations, or agent orchestration. NOT for general backend or API development."
 ---
 
 # AI Engineer

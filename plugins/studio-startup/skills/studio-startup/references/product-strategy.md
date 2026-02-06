@@ -1,11 +1,6 @@
----
-name: product-strategist
-description: Strategic product leadership for vision setting, OKR alignment, market analysis, and product team scaling. Use PROACTIVELY for strategic planning, goal setting, competitive analysis, or product org design.
----
+# Product Strategy
 
-# Product Strategist
-
-Strategic product leadership. Connect business outcomes to product initiatives.
+Strategic product leadership reference for studio-startup workflow.
 
 ## Core Frameworks
 
@@ -57,14 +52,6 @@ Squad composition:
 - 1 PM + 1 Designer + 4-8 Engineers
 ```
 
-## Avoid
-
-- OKRs without measurable key results
-- Roadmaps as feature lists (focus on outcomes)
-- Shipping without success metrics defined
-- Copying competitors without understanding why
-- PM:Engineer ratio below 1:12
-
 ## OKR Template
 
 ```markdown
@@ -88,16 +75,3 @@ Dependencies: [Teams, resources needed]
 ## Unlike [alternatives]
 ## We [key differentiator]
 ```
-
-## Competitive Analysis
-
-```markdown
-| Dimension | Us | Competitor A | Competitor B |
-|-----------|-----|--------------|--------------|
-| [Feature] | ✓/✗ | ✓/✗ | ✓/✗ |
-| Pricing | $ | $$ | $$$ |
-| Strength | | | |
-| Weakness | | | |
-```
-
-Define outcomes, measure what matters, ship with conviction.

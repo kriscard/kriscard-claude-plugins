@@ -1,6 +1,6 @@
 ---
 name: Template Usage & Application Patterns
-description: This skill should be used when discussing "templates", "apply template", "which template to use", "template selection", "note structure", or when helping users choose appropriate templates for different note types.
+description: "Obsidian: Use when selecting or applying note templates. NOT for general vault organization (use obsidian-workflows)."
 version: 0.1.0
 ---
 

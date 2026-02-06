@@ -1,6 +1,6 @@
 ---
 name: doc-coauthoring
-description: Structured workflow for co-authoring documentation, specs, proposals, and decision docs. Use when user wants to write docs, create specs, draft proposals, or similar structured content.
+description: "Content: Use when co-authoring RFCs, proposals, ADRs, or decision documents. NOT for blog posts or implementation specs."
 ---
 
 # Document Co-authoring

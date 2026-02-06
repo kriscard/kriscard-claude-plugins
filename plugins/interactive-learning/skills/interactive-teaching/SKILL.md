@@ -1,6 +1,6 @@
 ---
 name: Interactive Teaching
-description: This skill should be used when the user asks to "explain", "explain to me", "explain how X works", "how does X work?", "what is X?", "help me understand", "teach me", "learn about", "walk me through", "can you explain", "I don't understand", "why does X do Y?", or during /learn sessions. Triggers on educational and explanatory requests about technical concepts.
+description: "Learning: Use for /learn sessions or when user explicitly asks to be taught step-by-step. NOT for quick answers or general help."
 version: 1.0.0
 ---
 

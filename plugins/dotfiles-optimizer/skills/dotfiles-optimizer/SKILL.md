@@ -1,6 +1,6 @@
 ---
 name: Dotfiles Optimizer
-description: This skill should be used when the user asks to "optimize dotfiles", "optimize my dotfiles", "improve shell", "improve my shell configuration", "check configs", "check my configuration", "audit dotfiles", "analyze my setup", "make my shell faster", "improve my zsh", "improve my tmux", "check for security issues in configs", or any similar request related to analyzing, optimizing, or improving their development environment configuration files.
+description: "Dotfiles: Use when optimizing shell configs (zsh, tmux, git), auditing dotfiles security, or improving dev environment. NOT for application configs."
 version: 0.1.0
 ---
 

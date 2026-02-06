@@ -1,6 +1,6 @@
 ---
 name: studio-startup
-description: This skill should be used when the user asks to "start a project", "new startup", "side project idea", "create an app", "build an MVP", "help me launch", or describes wanting to build something new. Orchestrates complete workflow from product strategy through requirements, tech stack selection, architecture design, to full MVP implementation. Supports web applications, mobile apps, APIs, and CLI tools.
+description: "Startup: Use for /studio-startup:new or when starting a new project/MVP from scratch. Orchestrates full workflow. NOT for existing codebases."
 version: 0.1.0
 ---
 
@@ -44,13 +44,9 @@ Before beginning the main workflow:
 
 **Announce**: "Moving to Product Strategy phase - defining vision and market fit..."
 
-Invoke the `product-strategist` skill using the Skill tool:
+Use the product strategy frameworks from `references/product-strategy.md`:
 
-```
-Skill tool → "product-strategist"
-```
-
-The product-strategist will guide:
+The product strategy phase will guide:
 - Product vision and value proposition
 - Target users and market analysis
 - Competitive landscape assessment
@@ -107,14 +103,9 @@ The agent will:
 
 **Announce**: "Tech stack selected. Moving to Technical Validation phase - ensuring solid architecture principles..."
 
-Invoke the `cto-advisor` skill using the Skill tool:
+Use the CTO frameworks from `references/cto-frameworks.md` to validate:
 
-```
-Skill tool → "cto-advisor"
-Prompt: "Review our technical decisions for this [project type] using [selected stack]. Requirements are in docs/ideation/. Validate architecture approach, scalability considerations, and potential technical risks."
-```
-
-The cto-advisor will:
+The technical validation phase will:
 - Validate tech stack choice against requirements
 - Identify potential scalability bottlenecks
 - Suggest architecture patterns
@@ -483,3 +474,5 @@ For detailed orchestration patterns and advanced coordination strategies, see:
 - **`references/orchestration-guide.md`** - Deep dive on skill coordination patterns
 - **`references/tech-stack-catalog.md`** - Common stacks with detailed pros/cons
 - **`references/project-types.md`** - Type-specific guidance and patterns
+- **`references/cto-frameworks.md`** - DORA metrics, team ratios, ADR templates
+- **`references/product-strategy.md`** - OKRs, RICE prioritization, product vision

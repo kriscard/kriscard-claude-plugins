@@ -1,6 +1,6 @@
 ---
 name: ideation
-description: Transform raw brain dumps into structured implementation artifacts. Use when user has messy ideas, scattered thoughts, or dictated stream-of-consciousness about something they want to build. Produces contracts, phased PRDs, and implementation specs written to ./docs/ideation/{project-name}/.
+description: "Ideation: Use for /ideation or when organizing messy brain dumps into structured specs. NOT for existing tickets (use /spec instead)."
 ---
 
 # Ideation

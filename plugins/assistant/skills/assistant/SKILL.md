@@ -1,6 +1,6 @@
 ---
 name: Assistant
-description: This skill should be used when the user asks to "help me stay on track for Staff", "track my progress", "remind me about my boundary", "keep me accountable", "be my copilot", "monitor my work", or mentions career progress tracking, Staff Engineer signals, or workflow automation. Provides proactive workflow management and career tracking.
+description: "Workflow: Use for /standup, /weekly-summary, /context-save, /staff-progress, or Staff Engineer career tracking. NOT for general coding help."
 version: 0.1.0
 ---
 

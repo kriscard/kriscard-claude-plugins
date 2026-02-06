@@ -1,6 +1,6 @@
 ---
 name: blog-writer
-description: Transform brain dumps into polished technical blog posts. Use when you have scattered ideas, talking points, or code examples that need organizing into a cohesive developer-focused post.
+description: "Content: Use when writing technical blog posts from scattered notes or ideas. NOT for documentation, specs, or talks."
 ---
 
 # Developer Blog Writer

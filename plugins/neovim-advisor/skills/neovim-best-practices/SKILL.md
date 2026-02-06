@@ -1,6 +1,6 @@
 ---
 name: Neovim Best Practices
-description: This skill should be used when the user asks about "neovim config", "nvim setup", "vim best practices", "neovim patterns", "modern neovim", "lua configuration", "neovim 0.10", or wants guidance on configuring Neovim following current standards and conventions.
+description: "Neovim: Use when configuring Neovim, writing Lua plugins, or setting up LSP. NOT for VS Code, other editors, or lazy.nvim specifics."
 version: 0.1.0
 ---
 

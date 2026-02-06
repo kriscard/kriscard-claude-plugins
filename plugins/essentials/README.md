@@ -24,10 +24,13 @@ Discipline enforcement skill that ensures you check for applicable skills before
 | Command | Description |
 |---------|-------------|
 | `/commit` | Create semantic git commits with conventional format |
+| `/spec` | Quick spec from ticket/prompt (1-2 questions) |
+| `/deep-spec` | Thorough spec with 4 rounds of interviews |
+| `/issue` | Analyze ticket, implement fix on dedicated branch |
+| `/pr` | Quick PR creation with structured template |
 | `/init-ultrathink` | Generate comprehensive CLAUDE.md for a project |
 | `/ultrathink` | Deep thinking mode for complex problems |
 | `/de-slopify` | Remove AI-generated code slop from your branch |
-| `/pr` | Quick PR creation with structured template |
 | `/search-web` | Web search integration |
 
 ### Agents

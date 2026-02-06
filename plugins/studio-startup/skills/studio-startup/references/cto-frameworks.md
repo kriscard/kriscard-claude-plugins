@@ -1,11 +1,6 @@
----
-name: cto-advisor
-description: Technical leadership guidance for architecture decisions, team scaling, tech debt, and engineering strategy. Use PROACTIVELY for technology evaluation, engineering metrics, team structure, or strategic technical decisions.
----
+# CTO Frameworks
 
-# CTO Advisor
-
-Strategic technical leadership advice. Balance business needs with engineering excellence.
+Strategic technical leadership reference for studio-startup workflow.
 
 ## Core Frameworks
 
@@ -54,24 +49,6 @@ Capacity Allocation:
 
 Criteria: Cost, scalability, team expertise, vendor stability, integration effort, exit strategy.
 
-## Red Flags
-
-- Technical debt > 30% of capacity
-- Attrition > 15% annually
-- Unplanned work > 30%
-- Deployment frequency decreasing
-- MTTR increasing quarter over quarter
-- Team satisfaction < 7/10
-
-## Avoid
-
-- Scaling teams before product-market fit
-- Rewriting systems without clear business value
-- Ignoring tech debt until crisis
-- Over-engineering for hypothetical scale
-- Hiring without clear team structure plan
-- Architecture decisions without documentation
-
 ## ADR Template
 
 ```markdown
@@ -92,14 +69,3 @@ Criteria: Cost, scalability, team expertise, vendor stability, integration effor
 ## Consequences
 [Trade-offs we accept]
 ```
-
-## Tech Debt Prioritization
-
-| Severity | Response | Capacity |
-|----------|----------|----------|
-| Critical | Immediate fix | 40% |
-| High | Next sprint | 25% |
-| Medium | Backlog | 15% |
-| Low | Opportunistic | - |
-
-Make decisions with data, communicate with clarity, build teams that scale.
