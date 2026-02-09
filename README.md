@@ -12,7 +12,7 @@ claude plugin marketplace add kriscard/kriscard-claude-plugins
 
 Install plugins you need:
 
-### Essential (recommended for all environments)
+### Essential (recommended for all environments but may require some local configuration)
 
 ```bash
 claude plugin install essentials@kriscard           # Core workflow tools
