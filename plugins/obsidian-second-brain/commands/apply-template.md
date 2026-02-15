@@ -1,7 +1,7 @@
 ---
 name: apply-template
 description: Apply templates to notes interactively - select from all available templates
-allowed-tools: [Read, Write, obsidian, AskUserQuestion]
+allowed-tools: [Read, Write, Bash, AskUserQuestion, obsidian]
 ---
 
 # Apply Template Command
@@ -11,6 +11,18 @@ Interactively select and apply templates to notes in the vault.
 ## Purpose
 
 Help user apply structured templates to existing or new notes. Shows all available templates, lets user select, and applies template to current or specified note.
+
+## Obsidian Access
+
+**Prefer CLI, fall back to MCP with confirmation.**
+
+First, check CLI availability:
+```bash
+"${CLAUDE_PLUGIN_ROOT}/scripts/obsidian-utils.sh" status
+```
+
+- If `CLI_AVAILABLE`: Use Obsidian CLI commands via Bash
+- If `CLI_UNAVAILABLE`: Ask user "Obsidian CLI isn't available. May I use Obsidian MCP instead?" and wait for confirmation
 
 ## Workflow
 
@@ -182,17 +194,28 @@ Would you like to apply another template?
 
 ## Tools Usage
 
-**Obsidian MCP:**
+**Obsidian CLI (preferred):**
+```bash
+# List templates
+obsidian files folder="Templates/" format=json
+
+# Read template content
+obsidian read path="Templates/Project Brief.md"
+
+# Create new note with template
+obsidian create path="1 - Projects/New Project.md" content="$TEMPLATE" silent
+
+# Append template to existing note
+obsidian append path="existing-note.md" content="$TEMPLATE" silent
+```
+
+**Obsidian MCP (fallback - ask user first):**
 - `obsidian_list_files_in_dir` - List templates
 - `obsidian_get_file_contents` - Read template content
 - `obsidian_append_content` - Apply template to note
-- Create or update notes
 
-**Read tool:**
-- Fallback for reading templates if Obsidian MCP unavailable
-
-**Write tool:**
-- Fallback for creating notes if needed
+**Read/Write tools:**
+- Additional fallback if both CLI and MCP unavailable
 
 ## Configuration
 

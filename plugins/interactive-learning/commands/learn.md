@@ -7,14 +7,26 @@ allowed-tools:
   - WebSearch
   - WebFetch
   - Read
+  - Bash
   - AskUserQuestion
   - mcp__context7__resolve-library-id
   - mcp__context7__query-docs
-  - mcp__mcp-obsidian__obsidian_get_file_contents
-  - mcp__mcp-obsidian__obsidian_append_content
+  - obsidian
 ---
 
 # Interactive Learning Command
+
+## Obsidian Access
+
+**Prefer CLI, fall back to MCP with confirmation.**
+
+When ending a session (`/learn done`), check CLI availability first:
+```bash
+obsidian vault 2>/dev/null && echo "CLI_AVAILABLE" || echo "CLI_UNAVAILABLE"
+```
+
+- If `CLI_AVAILABLE`: Use Obsidian CLI commands via Bash
+- If `CLI_UNAVAILABLE`: Ask user "Obsidian CLI isn't available. May I use Obsidian MCP instead?" and wait for confirmation
 
 ## Handling Arguments
 

@@ -1,7 +1,7 @@
 ---
 name: review-okrs
 description: Multi-level OKR reviews (quarterly, monthly, weekly) with progress tracking
-allowed-tools: [Read, Write, Bash, obsidian, AskUserQuestion]
+allowed-tools: [Read, Write, Bash, AskUserQuestion, obsidian]
 ---
 
 # Review OKRs Command
@@ -11,6 +11,18 @@ Facilitate quarterly, monthly, or weekly OKR reviews with progress tracking and 
 ## Purpose
 
 Help user maintain regular review cadence for goals and objectives. Create review notes from templates, track progress, and ensure alignment between different time horizons.
+
+## Obsidian Access
+
+**Prefer CLI, fall back to MCP with confirmation.**
+
+First, check CLI availability:
+```bash
+"${CLAUDE_PLUGIN_ROOT}/scripts/obsidian-utils.sh" status
+```
+
+- If `CLI_AVAILABLE`: Use Obsidian CLI commands via Bash
+- If `CLI_UNAVAILABLE`: Ask user "Obsidian CLI isn't available. May I use Obsidian MCP instead?" and wait for confirmation
 
 ## Workflow
 
@@ -191,7 +203,24 @@ Quarterly OKRs Progress:
 
 ## Tools Usage
 
-**Obsidian MCP:**
+**Obsidian CLI (preferred):**
+```bash
+# Read templates and reviews
+obsidian read path="Templates/Quarterly Goals.md"
+obsidian read path="2 - Areas/Goals/Quarterly/Quaterly Goals - Q1 2026.md"
+
+# Create review notes
+obsidian create path="2 - Areas/Goals/Quarterly/Quaterly Goals - Q1 2026.md" content="$TEMPLATE" silent
+
+# Search for OKR mentions
+obsidian search query="Q1 2026" format=json
+
+# List files
+obsidian files folder="2 - Areas/Goals/Quarterly/" format=json
+obsidian files folder="1 - Projects/" format=json
+```
+
+**Obsidian MCP (fallback - ask user first):**
 - `obsidian_get_file_contents` - Read templates and previous reviews
 - `obsidian_append_content` - Create review notes
 - `obsidian_simple_search` - Find OKR mentions, track progress

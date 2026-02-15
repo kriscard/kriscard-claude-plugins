@@ -1,12 +1,24 @@
 ---
 name: maintain-vault
 description: Comprehensive vault health check - links, tags, 2-Link Rule, Related/Encounters sections
-allowed-tools: [Read, Bash, obsidian]
+allowed-tools: [Read, Bash, AskUserQuestion, obsidian]
 ---
 
 # Maintain Vault Command
 
 Run a comprehensive vault health check to identify and report issues with links, tags, and note structure following Obsidian best practices.
+
+## Obsidian Access
+
+**Prefer CLI, fall back to MCP with confirmation.**
+
+First, check CLI availability:
+```bash
+"${CLAUDE_PLUGIN_ROOT}/scripts/obsidian-utils.sh" status
+```
+
+- If `CLI_AVAILABLE`: Use Obsidian CLI commands via Bash
+- If `CLI_UNAVAILABLE`: Ask user "Obsidian CLI isn't available. May I use Obsidian MCP instead?" and wait for confirmation
 
 ## Purpose
 
@@ -433,14 +445,29 @@ Would you like help fixing any of these issues?
 
 ## Tools Usage
 
-**Obsidian MCP:**
+**Obsidian CLI (preferred):**
+```bash
+# Search for patterns
+obsidian search query="[[" format=json
+
+# Read specific files
+obsidian read path="3 - Resources/Obsidian org/Tag Taxonomy.md"
+
+# List all notes in folder
+obsidian files folder="3 - Resources/Coding/" format=json
+
+# List entire vault
+obsidian files format=json
+```
+
+**Obsidian MCP (fallback - ask user first):**
 - `obsidian_simple_search` - Find wiki links and patterns
 - `obsidian_get_file_contents` - Read Tag Taxonomy, check note content
 - `obsidian_list_files_in_dir` - List all notes
 - `obsidian_list_files_in_vault` - Get complete file list
 
-**Read tool:**
-- Fallback for reading files if Obsidian MCP unavailable
+**Read/Grep tools:**
+- Additional fallback using Grep for pattern matching
 
 ## Configuration
 

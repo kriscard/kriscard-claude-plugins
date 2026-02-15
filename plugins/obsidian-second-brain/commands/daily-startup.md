@@ -1,7 +1,7 @@
 ---
 name: daily-startup
 description: Interactive daily workflow session - create periodic notes (daily/weekly/monthly/quarterly), check inbox, surface tasks, review OKRs
-allowed-tools: [Read, Write, Bash, obsidian]
+allowed-tools: [Read, Write, Bash, AskUserQuestion, obsidian]
 ---
 
 # Daily Startup Workflow
@@ -11,6 +11,18 @@ Run an interactive daily startup session to begin the day with clarity and focus
 ## Purpose
 
 Guide the user through their daily startup routine efficiently. Auto-create all relevant periodic notes, then interactively surface relevant information and set priorities.
+
+## Obsidian Access
+
+**Prefer CLI, fall back to MCP with confirmation.**
+
+First, check CLI availability:
+```bash
+"${CLAUDE_PLUGIN_ROOT}/scripts/obsidian-utils.sh" status
+```
+
+- If `CLI_AVAILABLE`: Use Obsidian CLI commands via Bash
+- If `CLI_UNAVAILABLE`: Ask user "Obsidian CLI isn't available. May I use Obsidian MCP instead?" and wait for confirmation before using MCP tools
 
 ## Workflow
 
@@ -39,24 +51,44 @@ Periods to check:
 
 **1b. Batch check existence (PARALLEL):**
 
-Make ONE call to list each relevant directory, then check results locally:
+**Using CLI:**
+```bash
+obsidian files folder="2 - Areas/Daily Ops/" format=json
+obsidian files folder="2 - Areas/Daily Ops/Weekly/M - Month YYYY/" format=json  # if Monday
+obsidian files folder="2 - Areas/Goals/Monthly/" format=json  # if 1st
+obsidian files folder="2 - Areas/Goals/Quarterly/" format=json  # if quarter start
+```
+
+**Using MCP (if CLI unavailable):**
 - `obsidian_list_files_in_dir` for `2 - Areas/Daily Ops/`
-- `obsidian_list_files_in_dir` for `2 - Areas/Daily Ops/Weekly/M - Month YYYY/` (if Monday, e.g., `2 - February 2026`)
+- `obsidian_list_files_in_dir` for `2 - Areas/Daily Ops/Weekly/M - Month YYYY/` (if Monday)
 - `obsidian_list_files_in_dir` for `2 - Areas/Goals/Monthly/` (if 1st)
 - `obsidian_list_files_in_dir` for `2 - Areas/Goals/Quarterly/` (if quarter start)
 
 **1c. Batch fetch templates (PARALLEL, only for missing notes):**
 
-If notes are missing, fetch all needed templates in parallel:
-- `obsidian_get_file_contents` for `Templates/Daily Notes.md`
-- `obsidian_get_file_contents` for `Templates/Weekly Planning.md` (if needed)
-- `obsidian_get_file_contents` for `Templates/Monthly Goals.md` (if needed)
-- `obsidian_get_file_contents` for `Templates/Quarterly Goals.md` (if needed)
+**Using CLI:**
+```bash
+obsidian read path="Templates/Daily Notes.md"
+obsidian read path="Templates/Weekly Planning.md"  # if needed
+obsidian read path="Templates/Monthly Goals.md"  # if needed
+obsidian read path="Templates/Quarterly Goals.md"  # if needed
+```
+
+**Using MCP (if CLI unavailable):**
+- `obsidian_get_file_contents` for each template
 
 **1d. Auto-create missing notes (no confirmation needed):**
 
 For each missing note, create using the template content:
 - Replace template variables: `{{date}}`, `{{title}}`, `{{week}}`, `{{month}}`, `{{quarter}}`, `{{year}}`
+
+**Using CLI:**
+```bash
+obsidian create path="2 - Areas/Daily Ops/2026-02-14.md" content="$PROCESSED_TEMPLATE" silent
+```
+
+**Using MCP (if CLI unavailable):**
 - Use `obsidian_append_content` to create each note
 - **CRITICAL**: Always use the full template content - never create empty or partial notes
 
@@ -77,8 +109,13 @@ Single summary: "Created: daily (2026-01-27), weekly (2026-W05)" or "All periodi
 
 ### Step 2: Gather Context (PARALLEL)
 
-**Fetch inbox count and projects in parallel:**
+**Using CLI:**
+```bash
+obsidian files folder="0 - Inbox/" format=json
+obsidian files folder="1 - Projects/" format=json
+```
 
+**Using MCP (if CLI unavailable):**
 - `obsidian_list_files_in_dir` for `0 - Inbox/`
 - `obsidian_list_files_in_dir` for `1 - Projects/`
 
@@ -128,10 +165,16 @@ Vault path: `/Users/kriscard/obsidian-vault-kriscard`
 
 ## Tools Usage
 
-**Obsidian MCP tools (use in parallel where possible):**
-- `obsidian_list_files_in_dir` - Batch check existence of notes, list inbox/projects
-- `obsidian_get_file_contents` - Fetch templates (parallel for all needed)
-- `obsidian_append_content` - Create notes from templates
+**Obsidian CLI (preferred - use in parallel where possible):**
+- `obsidian files folder="X"` - Batch check existence of notes, list inbox/projects
+- `obsidian read path="X"` - Fetch templates
+- `obsidian create path="X" content="Y" silent` - Create notes from templates
+- `obsidian append path="X" content="Y" silent` - Append to existing notes
+
+**Obsidian MCP (fallback - ask user first):**
+- `obsidian_list_files_in_dir` - List directory contents
+- `obsidian_get_file_contents` - Read file contents
+- `obsidian_append_content` - Create/append notes
 
 **AskUserQuestion tool:**
 - Project focus selection (multiSelect)
@@ -163,7 +206,8 @@ Vault path: `/Users/kriscard/obsidian-vault-kriscard`
 ## Error Handling
 
 - **Missing template**: Report error, don't create empty note
-- **MCP unavailable**: Fall back to Bash + Read tools
+- **CLI unavailable**: Ask user to confirm MCP usage, then use MCP tools
+- **MCP also unavailable**: Report error, suggest opening Obsidian
 - **No projects**: Skip project selection step
 
 ## Example Interactions

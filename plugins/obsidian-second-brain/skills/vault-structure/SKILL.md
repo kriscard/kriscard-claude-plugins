@@ -398,17 +398,33 @@ When PARA category changes:
 
 ## Reading Vault Files
 
-Use the provided helper script to read vault configuration files:
+**Prefer Obsidian CLI when available:**
+
+```bash
+# Check CLI availability
+obsidian vault 2>/dev/null && echo "CLI_AVAILABLE" || echo "CLI_UNAVAILABLE"
+
+# Read files with CLI
+obsidian read path="3 - Resources/Obsidian org/Tag Taxonomy.md"
+obsidian read path="3 - Resources/Obsidian org/PARA Method Implementation.md"
+
+# List files
+obsidian files folder="0 - Inbox/" format=json
+```
+
+**Or use helper script:**
 
 ```bash
 bash ${CLAUDE_PLUGIN_ROOT}/scripts/read-vault-file.sh "Tag Taxonomy.md"
 bash ${CLAUDE_PLUGIN_ROOT}/scripts/read-vault-file.sh "PARA Method Implementation.md"
 ```
 
-Or use Obsidian MCP directly:
+**MCP fallback (ask user first):**
 ```
 mcp__mcp-obsidian__obsidian_get_file_contents("Tag Taxonomy.md")
 ```
+
+Note: Always prefer CLI over MCP. If CLI unavailable, ask user for confirmation before using MCP.
 
 ## Additional Resources
 

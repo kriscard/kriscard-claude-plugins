@@ -1,7 +1,7 @@
 ---
 name: process-inbox
 description: One-by-one inbox review with intelligent PARA placement suggestions
-allowed-tools: [Read, Write, Bash, obsidian, AskUserQuestion]
+allowed-tools: [Read, Write, Bash, AskUserQuestion, obsidian]
 ---
 
 # Process Inbox Command
@@ -11,6 +11,18 @@ Guide the user through processing inbox notes one by one with intelligent PARA p
 ## Purpose
 
 Help user achieve "inbox zero" by reviewing each note, suggesting appropriate PARA categorization, and moving notes to their proper location.
+
+## Obsidian Access
+
+**Prefer CLI, fall back to MCP with confirmation.**
+
+First, check CLI availability:
+```bash
+"${CLAUDE_PLUGIN_ROOT}/scripts/obsidian-utils.sh" status
+```
+
+- If `CLI_AVAILABLE`: Use Obsidian CLI commands via Bash
+- If `CLI_UNAVAILABLE`: Ask user "Obsidian CLI isn't available. May I use Obsidian MCP instead?" and wait for confirmation
 
 ## Workflow
 
@@ -146,7 +158,26 @@ Follow PARA-aligned Tag Taxonomy:
 
 ## Tools Usage
 
-**Obsidian MCP:**
+**Obsidian CLI (preferred):**
+```bash
+# List inbox
+obsidian files folder="0 - Inbox/" format=json
+
+# Read note
+obsidian read path="0 - Inbox/note.md"
+
+# Move note (create in new location, delete old)
+obsidian create path="3 - Resources/note.md" content="$CONTENT" silent
+obsidian delete path="0 - Inbox/note.md" silent
+
+# Update metadata (prepend frontmatter)
+obsidian prepend path="note.md" content="---\ntags: [react]\n---" silent
+
+# Delete (with confirmation from user first)
+obsidian delete path="0 - Inbox/note.md" silent
+```
+
+**Obsidian MCP (fallback - ask user first):**
 - `obsidian_list_files_in_dir` - List inbox notes
 - `obsidian_get_file_contents` - Read note content
 - `obsidian_patch_content` - Update note metadata
