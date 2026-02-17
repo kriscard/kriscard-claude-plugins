@@ -22,7 +22,9 @@ allowed-tools:
 
 When ending a session (`/learn done`), check CLI availability first:
 ```bash
-obsidian vault 2>/dev/null && echo "CLI_AVAILABLE" || echo "CLI_UNAVAILABLE"
+# Check if Obsidian CLI is available (try PATH, then macOS app location)
+OBSIDIAN_CLI="${OBSIDIAN_CLI:-$(command -v obsidian 2>/dev/null || echo '/Applications/Obsidian.app/Contents/MacOS/Obsidian')}"
+"$OBSIDIAN_CLI" vault &>/dev/null && echo "CLI_AVAILABLE" || echo "CLI_UNAVAILABLE"
 ```
 
 - If `CLI_AVAILABLE`: Use Obsidian CLI commands via Bash
