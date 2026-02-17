@@ -508,7 +508,7 @@ Orchestration Patterns:
   skill-based          Implicit triggering via natural language (e.g., ideation)
   command-based        Explicit /command invocation (e.g., /daily-startup)
   hybrid               Both skills and commands (e.g., architecture)
-  meta                 Always-on enforcement (e.g., using-superpowers)
+  meta                 Always-on enforcement via hooks
   agent-only           Independent agents, no orchestrator (e.g., developer-tools)
 
 Examples:

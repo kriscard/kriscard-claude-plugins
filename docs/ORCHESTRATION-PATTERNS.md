@@ -18,7 +18,6 @@ Does your plugin have multiple components that must work together?
 └─ Yes → Choose orchestration pattern:
     ├─ Should trigger implicitly on user intent? → Skill-based orchestration
     ├─ Should user explicitly control when? → Command-based orchestration
-    ├─ Applies to ALL interactions? → Meta-orchestration
     └─ Both implicit and explicit needed? → Hybrid orchestration
 ```
 
@@ -116,54 +115,7 @@ description: Start your day - creates daily note, checks inbox, surfaces OKRs
 - Less natural than skills
 - Requires typing slash command
 
-### 3. Meta-Orchestration
-
-**When to use:**
-- Enforcement/discipline across ALL interactions
-- Quality gates that should never be bypassed
-- System-level behavior changes
-
-**Entry point:** Always active (SessionStart, every message, etc.)
-
-**Example:** `essentials/using-superpowers` skill
-```
-Every user message
-       ↓
-using-superpowers enforces:
-  "Check if ANY skill applies before responding"
-       ↓
-Forces discipline:
-  - Must check skills before clarifying questions
-  - Must check skills before exploration
-  - Must check skills before any action
-       ↓
-Result: Skills are never accidentally bypassed
-```
-
-**Implementation:**
-```markdown
----
-name: using-superpowers
-description: Use when starting any conversation - establishes how to find and use skills, requiring Skill tool invocation before ANY response including clarifying questions
----
-
-<EXTREMELY-IMPORTANT>
-If there is even a 1% chance a skill might apply, you ABSOLUTELY MUST read the skill.
-[...]
-</EXTREMELY-IMPORTANT>
-```
-
-**Pros:**
-- Ensures consistency
-- Never forgotten or bypassed
-- Acts as "operating system" for plugin ecosystem
-
-**Cons:**
-- Can't be disabled by user
-- Must be very well designed
-- Could be intrusive if poorly done
-
-### 4. Hybrid Orchestration
+### 3. Hybrid Orchestration
 
 **When to use:**
 - Need both implicit and explicit workflows
@@ -201,7 +153,7 @@ Auto-activation:
 - Can be confusing which to use
 - Risk of overlap/redundancy
 
-### 5. Agent-Only (No Orchestrator)
+### 4. Agent-Only (No Orchestrator)
 
 **When to use:**
 - Components work independently
@@ -301,37 +253,12 @@ Brief explanation for the user.
 \`\`\`
 ```
 
-### Meta-Orchestrator Template
-
-```markdown
----
-name: meta-skill-name
-description: Use when [always/on specific events] - enforces [specific behavior]
----
-
-<EXTREMELY-IMPORTANT>
-[Non-negotiable rules that must be followed]
-</EXTREMELY-IMPORTANT>
-
-# Enforcement Rules
-
-## What This Enforces
-[Clear description of enforced behavior]
-
-## How It Works
-[Mechanism of enforcement]
-
-## Exceptions
-[If any - be very careful here]
-```
-
 ## Pattern Selection Matrix
 
 | Plugin Type | Recommended Pattern | Example |
 |-------------|---------------------|---------|
 | **Content Creation** | Skill-based | blog-writer, doc-coauthoring |
 | **Daily Workflows** | Command-based | daily-startup, process-inbox |
-| **System Enforcement** | Meta-orchestration | using-superpowers |
 | **Advisory/Consulting** | Hybrid | senior-architect, cto-advisor |
 | **Specialist Tools** | Agent-only → Add orchestrator if selection needed | typescript-coder, debugger |
 | **Multi-phase Workflows** | Skill-based | ideation (scoring→questions→artifacts) |
@@ -393,9 +320,6 @@ Better: Add test-suite command
 For complex plugins, layer orchestrators:
 
 ```
-Meta-Layer (essentials/using-superpowers)
-  ↓ [Always enforces skill checking]
-
 Primary Orchestrator (ideation skill OR /daily-startup command)
   ↓ [Coordinates workflow]
 
@@ -470,7 +394,6 @@ See these plugins in this marketplace for reference:
 
 - **Skill-based:** `ideation`, `content` plugins
 - **Command-based:** `obsidian-second-brain` `/daily-startup`
-- **Meta-orchestration:** `essentials` `using-superpowers`
 - **Hybrid:** `architecture`, `ai-development`
 - **Agent-only:** `developer-tools`, `testing` (candidates for orchestration)
 

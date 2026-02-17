@@ -58,7 +58,7 @@ When adding new skills, commands, or agents:
 
 - Plugin names: kebab-case (e.g., `developer-tools`)
 - Command files: kebab-case.md (e.g., `init-ultrathink.md`)
-- Skill directories: kebab-case (e.g., `using-superpowers/`)
+- Skill directories: kebab-case (e.g., `blog-writer/`)
 - Agent files: kebab-case.md (e.g., `code-simplifier.md`)
 
 ## Orchestration Philosophy
@@ -72,7 +72,6 @@ This marketplace uses **context-appropriate orchestration** - different patterns
 | **Skill-based** | Workflow should start implicitly on user intent | Natural language | `ideation`, `content` |
 | **Command-based** | Users need explicit control over workflow | `/command` | `obsidian-second-brain` |
 | **Hybrid** | Need both implicit and explicit entry points | Skills + Commands | `architecture`, `ai-development` |
-| **Meta-orchestration** | System-level enforcement across ALL interactions | Always-on | `essentials/using-superpowers` |
 | **Agent-only** | Components work independently, no coordination needed | Context-based | `developer-tools`* |
 
 *Developer-tools now includes `code-assistant` skill orchestrator for intelligent agent selection.
@@ -100,9 +99,6 @@ Skip orchestration when:
 ### Layered Architecture
 
 ```
-Meta-Layer (essentials/using-superpowers)
-  ↓ [Always enforces skill checking]
-
 Orchestration Layer (skills/commands)
   ↓ [Coordinates workflows]
 
@@ -122,9 +118,6 @@ Output Layer (files, summaries, actions)
 **Command-based Orchestration:**
 - `/daily-startup` - Coordinates agents + skills + MCP for morning workflow
 - `/test-suite` - Runs unit + integration + E2E tests in sequence
-
-**Meta-orchestration:**
-- `using-superpowers` - Forces skill checking before ANY response
 
 **Hybrid:**
 - `architecture` - Commands for docs, skills for advisory
