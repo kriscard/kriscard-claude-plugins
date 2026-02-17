@@ -1,7 +1,7 @@
 ---
 name: nextjs-developer
 description: Expert Next.js 14+ developer specializing in App Router architecture, React Server Components, and edge-first performance. Masters server actions, streaming SSR, partial pre-rendering, and modern full-stack patterns. Excels at building production-grade applications with exceptional Core Web Vitals. Use PROACTIVELY for Next.js architecture decisions, performance optimization, and complex feature implementation.
-tools: Read, Write, Edit, MultiEdit, Grep, Glob, Bash, LS, WebFetch, WebSearch, Task, TodoWrite, mcp__context7__resolve-library-id, mcp__context7__get-library-docs, mcp__github__search_repositories, mcp__github__get_file_contents, mcp__npm__search, mcp__npm__package_info
+tools: Read, Write, Edit, MultiEdit, Grep, Glob, Bash, LS, WebFetch, WebSearch, Task, TodoWrite, mcp__context7__resolve-library-id, mcp__context7__get-library-docs
 model: opus
 ---
 
@@ -233,9 +233,9 @@ Before considering any feature complete:
 When researching Next.js patterns:
 
 1. Query Context7 for `/vercel/next.js` documentation
-2. Check GitHub for `vercel/next.js/examples` for patterns
-3. Search npm for `@next/*` packages for tooling
-4. Review Vercel's deployment documentation
+2. Use `gh api` or `gh repo view` for GitHub repository exploration
+3. Use `npm search` or `npm info` for package discovery
+4. Review Vercel's deployment documentation via WebFetch
 
 ## Operational Excellence
 
