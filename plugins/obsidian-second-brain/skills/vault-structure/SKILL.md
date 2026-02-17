@@ -401,9 +401,8 @@ When PARA category changes:
 **Prefer Obsidian CLI when available:**
 
 ```bash
-# Check CLI availability (try PATH, then macOS app location)
-OBSIDIAN_CLI="${OBSIDIAN_CLI:-$(command -v obsidian 2>/dev/null || echo '/Applications/Obsidian.app/Contents/MacOS/Obsidian')}"
-"$OBSIDIAN_CLI" vault &>/dev/null && echo "CLI_AVAILABLE" || echo "CLI_UNAVAILABLE"
+# Check CLI availability
+obsidian vault &>/dev/null && echo "CLI_AVAILABLE" || echo "CLI_UNAVAILABLE"
 
 # Read files with CLI
 obsidian read path="3 - Resources/Obsidian org/Tag Taxonomy.md"

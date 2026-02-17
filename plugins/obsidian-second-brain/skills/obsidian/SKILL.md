@@ -16,32 +16,26 @@ This skill defines how to interact with Obsidian vaults. **Always prefer CLI whe
 
 | Operation | CLI Command | MCP Fallback |
 |-----------|------------|--------------|
-| Read file | `"$OBSIDIAN_CLI" read path="..."` | `mcp__mcp-obsidian__obsidian_get_file_contents` |
-| Create file | `"$OBSIDIAN_CLI" create path="..." content="..." silent` | `mcp__mcp-obsidian__obsidian_append_content` |
-| Append | `"$OBSIDIAN_CLI" append path="..." content="..." silent` | `mcp__mcp-obsidian__obsidian_append_content` |
-| Search | `"$OBSIDIAN_CLI" search query="..." format=json` | `mcp__mcp-obsidian__obsidian_simple_search` |
-| List files | `"$OBSIDIAN_CLI" files folder="..." format=json` | `mcp__mcp-obsidian__obsidian_list_files_in_dir` |
-| Daily note | `"$OBSIDIAN_CLI" daily:read` | `mcp__mcp-obsidian__obsidian_get_periodic_note` |
+| Read file | `obsidian read path="..."` | `mcp__mcp-obsidian__obsidian_get_file_contents` |
+| Create file | `obsidian create path="..." content="..." silent` | `mcp__mcp-obsidian__obsidian_append_content` |
+| Append | `obsidian append path="..." content="..." silent` | `mcp__mcp-obsidian__obsidian_append_content` |
+| Search | `obsidian search query="..." format=json` | `mcp__mcp-obsidian__obsidian_simple_search` |
+| List files | `obsidian files folder="..." format=json` | `mcp__mcp-obsidian__obsidian_list_files_in_dir` |
+| Daily note | `obsidian daily:read` | `mcp__mcp-obsidian__obsidian_get_periodic_note` |
 
 ## Detection Flow
 
 ```
 1. Check CLI: Run detection command (see below)
-2. If CLI_AVAILABLE: Use CLI commands via Bash with $OBSIDIAN_CLI
+2. If CLI_AVAILABLE: Use CLI commands via Bash
 3. If CLI_UNAVAILABLE: Ask user to confirm MCP usage, then use MCP tools
 ```
 
 ### CLI Detection Pattern
 
-**IMPORTANT:** Claude Code's Bash doesn't inherit PATH from ~/.zprofile. Use this pattern:
-
 ```bash
-# Check CLI availability (try PATH, then macOS app location)
-OBSIDIAN_CLI="${OBSIDIAN_CLI:-$(command -v obsidian 2>/dev/null || echo '/Applications/Obsidian.app/Contents/MacOS/Obsidian')}"
-"$OBSIDIAN_CLI" vault &>/dev/null && echo "CLI_AVAILABLE" || echo "CLI_UNAVAILABLE"
+obsidian vault &>/dev/null && echo "CLI_AVAILABLE" || echo "CLI_UNAVAILABLE"
 ```
-
-After detection, use `"$OBSIDIAN_CLI"` for all commands (not bare `obsidian`).
 
 ## Using obsidian-utils.sh
 
@@ -93,158 +87,158 @@ Two ways to target files:
 
 ```bash
 # Read file content
-"$OBSIDIAN_CLI" read path="2 - Areas/Daily Ops/2026-02-14.md"
-"$OBSIDIAN_CLI" read file="Recipe"  # wikilink resolution
+"obsidian" read path="2 - Areas/Daily Ops/2026-02-14.md"
+"obsidian" read file="Recipe"  # wikilink resolution
 
 # List files in folder (json for parsing)
-"$OBSIDIAN_CLI" files folder="0 - Inbox/" format=json
+"obsidian" files folder="0 - Inbox/" format=json
 
 # Create new file
-"$OBSIDIAN_CLI" create path="3 - Resources/TIL/til-2026-02-14.md" content="# TIL..." silent
+"obsidian" create path="3 - Resources/TIL/til-2026-02-14.md" content="# TIL..." silent
 
 # Create from template
-"$OBSIDIAN_CLI" create path="note.md" template="Daily Notes" silent
+"obsidian" create path="note.md" template="Daily Notes" silent
 
 # Append to file (silent = don't open)
-"$OBSIDIAN_CLI" append path="note.md" content="\n## New Section" silent
+"obsidian" append path="note.md" content="\n## New Section" silent
 
 # Append inline (no newline added)
-"$OBSIDIAN_CLI" append path="note.md" content=" - item" silent inline
+"obsidian" append path="note.md" content=" - item" silent inline
 
 # Prepend after frontmatter
-"$OBSIDIAN_CLI" prepend path="note.md" content="# Header" silent
+"obsidian" prepend path="note.md" content="# Header" silent
 
 # Move/rename file
-"$OBSIDIAN_CLI" move path="old.md" to="folder/new.md"
+"obsidian" move path="old.md" to="folder/new.md"
 
 # Delete file (to trash)
-"$OBSIDIAN_CLI" delete path="note.md"
+"obsidian" delete path="note.md"
 
 # Delete permanently
-"$OBSIDIAN_CLI" delete path="note.md" permanent
+"obsidian" delete path="note.md" permanent
 
 # Search vault
-"$OBSIDIAN_CLI" search query="meeting notes" format=json limit=20
+"obsidian" search query="meeting notes" format=json limit=20
 ```
 
 ### Daily Notes
 
 ```bash
 # Read today's daily note
-"$OBSIDIAN_CLI" daily:read
+"obsidian" daily:read
 
 # Append to daily note
-"$OBSIDIAN_CLI" daily:append content="- [ ] Buy groceries" silent
+"obsidian" daily:append content="- [ ] Buy groceries" silent
 
 # Prepend to daily note
-"$OBSIDIAN_CLI" daily:prepend content="# Morning Notes" silent
+"obsidian" daily:prepend content="# Morning Notes" silent
 
 # Open daily note (just get path)
-"$OBSIDIAN_CLI" daily silent
+"obsidian" daily silent
 ```
 
 ### Tasks
 
 ```bash
 # List all tasks
-"$OBSIDIAN_CLI" tasks all
+"obsidian" tasks all
 
 # List tasks from daily note
-"$OBSIDIAN_CLI" tasks daily
+"obsidian" tasks daily
 
 # List incomplete tasks
-"$OBSIDIAN_CLI" tasks todo
+"obsidian" tasks todo
 
 # List completed tasks
-"$OBSIDIAN_CLI" tasks done
+"obsidian" tasks done
 
 # Toggle a task
-"$OBSIDIAN_CLI" task path="note.md" line=8 toggle
+"obsidian" task path="note.md" line=8 toggle
 
 # Mark task done
-"$OBSIDIAN_CLI" task path="note.md" line=8 done
+"obsidian" task path="note.md" line=8 done
 ```
 
 ### Tags
 
 ```bash
 # List all tags with counts
-"$OBSIDIAN_CLI" tags all counts
+"obsidian" tags all counts
 
 # Get info about specific tag
-"$OBSIDIAN_CLI" tag name="project" verbose
+"obsidian" tag name="project" verbose
 ```
 
 ### Links & Graph
 
 ```bash
 # List backlinks to a file
-"$OBSIDIAN_CLI" backlinks path="note.md" counts
+"obsidian" backlinks path="note.md" counts
 
 # List outgoing links
-"$OBSIDIAN_CLI" links path="note.md"
+"obsidian" links path="note.md"
 
 # Find broken (unresolved) links
-"$OBSIDIAN_CLI" unresolved verbose counts
+"obsidian" unresolved verbose counts
 
 # Find orphan files (no incoming links)
-"$OBSIDIAN_CLI" orphans
+"obsidian" orphans
 
 # Find dead-end files (no outgoing links)
-"$OBSIDIAN_CLI" deadends
+"obsidian" deadends
 ```
 
 ### Properties (Frontmatter)
 
 ```bash
 # List properties of a file
-"$OBSIDIAN_CLI" properties path="note.md" format=yaml
+"obsidian" properties path="note.md" format=yaml
 
 # Set a property
-"$OBSIDIAN_CLI" property:set path="note.md" name="status" value="complete"
+"obsidian" property:set path="note.md" name="status" value="complete"
 
 # Set property with type
-"$OBSIDIAN_CLI" property:set path="note.md" name="priority" value="5" type=number
+"obsidian" property:set path="note.md" name="priority" value="5" type=number
 
 # Read a property value
-"$OBSIDIAN_CLI" property:read path="note.md" name="status"
+"obsidian" property:read path="note.md" name="status"
 
 # Remove a property
-"$OBSIDIAN_CLI" property:remove path="note.md" name="draft"
+"obsidian" property:remove path="note.md" name="draft"
 ```
 
 ### Templates
 
 ```bash
 # List available templates
-"$OBSIDIAN_CLI" templates
+"obsidian" templates
 
 # Read template (with variables resolved)
-"$OBSIDIAN_CLI" template:read name="Daily Notes" resolve
+"obsidian" template:read name="Daily Notes" resolve
 
 # Read template raw
-"$OBSIDIAN_CLI" template:read name="Daily Notes"
+"obsidian" template:read name="Daily Notes"
 ```
 
 ### Outline & Structure
 
 ```bash
 # Show headings tree
-"$OBSIDIAN_CLI" outline path="note.md" format=tree
+"obsidian" outline path="note.md" format=tree
 
 # Show headings as markdown
-"$OBSIDIAN_CLI" outline path="note.md" format=md
+"obsidian" outline path="note.md" format=md
 ```
 
 ### Vault Info
 
 ```bash
 # Full vault info
-"$OBSIDIAN_CLI" vault
+"obsidian" vault
 
 # Specific info
-"$OBSIDIAN_CLI" vault info=files    # file count
-"$OBSIDIAN_CLI" vault info=size     # vault size
+"obsidian" vault info=files    # file count
+"obsidian" vault info=size     # vault size
 ```
 
 ### CLI Flags
@@ -275,7 +269,7 @@ Two ways to target files:
 Use `\n` for newlines and `\t` for tabs:
 
 ```bash
-"$OBSIDIAN_CLI" create path="note.md" content="# Title\n\nBody text\n\n- Item 1\n- Item 2" silent
+"obsidian" create path="note.md" content="# Title\n\nBody text\n\n- Item 1\n- Item 2" silent
 ```
 
 ## MCP Tools Reference
