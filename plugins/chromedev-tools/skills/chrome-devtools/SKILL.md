@@ -1,11 +1,12 @@
 ---
 name: chrome-devtools
 description: >-
-  Inspects live web pages, checks console errors, analyzes network requests,
-  and runs performance traces via Chrome DevTools Protocol. Use when debugging
-  frontend applications, profiling page performance, capturing screenshots, or
-  monitoring browser behavior. Not for writing frontend code — only for
-  inspecting and debugging.
+  Inspects live web pages, checks console errors, analyzes network requests, and
+  runs performance traces via Chrome DevTools Protocol. Make sure to use this skill
+  whenever the user wants to debug a webpage, inspect a page, check console errors,
+  analyze network traffic, profile page performance, capture screenshots, or
+  mentions Chrome DevTools — even if they just say "check this page" or "why is
+  this page slow."
 version: 0.1.0
 ---
 

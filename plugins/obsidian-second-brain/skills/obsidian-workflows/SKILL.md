@@ -1,12 +1,11 @@
 ---
 name: obsidian-workflows
 description: >-
-  Organizes Obsidian vaults using PARA methodology, progressive summarization,
-  and PKM workflows including inbox processing, Maps of Content, and review
-  cadences. Use when the user asks about organizing notes, establishing a
-  second brain, processing their inbox, creating MOCs, or improving their
-  knowledge management workflow. Not for vault-specific folder paths or tag
-  taxonomies.
+  Organizes Obsidian vaults using PARA methodology, progressive summarization, and
+  PKM workflows including inbox processing, Maps of Content, and review cadences.
+  Make sure to use this skill whenever the user asks about organizing notes, second
+  brain, inbox processing, MOCs, review cadences, PARA method, or knowledge
+  management — even if they just say "how should I organize my notes?"
 version: 0.1.0
 ---
 

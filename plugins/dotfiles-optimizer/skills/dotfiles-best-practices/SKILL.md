@@ -1,11 +1,11 @@
 ---
 name: dotfiles-best-practices
 description: >-
-  Provides reference knowledge about modern CLI tools, shell optimization
-  patterns, and dotfiles security best practices. Loaded automatically by the
-  dotfiles-optimizer skill when detailed best-practice context is needed. Use
-  when the user asks about specific shell patterns, modern tool alternatives
-  (eza, bat, fd, ripgrep), or dotfiles conventions.
+  Provides reference knowledge about modern CLI tools, shell optimization patterns,
+  and dotfiles security best practices. Make sure to use this skill whenever the
+  user asks about shell patterns, modern tool alternatives (eza, bat, fd, ripgrep),
+  zsh optimization, or dotfiles conventions. Also loaded automatically by the
+  dotfiles-optimizer skill.
 version: 0.1.0
 ---
 

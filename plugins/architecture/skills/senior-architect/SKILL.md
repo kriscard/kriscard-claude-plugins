@@ -2,12 +2,11 @@
 name: senior-architect
 description: >-
   Designs system architectures, creates C4 diagrams, evaluates technology
-  trade-offs, and writes Architecture Decision Records (ADRs). Use when the
-  user discusses system design decisions, scaling strategies, architectural
-  approaches (monolith vs microservices, REST vs GraphQL, SQL vs NoSQL),
-  component boundaries, or needs to document technical decisions. Also triggers
-  on terms like "architecture", "system design", "scalability", or "ADR". Not
-  for implementation details or writing code.
+  trade-offs, and writes ADRs using structured decision frameworks. Make sure to
+  use this skill whenever the user discusses system design, architecture, scaling,
+  monolith vs microservices, REST vs GraphQL, SQL vs NoSQL, component boundaries,
+  ADRs, C4 diagrams, tech stack decisions, or data flow — even if they don't use
+  the word "architecture."
 ---
 
 # Senior Architect

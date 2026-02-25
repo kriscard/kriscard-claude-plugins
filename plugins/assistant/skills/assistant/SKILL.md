@@ -2,11 +2,10 @@
 name: assistant
 description: >-
   Generates daily standup updates, weekly summaries, and tracks Staff Engineer
-  career progress. Manages task context saving and restoring across sessions.
-  Use when the user asks for a standup, weekly summary, wants to save/restore
-  task context, or track career progress. Also triggers on "what did I do
-  today", "wrap up for the day", or "show my progress". Not for general
-  coding help.
+  career progress. Manages task context saving and restoring across sessions. Make
+  sure to use this skill whenever the user asks for a standup, weekly summary,
+  context save/restore, or says "what did I do today", "wrap up for the day", or
+  "show my progress."
 version: 0.1.0
 ---
 

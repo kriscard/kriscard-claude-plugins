@@ -1,10 +1,11 @@
 ---
 name: doc-coauthoring
 description: >-
-  Co-authors technical documents like RFCs, proposals, ADRs, and decision
-  documents through a structured gather-refine-test workflow. Use when the user
-  needs help writing or improving a formal document, structuring an RFC, or
-  drafting a technical proposal. Not for blog posts or implementation specs.
+  Co-authors technical documents like RFCs, proposals, ADRs, and decision documents
+  through a structured gather-refine-test workflow. Make sure to use this skill
+  whenever the user wants to write or improve an RFC, proposal, design doc, or any
+  formal document — even if they just say "help me write this doc" or "I need to
+  draft a proposal."
 ---
 
 # Document Co-authoring

@@ -1,12 +1,11 @@
 ---
 name: interactive-teaching
 description: >-
-  Guides developers through learning new technologies using a hybrid Socratic
-  and structured approach — assessing knowledge, explaining concepts with code
-  examples, and checking understanding before advancing. Use when the user says
-  "teach me", "explain how X works", "I want to learn about", or requests a
-  guided walkthrough. Not for quick factual answers — only for deliberate
-  learning sessions.
+  Guides developers through learning new technologies using a hybrid Socratic and
+  structured approach — assessing knowledge, explaining concepts with code examples,
+  and verifying understanding. Make sure to use this skill whenever the user says
+  "teach me", "explain how X works", "I want to learn about", or requests a guided
+  walkthrough — even if they just say "I don't understand this."
 version: 1.0.0
 ---
 

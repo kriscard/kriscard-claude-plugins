@@ -1,11 +1,11 @@
 ---
 name: conference-talk-builder
 description: >-
-  Structures conference talks and creates iA Presenter slide decks using the
-  Story Circle narrative framework. Use when the user mentions giving a talk,
-  submitting a CFP, preparing for a conference, creating slides, or wants to
-  turn a topic into a compelling presentation. Not for written blog posts or
-  documentation.
+  Structures conference talks and creates iA Presenter slide decks using the Story
+  Circle narrative framework. Make sure to use this skill whenever the user mentions
+  giving a talk, submitting a CFP, preparing for a conference, creating slides, or
+  turning a topic into a presentation — even if they just say "I need to prepare a
+  talk."
 ---
 
 # Conference Talk Builder

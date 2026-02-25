@@ -1,11 +1,11 @@
 ---
 name: studio-startup
 description: >-
-  Orchestrates the complete journey from startup idea to working MVP,
-  coordinating product strategy, requirements, tech stack selection,
-  architecture, and implementation. Use when the user wants to start a new
-  project, build an MVP, launch a side project, or create an app from scratch.
-  Not for existing codebases or incremental features.
+  Orchestrates the complete journey from startup idea to working MVP, coordinating
+  product strategy, requirements, tech stack, architecture, and implementation. Make
+  sure to use this skill whenever the user wants to start a new project, build an
+  MVP, launch a side project, create an app from scratch, or says "new project" or
+  "build something new."
 version: 0.1.0
 ---
 

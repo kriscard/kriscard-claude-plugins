@@ -1,11 +1,11 @@
 ---
 name: template-patterns
 description: >-
-  Selects and applies the right Obsidian note template based on note type —
-  project briefs, meeting notes, daily notes, learning notes, book reviews,
-  and more. Use when the user wants to create a structured note, asks which
-  template to use, or starts a new project note, meeting note, weekly review,
-  or learning session. Not for general vault organization or PARA method.
+  Selects and applies the right Obsidian note template based on note type — project
+  briefs, meeting notes, daily notes, learning notes, book reviews. Make sure to use
+  this skill whenever the user wants to create a structured note, asks which template
+  to use, or starts a new project note, meeting note, weekly review, or learning
+  session.
 version: 0.1.0
 ---
 

@@ -1,11 +1,11 @@
 ---
 name: obsidian
 description: >-
-  Performs all Obsidian vault operations — reading notes, creating files,
-  appending content, searching, and listing files — using CLI-first approach
-  with MCP fallback. Essential for any Obsidian-related command or agent that
-  needs vault access. Use when the user mentions obsidian, vault, create note,
-  read note, search vault, daily note, or any vault file operation.
+  Performs all Obsidian vault operations — reading notes, creating files, appending
+  content, searching, and listing files — using CLI-first approach with MCP
+  fallback. Make sure to use this skill whenever the user mentions obsidian, vault,
+  notes, daily note, or any vault file operation. If the user mentions Obsidian in
+  any context, use this skill.
 ---
 
 # Obsidian Operations Skill

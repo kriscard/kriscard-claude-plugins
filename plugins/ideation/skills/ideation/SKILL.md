@@ -1,11 +1,11 @@
 ---
 name: ideation
 description: >-
-  Transforms messy brain dumps and unstructured ideas into structured
-  implementation artifacts — contracts, PRDs, and technical specs — through a
-  confidence-gated workflow. Use when the user has a vague idea, scattered
-  thoughts, or a brain dump they want organized into actionable specs. Not for
-  existing tickets or well-defined tasks.
+  Transforms messy brain dumps and unstructured ideas into structured implementation
+  artifacts — contracts, PRDs, and technical specs — through a confidence-gated
+  workflow. Make sure to use this skill whenever the user has a vague idea, scattered
+  thoughts, or a brain dump they want organized — even if they just say "I have this
+  idea" or "help me think through this."
 ---
 
 # Ideation

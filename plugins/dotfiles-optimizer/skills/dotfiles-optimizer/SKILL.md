@@ -1,11 +1,11 @@
 ---
 name: dotfiles-optimizer
 description: >-
-  Analyzes and optimizes shell configurations (zsh, tmux, git), audits
-  dotfiles for security issues, identifies performance bottlenecks, and
-  recommends modern CLI tool replacements. Use when the user wants to optimize
-  their dotfiles, improve shell startup time, audit configs for exposed
-  credentials, or modernize their dev environment. Not for application configs.
+  Analyzes and optimizes shell configurations (zsh, tmux, git), audits dotfiles for
+  security issues, identifies performance bottlenecks, and recommends modern CLI
+  tool replacements. Make sure to use this skill whenever the user wants to optimize
+  dotfiles, improve shell startup time, audit configs, or modernize their dev
+  environment.
 version: 0.1.0
 ---
 

@@ -1,10 +1,11 @@
 ---
 name: blog-writer
 description: >-
-  Transforms scattered notes and ideas into polished technical blog posts with
-  SEO optimization. Use when the user has rough thoughts, brain dumps, or
-  outlines they want turned into a publishable blog post. Not for documentation,
-  specs, or conference talks.
+  Transforms scattered notes and ideas into polished technical blog posts with SEO
+  optimization. Make sure to use this skill whenever the user wants to write a blog
+  post, has rough notes to turn into an article, mentions blog writing, technical
+  writing, or publishing content — even if they just say "I have some thoughts I
+  want to write up."
 ---
 
 # Developer Blog Writer

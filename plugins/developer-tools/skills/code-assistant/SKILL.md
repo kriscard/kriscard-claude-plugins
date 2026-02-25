@@ -1,11 +1,11 @@
 ---
 name: code-assistant
 description: >-
-  Orchestrates specialist coding agents to write, debug, and refactor code
-  across languages and frameworks. Automatically selects the right specialist
-  (TypeScript, React, frontend, security) based on the task. Use when the user
-  needs help writing features, fixing bugs, refactoring code, or reviewing
-  implementations. Not for architecture decisions or system design.
+  Orchestrates specialist coding agents (TypeScript, React, frontend, security,
+  debugging) to handle coding tasks. Automatically selects the right specialist
+  based on the task. Make sure to use this skill whenever the user needs help
+  writing, debugging, refactoring, or reviewing code — it coordinates the best
+  specialist agent for the job.
 ---
 
 # Code Assistant

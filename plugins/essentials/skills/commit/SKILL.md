@@ -1,11 +1,11 @@
 ---
 name: commit
 description: >-
-  Creates semantic git commits with conventional commit format, stages changes,
-  and pushes to remote. Handles pre-commit hooks and writes meaningful commit
-  messages. Use when the user says "commit", "push my changes", "save to git",
-  or wants to commit their current work. Not for creating PRs or branch
-  management.
+  Creates semantic git commits with conventional commit format, stages changes, and
+  pushes to remote. Handles pre-commit hooks and writes meaningful commit messages.
+  Make sure to use this skill whenever the user says "commit", "push changes", "save
+  to git", "commit this", or wants to create a git commit — even if they just say
+  "save my work."
 ---
 
 # Git Commit Workflow

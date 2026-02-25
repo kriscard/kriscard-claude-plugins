@@ -1,10 +1,11 @@
 ---
 name: vault-structure
 description: >-
-  Provides reference knowledge about the user's specific Obsidian vault
-  structure — folder organization (PARA), tagging taxonomy, templates, and file
-  conventions. Use when needing vault layout context for placing notes, choosing
-  tags, or referencing vault-specific paths and patterns.
+  Provides the user's specific Obsidian vault structure — folder organization
+  (PARA), tagging taxonomy, templates, and file conventions. Contains paths and
+  patterns Claude cannot know without this skill. Make sure to use this skill
+  whenever placing notes in the vault, choosing tags, or needing vault-specific
+  folder structure and paths.
 version: 0.1.0
 ---
 

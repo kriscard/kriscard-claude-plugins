@@ -2,11 +2,11 @@
 name: ai-engineer
 description: >-
   Builds RAG pipelines, vector search systems, LLM integrations, and agent
-  orchestration architectures with production-ready patterns. Use when the user
-  wants to build a chatbot, add AI features, set up embeddings or vector
-  search, create an agent system, or integrate with OpenAI/Anthropic/local
-  models. Also triggers on chunking strategies, embedding models, or production
-  LLM deployment. Not for general backend development or prompt writing.
+  orchestration with production-ready patterns. Contains step-by-step implementation
+  workflows Claude cannot derive from general knowledge. Make sure to use this skill
+  whenever the user wants to build a chatbot, add AI features, set up embeddings,
+  create an agent system, or mentions RAG, chunking, vector search, LLM deployment,
+  or OpenAI/Anthropic integration.
 ---
 
 # AI Engineer

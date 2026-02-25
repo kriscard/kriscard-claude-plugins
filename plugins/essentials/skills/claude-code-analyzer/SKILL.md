@@ -2,11 +2,10 @@
 name: claude-code-analyzer
 description: >-
   Analyzes Claude Code plugin structure, validates configuration, discovers
-  community plugins, and helps set up new projects with Claude Code. Use when
-  the user mentions CLAUDE.md setup, plugin development, tool usage patterns,
-  or wants to find community-built skills and agents. Also triggers when the
-  user is new to Claude Code and needs environment configuration help. Not for
-  general coding tasks.
+  community plugins, and helps set up Claude Code projects. Make sure to use this
+  skill whenever the user mentions CLAUDE.md, plugin development, Claude Code
+  configuration, plugin validation, community skills, or setting up a new Claude
+  Code environment.
 tools: Read, Glob, Grep, Bash
 model: opus
 ---

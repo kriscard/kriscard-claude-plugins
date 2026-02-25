@@ -2,11 +2,10 @@
 name: react-best-practices
 description: >-
   Audits React and Next.js components for performance issues, unnecessary
-  re-renders, bundle size problems, and waterfall patterns using 57 Vercel
-  Engineering rules organized by priority. Use when the user asks to review
-  React or Next.js code quality, optimize rendering, reduce bundle size, or
-  validate patterns. Also triggers on mentions of waterfalls, re-renders, or
-  React best practices. Not for Vue, Angular, or general TypeScript.
+  re-renders, bundle size problems, and waterfall patterns using 57 rules organized
+  by priority. Make sure to use this skill whenever the user asks to review React or
+  Next.js code, check performance, optimize rendering, reduce bundle size, or
+  mentions re-renders — even if they just say "is my React code good?"
 ---
 
 # React Best Practices Audit
