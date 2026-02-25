@@ -7,10 +7,13 @@ allowed-tools:
   - WebSearch
   - WebFetch
   - Read
+  - Write
   - Bash
   - AskUserQuestion
   - mcp__context7__resolve-library-id
   - mcp__context7__query-docs
+  - mcp__excalidraw__read_me
+  - mcp__excalidraw__create_view
   - obsidian
 ---
 
@@ -33,7 +36,7 @@ obsidian vault &>/dev/null && echo "CLI_AVAILABLE" || echo "CLI_UNAVAILABLE"
 **If argument is "done":**
 1. Use the `learning-summarizer` agent to create an Obsidian note from this session
 2. The agent will extract key concepts, code snippets, and takeaways from the conversation
-3. Note is saved to `0 - Inbox/` using the Learning Tech Template
+3. Note is saved to `3 - Resources/TIL/` using the Learning Tech Template
 
 **If argument is a topic:**
 1. Use the `doc-researcher` agent to fetch latest documentation on the topic
