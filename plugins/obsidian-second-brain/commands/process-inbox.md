@@ -6,232 +6,134 @@ allowed-tools: [Read, Write, Bash, AskUserQuestion, obsidian]
 
 # Process Inbox Command
 
-Guide the user through processing inbox notes one by one with intelligent PARA placement suggestions.
+EXECUTE THIS WORKFLOW NOW. Do not describe it - actually run the commands and process notes.
 
-## Purpose
+## Step 1: Check CLI and List Inbox
 
-Help user achieve "inbox zero" by reviewing each note, suggesting appropriate PARA categorization, and moving notes to their proper location.
-
-## Obsidian Access
-
-**Prefer CLI, fall back to MCP with confirmation.**
-
-First, check CLI availability:
+Run this command NOW:
 ```bash
 "${CLAUDE_PLUGIN_ROOT}/scripts/obsidian-utils.sh" status
 ```
 
-- If `CLI_AVAILABLE`: Use Obsidian CLI commands via Bash
-- If `CLI_UNAVAILABLE`: Ask user "Obsidian CLI isn't available. May I use Obsidian MCP instead?" and wait for confirmation
+If `CLI_UNAVAILABLE`: Ask user "Obsidian CLI isn't available. May I use Obsidian MCP instead?" and wait for confirmation before continuing.
 
-## Workflow
-
-### Step 1: Initialize
-
-1. Count notes in `0 - Inbox/`
-2. Report: "Found X notes to process"
-3. If X = 0:
-   - Celebrate: "Inbox is empty!"
-   - Exit command
-4. If X > 0: Continue to processing
-
-### Step 2: Process Each Note
-
-For each note in inbox, do the following:
-
-**2.1 Display Note**
-- Show note filename
-- Show note content (first 10-20 lines or full if short)
-- Show note metadata (tags, created date if available)
-
-**2.2 Analyze and Suggest**
-
-Use the para-organizer agent logic to analyze:
-- Does it support an active project? → Projects
-- Is it an ongoing responsibility? → Areas
-- Is it reference material? → Resources
-- Is it from completed work? → Archives
-- Still uncertain? → Skip for now
-
-Suggest PARA category with reasoning:
-```
-Suggested placement: 1 - Projects/[Project Name]/
-Reasoning: This note appears to be related to [project] and contains actionable tasks.
+Then list inbox notes:
+```bash
+obsidian files folder="0 - Inbox/"
 ```
 
-**2.3 Suggest Tags**
+Report the count: "Found X notes to process"
 
-Based on content, suggest appropriate tags following PARA-aligned Tag Taxonomy:
-- Subject only (javascript/react/career/etc.) - folder handles content type
-- Status if relevant (active/interview)
-- Flashcard tags if applicable
+If count is 0: Say "Inbox is empty!" and stop.
 
-**2.4 Get User Decision**
+## Step 2: Process Each Note One-by-One
 
-Use `AskUserQuestion` tool to ask:
-```
-What would you like to do?
-1. Move to suggested location (1 - Projects/)
-2. Specify different location
-3. Skip (leave in inbox)
-4. Delete note
-5. Stop processing
+For EACH note in the inbox, do ALL of these steps:
+
+### 2.1 Read the Note
+
+```bash
+obsidian read path="0 - Inbox/[filename]"
 ```
 
-**2.5 Execute Action**
+Display to user:
+- `[N/TOTAL] Note: "[filename]"`
+- Show first 15 lines of content
+- Show any existing tags/frontmatter
 
-Based on user choice:
-- **Move**: Use Obsidian MCP to move note to target folder
-- **Specify**: Ask for target path, then move
-- **Skip**: Mark with #to-process tag for later
-- **Delete**: Confirm, then delete using Obsidian MCP
-- **Stop**: End processing session
+### 2.2 Analyze and Suggest Placement
 
-**2.6 Update Metadata**
+Apply PARA decision logic:
+- Has deadline or active project work? → `1 - Projects/[Project Name]/`
+- Ongoing responsibility? → `2 - Areas/[Area Name]/`
+- Reference material? → `3 - Resources/`
+- Completed/inactive? → `4 - Archives/`
+- Unsure? → Suggest skip
 
-When moving note:
-- Add suggested tags
-- Update frontmatter if present
-- Add processing date
+Tell user your suggestion with reasoning:
+```
+Suggested: 3 - Resources/
+Reason: Reference material about [topic], no immediate action needed.
+Tags: [topic-tag]
+```
 
-**2.7 Track Progress**
+### 2.3 Ask User What To Do
 
-After each note:
-- Report: "Processed X of Y notes"
-- Show: "Remaining: Z notes"
+Use AskUserQuestion tool with these options:
+- "Move to [suggested location]" (Recommended)
+- "Move to different location"
+- "Skip for now"
+- "Delete note"
+- "Stop processing"
 
-### Step 3: Summary
+WAIT for user response before continuing.
 
-After processing all notes (or user stops):
+### 2.4 Execute User's Choice
+
+**Move**: Read content, create in new location, delete from inbox:
+```bash
+# Get content first, then:
+obsidian create path="[target]/[filename]" content="[CONTENT]" silent
+obsidian delete path="0 - Inbox/[filename]" silent
+```
+
+**Different location**: Ask where, then move there.
+
+**Skip**: Leave in inbox, continue to next note.
+
+**Delete**: Confirm first, then:
+```bash
+obsidian delete path="0 - Inbox/[filename]" silent
+```
+
+**Stop**: Show summary and end.
+
+### 2.5 Report Progress
+
+After each note: "Progress: X/Y processed (Z remaining)"
+
+Then immediately continue to the next note.
+
+## Step 3: Final Summary
+
+After all notes processed (or user stops):
+
 ```
 Inbox Processing Complete!
 
 Processed: X notes
-Moved to Projects: X
-Moved to Areas: X
-Moved to Resources: X
-Archived: X
-Deleted: X
-Skipped: X
+- Projects: X
+- Areas: X
+- Resources: X
+- Archives: X
+- Deleted: X
+- Skipped: X
+
 Remaining in inbox: X
 ```
 
-## PARA Decision Logic
+## Reference: Tag Suggestions
 
-Reference this decision tree:
-
-**Is this for an active project with a deadline?**
-→ YES: `1 - Projects/[Project Name]/`
-
-**Is this an ongoing responsibility?**
-→ YES: `2 - Areas/[Area Name]/`
-
-**Is this reference material for future use?**
-→ YES: `3 - Resources/`
-
-**Is this completed or inactive?**
-→ YES: `4 - Archives/`
-
-**Still unsure?**
-→ Skip, leave in inbox
-
-## Tag Suggestion Logic
-
-Follow PARA-aligned Tag Taxonomy:
-- **Maximum 3-4 tags**
-- **Subject tags only** - Don't duplicate folder info
-- **Optional**: Status tags (active, interview)
-
-**Use these tags:**
-- Subjects: javascript, react, css, typescript, web, career, personal, tools
+Subject tags only (folder handles content type):
+- javascript, react, css, typescript, web, career, personal, tools
 - Status: active, interview
-- Flashcards: flashcards, [topic]_flashcards
 - TIL: til/[topic]
 
-**DON'T use these tags (folder handles them):**
-- ~~project~~ → `1 - Projects/` folder
-- ~~area~~ → `2 - Areas/` folder
-- ~~reference~~ → `3 - Resources/` folder
-- ~~daily~~ → `2 - Areas/Daily Ops/` folder
-- ~~moc~~ → `MOCs/` folder
-- ~~meeting~~ → File location
+Do NOT use: project, area, reference, daily, moc, meeting (folders handle these)
 
-## Tools Usage
+## Reference: CLI Commands
 
-**Obsidian CLI (preferred):**
 ```bash
 # List inbox
-obsidian files folder="0 - Inbox/" format=json
+obsidian files folder="0 - Inbox/"
 
 # Read note
 obsidian read path="0 - Inbox/note.md"
 
-# Move note (create in new location, delete old)
+# Move (create + delete)
 obsidian create path="3 - Resources/note.md" content="$CONTENT" silent
 obsidian delete path="0 - Inbox/note.md" silent
 
-# Update metadata (prepend frontmatter)
-obsidian prepend path="note.md" content="---\ntags: [react]\n---" silent
-
-# Delete (with confirmation from user first)
+# Delete
 obsidian delete path="0 - Inbox/note.md" silent
 ```
-
-**Obsidian MCP (fallback - ask user first):**
-- `obsidian_list_files_in_dir` - List inbox notes
-- `obsidian_get_file_contents` - Read note content
-- `obsidian_patch_content` - Update note metadata
-- `obsidian_delete_file` - Delete notes (with confirmation)
-
-**Use Obsidian's move functionality** or recreate note in new location.
-
-## Configuration
-
-Read from `.claude/obsidian-second-brain.local.md`:
-- `vault_path` - Vault location
-
-## Best Practices
-
-- **One note at a time**: Don't batch, process individually
-- **Explain reasoning**: Always explain why suggesting specific placement
-- **Respect user decisions**: If user chooses different location, trust their judgment
-- **Link while processing**: Suggest linking to related notes/projects
-- **Be encouraging**: Celebrate progress ("5 down, 3 to go!")
-
-## Error Handling
-
-- **Empty inbox**: Celebrate and exit
-- **Note read error**: Skip note, report issue, continue
-- **Move error**: Report, ask user to move manually, continue
-- **User cancels mid-process**: Save progress, report what was completed
-
-## Related Skills
-
-- **obsidian-workflows** - PARA principles and inbox processing
-- **vault-structure** - Folder structure and paths
-- **template-patterns** - If notes need templates applied
-
-## Related Agents
-
-The **para-organizer agent** may activate proactively during this command to provide placement suggestions.
-
-## Example Interaction
-
-```
-Assistant: Found 5 notes in inbox. Let's process them!
-
-[1/5] Note: "React 19 features to explore"
-Content: New features in React 19 including...
-
-Suggested placement: 3 - Resources/
-Reasoning: Reference material about React features, no immediate action needed.
-Suggested tags: [react] (folder handles "reference")
-
-What would you like to do?
-1. Move to Resources
-2. Specify different location
-3. Skip
-4. Delete
-5. Stop
-
-User: 1
