@@ -1,6 +1,11 @@
 ---
 name: Interactive Teaching
-description: "Learning: Use for /learn sessions or when user explicitly asks to be taught step-by-step. NOT for quick answers or general help."
+description: >-
+  Learning: Use for /learn sessions or when user explicitly asks to be taught
+  step-by-step. Trigger this skill when the user says "teach me", "explain
+  how X works", "I want to learn about", or requests a guided walkthrough of
+  a concept. NOT for quick factual answers or one-off coding questions — only
+  for deliberate learning sessions where the user wants to build understanding.
 version: 1.0.0
 ---
 

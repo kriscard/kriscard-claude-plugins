@@ -1,6 +1,12 @@
 ---
 name: conference-talk-builder
-description: "Content: Use when structuring conference talks or creating iA Presenter slides. NOT for written blog posts or docs."
+description: >-
+  Content: Use when preparing a conference talk, creating presentation slides,
+  or building a slide deck with iA Presenter. Trigger this skill proactively
+  when the user mentions giving a talk, submitting a CFP, preparing for a
+  conference, creating slides, or structuring a presentation narrative. Also
+  trigger when the user has a topic and wants to turn it into a compelling
+  talk outline. NOT for written blog posts or documentation.
 ---
 
 # Conference Talk Builder

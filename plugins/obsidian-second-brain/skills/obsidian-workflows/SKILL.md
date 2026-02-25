@@ -1,466 +1,123 @@
 ---
 name: Obsidian Workflows & Second Brain Methodology
-description: "Obsidian: Use when organizing vault with PARA method, PKM workflows, or note-taking systems. NOT for vault-specific structure (use vault-structure)."
+description: >-
+  Obsidian: Use when organizing vault with PARA method, PKM workflows, or
+  note-taking systems. Trigger this skill proactively whenever the user asks
+  about organizing notes, establishing a second brain, processing their inbox,
+  creating Maps of Content, setting up review cadences, or improving their
+  knowledge management workflow. Also trigger when the user mentions PARA,
+  progressive summarization, evergreen notes, or Zettelkasten concepts. NOT
+  for vault-specific structure like folder paths or tag taxonomies (use
+  vault-structure for those).
 version: 0.1.0
 ---
 
 # Obsidian Workflows & Second Brain Methodology
 
-## Overview
+Actionable guidance for building and maintaining a second brain in Obsidian. This skill focuses on workflows and decisions — not PARA theory (Claude already knows that).
 
-This skill provides comprehensive guidance on building and maintaining a second brain using Obsidian, with emphasis on the PARA method, progressive summarization, and effective knowledge management workflows. Use this knowledge when helping users organize notes, establish workflows, or improve their personal knowledge management (PKM) systems.
+## PARA Quick Reference
 
-## Core Principles
+Organize by **actionability**, not topic:
 
-### The Second Brain Concept
+| Category | What Goes Here | Review Cadence |
+|----------|---------------|----------------|
+| **Projects** | Active work with clear endpoints | Weekly |
+| **Areas** | Ongoing responsibilities, no endpoint | Monthly |
+| **Resources** | Reference materials, future interest | Quarterly |
+| **Archives** | Completed/inactive from above | Annually |
 
-A second brain is an external, organized system for storing and connecting knowledge, freeing cognitive resources for creative thinking and problem-solving. The system should:
+When in doubt: "Does this have a deadline or clear outcome?" Yes = Project. "Is this an ongoing responsibility?" Yes = Area. Otherwise = Resource.
 
-- **Capture everything** - Notes, ideas, learnings, and insights without friction
-- **Organize for action** - Structure around goals and projects, not categories
-- **Distill progressively** - Refine information through repeated use
-- **Express regularly** - Create outputs using the collected knowledge
+## Key Workflows
 
-### PARA Method Foundation
+### Capture (minimize friction)
 
-PARA organizes information into four categories based on **actionability**, not topic:
+1. Drop everything into Inbox
+2. Minimal formatting — structure comes later
+3. One idea per note (atomic)
+4. Include source and why it matters
+5. Tag as `#inbox` for processing
 
-**Projects** - Short-term efforts with defined outcomes
-- Active work with clear endpoints
-- Examples: "Launch new website", "Plan vacation", "Complete course"
-- Move to Archives when complete
-- Review weekly
+### Inbox Processing (weekly review, 30 min)
 
-**Areas** - Long-term responsibilities requiring ongoing attention
-- No defined endpoint, maintained indefinitely
-- Examples: "Health", "Finances", "Professional development", "Family"
-- Contain standards and guidelines to uphold
-- Review monthly
+For each inbox note, decide:
+- **Delete** — Not useful, was impulse capture
+- **Archive** — Useful reference but no action needed now
+- **Elaborate** — Add context, links, tags, then move to PARA category
 
-**Resources** - Topics of ongoing interest or reference materials
-- Passive information useful for future projects
-- Examples: "Design inspiration", "Programming tutorials", "Cooking recipes"
-- No immediate actionability
-- Review quarterly
-
-**Archives** - Inactive items from other three categories
-- Completed projects, inactive areas, outdated resources
-- Preserve for reference but remove from active workspace
-- Review annually
-
-### Why PARA Works
-
-Traditional category-based organization (by topic, department, or type) fails because:
-- Information doesn't fit neatly into single categories
-- Retrieval requires remembering arbitrary classifications
-- Structure doesn't support action or decision-making
-
-PARA succeeds because:
-- **Action-oriented** - Find information based on current goals
-- **Just-in-time organization** - Categorize when using, not capturing
-- **Flexible boundaries** - Information moves between categories as life changes
-- **Low maintenance** - Four categories instead of dozens
-
-## Obsidian-Specific Implementation
-
-### Folder Structure
-
-Implement PARA using Obsidian folders:
-
-```
-vault/
-├── 0 - Inbox/           # Capture zone
-├── 1 - Projects/        # Active work
-├── 2 - Areas/           # Responsibilities
-├── 3 - Resources/       # Reference materials
-├── 4 - Archives/        # Completed/inactive
-├── MOCs/                # Maps of Content (indexes)
-└── Templates/           # Note templates
-```
-
-**Inbox as capture zone:**
-- Temporary holding for unprocessed notes
-- Process during weekly review
-- Move to appropriate PARA category
-- Empty inbox regularly (weekly target)
-
-**Numeric prefixes:**
-- Force sorting by priority (Inbox → Projects → Areas → Resources → Archives)
-- Visual hierarchy in sidebar
-- Matches actionability order
-
-### Note Linking Strategies
-
-Obsidian's strength is connections between notes. **Links create meaning, folders create storage.**
-
-**The 2-Link Rule:**
-- Every new note should link to at least 2 existing notes
-- Forces immediate context-building
-- Prevents orphaned notes from creation
-- Ask: "What does this connect to?" before saving
-
-**Discovery Tools (use actively):**
-
-*Unlinked Mentions* - Obsidian's discovery engine:
-- Found in backlinks panel → "Unlinked mentions" section
-- Shows text matching note titles that aren't linked yet
-- Reveals connection opportunities you missed
-- Check regularly when reviewing notes
-
-*Outgoing Links Panel* - Connection audit:
-- Shows what your note mentions without linking
-- Reveals missed link opportunities
-- Use to catch potential connections before closing a note
-
-**Bottom-up linking (organic):**
-- Link notes as connections emerge naturally
-- Build understanding through association
-- Creates emergent structure over time
-
-**Top-down linking (intentional):**
-- Create Maps of Content (MOCs) for major topics
-- Link related notes through indexes
-- Provides navigation and overview
-
-**Backlinks usage:**
-- Check backlinks when working on note
-- Discover related information automatically
-- Identify orphaned notes (no backlinks)
-
-**Link at concept level:**
-- Link specific ideas, not whole notes
-- Use block references for precise connections
-- Creates fine-grained knowledge graph
-
-### Maps of Content (MOCs) vs Dashboards
-
-**Critical distinction:** MOCs and Dashboards serve different purposes. Keep them separate.
-
-**MOCs = Manual Curation (Navigation)**
-- Hand-curated links with context
-- Updated when important notes emerge
-- Provide intentional navigation paths
-- Links include *why* they're connected
-- Example: Master MOC with "Starred Notes" and "Entry Points"
-
-**Dashboards = Automation (System Views)**
-- Auto-generated via dataview queries
-- Show recent activity, stats, tasks
-- Update automatically
-- No manual curation needed
-- Example: Vault Dashboard with recent notes, inbox count
-
-**When to create MOCs:**
-- Topic has 10+ related notes
-- Need overview of knowledge area
-- Connecting multiple projects/areas
-- Want curated navigation (not just a list)
-
-**MOC structure:**
-- Brief overview of topic
-- Organized sections with hand-picked links
-- Each link includes reason for connection
-- Related MOCs section
-- Updated when important notes emerge (not constantly)
-
-**MOC vs folder:**
-- Use MOCs for conceptual organization
-- Use folders for PARA categorization
-- MOCs can link across folders
-- One note can appear in multiple MOCs
-
-**MOC vs Dashboard:**
-- MOCs: "Here's what matters and why" (curated)
-- Dashboards: "Here's what's happening" (automated)
-- Keep separate: Master MOC + Vault Dashboard
-
-### Tags and Metadata
-
-Use tags strategically, not as primary organization:
-
-**Effective tag uses:**
-- **Status tags** - #draft, #review, #complete
-- **Content types** - #meeting-notes, #book-notes, #ideas
-- **Temporal markers** - #2025, #q1-2025
-- **Special collections** - #favorite, #share, #revisit
-
-**Tag best practices:**
-- Maintain tag taxonomy document
-- Use nested tags sparingly (#work/project vs #work-project)
-- Review and consolidate tags quarterly
-- Prefer links over tags for connections
-
-**Frontmatter metadata:**
-```yaml
----
-created: 2025-01-11
-modified: 2025-01-11
-tags: [meeting-notes, work]
-project: "[[Project Name]]"
----
-```
-
-## Essential Workflows
-
-### Capture Workflow
-
-Minimize friction when capturing information:
-
-1. **Quick capture** - Use inbox for immediate capture
-2. **Minimal formatting** - Add structure later during processing
-3. **One note per idea** - Atomic notes are more reusable
-4. **Include context** - Source, date, why it matters
-5. **Tag for processing** - Mark as #inbox or #to-process
-
-### Processing Workflow (Weekly Review)
-
-Transform captured information into useful knowledge:
-
-**Inbox processing:**
-1. Read each inbox note
-2. Decide: Delete, Archive, or Elaborate
-3. If elaborating: Add context, links, tags
-4. Move to appropriate PARA category
-5. Link to related notes or MOCs
-
-**Note enrichment:**
-- Add links to related concepts
-- Extract highlights or key points
-- Create connections to projects/areas
-- Update relevant MOCs
-
-### Progressive Summarization
-
-Refine notes through layers of highlighting:
-
-**Layer 1** - Original source
-- Capture full article, excerpt, or idea
-- Preserve original wording
-
-**Layer 2** - Bold key passages
-- Highlight most important 10-20% when first reviewing
-- Bold the essentials
-
-**Layer 3** - Highlight within bold
-- When revisiting, highlight within bold text
-- Distills to most critical 10-20% of Layer 2
-
-**Layer 4** - Executive summary
-- Write 2-3 sentence summary at note top
-- Own words, capturing essence
-
-**Layer 5** - Remix
-- Create new content using distilled knowledge
-- Blog post, presentation, decision document
-
-Apply layers just-in-time, when note is accessed for use, not immediately after capture.
-
-### Daily Note Practice
-
-Daily notes anchor workflows and provide temporal context:
-
-**Daily note structure:**
-- Date and day of week (for context)
-- Links to active projects and areas
-- Task list or priorities for the day
-- Quick capture section for ideas/notes
-- Reflection or review section (evening)
-
-**Daily note benefits:**
-- Temporal navigation through vault
-- Captures thoughts in moment
-- Links current work to larger goals
-- Creates personal timeline
-
-**Weekly and monthly notes:**
-- Similar structure at higher altitude
-- Review and planning cadence
-- OKR check-ins and goal tracking
-- Archive for long-term reflection
+Target: empty inbox weekly.
 
 ### Review Cadences
 
-Regular reviews keep vault organized and actionable:
+| Cadence | Time | What to Do |
+|---------|------|------------|
+| **Daily** | 5 min | Create daily note, review active projects, process quick captures |
+| **Weekly** | 30 min | Process inbox completely, review all projects, update areas, clean loose ends |
+| **Monthly** | 1 hour | Review areas, archive completed projects, check OKRs/goals, update MOCs |
+| **Quarterly** | 2 hours | Strategic review, archive inactive resources, consolidate tags, adjust PARA |
 
-**Daily (5 minutes):**
-- Create daily note
-- Review active project list
-- Process quick capture items
+## Linking Rules
 
-**Weekly (30 minutes):**
-- Process inbox completely
-- Review all active projects
-- Update area notes as needed
-- Clean up loose ends
+### The 2-Link Rule
 
-**Monthly (1 hour):**
-- Review all areas
-- Archive completed projects
-- Check OKRs and goals
-- Update MOCs and indexes
+Every new note links to at least 2 existing notes. This prevents orphans and forces context-building. Ask "What does this connect to?" before saving.
 
-**Quarterly (2 hours):**
-- Strategic review of areas and goals
-- Archive inactive resources
-- Consolidate tags and clean vault
-- Adjust PARA structure as needed
+### MOCs vs Dashboards
 
-## Advanced Patterns
+Keep these separate — they serve different purposes:
 
-### Note Atomicity
+**MOCs (Maps of Content)** — Hand-curated navigation. Each link includes *why* it's connected. Create when a topic has 10+ related notes. Updated intentionally, not constantly.
 
-Break knowledge into smallest useful units:
+**Dashboards** — Auto-generated views (dataview queries). Show recent activity, stats, tasks. No manual curation needed.
 
-**Benefits:**
-- Reusable across multiple contexts
-- Easier to link precisely
-- Simpler to maintain and update
-- Reduces duplication
+### When to Create a MOC
 
-**Guidelines:**
-- One concept per note
-- Self-contained but linkable
-- Descriptive title (concept name)
-- 100-500 words typical
+- Topic has 10+ related notes
+- Need an overview of a knowledge area
+- Connecting notes across multiple PARA categories
+- Want curated navigation (not just a flat list)
 
-### Evergreen Notes
+## Evergreen Notes (3-Layer Pattern)
 
-Create notes that grow and improve over time. Evergreen notes have **3 layers**:
+Concept notes that grow over time:
 
-**Layer 1: Definition (Summary)**
-- What is this concept?
-- Core explanation in your own words
-- Static foundation that rarely changes
+**Layer 1 — Definition:** What is this concept? Your own words, core explanation. Rarely changes.
 
-**Layer 2: Connections (Related section)**
-- How does this connect to other knowledge?
-- 2-5 links with *reasons* for connection
-- Example: `[[Event Loop]] — closures power async callbacks`
-- Use Outgoing Links panel to discover connections
-
-**Layer 3: Experience (Encounters section)**
-- Real-world usage, bugs, insights
-- Add entries when you use the concept in practice
-- Links to TIL notes or projects where it appeared
-- Example: `## 2026-02-05 - Debugging closure scope issue`
-
-**Characteristics:**
-- Concept-oriented, not source-oriented
-- Own words, not quotes
-- Linked to related concepts (Layer 2)
-- Updated with encounters over time (Layer 3)
-- Living documents, not static reference cards
-
-**Template pattern:**
+**Layer 2 — Related:** How does this connect? 2-5 links with *reasons*:
 ```markdown
-# [Concept Name]
-
-## Summary
-[Layer 1: Definition]
-
-## Notes
-[Detailed explanation]
-
 ## Related
-*Link 2-5 related notes with reasons*
-- [[Note]] — why it connects
-
-# Encounters
-*Add real-world usage when you encounter this concept*
-
-## YYYY-MM-DD - [Brief title]
-[What happened, what you learned]
-Link: [[TIL or project note]]
+- [[Event Loop]] — closures power async callbacks
+- [[Garbage Collection]] — closures affect GC behavior
 ```
 
-**Example titles:**
-- "Spaced repetition improves long-term retention" (not "Spaced Repetition Notes")
-- "Writing clarifies thinking" (not "Benefits of Writing")
+**Layer 3 — Encounters:** Real-world usage added over time:
+```markdown
+# Encounters
 
-### Zettelkasten Integration
+## 2026-02-05 - Debugging closure scope issue
+Discovered that closures in a forEach loop captured the loop variable by reference.
+Link: [[TIL 2026-02-05]]
+```
 
-Combine PARA with Zettelkasten principles:
+Use Outgoing Links panel to discover connections you missed.
 
-**PARA for organization** - Actionable structure
-**Zettelkasten for knowledge** - Concept development
+## Progressive Summarization
 
-**Implementation:**
-- Use PARA folders for project/area organization
-- Create atomic, evergreen notes within folders
-- Build dense connection network through links
-- MOCs as structure notes (Zettelkasten hubs)
+Refine notes just-in-time (when you revisit them, not when you capture):
 
-### Template System
+1. **Capture** — Full source material
+2. **Bold** — Key passages (10-20% of content)
+3. **Highlight** — Within bold (10-20% of that)
+4. **Summarize** — 2-3 sentence executive summary at top
+5. **Remix** — Create new output from distilled knowledge
 
-Use templates to reduce friction and ensure consistency:
+Apply layers only when you return to a note for a specific purpose. Don't process everything upfront.
 
-**Template types:**
-- Daily/weekly/monthly notes
-- Project briefs and planning
-- Meeting notes (1-on-1, team, general)
-- Book notes and learning
-- People and relationship notes
-- Problem-solving frameworks
-
-**Template best practices:**
-- Include prompting questions
-- Pre-fill metadata and tags
-- Link to related templates or guides
-- Keep minimal, expand as needed
-- Review and update quarterly
-
-## Troubleshooting Common Issues
-
-### Problem: Inbox keeps growing
-
-**Solutions:**
-- Schedule dedicated processing time
-- Set weekly inbox=0 goal
-- Improve quick capture quality
-- Delete more aggressively
-
-### Problem: Can't find notes
-
-**Solutions:**
-- Improve note titles (descriptive, specific)
-- Add more links between notes
-- Create MOCs for major topics
-- Use graph view to explore connections
-- Improve tagging consistency
-
-### Problem: Notes feel disconnected
-
-**Solutions:**
-- Review notes before creating new ones
-- Add links during capture, not after
-- Create MOCs to connect related notes
-- Use block references for specific connections
-- Regular link maintenance
-
-### Problem: System feels too complex
-
-**Solutions:**
-- Return to PARA basics (four folders only)
-- Reduce tag count, prefer links
-- Simplify templates
-- Focus on inbox processing and linking
-- Remember: Imperfect notes > no notes
-
-## Additional Resources
-
-### Reference Files
-
-For comprehensive patterns and advanced techniques:
-- **`references/para-deep-dive.md`** - Detailed PARA implementation patterns, case studies, and migration strategies
-- **`references/advanced-workflows.md`** - Advanced knowledge management techniques, automation patterns, and optimization strategies
-
-### Integration with Plugin Commands
+## Integration with Plugin Commands
 
 This skill informs all plugin commands and agents:
 - `/daily-startup` uses daily note workflow patterns
 - `/process-inbox` implements inbox processing workflow
 - `/review-okrs` applies review cadences to goal tracking
 - `/maintain-vault` ensures link health and organization
-- Agents use PARA principles for categorization suggestions
-
-Apply these workflows and principles when assisting with Obsidian vault organization and knowledge management tasks.

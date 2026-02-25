@@ -1,6 +1,13 @@
 ---
 name: claude-code-analyzer
-description: "Claude Code: Use when analyzing plugin structure, checking Claude Code config, or finding community resources."
+description: >-
+  Claude Code: Use when analyzing plugin structure, checking Claude Code
+  configuration, setting up a new project with Claude Code, or discovering
+  community plugins and agents. Trigger this skill proactively when the user
+  mentions CLAUDE.md setup, plugin development, tool usage patterns, or wants
+  to find community-built skills and agents on GitHub. Also trigger when the
+  user is new to Claude Code and needs help configuring their environment.
+  NOT for general coding tasks or architecture decisions.
 tools: Read, Glob, Grep, Bash
 model: opus
 ---
@@ -28,8 +35,13 @@ Run project structure detection:
 bash scripts/analyze-claude-md.sh
 ```
 
-Interprets JSON output to identify:
+If the script is missing or fails, fall back to manual analysis:
+- Read the project's CLAUDE.md (or note its absence)
+- Check package.json for framework detection
+- Scan directory structure for conventions
+- Provide CLAUDE.md recommendations based on findings
 
+Identifies:
 - Missing CLAUDE.md or incomplete sections
 - Undocumented commands or patterns
 - Framework-specific suggestions
@@ -42,14 +54,12 @@ Analyze Claude Code history for current project:
 bash scripts/analyze.sh --current-project
 ```
 
-Or analyze all projects:
-
-```bash
-bash scripts/analyze.sh
-```
+If the script is unavailable, suggest the user check:
+- Settings > auto-allowed tools (are frequently-used tools approved?)
+- Model usage (cost awareness)
+- Common workflow patterns
 
 Identifies:
-
 - Most-used tools (optimize auto-allow)
 - Model distribution (cost awareness)
 - Active projects
@@ -64,64 +74,25 @@ bash scripts/github-discovery.sh skills react
 bash scripts/github-discovery.sh agents typescript
 ```
 
+If the script is unavailable, search GitHub directly:
+```bash
+gh search repos "claude-code plugin" --sort stars --limit 10
+gh search repos "claude-code skill" --sort stars --limit 10
+```
+
 ### 4. Generate Recommendations
 
 Based on analysis, provide actionable suggestions:
-
-- CLAUDE.md improvements (load `references/best-practices.md`)
+- CLAUDE.md improvements (load `references/best-practices.md` if available)
 - Settings optimizations
 - New skills or agents to create
 - Community resources to adopt
-
-## Quick Commands
-
-```bash
-# Full analysis
-bash scripts/analyze-claude-md.sh && bash scripts/analyze.sh --current-project
-
-# Features reference
-bash scripts/fetch-features.sh
-bash scripts/fetch-features.sh --json
-
-# GitHub discovery
-bash scripts/github-discovery.sh all
-bash scripts/github-discovery.sh skills
-```
-
-## Output Interpretation
-
-### Project Analysis Output
-
-```json
-{
-  "detected": {
-    "package_manager": "pnpm",
-    "framework": "nextjs",
-    "testing": "vitest",
-    "typescript": "true"
-  },
-  "suggestions": [
-    "Document pnpm commands in CLAUDE.md",
-    "Document Next.js App Router vs Pages Router usage"
-  ]
-}
-```
-
-### Usage Analysis Output
-
-```json
-{
-  "tool_usage": { "Read": 150, "Edit": 89, "Bash": 45 },
-  "model_usage": { "claude-sonnet-4-20250514": 200 },
-  "auto_allowed_tools": ["Read", "Glob"]
-}
-```
 
 ## Recommendation Patterns
 
 ### No CLAUDE.md Detected
 
-1. Run `analyze-claude-md.sh` for stack detection
+1. Run stack detection (script or manual)
 2. Generate CLAUDE.md template from detected info
 3. Include commands from package.json scripts
 4. Add architecture notes based on directory structure
@@ -129,15 +100,13 @@ bash scripts/github-discovery.sh skills
 ### Underutilized Features
 
 If analysis shows limited tool variety:
-
-- Suggest LSP for code navigation
+- Suggest auto-allowing frequently-used tools
 - Recommend Explore agents for searches
 - Propose skills for repeated workflows
 
 ### High Tool Usage Without Auto-Allow
 
 If frequently used tools aren't auto-allowed:
-
 - Suggest adding to `autoAllowedTools` in settings
 - Reference trust levels in best-practices.md
 

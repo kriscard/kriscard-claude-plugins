@@ -10,7 +10,7 @@ Coordinate comprehensive analysis and optimization of dotfiles with intelligent,
 
 ## Purpose
 
-This skill orchestrates the complete dotfiles optimization workflow: analyzing configurations, identifying issues, recommending improvements, and optionally applying fixes. It specializes in the user's specific dotfiles structure located at `/Users/kriscard/.dotfiles`, which includes modular zsh configuration, Neovim, Tmux, Git multi-config setup, and Catppuccin Macchiato theming.
+This skill orchestrates the complete dotfiles optimization workflow: analyzing configurations, identifying issues, recommending improvements, and optionally applying fixes. It reads the dotfiles path from user settings in `.claude/dotfiles-optimizer.local.md` (defaults to `~/.dotfiles`). Supports modular zsh configuration, Neovim, Tmux, Git multi-config setup, and themed terminal environments.
 
 ## When to Use
 

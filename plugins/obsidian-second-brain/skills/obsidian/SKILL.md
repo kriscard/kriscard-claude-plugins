@@ -1,4 +1,5 @@
 ---
+name: obsidian
 description: >-
   Use when performing ANY Obsidian vault operations: reading notes, creating files,
   appending content, searching, or listing files. Covers CLI-first approach with
