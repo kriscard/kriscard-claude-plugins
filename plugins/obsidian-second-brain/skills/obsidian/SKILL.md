@@ -1,12 +1,11 @@
 ---
 name: obsidian
 description: >-
-  Use when performing ANY Obsidian vault operations: reading notes, creating files,
-  appending content, searching, or listing files. Covers CLI-first approach with
-  MCP fallback. Essential for all Obsidian-related commands and agents.
-
-  Trigger phrases: "obsidian", "vault", "create note", "read note", "append to note",
-  "search vault", "list files", "daily note", "periodic note", "TIL note"
+  Performs all Obsidian vault operations — reading notes, creating files,
+  appending content, searching, and listing files — using CLI-first approach
+  with MCP fallback. Essential for any Obsidian-related command or agent that
+  needs vault access. Use when the user mentions obsidian, vault, create note,
+  read note, search vault, daily note, or any vault file operation.
 ---
 
 # Obsidian Operations Skill

@@ -1,6 +1,11 @@
 ---
 name: studio-startup
-description: "Startup: Use for /studio-startup:new or when starting a new project/MVP from scratch. Orchestrates full workflow. NOT for existing codebases."
+description: >-
+  Orchestrates the complete journey from startup idea to working MVP,
+  coordinating product strategy, requirements, tech stack selection,
+  architecture, and implementation. Use when the user wants to start a new
+  project, build an MVP, launch a side project, or create an app from scratch.
+  Not for existing codebases or incremental features.
 version: 0.1.0
 ---
 

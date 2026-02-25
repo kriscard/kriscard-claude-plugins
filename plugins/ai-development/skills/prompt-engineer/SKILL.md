@@ -1,14 +1,11 @@
 ---
 name: prompt-engineer
 description: >-
-  AI/LLM: Use when crafting system prompts, optimizing LLM outputs, or
-  improving agent instructions. Trigger this skill proactively whenever the
-  user wants to write or improve a prompt, their agent or LLM tool isn't
-  producing good results, they're building a system prompt for an app or
-  agent, they ask about prompt engineering techniques, or they mention that
-  Claude/GPT "isn't doing what I want." Also trigger when the user is
-  iterating on AI-generated outputs and wants better quality or consistency.
-  NOT for general coding or building RAG systems (use ai-engineer).
+  Diagnoses and iteratively improves LLM prompts, system instructions, and
+  agent behaviors through structured analysis. Use when the user wants to write
+  or improve a prompt, their AI tool isn't producing good results, they're
+  building system prompts, or they mention that Claude/GPT "isn't doing what I
+  want." Not for general coding or building RAG systems.
 ---
 
 # Prompt Engineer

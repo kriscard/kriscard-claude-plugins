@@ -1,6 +1,11 @@
 ---
 name: commit
-description: "Git: Use for /commit or when committing changes with semantic messages. NOT for PR creation (use /pr) or branch management."
+description: >-
+  Creates semantic git commits with conventional commit format, stages changes,
+  and pushes to remote. Handles pre-commit hooks and writes meaningful commit
+  messages. Use when the user says "commit", "push my changes", "save to git",
+  or wants to commit their current work. Not for creating PRs or branch
+  management.
 ---
 
 # Git Commit Workflow

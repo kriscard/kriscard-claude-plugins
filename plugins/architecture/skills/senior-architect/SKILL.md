@@ -1,17 +1,13 @@
 ---
 name: senior-architect
 description: >-
-  Architecture: Use when designing system architecture, creating C4 diagrams,
-  evaluating tech trade-offs, or writing ADRs. Trigger this skill proactively
-  whenever the user discusses system design decisions, asks about scaling
-  strategies, needs help choosing between architectural approaches (monolith vs
-  microservices, REST vs GraphQL, SQL vs NoSQL), wants to document technical
-  decisions, is planning a new system or major refactor, asks about data flow
-  or component boundaries, or mentions terms like "architecture", "system
-  design", "tech stack decision", "scalability", "ADR", or "C4 diagram". Also
-  trigger when the user is evaluating trade-offs between different technical
-  approaches even if they don't use the word "architecture". NOT for
-  implementation details or writing code.
+  Designs system architectures, creates C4 diagrams, evaluates technology
+  trade-offs, and writes Architecture Decision Records (ADRs). Use when the
+  user discusses system design decisions, scaling strategies, architectural
+  approaches (monolith vs microservices, REST vs GraphQL, SQL vs NoSQL),
+  component boundaries, or needs to document technical decisions. Also triggers
+  on terms like "architecture", "system design", "scalability", or "ADR". Not
+  for implementation details or writing code.
 ---
 
 # Senior Architect

@@ -1,14 +1,12 @@
 ---
-name: Obsidian Workflows & Second Brain Methodology
+name: obsidian-workflows
 description: >-
-  Obsidian: Use when organizing vault with PARA method, PKM workflows, or
-  note-taking systems. Trigger this skill proactively whenever the user asks
-  about organizing notes, establishing a second brain, processing their inbox,
-  creating Maps of Content, setting up review cadences, or improving their
-  knowledge management workflow. Also trigger when the user mentions PARA,
-  progressive summarization, evergreen notes, or Zettelkasten concepts. NOT
-  for vault-specific structure like folder paths or tag taxonomies (use
-  vault-structure for those).
+  Organizes Obsidian vaults using PARA methodology, progressive summarization,
+  and PKM workflows including inbox processing, Maps of Content, and review
+  cadences. Use when the user asks about organizing notes, establishing a
+  second brain, processing their inbox, creating MOCs, or improving their
+  knowledge management workflow. Not for vault-specific folder paths or tag
+  taxonomies.
 version: 0.1.0
 ---
 

@@ -1,6 +1,10 @@
 ---
-name: Vault Structure & Configuration
-description: "Obsidian: Reference for user's vault folders, tags, and templates. Load when needing vault layout context for note operations."
+name: vault-structure
+description: >-
+  Provides reference knowledge about the user's specific Obsidian vault
+  structure — folder organization (PARA), tagging taxonomy, templates, and file
+  conventions. Use when needing vault layout context for placing notes, choosing
+  tags, or referencing vault-specific paths and patterns.
 version: 0.1.0
 ---
 

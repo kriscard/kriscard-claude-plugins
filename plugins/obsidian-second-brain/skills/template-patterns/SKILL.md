@@ -1,13 +1,11 @@
 ---
-name: Template Usage & Application Patterns
+name: template-patterns
 description: >-
-  Obsidian: Use when creating notes that need a template — project briefs,
-  meeting notes, daily notes, learning notes, book reviews, or any structured
-  note. Trigger this skill proactively when the user wants to create a new
-  project note, start a meeting note, set up a weekly review, begin a learning
-  note, or asks which template to use. Also trigger when the user mentions
-  templates, note types, or structured note creation. NOT for general vault
-  organization or PARA method (use obsidian-workflows).
+  Selects and applies the right Obsidian note template based on note type —
+  project briefs, meeting notes, daily notes, learning notes, book reviews,
+  and more. Use when the user wants to create a structured note, asks which
+  template to use, or starts a new project note, meeting note, weekly review,
+  or learning session. Not for general vault organization or PARA method.
 version: 0.1.0
 ---
 

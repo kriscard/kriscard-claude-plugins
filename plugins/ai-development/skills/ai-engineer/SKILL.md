@@ -1,14 +1,12 @@
 ---
 name: ai-engineer
 description: >-
-  AI/LLM: Use when building RAG pipelines, vector search, LLM integrations,
-  or agent orchestration. Trigger this skill proactively whenever the user
-  wants to build a chatbot, add AI features to an app, set up embeddings or
-  vector search, create an agent system, integrate with OpenAI/Anthropic/local
-  models, or discusses retrieval-augmented generation. Also trigger when the
-  user asks about chunking strategies, embedding models, prompt chaining, or
-  production LLM deployment — even if they don't use the term "AI engineer."
-  NOT for general backend/API development or prompt writing (use prompt-engineer).
+  Builds RAG pipelines, vector search systems, LLM integrations, and agent
+  orchestration architectures with production-ready patterns. Use when the user
+  wants to build a chatbot, add AI features, set up embeddings or vector
+  search, create an agent system, or integrate with OpenAI/Anthropic/local
+  models. Also triggers on chunking strategies, embedding models, or production
+  LLM deployment. Not for general backend development or prompt writing.
 ---
 
 # AI Engineer

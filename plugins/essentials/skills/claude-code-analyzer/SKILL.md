@@ -1,13 +1,12 @@
 ---
 name: claude-code-analyzer
 description: >-
-  Claude Code: Use when analyzing plugin structure, checking Claude Code
-  configuration, setting up a new project with Claude Code, or discovering
-  community plugins and agents. Trigger this skill proactively when the user
-  mentions CLAUDE.md setup, plugin development, tool usage patterns, or wants
-  to find community-built skills and agents on GitHub. Also trigger when the
-  user is new to Claude Code and needs help configuring their environment.
-  NOT for general coding tasks or architecture decisions.
+  Analyzes Claude Code plugin structure, validates configuration, discovers
+  community plugins, and helps set up new projects with Claude Code. Use when
+  the user mentions CLAUDE.md setup, plugin development, tool usage patterns,
+  or wants to find community-built skills and agents. Also triggers when the
+  user is new to Claude Code and needs environment configuration help. Not for
+  general coding tasks.
 tools: Read, Glob, Grep, Bash
 model: opus
 ---

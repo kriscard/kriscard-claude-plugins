@@ -1,6 +1,11 @@
 ---
-name: Dotfiles Best Practices
-description: "Dotfiles: Reference knowledge for modern CLI tools and shell best practices. Loaded by dotfiles-optimizer when needed."
+name: dotfiles-best-practices
+description: >-
+  Provides reference knowledge about modern CLI tools, shell optimization
+  patterns, and dotfiles security best practices. Loaded automatically by the
+  dotfiles-optimizer skill when detailed best-practice context is needed. Use
+  when the user asks about specific shell patterns, modern tool alternatives
+  (eza, bat, fd, ripgrep), or dotfiles conventions.
 version: 0.1.0
 ---
 

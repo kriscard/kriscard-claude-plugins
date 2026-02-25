@@ -1,6 +1,11 @@
 ---
-name: Chrome DevTools
-description: "Browser: Use when inspecting pages, checking console errors, analyzing network requests, or running performance traces. NOT for writing frontend code."
+name: chrome-devtools
+description: >-
+  Inspects live web pages, checks console errors, analyzes network requests,
+  and runs performance traces via Chrome DevTools Protocol. Use when debugging
+  frontend applications, profiling page performance, capturing screenshots, or
+  monitoring browser behavior. Not for writing frontend code — only for
+  inspecting and debugging.
 version: 0.1.0
 ---
 

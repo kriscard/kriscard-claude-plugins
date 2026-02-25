@@ -1,6 +1,11 @@
 ---
 name: ideation
-description: "Ideation: Use for /ideation or when organizing messy brain dumps into structured specs. NOT for existing tickets (use /spec instead)."
+description: >-
+  Transforms messy brain dumps and unstructured ideas into structured
+  implementation artifacts — contracts, PRDs, and technical specs — through a
+  confidence-gated workflow. Use when the user has a vague idea, scattered
+  thoughts, or a brain dump they want organized into actionable specs. Not for
+  existing tickets or well-defined tasks.
 ---
 
 # Ideation

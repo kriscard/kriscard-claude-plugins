@@ -1,11 +1,11 @@
 ---
-name: Lazy.nvim Optimization
+name: lazy-nvim-optimization
 description: >-
-  Neovim/lazy.nvim: Use ONLY for lazy.nvim specific issues — startup profiling,
-  lazy-loading specs, plugin priorities, and performance bottlenecks. Trigger
-  when the user mentions slow Neovim startup, wants to profile plugins, asks
-  about lazy-loading strategies, or needs help with lazy.nvim configuration.
-  For general Neovim configuration, use neovim-best-practices instead.
+  Profiles Neovim startup performance and optimizes lazy.nvim plugin loading
+  through targeted lazy-loading specs, priorities, and event-based triggers.
+  Use only for lazy.nvim specific issues — slow startup times, plugin
+  profiling, lazy-loading strategies, or lazy.nvim configuration tuning. For
+  general Neovim configuration, use neovim-best-practices instead.
 version: 0.1.0
 ---
 

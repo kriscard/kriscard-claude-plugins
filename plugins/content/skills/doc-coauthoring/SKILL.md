@@ -1,6 +1,10 @@
 ---
 name: doc-coauthoring
-description: "Content: Use when co-authoring RFCs, proposals, ADRs, or decision documents. NOT for blog posts or implementation specs."
+description: >-
+  Co-authors technical documents like RFCs, proposals, ADRs, and decision
+  documents through a structured gather-refine-test workflow. Use when the user
+  needs help writing or improving a formal document, structuring an RFC, or
+  drafting a technical proposal. Not for blog posts or implementation specs.
 ---
 
 # Document Co-authoring

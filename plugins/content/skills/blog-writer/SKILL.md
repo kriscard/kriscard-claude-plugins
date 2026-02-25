@@ -1,6 +1,10 @@
 ---
 name: blog-writer
-description: "Content: Use when writing technical blog posts from scattered notes or ideas. NOT for documentation, specs, or talks."
+description: >-
+  Transforms scattered notes and ideas into polished technical blog posts with
+  SEO optimization. Use when the user has rough thoughts, brain dumps, or
+  outlines they want turned into a publishable blog post. Not for documentation,
+  specs, or conference talks.
 ---
 
 # Developer Blog Writer

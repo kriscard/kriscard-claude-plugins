@@ -1,13 +1,12 @@
 ---
-name: Neovim Best Practices
+name: neovim-best-practices
 description: >-
-  Neovim: Use when configuring Neovim, writing Lua plugins, setting up LSP,
-  or troubleshooting Neovim configuration issues. Trigger this skill
-  proactively whenever the user is working on their Neovim config, asks about
-  Lua plugin development, needs help with nvim-lspconfig or Mason setup,
-  wants to modernize their Vim/Neovim configuration, or mentions init.lua,
-  keymaps, or autocommands. NOT for VS Code, other editors, or lazy.nvim
-  optimization specifics (use lazy-nvim-optimization for those).
+  Configures Neovim with modern Lua-based patterns, sets up LSP servers,
+  writes plugins, and troubleshoots configuration issues. Use when the user is
+  working on their Neovim config, asks about Lua plugin development, needs
+  help with nvim-lspconfig or Mason setup, or mentions init.lua, keymaps,
+  autocommands, or TypeScript LSP in Neovim. Not for VS Code, other editors,
+  or lazy.nvim specifics.
 version: 0.1.0
 ---
 

@@ -1,13 +1,12 @@
 ---
-name: Assistant
+name: assistant
 description: >-
-  Workflow: Use for /standup, /weekly-summary, /context-save, /staff-progress,
-  or Staff Engineer career tracking. Trigger this skill proactively when the
-  user asks for a daily standup update, wants a weekly summary of their work,
-  needs to save or restore task context before switching, or wants to track
-  career progress toward Staff Engineer. Also trigger when the user mentions
-  "what did I do today", "wrap up for the day", or "show my progress."
-  NOT for general coding help.
+  Generates daily standup updates, weekly summaries, and tracks Staff Engineer
+  career progress. Manages task context saving and restoring across sessions.
+  Use when the user asks for a standup, weekly summary, wants to save/restore
+  task context, or track career progress. Also triggers on "what did I do
+  today", "wrap up for the day", or "show my progress". Not for general
+  coding help.
 version: 0.1.0
 ---
 
