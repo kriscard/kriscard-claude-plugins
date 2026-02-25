@@ -1,5 +1,6 @@
 ---
 name: commit
+disable-model-invocation: true
 description: >-
   Creates semantic git commits with conventional commit format, stages changes, and
   pushes to remote. Handles pre-commit hooks and writes meaningful commit messages.

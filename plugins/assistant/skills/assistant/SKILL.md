@@ -1,5 +1,6 @@
 ---
 name: assistant
+disable-model-invocation: true
 description: >-
   Generates daily standup updates, weekly summaries, and tracks Staff Engineer
   career progress. Manages task context saving and restoring across sessions. Make

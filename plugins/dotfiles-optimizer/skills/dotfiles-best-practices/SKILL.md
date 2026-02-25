@@ -1,5 +1,7 @@
 ---
 name: dotfiles-best-practices
+disable-model-invocation: true
+user-invocable: false
 description: >-
   Provides reference knowledge about modern CLI tools, shell optimization patterns,
   and dotfiles security best practices. Make sure to use this skill whenever the

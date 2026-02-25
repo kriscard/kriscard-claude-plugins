@@ -1,5 +1,6 @@
 ---
 name: dotfiles-optimizer
+disable-model-invocation: true
 description: >-
   Analyzes and optimizes shell configurations (zsh, tmux, git), audits dotfiles for
   security issues, identifies performance bottlenecks, and recommends modern CLI

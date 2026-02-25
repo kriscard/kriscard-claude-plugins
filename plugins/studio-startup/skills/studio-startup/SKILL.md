@@ -1,5 +1,6 @@
 ---
 name: studio-startup
+disable-model-invocation: true
 description: >-
   Orchestrates the complete journey from startup idea to working MVP, coordinating
   product strategy, requirements, tech stack, architecture, and implementation. Make

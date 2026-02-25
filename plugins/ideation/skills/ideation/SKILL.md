@@ -1,5 +1,6 @@
 ---
 name: ideation
+disable-model-invocation: true
 description: >-
   Transforms messy brain dumps and unstructured ideas into structured implementation
   artifacts — contracts, PRDs, and technical specs — through a confidence-gated

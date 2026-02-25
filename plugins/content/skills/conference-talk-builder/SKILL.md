@@ -1,5 +1,6 @@
 ---
 name: conference-talk-builder
+disable-model-invocation: true
 description: >-
   Structures conference talks and creates iA Presenter slide decks using the Story
   Circle narrative framework. Make sure to use this skill whenever the user mentions

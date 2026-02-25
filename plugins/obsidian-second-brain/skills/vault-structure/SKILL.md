@@ -1,5 +1,7 @@
 ---
 name: vault-structure
+disable-model-invocation: true
+user-invocable: false
 description: >-
   Provides the user's specific Obsidian vault structure — folder organization
   (PARA), tagging taxonomy, templates, and file conventions. Contains paths and

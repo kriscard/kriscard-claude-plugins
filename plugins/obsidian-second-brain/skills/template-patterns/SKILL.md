@@ -1,5 +1,7 @@
 ---
 name: template-patterns
+disable-model-invocation: true
+user-invocable: false
 description: >-
   Selects and applies the right Obsidian note template based on note type — project
   briefs, meeting notes, daily notes, learning notes, book reviews. Make sure to use

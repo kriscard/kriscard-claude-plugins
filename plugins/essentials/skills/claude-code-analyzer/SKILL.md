@@ -1,5 +1,6 @@
 ---
 name: claude-code-analyzer
+disable-model-invocation: true
 description: >-
   Analyzes Claude Code plugin structure, validates configuration, discovers
   community plugins, and helps set up Claude Code projects. Make sure to use this

@@ -1,5 +1,6 @@
 ---
 name: obsidian-workflows
+disable-model-invocation: true
 description: >-
   Organizes Obsidian vaults using PARA methodology, progressive summarization, and
   PKM workflows including inbox processing, Maps of Content, and review cadences.
