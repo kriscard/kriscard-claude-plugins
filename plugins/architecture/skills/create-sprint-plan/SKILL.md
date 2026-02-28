@@ -1,6 +1,11 @@
 ---
-description: Decompose a project spec into sprints and atomic tasks
-argument-hint: '<spec-file|project-description>'
+name: create-sprint-plan
+disable-model-invocation: true
+description: >-
+  Decompose a project spec into sprints and atomic tasks. Make sure to use this
+  skill whenever the user says "sprint plan", "create sprints", "break down
+  into tasks", "decompose spec", or wants to turn a specification into an
+  actionable sprint plan.
 ---
 
 # Create Sprint Plan

@@ -1,7 +1,11 @@
 ---
 name: daily-startup
-description: Interactive daily workflow session - create periodic notes (daily/weekly/monthly/quarterly), check inbox, surface tasks, review OKRs
-allowed-tools: [Read, Write, Bash, AskUserQuestion, obsidian]
+disable-model-invocation: true
+description: >-
+  Interactive daily workflow session - create periodic notes
+  (daily/weekly/monthly/quarterly), check inbox, surface tasks, review OKRs.
+  Make sure to use this skill whenever the user says "daily startup", "morning
+  routine", "start my day", or wants to begin their daily workflow session.
 ---
 
 # Daily Startup Workflow
@@ -209,48 +213,3 @@ Vault path: `/Users/kriscard/obsidian-vault-kriscard`
 - **CLI unavailable**: Ask user to confirm MCP usage, then use MCP tools
 - **MCP also unavailable**: Report error, suggest opening Obsidian
 - **No projects**: Skip project selection step
-
-## Example Interactions
-
-### Example 1: Monday (Fast Auto-Create)
-```
-Assistant: Good morning!
-
-✓ Created: weekly (2026-W02), daily (2026-01-12)
-Inbox: 3 notes (run /process-inbox when ready)
-Active projects: Website Redesign, API Documentation, Team Onboarding
-
-[AskUserQuestion: Which projects for today? - multiSelect]
-User: Website Redesign, API Documentation
-
-[AskUserQuestion: Top priority?]
-User: Finish homepage mockups
-
-Summary:
-✓ Notes: weekly, daily
-✓ Inbox: 3 notes
-✓ Focus: Website Redesign, API Documentation
-✓ Priority: Finish homepage mockups
-```
-
-### Example 2: Quarter Start (Jan 1)
-```
-Assistant: Good morning! Happy New Year!
-
-✓ Created: quarterly (2026-Q1), monthly (2026-01), weekly (2026-W01), daily (2026-01-01)
-Inbox: 0 notes
-Active projects: [list]
-
-[Continues with focus/priority questions...]
-```
-
-### Example 3: Regular Tuesday
-```
-Assistant: Good morning!
-
-✓ Created: daily (2026-01-13)
-Inbox: 5 notes (run /process-inbox when ready)
-Active projects: [list]
-
-[Continues with focus/priority questions...]
-```

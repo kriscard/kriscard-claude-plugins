@@ -1,6 +1,11 @@
 ---
-description: Create thorough spec through 4 rounds of in-depth interviews
-argument-hint: '<jira|github|linear|prompt>'
+name: deep-spec
+disable-model-invocation: true
+description: >-
+  Create thorough spec through 4 rounds of in-depth interviews. Make sure to
+  use this skill whenever the user says "deep spec", "thorough spec",
+  "comprehensive spec", "detailed specification", or wants an in-depth
+  interview-driven specification process.
 ---
 
 # Deep Specification Through Interview

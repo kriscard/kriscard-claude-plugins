@@ -18,6 +18,33 @@ Coordinate comprehensive analysis and optimization of dotfiles with intelligent,
 
 This skill orchestrates the complete dotfiles optimization workflow: analyzing configurations, identifying issues, recommending improvements, and optionally applying fixes. It reads the dotfiles path from user settings in `.claude/dotfiles-optimizer.local.md` (defaults to `~/.dotfiles`). Supports modular zsh configuration, Neovim, Tmux, Git multi-config setup, and themed terminal environments.
 
+## Arguments
+
+When invoked via `/optimize`, the following arguments are supported:
+
+**Component Scope** (optional, positional):
+- `zsh` - Shell configuration only
+- `tmux` - Tmux configuration only
+- `nvim` - Neovim configuration only
+- `git` - Git configuration only
+- `terminal` - Terminal configs (Kitty/Ghostty) only
+- `all` or omitted - Entire dotfiles structure
+
+**Flags** (optional):
+- `--apply` - Automatically apply critical and recommended fixes without confirmation
+- `--security` - Focus analysis on security issues only
+- `--performance` - Focus analysis on performance optimization only
+- `--modern-tools` - Focus on modern tool recommendations only
+
+**Examples**:
+```bash
+/optimize                    # Full analysis of all components
+/optimize zsh                # Analyze shell configuration only
+/optimize --security         # Security audit across all components
+/optimize zsh --apply        # Analyze shell and auto-apply fixes
+/optimize --performance      # Performance optimization focus
+```
+
 ## When to Use
 
 Activate this skill when users request:
@@ -149,12 +176,23 @@ Options:
 - None (just wanted the analysis)
 ```
 
-If user chooses to apply:
+**If `--apply` flag was passed**:
+- Apply all critical issues automatically
+- Apply all recommended improvements automatically
+- Skip optional enhancements (user can request separately)
+- Show progress for each fix applied
+
+If user chooses to apply interactively:
 - Use Read tool to examine current configs
 - Use Edit tool to make precise changes
-- Create backups before modifying
 - Explain each change as it's made
 - Validate changes don't break syntax
+
+**Backup strategy** (always, before modifying any file):
+```bash
+cp ~/.dotfiles/.zshrc ~/.dotfiles/.zshrc.backup.$(date +%Y%m%d-%H%M%S)
+```
+Create timestamped backups so changes are always reversible.
 
 ### 6. Integration with Existing Tools
 
