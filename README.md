@@ -22,6 +22,7 @@ claude plugin install assistant@kriscard            # Staff Engineer workflow as
 claude plugin install chromedev-tools@kriscard      # Chrome DevTools integration
 claude plugin install til@kriscard                  # TIL documentation
 claude plugin install architecture@kriscard         # System design
+claude plugin install obsidian-second-brain@kriscard # Knowledge management
 ```
 
 ### Optional (install based on your workflow)
@@ -32,7 +33,6 @@ claude plugin install content@kriscard              # Blog posts & talks
 claude plugin install ai-development@kriscard       # LLM/RAG tools
 claude plugin install neovim-advisor@kriscard       # Neovim optimization
 claude plugin install dotfiles-optimizer@kriscard   # Dotfiles analysis
-claude plugin install obsidian-second-brain@kriscard # Knowledge management
 claude plugin install studio-startup@kriscard       # Project startup orchestration
 claude plugin install interactive-learning@kriscard # Learning tutorials
 ```
