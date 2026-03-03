@@ -51,11 +51,11 @@ Then reinstall the plugins you need. This workaround is needed because Claude Co
 
 | Plugin | Description | How to Use |
 |--------|-------------|------------|
-| [essentials](./plugins/essentials) | Core workflow tools - commits, specs, PRs, deep thinking | **Commands:** `/commit`, `/spec`, `/deep-spec`, `/issue`, `/pr`, `/ultrathink`, `/init-ultrathink`, `/de-slopify`, `/search-web`<br>**Auto-enforces:** Skill usage across all interactions |
+| [essentials](./plugins/essentials) | Core workflow tools - commits, specs, PRs, deep thinking | **Commands:** `/commit`, `/spec`, `/deep-spec`, `/issue`, `/pr`, `/ultrathink`, `/analyze-repo`, `/de-slopify`<br>**Auto-enforces:** Skill usage across all interactions |
 | [assistant](./plugins/assistant) | Engineer workflow assistant - standups, career tracking, quality checks, context management | **Commands:** `/standup`, `/weekly-summary`, `/quality-check`, `/context-save`, `/context-restore`, `/staff-progress`<br>**Auto-suggests:** Actions after commits/PRs, learning from your patterns |
 | [ideation](./plugins/ideation) | Transform brain dumps into structured implementation artifacts | **Commands:** `/ideation`, `/validate-output`<br>**Workflow:** Confidence → Questions → Contract → PRDs → Specs |
 | [content](./plugins/content) | Blog posts, documentation, and conference talks | **Commands:** `/write-blog`, `/create-talk`<br>**Natural language:** "Write a blog about...", "Help me document..." |
-| [architecture](./plugins/architecture) | System design, technical leadership, and architecture documentation | **Commands:** `/arch-doc`, `/check-spec`, `/analyze-repo`, `/explain-codebase`, `/create-sprint-plan`<br>**Skills:** Senior architect, CTO advisor, product strategist |
+| [architecture](./plugins/architecture) | System design, technical leadership, and architecture documentation | **Commands:** `/arch-doc`, `/check-spec`, `/explain-codebase`, `/create-sprint-plan`<br>**Skills:** Senior architect, CTO advisor, product strategist |
 | [ai-development](./plugins/ai-development) | LLM/RAG development and prompt engineering | **Commands:** `/deep-analyze`<br>**Skills:** AI engineer, prompt engineer |
 | [developer-tools](./plugins/developer-tools) | Coding, frontend, and debugging specialists | **Natural language:** "Build a login form", "Fix this bug"<br>**Skills:** `/react-best-practices` for React audits<br>**Auto-selects:** Best specialist agent for your task |
 | [testing](./plugins/testing) | Unit, integration, and E2E testing | **Commands:** `/test-suite` (runs all layers)<br>**Agents:** Unit, integration, automation test developers |

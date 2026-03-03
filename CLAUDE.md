@@ -57,7 +57,7 @@ When adding new skills, commands, or agents:
 ## Naming Conventions
 
 - Plugin names: kebab-case (e.g., `developer-tools`)
-- Command files: kebab-case.md (e.g., `init-ultrathink.md`)
+- Command files: kebab-case.md (e.g., `analyze-repo.md`)
 - Skill directories: kebab-case (e.g., `blog-writer/`)
 - Agent files: kebab-case.md (e.g., `code-simplifier.md`)
 

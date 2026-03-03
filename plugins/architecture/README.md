@@ -50,9 +50,6 @@ Validate specification quality for implementation readiness.
 /check-spec docs/feature-spec.md
 ```
 
-### /analyze-repo
-Comprehensive repository analysis with Mermaid diagrams.
-
 ### /explain-codebase
 Simple explanation of how the codebase functions and connects.
 

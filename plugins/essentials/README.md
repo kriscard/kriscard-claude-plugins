@@ -20,10 +20,9 @@ Core workflow tools for daily development - commits, research, deep thinking, PR
 | `/deep-spec` | Thorough spec with 4 rounds of interviews |
 | `/issue` | Analyze ticket, implement fix on dedicated branch |
 | `/pr` | Quick PR creation with structured template |
-| `/init-ultrathink` | Generate comprehensive CLAUDE.md for a project |
+| `/analyze-repo` | Comprehensive repo analysis — generates CLAUDE.md and REPO_ANALYSIS.md |
 | `/ultrathink` | Deep thinking mode for complex problems |
 | `/de-slopify` | Remove AI-generated code slop from your branch |
-| `/search-web` | Web search integration |
 
 ### Agents
 
