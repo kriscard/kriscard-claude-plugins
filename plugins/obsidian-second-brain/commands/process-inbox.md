@@ -1,9 +1,3 @@
----
-name: process-inbox
-description: "One-by-one inbox review with intelligent PARA placement suggestions. Use when user says '/obsidian-second-brain:process-inbox', wants to process inbox notes, or needs help organizing inbox."
-disable-model-invocation: true
----
-
 # Process Inbox Command
 
 EXECUTE THIS WORKFLOW NOW. Do not describe it - actually run the commands and process notes.
@@ -44,11 +38,11 @@ Display to user:
 ### 2.2 Analyze and Suggest Placement
 
 Apply PARA decision logic:
-- Has deadline or active project work? → `1 - Projects/[Project Name]/`
-- Ongoing responsibility? → `2 - Areas/[Area Name]/`
-- Reference material? → `3 - Resources/`
-- Completed/inactive? → `4 - Archives/`
-- Unsure? → Suggest skip
+- Has deadline or active project work? -> `1 - Projects/[Project Name]/`
+- Ongoing responsibility? -> `2 - Areas/[Area Name]/`
+- Reference material? -> `3 - Resources/`
+- Completed/inactive? -> `4 - Archives/`
+- Unsure? -> Suggest skip
 
 Tell user your suggestion with reasoning:
 ```

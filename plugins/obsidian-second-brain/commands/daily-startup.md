@@ -1,13 +1,3 @@
----
-name: daily-startup
-disable-model-invocation: true
-description: >-
-  Interactive daily workflow session - create periodic notes
-  (daily/weekly/monthly/quarterly), check inbox, surface tasks, review OKRs.
-  Make sure to use this skill whenever the user says "daily startup", "morning
-  routine", "start my day", or wants to begin their daily workflow session.
----
-
 # Daily Startup Workflow
 
 Run an interactive daily startup session to begin the day with clarity and focus.
@@ -157,32 +147,15 @@ Or simply ask: "What are your top 3 priorities?" and let them type.
 2. Provide final summary:
 
 ```
-✓ Notes: daily, weekly (if created)
-✓ Inbox: X notes
-✓ Focus: [selected projects]
-✓ Priorities: [listed]
+Notes: daily, weekly (if created)
+Inbox: X notes
+Focus: [selected projects]
+Priorities: [listed]
 ```
 
 ## Configuration
 
 Vault path: `/Users/kriscard/obsidian-vault-kriscard`
-
-## Tools Usage
-
-**Obsidian CLI (preferred - use in parallel where possible):**
-- `obsidian files folder="X"` - Batch check existence of notes, list inbox/projects
-- `obsidian read path="X"` - Fetch templates
-- `obsidian create path="X" content="Y" silent` - Create notes from templates
-- `obsidian append path="X" content="Y" silent` - Append to existing notes
-
-**Obsidian MCP (fallback - ask user first):**
-- `obsidian_list_files_in_dir` - List directory contents
-- `obsidian_get_file_contents` - Read file contents
-- `obsidian_append_content` - Create/append notes
-
-**AskUserQuestion tool:**
-- Project focus selection (multiSelect)
-- Priority setting
 
 ## Performance Guidelines
 
@@ -198,18 +171,11 @@ Vault path: `/Users/kriscard/obsidian-vault-kriscard`
 
 1. Fetch template content from `Templates/[Type] Notes.md`
 2. Replace variables in template:
-   - `{{date}}` → `2026-01-27`
-   - `{{title}}` → Note title
-   - `{{week}}` → `W05`
-   - `{{month}}` → `January`
-   - `{{quarter}}` → `Q1`
-   - `{{year}}` → `2026`
+   - `{{date}}` -> `2026-01-27`
+   - `{{title}}` -> Note title
+   - `{{week}}` -> `W05`
+   - `{{month}}` -> `January`
+   - `{{quarter}}` -> `Q1`
+   - `{{year}}` -> `2026`
 3. Create note with full processed template content
 4. **NEVER create empty notes** - if template fetch fails, report error
-
-## Error Handling
-
-- **Missing template**: Report error, don't create empty note
-- **CLI unavailable**: Ask user to confirm MCP usage, then use MCP tools
-- **MCP also unavailable**: Report error, suggest opening Obsidian
-- **No projects**: Skip project selection step
