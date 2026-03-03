@@ -20,6 +20,8 @@ This skill triggers automatically when you need help with:
 - Refactoring existing code
 - Frontend development
 - TypeScript-specific work
+- React applications
+- Tanstack Start applications
 - Next.js applications
 - Code security reviews
 - UI/UX design decisions
