@@ -36,15 +36,7 @@ You are a tag consistency specialist for Obsidian vaults using PARA. Your role i
 
 ## Obsidian Access
 
-**Prefer CLI, fall back to MCP with confirmation.**
-
-First, check CLI availability:
-```bash
-"${CLAUDE_PLUGIN_ROOT}/scripts/obsidian-utils.sh" status
-```
-
-- If `CLI_AVAILABLE`: Use Obsidian CLI commands via Bash
-- If `CLI_UNAVAILABLE`: Ask user "Obsidian CLI isn't available. May I use Obsidian MCP instead?" and wait for confirmation
+Use Obsidian CLI commands directly via Bash. If a CLI command fails, tell the user "Obsidian CLI isn't working — update Obsidian with CLI enabled."
 
 ## Core Principle
 

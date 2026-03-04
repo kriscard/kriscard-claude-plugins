@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# obsidian-utils.sh - Unified Obsidian operations with CLI-first, MCP fallback
+# obsidian-utils.sh - Unified Obsidian CLI operations
 #
 # Usage: source this script and use the functions, OR call directly:
 #   ./obsidian-utils.sh read "path/to/note.md"
@@ -7,7 +7,7 @@
 #   ./obsidian-utils.sh list "folder/"
 #   ./obsidian-utils.sh search "query"
 #
-# New commands (from CLI docs):
+# Commands:
 #   ./obsidian-utils.sh tasks [all|daily|done|todo]
 #   ./obsidian-utils.sh tags [all] [counts]
 #   ./obsidian-utils.sh backlinks "file"
@@ -20,59 +20,13 @@
 #   ./obsidian-utils.sh property-read "file" "name"
 #   ./obsidian-utils.sh templates
 #   ./obsidian-utils.sh template-read "name"
-#
-# Environment:
-#   OBSIDIAN_VAULT_PATH - Required for MCP fallback instructions
-#   OBSIDIAN_PREFER_MCP - Set to "true" to skip CLI detection
 
 set -euo pipefail
 
-# Configuration
-OBSIDIAN_VAULT_PATH="${OBSIDIAN_VAULT_PATH:-/Users/kriscard/obsidian-vault-kriscard}"
-CLI_AVAILABLE=""
-
-# ============================================================================
-# Detection Functions
-# ============================================================================
-
-# Check if Obsidian CLI is available and working
-obsidian_cli_available() {
-    if [[ -n "$CLI_AVAILABLE" ]]; then
-        [[ "$CLI_AVAILABLE" == "true" ]]
-        return
-    fi
-
-    if [[ "${OBSIDIAN_PREFER_MCP:-}" == "true" ]]; then
-        CLI_AVAILABLE="false"
-        return 1
-    fi
-
-    # Try a simple command to verify CLI is working (Obsidian must be running)
-    if obsidian vault &>/dev/null; then
-        CLI_AVAILABLE="true"
-        return 0
-    fi
-
-    CLI_AVAILABLE="false"
+# Error message when CLI fails
+cli_failed() {
+    echo "Obsidian CLI isn't working — update Obsidian with CLI enabled." >&2
     return 1
-}
-
-# Print MCP fallback instruction
-print_mcp_fallback() {
-    local operation="$1"
-    local mcp_tool="$2"
-    shift 2
-    local params=("$@")
-
-    echo "CLI_UNAVAILABLE"
-    echo "MCP_TOOL: $mcp_tool"
-    echo "OPERATION: $operation"
-    for param in "${params[@]}"; do
-        echo "PARAM: $param"
-    done
-    echo "---"
-    echo "Obsidian CLI not available. Use MCP tool '$mcp_tool' instead."
-    echo "Confirm with user before using MCP tools."
 }
 
 # ============================================================================
@@ -81,27 +35,16 @@ print_mcp_fallback() {
 
 # Read a file from the vault
 # Usage: obsidian_read "path/to/note.md"
-# Note: Use file= for wikilink-style resolution, path= for exact path
 obsidian_read() {
     local path="$1"
-
-    if obsidian_cli_available; then
-        obsidian read path="$path" 2>/dev/null
-    else
-        print_mcp_fallback "read" "mcp__mcp-obsidian__obsidian_get_file_contents" "filepath=$path"
-    fi
+    obsidian read path="$path" 2>/dev/null || cli_failed
 }
 
 # Read a file by name (wikilink-style resolution)
 # Usage: obsidian_read_file "Recipe" (finds Recipe.md anywhere)
 obsidian_read_file() {
     local file="$1"
-
-    if obsidian_cli_available; then
-        obsidian read file="$file" 2>/dev/null
-    else
-        print_mcp_fallback "read" "mcp__mcp-obsidian__obsidian_simple_search" "query=$file"
-    fi
+    obsidian read file="$file" 2>/dev/null || cli_failed
 }
 
 # List files in a directory
@@ -109,12 +52,7 @@ obsidian_read_file() {
 obsidian_list() {
     local folder="$1"
     local format="${2:-json}"
-
-    if obsidian_cli_available; then
-        obsidian files folder="$folder" format="$format" 2>/dev/null
-    else
-        print_mcp_fallback "list" "mcp__mcp-obsidian__obsidian_list_files_in_dir" "dirpath=$folder"
-    fi
+    obsidian files folder="$folder" format="$format" 2>/dev/null || cli_failed
 }
 
 # Create a new file
@@ -125,16 +63,11 @@ obsidian_create() {
     local template="${3:-}"
     local overwrite="${4:-false}"
 
-    if obsidian_cli_available; then
-        local cmd="obsidian create path=\"$path\" silent"
-        [[ -n "$content" ]] && cmd="$cmd content=\"$content\""
-        [[ -n "$template" ]] && cmd="$cmd template=\"$template\""
-        [[ "$overwrite" == "true" ]] && cmd="$cmd overwrite"
-        eval "$cmd" 2>/dev/null
-        echo "Created: $path"
-    else
-        print_mcp_fallback "create" "mcp__mcp-obsidian__obsidian_append_content" "filepath=$path" "content=<content>"
-    fi
+    local cmd="obsidian create path=\"$path\" silent"
+    [[ -n "$content" ]] && cmd="$cmd content=\"$content\""
+    [[ -n "$template" ]] && cmd="$cmd template=\"$template\""
+    [[ "$overwrite" == "true" ]] && cmd="$cmd overwrite"
+    eval "$cmd" 2>/dev/null && echo "Created: $path" || cli_failed
 }
 
 # Create a file from template
@@ -142,13 +75,7 @@ obsidian_create() {
 obsidian_create_from_template() {
     local path="$1"
     local template="$2"
-
-    if obsidian_cli_available; then
-        obsidian create path="$path" template="$template" silent 2>/dev/null
-        echo "Created from template: $path"
-    else
-        print_mcp_fallback "create" "mcp__mcp-obsidian__obsidian_append_content" "filepath=$path"
-    fi
+    obsidian create path="$path" template="$template" silent 2>/dev/null && echo "Created from template: $path" || cli_failed
 }
 
 # Append content to a file
@@ -158,14 +85,9 @@ obsidian_append() {
     local content="$2"
     local inline="${3:-false}"
 
-    if obsidian_cli_available; then
-        local cmd="obsidian append path=\"$path\" content=\"$content\" silent"
-        [[ "$inline" == "true" ]] && cmd="$cmd inline"
-        eval "$cmd" 2>/dev/null
-        echo "Appended to: $path"
-    else
-        print_mcp_fallback "append" "mcp__mcp-obsidian__obsidian_append_content" "filepath=$path" "content=<content>"
-    fi
+    local cmd="obsidian append path=\"$path\" content=\"$content\" silent"
+    [[ "$inline" == "true" ]] && cmd="$cmd inline"
+    eval "$cmd" 2>/dev/null && echo "Appended to: $path" || cli_failed
 }
 
 # Prepend content to a file (after frontmatter)
@@ -175,14 +97,9 @@ obsidian_prepend() {
     local content="$2"
     local inline="${3:-false}"
 
-    if obsidian_cli_available; then
-        local cmd="obsidian prepend path=\"$path\" content=\"$content\" silent"
-        [[ "$inline" == "true" ]] && cmd="$cmd inline"
-        eval "$cmd" 2>/dev/null
-        echo "Prepended to: $path"
-    else
-        print_mcp_fallback "prepend" "mcp__mcp-obsidian__obsidian_patch_content" "filepath=$path" "operation=prepend" "content=<content>"
-    fi
+    local cmd="obsidian prepend path=\"$path\" content=\"$content\" silent"
+    [[ "$inline" == "true" ]] && cmd="$cmd inline"
+    eval "$cmd" 2>/dev/null && echo "Prepended to: $path" || cli_failed
 }
 
 # Delete a file
@@ -191,14 +108,9 @@ obsidian_delete() {
     local path="$1"
     local permanent="${2:-false}"
 
-    if obsidian_cli_available; then
-        local cmd="obsidian delete path=\"$path\""
-        [[ "$permanent" == "true" ]] && cmd="$cmd permanent"
-        eval "$cmd" 2>/dev/null
-        echo "Deleted: $path"
-    else
-        print_mcp_fallback "delete" "mcp__mcp-obsidian__obsidian_delete_file" "filepath=$path"
-    fi
+    local cmd="obsidian delete path=\"$path\""
+    [[ "$permanent" == "true" ]] && cmd="$cmd permanent"
+    eval "$cmd" 2>/dev/null && echo "Deleted: $path" || cli_failed
 }
 
 # Move/rename a file
@@ -206,14 +118,7 @@ obsidian_delete() {
 obsidian_move() {
     local path="$1"
     local to="$2"
-
-    if obsidian_cli_available; then
-        obsidian move path="$path" to="$to" 2>/dev/null
-        echo "Moved: $path -> $to"
-    else
-        echo "CLI_UNAVAILABLE"
-        echo "Move not supported via MCP. Use CLI or manual move."
-    fi
+    obsidian move path="$path" to="$to" 2>/dev/null && echo "Moved: $path -> $to" || cli_failed
 }
 
 # ============================================================================
@@ -227,13 +132,9 @@ obsidian_search() {
     local format="${2:-json}"
     local limit="${3:-}"
 
-    if obsidian_cli_available; then
-        local cmd="obsidian search query=\"$query\" format=\"$format\""
-        [[ -n "$limit" ]] && cmd="$cmd limit=$limit"
-        eval "$cmd" 2>/dev/null
-    else
-        print_mcp_fallback "search" "mcp__mcp-obsidian__obsidian_simple_search" "query=$query"
-    fi
+    local cmd="obsidian search query=\"$query\" format=\"$format\""
+    [[ -n "$limit" ]] && cmd="$cmd limit=$limit"
+    eval "$cmd" 2>/dev/null || cli_failed
 }
 
 # ============================================================================
@@ -246,30 +147,24 @@ obsidian_daily() {
     local action="${1:-read}"
     local content="${2:-}"
 
-    if obsidian_cli_available; then
-        case "$action" in
-            read)
-                obsidian daily:read 2>/dev/null
-                ;;
-            append)
-                obsidian daily:append content="$content" silent 2>/dev/null
-                echo "Appended to daily note"
-                ;;
-            prepend)
-                obsidian daily:prepend content="$content" silent 2>/dev/null
-                echo "Prepended to daily note"
-                ;;
-            open)
-                obsidian daily silent 2>/dev/null
-                ;;
-            *)
-                echo "Unknown action: $action" >&2
-                return 1
-                ;;
-        esac
-    else
-        print_mcp_fallback "daily:$action" "mcp__mcp-obsidian__obsidian_get_periodic_note" "period=daily"
-    fi
+    case "$action" in
+        read)
+            obsidian daily:read 2>/dev/null || cli_failed
+            ;;
+        append)
+            obsidian daily:append content="$content" silent 2>/dev/null && echo "Appended to daily note" || cli_failed
+            ;;
+        prepend)
+            obsidian daily:prepend content="$content" silent 2>/dev/null && echo "Prepended to daily note" || cli_failed
+            ;;
+        open)
+            obsidian daily silent 2>/dev/null || cli_failed
+            ;;
+        *)
+            echo "Unknown action: $action" >&2
+            return 1
+            ;;
+    esac
 }
 
 # ============================================================================
@@ -282,20 +177,15 @@ obsidian_tasks() {
     local filter="${1:-all}"
     local verbose="${2:-false}"
 
-    if obsidian_cli_available; then
-        local cmd="obsidian tasks"
-        case "$filter" in
-            all) cmd="$cmd all" ;;
-            daily) cmd="$cmd daily" ;;
-            done) cmd="$cmd done" ;;
-            todo) cmd="$cmd todo" ;;
-        esac
-        [[ "$verbose" == "true" ]] && cmd="$cmd verbose"
-        eval "$cmd" 2>/dev/null
-    else
-        echo "CLI_UNAVAILABLE"
-        echo "Tasks command not available via MCP."
-    fi
+    local cmd="obsidian tasks"
+    case "$filter" in
+        all) cmd="$cmd all" ;;
+        daily) cmd="$cmd daily" ;;
+        done) cmd="$cmd done" ;;
+        todo) cmd="$cmd todo" ;;
+    esac
+    [[ "$verbose" == "true" ]] && cmd="$cmd verbose"
+    eval "$cmd" 2>/dev/null || cli_failed
 }
 
 # Toggle a task
@@ -303,14 +193,7 @@ obsidian_tasks() {
 obsidian_task_toggle() {
     local path="$1"
     local line="$2"
-
-    if obsidian_cli_available; then
-        obsidian task path="$path" line="$line" toggle 2>/dev/null
-        echo "Toggled task at $path:$line"
-    else
-        echo "CLI_UNAVAILABLE"
-        echo "Task toggle not available via MCP."
-    fi
+    obsidian task path="$path" line="$line" toggle 2>/dev/null && echo "Toggled task at $path:$line" || cli_failed
 }
 
 # ============================================================================
@@ -323,15 +206,10 @@ obsidian_tags() {
     local all="${1:-true}"
     local counts="${2:-true}"
 
-    if obsidian_cli_available; then
-        local cmd="obsidian tags"
-        [[ "$all" == "true" ]] && cmd="$cmd all"
-        [[ "$counts" == "true" ]] && cmd="$cmd counts"
-        eval "$cmd" 2>/dev/null
-    else
-        echo "CLI_UNAVAILABLE"
-        echo "Tags command not available via MCP. Use search instead."
-    fi
+    local cmd="obsidian tags"
+    [[ "$all" == "true" ]] && cmd="$cmd all"
+    [[ "$counts" == "true" ]] && cmd="$cmd counts"
+    eval "$cmd" 2>/dev/null || cli_failed
 }
 
 # Get tag info
@@ -340,13 +218,9 @@ obsidian_tag() {
     local name="$1"
     local verbose="${2:-true}"
 
-    if obsidian_cli_available; then
-        local cmd="obsidian tag name=\"$name\""
-        [[ "$verbose" == "true" ]] && cmd="$cmd verbose"
-        eval "$cmd" 2>/dev/null
-    else
-        print_mcp_fallback "tag" "mcp__mcp-obsidian__obsidian_simple_search" "query=#$name"
-    fi
+    local cmd="obsidian tag name=\"$name\""
+    [[ "$verbose" == "true" ]] && cmd="$cmd verbose"
+    eval "$cmd" 2>/dev/null || cli_failed
 }
 
 # ============================================================================
@@ -359,27 +233,16 @@ obsidian_backlinks() {
     local path="$1"
     local counts="${2:-true}"
 
-    if obsidian_cli_available; then
-        local cmd="obsidian backlinks path=\"$path\""
-        [[ "$counts" == "true" ]] && cmd="$cmd counts"
-        eval "$cmd" 2>/dev/null
-    else
-        echo "CLI_UNAVAILABLE"
-        echo "Backlinks not available via MCP."
-    fi
+    local cmd="obsidian backlinks path=\"$path\""
+    [[ "$counts" == "true" ]] && cmd="$cmd counts"
+    eval "$cmd" 2>/dev/null || cli_failed
 }
 
 # List outgoing links from a file
 # Usage: obsidian_links "path/to/note.md"
 obsidian_links() {
     local path="$1"
-
-    if obsidian_cli_available; then
-        obsidian links path="$path" 2>/dev/null
-    else
-        echo "CLI_UNAVAILABLE"
-        echo "Links not available via MCP."
-    fi
+    obsidian links path="$path" 2>/dev/null || cli_failed
 }
 
 # List unresolved (broken) links
@@ -387,36 +250,21 @@ obsidian_links() {
 obsidian_unresolved() {
     local verbose="${1:-true}"
 
-    if obsidian_cli_available; then
-        local cmd="obsidian unresolved"
-        [[ "$verbose" == "true" ]] && cmd="$cmd verbose counts"
-        eval "$cmd" 2>/dev/null
-    else
-        echo "CLI_UNAVAILABLE"
-        echo "Unresolved links not available via MCP."
-    fi
+    local cmd="obsidian unresolved"
+    [[ "$verbose" == "true" ]] && cmd="$cmd verbose counts"
+    eval "$cmd" 2>/dev/null || cli_failed
 }
 
 # List orphan files (no incoming links)
 # Usage: obsidian_orphans
 obsidian_orphans() {
-    if obsidian_cli_available; then
-        obsidian orphans 2>/dev/null
-    else
-        echo "CLI_UNAVAILABLE"
-        echo "Orphans not available via MCP."
-    fi
+    obsidian orphans 2>/dev/null || cli_failed
 }
 
 # List dead-end files (no outgoing links)
 # Usage: obsidian_deadends
 obsidian_deadends() {
-    if obsidian_cli_available; then
-        obsidian deadends 2>/dev/null
-    else
-        echo "CLI_UNAVAILABLE"
-        echo "Dead-ends not available via MCP."
-    fi
+    obsidian deadends 2>/dev/null || cli_failed
 }
 
 # ============================================================================
@@ -428,13 +276,7 @@ obsidian_deadends() {
 obsidian_outline() {
     local path="$1"
     local format="${2:-tree}"
-
-    if obsidian_cli_available; then
-        obsidian outline path="$path" format="$format" 2>/dev/null
-    else
-        echo "CLI_UNAVAILABLE"
-        echo "Outline not available via MCP."
-    fi
+    obsidian outline path="$path" format="$format" 2>/dev/null || cli_failed
 }
 
 # ============================================================================
@@ -446,13 +288,7 @@ obsidian_outline() {
 obsidian_properties() {
     local path="$1"
     local format="${2:-yaml}"
-
-    if obsidian_cli_available; then
-        obsidian properties path="$path" format="$format" 2>/dev/null
-    else
-        echo "CLI_UNAVAILABLE"
-        echo "Properties not available via MCP. Read file and parse frontmatter."
-    fi
+    obsidian properties path="$path" format="$format" 2>/dev/null || cli_failed
 }
 
 # Set a property on a file
@@ -462,13 +298,7 @@ obsidian_property_set() {
     local name="$2"
     local value="$3"
     local type="${4:-text}"
-
-    if obsidian_cli_available; then
-        obsidian property:set path="$path" name="$name" value="$value" type="$type" 2>/dev/null
-        echo "Set property $name=$value on $path"
-    else
-        print_mcp_fallback "property:set" "mcp__mcp-obsidian__obsidian_patch_content" "filepath=$path" "target_type=frontmatter" "target=$name" "content=$value"
-    fi
+    obsidian property:set path="$path" name="$name" value="$value" type="$type" 2>/dev/null && echo "Set property $name=$value on $path" || cli_failed
 }
 
 # Read a property from a file
@@ -476,13 +306,7 @@ obsidian_property_set() {
 obsidian_property_read() {
     local path="$1"
     local name="$2"
-
-    if obsidian_cli_available; then
-        obsidian property:read path="$path" name="$name" 2>/dev/null
-    else
-        echo "CLI_UNAVAILABLE"
-        echo "Property read not available via MCP. Read file and parse frontmatter."
-    fi
+    obsidian property:read path="$path" name="$name" 2>/dev/null || cli_failed
 }
 
 # Remove a property from a file
@@ -490,14 +314,7 @@ obsidian_property_read() {
 obsidian_property_remove() {
     local path="$1"
     local name="$2"
-
-    if obsidian_cli_available; then
-        obsidian property:remove path="$path" name="$name" 2>/dev/null
-        echo "Removed property $name from $path"
-    else
-        echo "CLI_UNAVAILABLE"
-        echo "Property remove not available via MCP."
-    fi
+    obsidian property:remove path="$path" name="$name" 2>/dev/null && echo "Removed property $name from $path" || cli_failed
 }
 
 # ============================================================================
@@ -507,11 +324,7 @@ obsidian_property_remove() {
 # List templates
 # Usage: obsidian_templates
 obsidian_templates() {
-    if obsidian_cli_available; then
-        obsidian templates 2>/dev/null
-    else
-        print_mcp_fallback "templates" "mcp__mcp-obsidian__obsidian_list_files_in_dir" "dirpath=Templates/"
-    fi
+    obsidian templates 2>/dev/null || cli_failed
 }
 
 # Read template content
@@ -520,13 +333,9 @@ obsidian_template_read() {
     local name="$1"
     local resolve="${2:-true}"
 
-    if obsidian_cli_available; then
-        local cmd="obsidian template:read name=\"$name\""
-        [[ "$resolve" == "true" ]] && cmd="$cmd resolve"
-        eval "$cmd" 2>/dev/null
-    else
-        print_mcp_fallback "template:read" "mcp__mcp-obsidian__obsidian_get_file_contents" "filepath=Templates/$name.md"
-    fi
+    local cmd="obsidian template:read name=\"$name\""
+    [[ "$resolve" == "true" ]] && cmd="$cmd resolve"
+    eval "$cmd" 2>/dev/null || cli_failed
 }
 
 # ============================================================================
@@ -538,37 +347,17 @@ obsidian_template_read() {
 obsidian_vault_info() {
     local info="${1:-}"
 
-    if obsidian_cli_available; then
-        if [[ -n "$info" ]]; then
-            obsidian vault info="$info" 2>/dev/null
-        else
-            obsidian vault 2>/dev/null
-        fi
+    if [[ -n "$info" ]]; then
+        obsidian vault info="$info" 2>/dev/null || cli_failed
     else
-        echo "CLI_UNAVAILABLE"
-        echo "Vault path: $OBSIDIAN_VAULT_PATH"
-        echo "Use MCP tools with this vault path."
+        obsidian vault 2>/dev/null || cli_failed
     fi
 }
 
 # Check CLI status
 # Usage: obsidian_status
 obsidian_status() {
-    if obsidian_cli_available; then
-        echo "CLI_AVAILABLE"
-        echo "Obsidian CLI is available and working."
-        obsidian vault 2>/dev/null
-    else
-        echo "CLI_UNAVAILABLE"
-        echo "Obsidian CLI not available."
-        echo "Possible reasons:"
-        echo "  - Obsidian not running"
-        echo "  - CLI not enabled (Settings > General > Command line interface)"
-        echo "  - Obsidian version < 1.12"
-        echo ""
-        echo "Fallback: Use MCP tools (mcp__mcp-obsidian__*)"
-        echo "Default vault: $OBSIDIAN_VAULT_PATH"
-    fi
+    obsidian vault 2>/dev/null || cli_failed
 }
 
 # ============================================================================
@@ -580,14 +369,9 @@ obsidian_status() {
 obsidian_aliases() {
     local all="${1:-true}"
 
-    if obsidian_cli_available; then
-        local cmd="obsidian aliases"
-        [[ "$all" == "true" ]] && cmd="$cmd all verbose"
-        eval "$cmd" 2>/dev/null
-    else
-        echo "CLI_UNAVAILABLE"
-        echo "Aliases not available via MCP."
-    fi
+    local cmd="obsidian aliases"
+    [[ "$all" == "true" ]] && cmd="$cmd all verbose"
+    eval "$cmd" 2>/dev/null || cli_failed
 }
 
 # ============================================================================
@@ -598,13 +382,7 @@ obsidian_aliases() {
 # Usage: obsidian_wordcount "path/to/note.md"
 obsidian_wordcount() {
     local path="$1"
-
-    if obsidian_cli_available; then
-        obsidian wordcount path="$path" 2>/dev/null
-    else
-        echo "CLI_UNAVAILABLE"
-        echo "Wordcount not available via MCP."
-    fi
+    obsidian wordcount path="$path" 2>/dev/null || cli_failed
 }
 
 # ============================================================================

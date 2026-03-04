@@ -6,11 +6,7 @@ Usage: `/learned [topic]` or just `/learned` to pull from today's note.
 
 ## Obsidian Access
 
-**Prefer CLI, fall back to MCP with confirmation.**
-
-```bash
-"${CLAUDE_PLUGIN_ROOT}/scripts/obsidian-utils.sh" status
-```
+Use Obsidian CLI commands directly via Bash. If a CLI command fails, tell the user "Obsidian CLI isn't working — update Obsidian with CLI enabled."
 
 ## Step 1: Find the Raw Material
 

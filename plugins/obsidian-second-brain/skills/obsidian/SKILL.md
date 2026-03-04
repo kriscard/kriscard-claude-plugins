@@ -10,36 +10,22 @@ description: >-
 
 # Obsidian Operations Skill
 
-This skill defines how to interact with Obsidian vaults. **Always prefer CLI when available, fall back to MCP with user confirmation.**
+This skill defines how to interact with Obsidian vaults. **Always use CLI directly. If it fails, tell the user "Obsidian CLI isn't working — update Obsidian with CLI enabled."**
 
 ## Quick Reference
 
-| Operation | CLI Command | MCP Fallback |
-|-----------|------------|--------------|
-| Read file | `obsidian read path="..."` | `mcp__mcp-obsidian__obsidian_get_file_contents` |
-| Create file | `obsidian create path="..." content="..." silent` | `mcp__mcp-obsidian__obsidian_append_content` |
-| Append | `obsidian append path="..." content="..." silent` | `mcp__mcp-obsidian__obsidian_append_content` |
-| Search | `obsidian search query="..." format=json` | `mcp__mcp-obsidian__obsidian_simple_search` |
-| List files | `obsidian files folder="..." format=json` | `mcp__mcp-obsidian__obsidian_list_files_in_dir` |
-| Daily note | `obsidian daily:read` | `mcp__mcp-obsidian__obsidian_get_periodic_note` |
-
-## Detection Flow
-
-```
-1. Check CLI: Run detection command (see below)
-2. If CLI_AVAILABLE: Use CLI commands via Bash
-3. If CLI_UNAVAILABLE: Ask user to confirm MCP usage, then use MCP tools
-```
-
-### CLI Detection Pattern
-
-```bash
-obsidian vault &>/dev/null && echo "CLI_AVAILABLE" || echo "CLI_UNAVAILABLE"
-```
+| Operation | CLI Command |
+|-----------|------------|
+| Read file | `obsidian read path="..."` |
+| Create file | `obsidian create path="..." content="..." silent` |
+| Append | `obsidian append path="..." content="..." silent` |
+| Search | `obsidian search query="..." format=json` |
+| List files | `obsidian files folder="..." format=json` |
+| Daily note | `obsidian daily:read` |
 
 ## Using obsidian-utils.sh
 
-The shared utility script handles detection and all operations. Located at:
+The shared utility script handles all operations. Located at:
 ```
 ${CLAUDE_PLUGIN_ROOT}/scripts/obsidian-utils.sh
 ```
@@ -48,7 +34,6 @@ ${CLAUDE_PLUGIN_ROOT}/scripts/obsidian-utils.sh
 
 | Operation | Command | Example |
 |-----------|---------|---------|
-| Check status | `./obsidian-utils.sh status` | Shows CLI availability |
 | Read file | `./obsidian-utils.sh read "path.md"` | Read by exact path |
 | Read by name | `./obsidian-utils.sh read-file "Recipe"` | Wikilink-style resolution |
 | List files | `./obsidian-utils.sh list "folder/" json` | List with format |
@@ -272,35 +257,6 @@ Use `\n` for newlines and `\t` for tabs:
 "obsidian" create path="note.md" content="# Title\n\nBody text\n\n- Item 1\n- Item 2" silent
 ```
 
-## MCP Tools Reference
-
-When CLI unavailable, use these MCP tools (with user confirmation):
-
-| Operation | MCP Tool |
-|-----------|----------|
-| Read file | `mcp__mcp-obsidian__obsidian_get_file_contents` |
-| Read multiple | `mcp__mcp-obsidian__obsidian_batch_get_file_contents` |
-| List files | `mcp__mcp-obsidian__obsidian_list_files_in_dir` |
-| Create/Append | `mcp__mcp-obsidian__obsidian_append_content` |
-| Patch content | `mcp__mcp-obsidian__obsidian_patch_content` |
-| Search | `mcp__mcp-obsidian__obsidian_simple_search` |
-| Complex search | `mcp__mcp-obsidian__obsidian_complex_search` |
-| Delete | `mcp__mcp-obsidian__obsidian_delete_file` |
-| Daily note | `mcp__mcp-obsidian__obsidian_get_periodic_note` |
-| Recent changes | `mcp__mcp-obsidian__obsidian_get_recent_changes` |
-
-## MCP Fallback Confirmation
-
-**Always confirm before using MCP.** Example interaction:
-
-```
-You: Obsidian CLI isn't available (Obsidian may not be running or CLI not enabled).
-     May I use Obsidian MCP to read your vault instead?
-
-User: Yes, go ahead
-
-You: [Uses MCP tools]
-```
 
 ## Vault Structure
 
@@ -321,16 +277,13 @@ Key paths:
 3. **Prefer `file=`** - When you know the name but not the path
 4. **Use `path=`** - When you know the exact path
 5. **Batch operations** - Use parallel calls when checking multiple files
-6. **Error handling** - If CLI fails mid-operation, fall back to MCP
-7. **Templates** - Use `template=` parameter when creating from templates
+6. **Templates** - Use `template=` parameter when creating from templates
 8. **Confirmation** - Never delete without explicit user confirmation
 
 ## CLI Requirements
 
 Obsidian CLI requires:
-- Obsidian v1.12+ (early access)
-- Catalyst license
-- CLI enabled: Settings → General → Command line interface
+- Obsidian with CLI enabled: Settings → General → Command line interface
 - Obsidian must be running
 
-If any requirement isn't met, CLI commands will fail and MCP fallback is needed.
+If CLI commands fail, tell the user "Obsidian CLI isn't working — update Obsidian with CLI enabled."

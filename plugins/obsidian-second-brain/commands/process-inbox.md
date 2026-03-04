@@ -2,16 +2,9 @@
 
 EXECUTE THIS WORKFLOW NOW. Do not describe it - actually run the commands and process notes.
 
-## Step 1: Check CLI and List Inbox
+## Step 1: List Inbox
 
-Run this command NOW:
-```bash
-"${CLAUDE_PLUGIN_ROOT}/scripts/obsidian-utils.sh" status
-```
-
-If `CLI_UNAVAILABLE`: Ask user "Obsidian CLI isn't available. May I use Obsidian MCP instead?" and wait for confirmation before continuing.
-
-Then list inbox notes:
+List inbox notes:
 ```bash
 obsidian files folder="0 - Inbox/"
 ```

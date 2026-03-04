@@ -4,15 +4,7 @@ Create a "Today I Learned" documentation note capturing the learnings from this 
 
 ## Obsidian Access
 
-**Prefer CLI, fall back to MCP with confirmation.**
-
-First, check CLI availability:
-```bash
-obsidian vault &>/dev/null && echo "CLI_AVAILABLE" || echo "CLI_UNAVAILABLE"
-```
-
-- If `CLI_AVAILABLE`: Use Obsidian CLI commands via Bash
-- If `CLI_UNAVAILABLE`: Ask user "Obsidian CLI isn't available. May I use Obsidian MCP instead?" and wait for confirmation
+Use Obsidian CLI commands directly via Bash. If a CLI command fails, tell the user "Obsidian CLI isn't working — update Obsidian with CLI enabled."
 
 ## Step 1: Determine Project Name
 
@@ -28,10 +20,6 @@ Otherwise, infer the project name from:
 ```bash
 obsidian read path="3 - Resources/TIL/til-$(date +%Y-%m-%d).md"
 ```
-
-**Using MCP (if CLI unavailable):**
-Use `mcp__mcp-obsidian__obsidian_get_file_contents` to check if a TIL note already exists at:
-`3 - Resources/TIL/til-YYYY-MM-DD.md` (where YYYY-MM-DD is today's date)
 
 ## Step 3: Analyze Conversation Context
 
