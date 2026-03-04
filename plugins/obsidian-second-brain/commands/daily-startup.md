@@ -47,14 +47,14 @@ Periods to check:
 
 **Using CLI:**
 ```bash
-obsidian files folder="2 - Areas/Daily Ops/" format=json
+obsidian files folder="2 - Areas/Daily Ops/$YEAR/" format=json
 obsidian files folder="2 - Areas/Daily Ops/Weekly/M - Month YYYY/" format=json  # if Monday
 obsidian files folder="2 - Areas/Goals/Monthly/" format=json  # if 1st
 obsidian files folder="2 - Areas/Goals/Quarterly/" format=json  # if quarter start
 ```
 
 **Using MCP (if CLI unavailable):**
-- `obsidian_list_files_in_dir` for `2 - Areas/Daily Ops/`
+- `obsidian_list_files_in_dir` for `2 - Areas/Daily Ops/$YEAR/`
 - `obsidian_list_files_in_dir` for `2 - Areas/Daily Ops/Weekly/M - Month YYYY/` (if Monday)
 - `obsidian_list_files_in_dir` for `2 - Areas/Goals/Monthly/` (if 1st)
 - `obsidian_list_files_in_dir` for `2 - Areas/Goals/Quarterly/` (if quarter start)
@@ -79,7 +79,7 @@ For each missing note, create using the template content:
 
 **Using CLI:**
 ```bash
-obsidian create path="2 - Areas/Daily Ops/2026-02-14.md" content="$PROCESSED_TEMPLATE" silent
+obsidian create path="2 - Areas/Daily Ops/$YEAR/$TODAY.md" content="$PROCESSED_TEMPLATE" silent
 ```
 
 **Using MCP (if CLI unavailable):**
@@ -97,7 +97,7 @@ Single summary: "Created: daily (2026-01-27), weekly (2026-W05)" or "All periodi
 | Quarterly | `2 - Areas/Goals/Quarterly/Quaterly Goals - QN YYYY.md` | `Quaterly Goals - Q1 2026` | `Templates/Quarterly Goals.md` |
 | Monthly | `2 - Areas/Goals/Monthly/M - Month YYYY.md` | `1 - January 2026` | `Templates/Monthly Goals.md` |
 | Weekly | `2 - Areas/Daily Ops/Weekly/M - Month YYYY/YYYY-Www.md` | `2 - February 2026/2026-W06` | `Templates/Weekly Planning.md` |
-| Daily | `2 - Areas/Daily Ops/YYYY-MM-DD.md` | `2026-02-02` | `Templates/Daily Notes.md` |
+| Daily | `2 - Areas/Daily Ops/YYYY/YYYY-MM-DD.md` | `2026/2026-02-02` | `Templates/Daily Notes.md` |
 
 **Note:** The quarterly folder has a typo ("Quaterly" instead of "Quarterly") - preserve this to match existing vault structure.
 

@@ -21,8 +21,9 @@ obsidian search query="<topic>" format=json
 
 **If no topic provided:** Read today's daily note:
 ```bash
+YEAR=$(date +%Y)
 TODAY=$(date +%Y-%m-%d)
-obsidian read path="2 - Areas/Daily Ops/$TODAY.md"
+obsidian read path="2 - Areas/Daily Ops/$YEAR/$TODAY.md"
 ```
 
 If today's note is sparse, read the past 3 days. Extract:

@@ -28,7 +28,7 @@ Read whatever comes back that looks like structured notes about work, companies,
 
 ### Daily Notes (Past 30 Days)
 ```bash
-obsidian read path="2 - Areas/Daily Ops/YYYY-MM-DD.md"  # for recent days
+obsidian read path="2 - Areas/Daily Ops/YYYY/YYYY-MM-DD.md"  # for recent days
 ```
 
 Extract:

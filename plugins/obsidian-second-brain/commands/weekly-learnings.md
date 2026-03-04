@@ -27,7 +27,7 @@ Extract:
 
 ```bash
 # Read each day of the past 7 days
-obsidian read path="2 - Areas/Daily Ops/YYYY-MM-DD.md"
+obsidian read path="2 - Areas/Daily Ops/YYYY/YYYY-MM-DD.md"
 ```
 
 Extract:

@@ -16,7 +16,7 @@ Read the past 14 days of daily notes:
 
 ```bash
 # Read each day individually
-obsidian read path="2 - Areas/Daily Ops/YYYY-MM-DD.md"  # for each of the past 14 days
+obsidian read path="2 - Areas/Daily Ops/YYYY/YYYY-MM-DD.md"  # for each of the past 14 days
 ```
 
 For each daily note, extract candidates for graduation.

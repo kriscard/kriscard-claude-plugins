@@ -13,8 +13,9 @@ Review today's daily note, extract what matters, file it properly, and set up to
 ## Step 1: Read Today's Daily Note
 
 ```bash
+YEAR=$(date +%Y)
 TODAY=$(date +%Y-%m-%d)
-obsidian read path="2 - Areas/Daily Ops/$TODAY.md"
+obsidian read path="2 - Areas/Daily Ops/$YEAR/$TODAY.md"
 ```
 
 Parse everything captured: free-form writing, meeting notes, ideas, commitments, tasks mentioned, people referenced.

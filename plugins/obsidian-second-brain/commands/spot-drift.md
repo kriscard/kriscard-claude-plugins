@@ -28,7 +28,7 @@ Extract:
 
 ### Daily Note Intentions (past 30 days)
 ```bash
-obsidian read path="2 - Areas/Daily Ops/YYYY-MM-DD.md"  # for past 30 days
+obsidian read path="2 - Areas/Daily Ops/YYYY/YYYY-MM-DD.md"  # for past 30 days
 ```
 
 Look for:

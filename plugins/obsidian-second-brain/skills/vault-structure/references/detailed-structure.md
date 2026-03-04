@@ -12,6 +12,7 @@ obsidian-vault-kriscard/
 │   ├── Careers/                # Professional development
 │   │   └── 1on1/               # 1-on-1 meeting notes
 │   ├── Daily Ops/              # Daily notes
+│   │   ├── YYYY/              # Daily notes by year
 │   │   └── Weekly/             # Weekly planning by month
 │   │       ├── 1 - January 2026/
 │   │       └── 2 - February 2026/
@@ -165,7 +166,7 @@ Folder already handles these:
 
 ### Daily Notes
 ```
-2 - Areas/Daily Ops/YYYY-MM-DD.md
+2 - Areas/Daily Ops/YYYY/YYYY-MM-DD.md
 ```
 
 ### Weekly Planning

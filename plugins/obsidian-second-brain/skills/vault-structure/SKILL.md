@@ -31,7 +31,7 @@ The vault implements a modified PARA method with additional organizational folde
 ├── 1 - Projects/           # Active work with deadlines
 ├── 2 - Areas/              # Ongoing responsibilities
 │   ├── Daily Ops/          # Daily notes, weekly planning
-│   │   ├── [Daily notes]   # YYYY-MM-DD.md files
+│   │   ├── YYYY/           # Daily notes by year
 │   │   └── Weekly/         # Weekly planning by month
 │   ├── Goals/              # OKR tracking
 │   │   ├── Quarterly/      # Quarterly goals
@@ -214,7 +214,7 @@ For complete PARA guidance, reference **PARA Method Implementation.md**.
 
 ## Daily Notes Pattern
 
-**Location:** `2 - Areas/Daily Ops/`
+**Location:** `2 - Areas/Daily Ops/YYYY/`
 **Template:** `Daily Notes.md`
 **Format:** `YYYY-MM-DD.md`
 
@@ -240,6 +240,8 @@ For complete PARA guidance, reference **PARA Method Implementation.md**.
 │   │   └── 2 - February 2026.md
 │   └── Yearly/
 └── Daily Ops/
+    ├── YYYY/
+    │   └── YYYY-MM-DD.md
     └── Weekly/
         ├── 1 - January 2026/
         │   └── 2026-W01.md
@@ -344,7 +346,7 @@ vault_path: /Users/kriscard/obsidian-vault-kriscard
 ```
 
 **Key paths for commands:**
-- Daily notes: `2 - Areas/Daily Ops/`
+- Daily notes: `2 - Areas/Daily Ops/YYYY/`
 - Inbox: `0 - Inbox/`
 - Templates: `Templates/` (root)
 - TIL notes: `3 - Resources/TIL/`
@@ -357,7 +359,7 @@ vault_path: /Users/kriscard/obsidian-vault-kriscard
 ### Creating Notes
 
 **Daily note:**
-- Location: `2 - Areas/Daily Ops/`
+- Location: `2 - Areas/Daily Ops/YYYY/`
 - Template: `Daily Notes.md`
 - Name: `YYYY-MM-DD.md`
 - Tags: None needed (folder provides context)

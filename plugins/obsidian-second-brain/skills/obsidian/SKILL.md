@@ -87,7 +87,7 @@ Two ways to target files:
 
 ```bash
 # Read file content
-"obsidian" read path="2 - Areas/Daily Ops/2026-02-14.md"
+"obsidian" read path="2 - Areas/Daily Ops/2026/2026-02-14.md"
 "obsidian" read file="Recipe"  # wikilink resolution
 
 # List files in folder (json for parsing)
