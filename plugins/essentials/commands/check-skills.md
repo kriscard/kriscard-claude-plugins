@@ -1,12 +1,3 @@
----
-name: check-skills
-description: >-
-  Ensure matching skills are loaded before responding to any prompt. Make sure to
-  use this skill whenever the user says "/check-skills", "load the right skills",
-  "use skill-first mode", "make sure skills are loaded", or wants to guarantee
-  the best matching skills are active before Claude responds.
----
-
 # Skill-First Mode
 
 Before doing ANY work on the user's request, search for and load the most relevant skills.

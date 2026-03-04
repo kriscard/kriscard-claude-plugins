@@ -1,12 +1,3 @@
----
-name: check-communication
-description: >-
-  Check if a message communicates at staff-engineer level. Make sure to use this
-  skill whenever the user says "/check-communication", "check this message",
-  "how does this sound", "review my message", "improve this communication",
-  or pastes a message they want evaluated for staff-level communication quality.
----
-
 # Staff Communication Review
 
 Analyze the following message against staff-level communication frameworks. Be direct and concise — flag what's weak, acknowledge what's strong.
