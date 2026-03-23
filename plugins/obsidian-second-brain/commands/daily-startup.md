@@ -27,6 +27,9 @@ MONTH=$(date +%m)
 YEAR=$(date +%Y)
 WEEK=$(date +%G-W%V)      # ISO week
 QUARTER=$((($MONTH - 1) / 3 + 1))
+
+# Get today's daily note path (native command)
+obsidian daily:path
 ```
 
 Periods to check:
@@ -37,7 +40,6 @@ Periods to check:
 
 **1b. Batch check existence (PARALLEL):**
 
-**Using CLI:**
 ```bash
 obsidian files folder="2 - Areas/Daily Ops/$YEAR/" format=json
 obsidian files folder="2 - Areas/Daily Ops/Weekly/M - Month YYYY/" format=json  # if Monday
@@ -47,12 +49,12 @@ obsidian files folder="2 - Areas/Goals/Quarterly/" format=json  # if quarter sta
 
 **1c. Batch fetch templates (PARALLEL, only for missing notes):**
 
-**Using CLI:**
 ```bash
-obsidian read path="Templates/Daily Notes.md"
-obsidian read path="Templates/Weekly Planning.md"  # if needed
-obsidian read path="Templates/Monthly Goals.md"  # if needed
-obsidian read path="Templates/Quarterly Goals.md"  # if needed
+# Use template:read with resolve for variable substitution
+obsidian template:read name="Daily Notes" resolve title="$TODAY"
+obsidian template:read name="Weekly Planning" resolve title="$WEEK"  # if needed
+obsidian template:read name="Monthly Goals" resolve  # if needed
+obsidian template:read name="Quarterly Goals" resolve  # if needed
 ```
 
 **1d. Auto-create missing notes (no confirmation needed):**
@@ -60,7 +62,6 @@ obsidian read path="Templates/Quarterly Goals.md"  # if needed
 For each missing note, create using the template content:
 - Replace template variables: `{{date}}`, `{{title}}`, `{{week}}`, `{{month}}`, `{{quarter}}`, `{{year}}`
 
-**Using CLI:**
 ```bash
 obsidian create path="2 - Areas/Daily Ops/$YEAR/$TODAY.md" content="$PROCESSED_TEMPLATE" silent
 ```
@@ -82,35 +83,63 @@ Single summary: "Created: daily (2026-01-27), weekly (2026-W05)" or "All periodi
 
 **Note:** The quarterly folder has a typo ("Quaterly" instead of "Quarterly") - preserve this to match existing vault structure.
 
-### Step 2: Gather Context (PARALLEL)
+### Step 2: Check Yesterday's Carry-Forward
 
-**Using CLI:**
+**CRITICAL: Always check yesterday's carry-forward before setting today's priorities.**
+
 ```bash
+# Read yesterday's daily note for carry-forward items
+YESTERDAY=$(date -v-1d +%Y-%m-%d)
+obsidian read path="2 - Areas/Daily Ops/$YEAR/$YESTERDAY.md"
+```
+
+Parse the "Carry Forward → Tomorrow" section. If items exist, prepend them to today's note:
+
+```bash
+obsidian daily:prepend content="**Carry forward from yesterday:**\n- [ ] Item 1\n- [ ] Item 2"
+```
+
+### Step 3: Gather Context (PARALLEL)
+
+```bash
+# Inbox and project status
 obsidian files folder="0 - Inbox/" format=json
-obsidian files folder="1 - Projects/" format=json
+obsidian base:query path="MOCs/Active Projects.base" format=json
+
+# Today's open tasks (from daily note and projects)
+obsidian tasks todo daily
+
+# Open tasks across active projects
+obsidian tasks todo path="1 - Projects/" total
+
+# Current weekly plan context
+obsidian read path="2 - Areas/Daily Ops/$YEAR/$WEEK.md"
 ```
 
 **Report combined:**
 - "Inbox: X notes" (if X > 0, mention `/process-inbox`)
 - "Active projects: [list top 5]"
+- "Open tasks today: N"
+- "Carry-forward items: [list if any]"
 
-### Step 3: Interactive Focus Setting
+### Step 4: Interactive Focus Setting
 
 Now engage the user (this is the interactive part):
 
 **Use AskUserQuestion** with multiSelect for project focus:
 ```
 Question: "Which projects are you focusing on today?"
-Options: [top 3-4 active projects from Step 2]
+Options: [top 3-4 active projects from Step 3]
 multiSelect: true
 ```
 
-### Step 4: Set Priorities
+### Step 5: Set Priorities
 
 **Use AskUserQuestion:**
 ```
 Question: "Top priority for today?"
 Options:
+- "[Carry-forward item 1]" (if any)
 - "[Project 1 related task]"
 - "[Project 2 related task]"
 - "Something else (I'll type it)"
@@ -118,14 +147,21 @@ Options:
 
 Or simply ask: "What are your top 3 priorities?" and let them type.
 
-### Step 5: Update Daily Note & Summarize
+### Step 6: Update Daily Note & Summarize
 
-1. Add focus projects and priorities to daily note
+1. Update today's daily note sections in-place (never append new sections at the bottom):
+
+```bash
+# Use daily:append only for adding to existing sections
+obsidian daily:append content="..." silent
+```
+
 2. Provide final summary:
 
 ```
 Notes: daily, weekly (if created)
 Inbox: X notes
+Carry-forward: [items from yesterday]
 Focus: [selected projects]
 Priorities: [listed]
 ```
@@ -141,13 +177,14 @@ Vault path: `/Users/kriscard/obsidian-vault-kriscard`
 3. **Auto-create notes**: Don't ask permission for each periodic note - just create missing ones
 4. **Single interactive phase**: All user questions come AFTER notes are created
 5. **Minimize round-trips**: Prefer fewer CLI calls with more data over many small calls
+6. **Use native daily commands**: `daily:read`, `daily:append`, `daily:prepend`, `daily:path` instead of manual path construction
 
 ## Template Handling (CRITICAL)
 
 **ALWAYS use templates when creating notes:**
 
-1. Fetch template content from `Templates/[Type] Notes.md`
-2. Replace variables in template:
+1. Fetch template content: `obsidian template:read name="Daily Notes" resolve title="$TODAY"`
+2. If resolve doesn't substitute all variables, replace manually:
    - `{{date}}` -> `2026-01-27`
    - `{{title}}` -> Note title
    - `{{week}}` -> `W05`

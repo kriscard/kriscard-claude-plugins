@@ -264,6 +264,28 @@ For complete PARA guidance, reference **PARA Method Implementation.md**.
 - Reference OKRs in daily notes when working on related tasks
 - Track progress through note links and checkboxes
 
+## Bases (Queryable Dashboards)
+
+The vault uses Obsidian Bases (`.base` files) as queryable, database-like views of notes.
+
+| Base | Path | Purpose |
+|------|------|---------|
+| Daily Notes | `2 - Areas/Daily Ops/Daily Notes.base` | Daily note dashboard |
+| Weekly Planning | `2 - Areas/Daily Ops/Weekly Planning.base` | Weekly planning view |
+| OKR Dashboard | `2 - Areas/Goals/OKR Dashboard.base` | OKR tracking |
+| Books | `3 - Resources/Books/0 - Books.base` | Reading list |
+| TIL Index | `3 - Resources/TIL/TIL Index.base` | TIL index |
+| Active Projects | `MOCs/Active Projects.base` | Project overview |
+
+**CLI commands:**
+```bash
+# List all bases in the vault
+obsidian bases
+
+# Query a specific base
+obsidian base:query path="2 - Areas/Goals/OKR Dashboard.base" format=json
+```
+
 ## Maps of Content (MOCs)
 
 **Location:** `MOCs/`

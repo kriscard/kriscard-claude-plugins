@@ -9,9 +9,7 @@ Use Obsidian CLI commands directly via Bash. If a CLI command fails, tell the us
 ## Step 1: Read Today's Daily Note
 
 ```bash
-YEAR=$(date +%Y)
-TODAY=$(date +%Y-%m-%d)
-obsidian read path="2 - Areas/Daily Ops/$YEAR/$TODAY.md"
+obsidian daily:read
 ```
 
 Parse everything captured: free-form writing, meeting notes, ideas, commitments, tasks mentioned, people referenced.
@@ -22,9 +20,12 @@ After reading today's note, run these queries:
 
 ```bash
 # What themes are most active right now?
-obsidian search query="<theme 1 from today>" format=json
-obsidian search query="<theme 2 from today>" format=json
-obsidian search query="<theme 3 from today>" format=json
+obsidian search:context query="<theme 1 from today>" limit=10
+obsidian search:context query="<theme 2 from today>" limit=10
+obsidian search:context query="<theme 3 from today>" limit=10
+
+# Trace connections to today's note
+obsidian backlinks file="<today's note>"
 ```
 
 Surface findings as: "Today you wrote about X. This connects to [[note]] from [date] where you were thinking about Y. Worth revisiting?"
@@ -53,6 +54,12 @@ Flag recurring themes: "This is the third time [topic] has come up in the past t
 - Decisions pending
 - Uncertainties to resolve
 
+### Open Tasks Check
+```bash
+obsidian tasks todo daily
+```
+Cross-reference extracted action items against existing tasks — flag any that are missing or incomplete.
+
 ## Step 4: Suggest Filing Locations
 
 For each extracted item, recommend where it should live in PARA:
@@ -65,7 +72,12 @@ For each extracted item, recommend where it should live in PARA:
 
 ## Step 5: Suggest Backlinks
 
-Identify terms in today's note that should link to existing notes:
+```bash
+# Check existing outgoing links before suggesting new ones
+obsidian links file="<today's note>"
+```
+
+Identify terms in today's note that should link to existing notes (skip links that already exist):
 - People mentioned -> link to their note if exists
 - Projects mentioned -> link to project notes in `1 - Projects/`
 - Concepts mentioned -> link to relevant notes in `3 - Resources/`
@@ -79,6 +91,11 @@ Based on today's note:
 - Unfinished priorities
 - Commitments due soon
 - Momentum to maintain
+
+Write carry-forward items to today's note:
+```bash
+obsidian daily:append content="## Carry Forward\n- [item 1]\n- [item 2]"
+```
 
 ### Quick Wrap Answers
 If the Quick Wrap section wasn't filled in today's daily note, draft answers:

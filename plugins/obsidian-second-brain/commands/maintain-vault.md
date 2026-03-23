@@ -9,10 +9,10 @@ Use Obsidian CLI commands directly via Bash. If a CLI command fails, tell the us
 ## Checks to Run
 
 ### 1. Broken Links
-Find `[[wiki links]]` pointing to non-existent notes. For each: show link target, all referencing notes, and suggest fixes.
+Find `[[wiki links]]` pointing to non-existent notes. Use `obsidian unresolved verbose counts` to get all broken links with referencing notes. For each: show link target, all referencing notes, and suggest fixes.
 
 ### 2. Orphaned Notes
-Notes with zero incoming links (excluding Templates/, Archives/, daily notes < 7 days old). Suggest linking opportunities or archiving.
+Notes with zero incoming links (excluding Templates/, Archives/, daily notes < 7 days old). Use `obsidian orphans` to find them. Suggest linking opportunities or archiving.
 
 ### 3. 2-Link Rule Violations
 Notes with fewer than 2 outgoing links (excluding Templates/, Archives/, Daily Ops/). Suggest connections.
@@ -35,6 +35,15 @@ Check against Tag Taxonomy (`3 - Resources/Obsidian org/Tag Taxonomy.md`):
 - No redundant folder-type tags (project, area, reference, daily, moc)
 - TIL notes use `til/` prefix
 - Only valid taxonomy tags
+
+### 9. Vault Statistics
+Gather overall vault health numbers using:
+- `obsidian vault info=files` — total file counts
+- `obsidian tasks todo total` — outstanding tasks across vault
+- `obsidian tasks todo path="1 - Projects/" total` — project-specific task counts
+- `obsidian orphans total` — orphaned note count
+- `obsidian deadends total` — deadend note count
+- `obsidian unresolved total` — unresolved link count
 
 ## Summary Report
 
@@ -73,8 +82,17 @@ Priority fixes:
 ## CLI Commands
 
 ```bash
-obsidian search query="[[" format=json
+obsidian unresolved verbose counts
+obsidian unresolved total
+obsidian orphans total
+obsidian orphans
+obsidian deadends total
+obsidian deadends
+obsidian tags counts sort=count
+obsidian tasks todo total
+obsidian tasks todo path="1 - Projects/" total
 obsidian read path="3 - Resources/Obsidian org/Tag Taxonomy.md"
 obsidian files folder="3 - Resources/Coding/" format=json
 obsidian files format=json
+obsidian vault info=files
 ```

@@ -13,6 +13,12 @@ Use Obsidian CLI commands directly via Bash. If a CLI command fails, tell the us
 obsidian files folder="2 - Areas/Goals/Quarterly/" format=json
 obsidian files folder="2 - Areas/Goals/Monthly/" format=json
 # Read the most recent quarterly and monthly goals
+
+# Query OKR dashboard for structured progress data
+obsidian base:query path="2 - Areas/Goals/OKR Dashboard.base" format=json
+
+# Count open goal tasks
+obsidian tasks todo path="2 - Areas/Goals/" total
 ```
 
 Extract:
@@ -24,7 +30,13 @@ Extract:
 
 ### Daily Note Intentions (past 30 days)
 ```bash
-obsidian read path="2 - Areas/Daily Ops/YYYY/YYYY-MM-DD.md"  # for past 30 days
+# Use daily:path to get today's path, then read backwards
+obsidian daily:path
+# Read each daily note for the past 30 days
+obsidian read path="2 - Areas/Daily Ops/YYYY/YYYY-MM-DD.md"
+
+# Pull energy/workout scores from frontmatter efficiently
+obsidian property:read path="2 - Areas/Daily Ops/YYYY/YYYY-MM-DD.md" name="energy_sleep"
 ```
 
 Look for:
@@ -44,8 +56,12 @@ Across the past 30 days:
 
 ### Vault Activity
 ```bash
-obsidian search query="<stated priority A>" format=json
-obsidian search query="<stated priority B>" format=json
+# Use search:context for richer results (shows matching lines)
+obsidian search:context query="<stated priority A>" format=json limit=10
+obsidian search:context query="<stated priority B>" format=json limit=10
+
+# Trace connections — how many notes link to each priority?
+obsidian backlinks file="<priority project note>" counts
 ```
 
 For each stated priority, measure how much actual vault activity it generated.
@@ -53,6 +69,15 @@ For each stated priority, measure how much actual vault activity it generated.
 ### Active Projects Check
 ```bash
 obsidian files folder="1 - Projects/" format=json
+
+# Query the Active Projects base for structured view
+obsidian base:query path="MOCs/Active Projects.base" format=json
+
+# Check project status via properties
+obsidian property:read path="1 - Projects/<project>.md" name="status"
+
+# Count open tasks per project
+obsidian tasks todo path="1 - Projects/<project>/" total
 ```
 
 Which projects have recent activity? Which are stale?
@@ -92,6 +117,8 @@ Tasks or intentions that appear, get pushed, appear again, get pushed again. For
 A direct, compassionate summary of where the drift is. Not judgmental. Just clear.
 "Here's what you said mattered. Here's what you actually did. Here's where they don't match."
 
+**Important:** Daily notes capture what the user reflects on, not everything they do. When data is absent, ASK the user before assuming avoidance. Use AskUserQuestion to confirm gaps.
+
 ### Recommended Corrections
 For each significant drift:
 - **Drop it**: If it keeps getting avoided, maybe it's not actually a priority. Remove it.
@@ -106,3 +133,4 @@ For each significant drift:
 - The most valuable insight is often the simplest: "You said X matters. You haven't touched it in 3 weeks."
 - Don't confuse busyness with avoidance.
 - Distinguish between "dropped and should stay dropped" vs. "dropped and it's costing you."
+- **Absence of vault data ≠ absence of action.** Verify with the user before concluding something didn't happen.

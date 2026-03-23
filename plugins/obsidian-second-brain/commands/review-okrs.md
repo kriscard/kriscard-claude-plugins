@@ -34,7 +34,7 @@ Based on selection, proceed with appropriate workflow.
 
 1. **Check for existing note** in `2 - Areas/Goals/Quarterly/`
 2. **Create review note** from template
-3. **Review previous quarter** - summarize accomplishments, extract lessons
+3. **Review previous quarter** - summarize accomplishments, extract lessons. Use `obsidian tasks todo path="2 - Areas/Goals/" total` to get outstanding task counts and `obsidian property:set path="..." name="status" value="completed"` to mark finished objectives.
 4. **Set quarterly objectives** - 3-5 major objectives with key results
 5. **Break down into monthly goals** - suggest monthly milestones
 6. **Summary and next steps**
@@ -51,7 +51,7 @@ Based on selection, proceed with appropriate workflow.
 
 1. **Check for existing note** in `2 - Areas/Goals/Monthly/`
 2. **Create monthly note** from template
-3. **Review quarterly progress** - assess each objective (on track / behind / ahead)
+3. **Review quarterly progress** - assess each objective (on track / behind / ahead). Use `obsidian base:query path="2 - Areas/Goals/OKR Dashboard.base" format=json` to pull current OKR status.
 4. **Set monthly priorities** - link to quarterly objectives
 5. **Adjust if needed** - suggest corrections if behind
 6. **Link to areas and projects**
@@ -70,7 +70,7 @@ Based on selection, proceed with appropriate workflow.
 2. **Create weekly note** from template
 3. **Review last week** - what got done, what didn't
 4. **Check monthly goals** - which need attention this week
-5. **Review active projects** from `1 - Projects/`
+5. **Review active projects** - use `obsidian base:query path="MOCs/Active Projects.base" format=json` and `obsidian tasks todo path="1 - Projects/" total` to get project task counts
 6. **Set weekly priorities** - top 3-5 with success criteria
 7. **Process inbox** (optional) - suggest `/process-inbox`
 8. **Plan daily focus** - distribute tasks across days
@@ -81,6 +81,12 @@ Based on selection, proceed with appropriate workflow.
 
 Use **okr-tracker agent** to search for OKR mentions across vault and generate progress dashboards.
 
+For direct progress checks:
+- `obsidian base:query path="2 - Areas/Goals/OKR Dashboard.base" format=json` — pull current OKR data
+- `obsidian tasks todo path="2 - Areas/Goals/" total` — count outstanding goal tasks
+- `obsidian property:set path="..." name="progress" value="..."` — update progress on objectives
+- `obsidian task done path="..." line=N` — mark completed key results
+
 ## CLI Commands
 
 ```bash
@@ -90,4 +96,9 @@ obsidian create path="2 - Areas/Goals/Quarterly/Quaterly Goals - Q1 2026.md" con
 obsidian search query="Q1 2026" format=json
 obsidian files folder="2 - Areas/Goals/Quarterly/" format=json
 obsidian files folder="1 - Projects/" format=json
+obsidian base:query path="2 - Areas/Goals/OKR Dashboard.base" format=json
+obsidian base:query path="MOCs/Active Projects.base" format=json
+obsidian tasks todo path="2 - Areas/Goals/" total
+obsidian property:set path="..." name="status" value="..."
+obsidian task done path="..." line=N
 ```

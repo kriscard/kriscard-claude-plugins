@@ -9,7 +9,7 @@ Use Obsidian CLI commands directly via Bash. If a CLI command fails, tell the us
 ## Step 1: Read Previous Weekly Learnings (Continuity)
 
 ```bash
-obsidian search query="Weekly Learnings" format=json
+obsidian search:context query="Weekly Learnings" limit=10
 # Read the most recent one found
 ```
 
@@ -22,7 +22,10 @@ Extract:
 ## Step 2: Read Daily Notes (Past 7 Days)
 
 ```bash
-# Read each day of the past 7 days
+# Read today's daily note
+obsidian daily:read
+
+# Read each of the past 6 days using manual paths
 obsidian read path="2 - Areas/Daily Ops/YYYY/YYYY-MM-DD.md"
 ```
 
@@ -42,6 +45,8 @@ Read OKRs and active project context:
 obsidian files folder="1 - Projects/" format=json
 obsidian read path="2 - Areas/Goals/Monthly/[current month].md"
 obsidian read path="2 - Areas/Daily Ops/Weekly/[current month folder]/[current week].md"
+obsidian base:query path="MOCs/Active Projects.base" format=json
+obsidian tasks todo daily
 ```
 
 Use these to understand which events connect to bigger strategic questions.
@@ -50,13 +55,17 @@ Use these to understand which events connect to bigger strategic questions.
 
 ```bash
 # For recurring themes from daily notes
-obsidian search query="<recurring theme>" format=json
+obsidian search:context query="<recurring theme>" limit=10
+
+# Trace vault connections for key notes
+obsidian backlinks file="<note>"
 ```
 
 Look for:
 - Ideas that appeared on multiple days (evolving thinking worth highlighting)
 - Themes from daily notes that connect to OKR open questions
 - Notes from previous weeks that this week builds on or contradicts
+- Vault connections revealed by backlinks that surface unexpected relationships
 
 ## Step 5: Synthesize — Output to Terminal
 
