@@ -295,11 +295,6 @@ obsidian files folder="1 - Projects/" format=json
 obsidian properties path="note.md"
 ```
 
-**Obsidian MCP (fallback - ask user first):**
-- `obsidian_get_file_contents` - Read Tag Taxonomy and note tags
-- `obsidian_simple_search` - Find notes by tag
-- `obsidian_list_files_in_dir` - Check notes in folders
-
 **Read tool:**
 - Read Tag Taxonomy document
 - Read note content for context

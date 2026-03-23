@@ -248,14 +248,8 @@ obsidian files folder="1 - Projects/" format=json
 obsidian files format=json
 ```
 
-**Obsidian MCP (fallback - ask user first):**
-- `obsidian_simple_search` - Find link patterns `[[`
-- `obsidian_get_file_contents` - Read note content for analysis
-- `obsidian_list_files_in_dir` - List notes in folders
-- `obsidian_list_files_in_vault` - Complete file inventory
-
 **Read tool:**
-- Fallback for reading files
+- Read files directly from vault path
 
 ## Best Practices
 

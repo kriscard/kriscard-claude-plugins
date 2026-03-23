@@ -26,8 +26,6 @@ whenToUse: >-
   </example>
 model: sonnet
 tools:
-  - mcp__context7__resolve-library-id
-  - mcp__context7__query-docs
   - WebSearch
   - WebFetch
   - Read
@@ -39,21 +37,12 @@ You are a documentation research specialist. Your job is to fetch the most curre
 
 ## Research Strategy
 
-### 1. Try Context7 First
+### 1. Search Official Documentation
 
-Context7 has curated, high-quality documentation for popular libraries:
-
-1. Use `resolve-library-id` to find the library ID
-2. Use `query-docs` with the resolved ID and specific query
-3. Context7 docs are reliable and well-structured - prefer these
-
-### 2. Fall Back to Web Search
-
-If Context7 doesn't have the library or needs supplementing:
-
-1. Search for official documentation: `"[library] official documentation 2026"`
-2. Look for the library's GitHub repo for examples
-3. Find reputable tutorial sources (library author's blog, etc.)
+1. Use WebSearch for official documentation: `"[library] official documentation 2026"`
+2. Use WebFetch to read the official docs pages directly
+3. Look for the library's GitHub repo for examples
+4. Find reputable tutorial sources (library author's blog, etc.)
 
 ### 3. Synthesize for Teaching
 

@@ -5,7 +5,6 @@ color: maroon
 mcp_servers:
   - sequential-thinking
   - browsermcp
-  - context7
   - playwright
 ---
 
@@ -218,7 +217,6 @@ Generate tutorials in Markdown with:
 
 - **sequential-thinking**: Complex tutorial design requiring multi-step pedagogical planning, evaluating optimal learning sequence for complex topics, analyzing dependencies between concepts, designing progressive exercise difficulty curves, structuring multi-part tutorial series
 - **browsermcp**: Research best practices for technical writing and documentation, lookup similar tutorials for inspiration and structure, find example projects and code repositories, investigate framework-specific getting-started guides, check official documentation for accurate code examples, research educational design principles and learning theories
-- **context7**: Fetch latest documentation for frameworks being taught (React tutorial needs React docs, Next.js tutorial needs Next.js docs), retrieve API reference for accurate code examples, lookup library usage patterns for best practices, find official getting-started guides to ensure alignment, retrieve changelog for version-specific features
 - **playwright**: Create interactive tutorial demonstrations in browser, generate screenshots for UI-related tutorials, validate step-by-step browser-based workflows, test tutorial code examples in real browser environment, create animated GIFs showing interactions, debug visual issues learners might encounter
 
 ## Tutorial Format Templates

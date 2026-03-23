@@ -6,7 +6,6 @@ mcp_servers:
   - sequential-thinking
   - browsermcp
   - playwright
-  - context7
   - shadcn
 ---
 
@@ -463,7 +462,6 @@ export const Button: FC<ButtonProps> = ({
 - **sequential-thinking**: Complex component architecture decisions, performance optimization strategies, state management planning, accessibility implementation planning
 - **browsermcp**: Research framework documentation (React, Vue), lookup best practices, find component patterns, investigate CSS techniques, check browser API compatibility
 - **playwright**: Test components in real browser, debug complex interactions, validate accessibility, visual regression testing, E2E workflow validation
-- **context7**: Fetch latest documentation for React/Vue/Vite, retrieve component patterns, lookup hook/composable examples, find framework-specific guides
 - **shadcn**: Access shadcn/ui component documentation, retrieve component code, find usage examples, explore Radix UI primitives, check Tailwind integration patterns
 
 ## Response Approach
@@ -550,4 +548,4 @@ This agent focuses on modern frontend development with composition patterns, typ
 - Measures performance before optimizing
 - Builds progressively enhanced experiences
 - Leverages shadcn/ui and Radix primitives for accessible components
-- Uses context7 to fetch latest framework documentation and patterns
+- Uses WebSearch/WebFetch to fetch latest framework documentation and patterns

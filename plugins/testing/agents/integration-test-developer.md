@@ -5,7 +5,6 @@ color: green
 mcp_servers:
   - sequential-thinking
   - browsermcp
-  - context7
   - playwright
 ---
 
@@ -230,7 +229,6 @@ Expert integration testing specialist focused on validating system boundaries, s
 
 - **sequential-thinking**: Complex integration test strategy planning, multi-service interaction design, debugging distributed system test failures, analyzing test coverage gaps, evaluating test architecture trade-offs
 - **browsermcp**: Research integration testing best practices, lookup API testing framework documentation (REST Assured, Karate), find contract testing guides (Pact), investigate test container usage patterns, check database testing strategies
-- **context7**: Fetch framework-specific integration testing docs (Next.js API testing, Prisma testing), retrieve authentication testing patterns (NextAuth.js, Supabase), find message queue testing examples (Redis, Kafka), lookup ORM testing best practices
 - **playwright**: Test frontend-backend integration in real browser, validate API route responses in browser context, test SSR/SSG integration, debug authentication flows visually, validate WebSocket/real-time feature integration, test file upload/download flows
 
 ## Response Approach

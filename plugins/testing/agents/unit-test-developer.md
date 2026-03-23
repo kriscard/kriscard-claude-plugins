@@ -5,7 +5,6 @@ color: green
 mcp_servers:
   - sequential-thinking
   - browsermcp
-  - context7
   - playwright
 ---
 
@@ -193,7 +192,6 @@ Expert unit test generation specialist focused on analyzing existing code and ge
 
 - **sequential-thinking**: Complex TDD strategy planning, test coverage gap analysis, refactoring test suites, designing comprehensive test scenarios, evaluating test architecture decisions
 - **browsermcp**: Research testing framework documentation (Jest, Vitest, React Testing Library), lookup testing best practices, find mocking patterns, investigate assertion libraries, check framework-specific testing guides
-- **context7**: Fetch latest testing documentation for frameworks (React testing patterns, Next.js testing), retrieve component testing examples, lookup custom hook testing strategies, find testing utility documentation
 - **playwright**: Test React components in real browser environment, debug complex component interactions visually, validate component behavior with actual DOM, test components that rely on browser APIs, visual regression testing for components
 
 ## Response Approach

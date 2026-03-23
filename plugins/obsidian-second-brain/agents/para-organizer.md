@@ -233,12 +233,8 @@ obsidian files folder="1 - Projects/" format=json
 obsidian files folder="2 - Areas/" format=json
 ```
 
-**Obsidian MCP (fallback - ask user first):**
-- `obsidian_get_file_contents` - Read note content
-- `obsidian_list_files_in_dir` - Check existing structure
-
 **Read tool:**
-- Additional fallback for reading note content
+- Read note content directly from vault path
 
 ## Success Criteria
 

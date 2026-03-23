@@ -45,12 +45,6 @@ obsidian files folder="2 - Areas/Goals/Monthly/" format=json  # if 1st
 obsidian files folder="2 - Areas/Goals/Quarterly/" format=json  # if quarter start
 ```
 
-**Using MCP (if CLI unavailable):**
-- `obsidian_list_files_in_dir` for `2 - Areas/Daily Ops/$YEAR/`
-- `obsidian_list_files_in_dir` for `2 - Areas/Daily Ops/Weekly/M - Month YYYY/` (if Monday)
-- `obsidian_list_files_in_dir` for `2 - Areas/Goals/Monthly/` (if 1st)
-- `obsidian_list_files_in_dir` for `2 - Areas/Goals/Quarterly/` (if quarter start)
-
 **1c. Batch fetch templates (PARALLEL, only for missing notes):**
 
 **Using CLI:**
@@ -60,9 +54,6 @@ obsidian read path="Templates/Weekly Planning.md"  # if needed
 obsidian read path="Templates/Monthly Goals.md"  # if needed
 obsidian read path="Templates/Quarterly Goals.md"  # if needed
 ```
-
-**Using MCP (if CLI unavailable):**
-- `obsidian_get_file_contents` for each template
 
 **1d. Auto-create missing notes (no confirmation needed):**
 
@@ -74,9 +65,7 @@ For each missing note, create using the template content:
 obsidian create path="2 - Areas/Daily Ops/$YEAR/$TODAY.md" content="$PROCESSED_TEMPLATE" silent
 ```
 
-**Using MCP (if CLI unavailable):**
-- Use `obsidian_append_content` to create each note
-- **CRITICAL**: Always use the full template content - never create empty or partial notes
+**CRITICAL**: Always use the full template content - never create empty or partial notes.
 
 **1e. Report what was created:**
 
@@ -100,10 +89,6 @@ Single summary: "Created: daily (2026-01-27), weekly (2026-W05)" or "All periodi
 obsidian files folder="0 - Inbox/" format=json
 obsidian files folder="1 - Projects/" format=json
 ```
-
-**Using MCP (if CLI unavailable):**
-- `obsidian_list_files_in_dir` for `0 - Inbox/`
-- `obsidian_list_files_in_dir` for `1 - Projects/`
 
 **Report combined:**
 - "Inbox: X notes" (if X > 0, mention `/process-inbox`)
@@ -155,7 +140,7 @@ Vault path: `/Users/kriscard/obsidian-vault-kriscard`
 2. **Fetch templates in parallel**: If 3 notes missing, fetch 3 templates at once
 3. **Auto-create notes**: Don't ask permission for each periodic note - just create missing ones
 4. **Single interactive phase**: All user questions come AFTER notes are created
-5. **Minimize round-trips**: Prefer fewer MCP calls with more data over many small calls
+5. **Minimize round-trips**: Prefer fewer CLI calls with more data over many small calls
 
 ## Template Handling (CRITICAL)
 

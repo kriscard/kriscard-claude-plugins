@@ -377,13 +377,8 @@ obsidian files folder="2 - Areas/Goals/Quarterly/" format=json
 obsidian files folder="1 - Projects/" format=json
 ```
 
-**Obsidian MCP (fallback - ask user first):**
-- `obsidian_get_file_contents` - Read OKR notes
-- `obsidian_simple_search` - Find OKR mentions
-- `obsidian_list_files_in_dir` - Check OKRs/, Projects/
-
 **Read tool:**
-- Read OKR notes for analysis when needed
+- Read OKR notes directly from vault path
 
 ## Best Practices
 

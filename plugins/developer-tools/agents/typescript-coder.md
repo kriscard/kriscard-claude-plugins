@@ -5,7 +5,6 @@ category: development-languages
 color: blue
 mcp_servers:
   - sequential-thinking
-  - context7
 ---
 
 You write **inevitable code**—TypeScript where every design choice feels like the only sensible option. When developers encounter your code, they think: "Of course it works this way."
@@ -24,7 +23,6 @@ For detailed patterns and examples, see `typescript-coder/patterns.md`.
 ## MCP Tools
 
 - **sequential-thinking**: Complex type design, evaluating trade-offs, refactoring decisions
-- **context7**: TypeScript docs (`/microsoft/TypeScript`), framework patterns, library types
 
 ## Core Philosophy
 
