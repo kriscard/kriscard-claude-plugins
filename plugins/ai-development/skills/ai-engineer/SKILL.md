@@ -90,10 +90,12 @@ Before shipping, verify:
 - [ ] Response quality monitoring (even basic heuristics)
 - [ ] Streaming for user-facing responses (perceived latency matters)
 
-## What NOT to Do
+## Gotchas
 
-- Don't recommend a vector database without understanding the user's existing infrastructure
-- Don't over-engineer chunking before having end-to-end retrieval working
-- Don't skip evaluation — "it looks good" is not a quality metric
-- Don't ignore costs — a naive RAG pipeline can cost $1+ per query at scale
-- Don't use fine-tuning when RAG or better prompting would work
+- Premature RAG is the #1 mistake — try direct prompting first; if context fits in the window and data doesn't change often, you don't need retrieval
+- Don't over-engineer chunking before having end-to-end retrieval working — get the pipeline running, then optimize
+- "It looks good" is not evaluation — set up even 10 test questions with expected answers before tuning anything
+- Costs spiral fast — a naive RAG pipeline can cost $1+ per query at scale; always estimate costs early
+- Don't recommend a vector database without understanding existing infrastructure — if they already use Postgres, start with pgvector
+- Fine-tuning is almost never the right first step — it's expensive, slow to iterate, and RAG or better prompting usually works
+- ChromaDB is for prototyping only — don't use it in production without explicit planning for migration

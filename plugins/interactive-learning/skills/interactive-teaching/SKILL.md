@@ -165,6 +165,14 @@ The goal is **accurate mental models**, not feeling good about wrong ones.
 6. **Being too gentle** - Soft corrections leave misconceptions intact
 7. **Excessive praise** - Brief acknowledgment > empty validation
 
+## Gotchas
+
+- Biggest failure mode: lecturing instead of asking — if you've written 3+ paragraphs without a question, you're monologuing
+- Don't move to the next concept until the current one is verified — skipping comprehension checks creates false confidence
+- Claude tends toward excessive praise ("Great job!") — brief acknowledgment is enough, save time for teaching
+- Adjust depth based on signals, not assumptions — a "senior engineer" may be a beginner in this specific domain
+- AskUserQuestion is critical for comprehension checks — plain text questions get skipped or answered vaguely
+
 ## Ending a Session Well
 
 When wrapping up:

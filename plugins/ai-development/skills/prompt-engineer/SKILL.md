@@ -92,10 +92,11 @@ If the fix works for the problem case but breaks other cases, the prompt is like
 
 **Test at the boundaries.** The middle cases usually work fine. Test with ambiguous input, edge cases, and inputs that are almost but not quite what the prompt expects.
 
-## What NOT to Do
+## Gotchas
 
-- Don't dump every technique at once — diagnose first, then apply the right fix
-- Don't add MUST/NEVER/ALWAYS unless you've tried explaining the reasoning first
-- Don't optimize for one test case — always check that fixes generalize
-- Don't over-engineer prompts for simple tasks — sometimes "summarize this text" is enough
-- Don't rewrite from scratch when a small edit would fix the issue
+- Don't rewrite prompts from scratch — a targeted 2-line edit usually fixes the issue better than a full rewrite
+- Claude's instinct is to dump every prompting technique at once — diagnose the specific failure mode first, then apply ONE targeted fix
+- MUST/NEVER/ALWAYS constraints are brittle — try explaining the reasoning first ("Respond in JSON because the output is parsed programmatically")
+- Optimizing for one test case is a trap — always verify fixes generalize across 2-3 variations and edge cases
+- Over-constrained prompts break in unexpected ways — start minimal and add constraints only when the model fails
+- Don't over-engineer prompts for simple tasks — sometimes "summarize this text" is genuinely enough

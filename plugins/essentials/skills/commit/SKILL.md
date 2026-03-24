@@ -108,6 +108,14 @@ git push
 git push -u origin <branch>
 ```
 
+## Gotchas
+
+- Pre-commit hooks that modify files (formatters, linters) require re-staging — after hook failure, stage modified files and create a NEW commit (don't amend, as that modifies the previous commit)
+- `git add .` can accidentally stage unrelated files — prefer staging specific files by name
+- Claude tends to write commit bodies as bullet lists — use narrative prose (2-4 sentences) instead
+- When no upstream branch exists, `git push` fails silently — must use `git push -u origin <branch>`
+- Never amend commits already pushed to shared branches — this rewrites history others may have pulled
+
 ## Safety Rules
 
 - NEVER commit .env files or credentials

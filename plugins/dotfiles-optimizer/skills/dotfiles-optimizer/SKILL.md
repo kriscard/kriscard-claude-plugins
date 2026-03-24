@@ -12,11 +12,7 @@ version: 0.1.0
 
 # Dotfiles Optimizer - Main Orchestrator
 
-Coordinate comprehensive analysis and optimization of dotfiles with intelligent, context-aware recommendations.
-
-## Purpose
-
-This skill orchestrates the complete dotfiles optimization workflow: analyzing configurations, identifying issues, recommending improvements, and optionally applying fixes. It reads the dotfiles path from user settings in `.claude/dotfiles-optimizer.local.md` (defaults to `~/.dotfiles`). Supports modular zsh configuration, Neovim, Tmux, Git multi-config setup, and themed terminal environments.
+Coordinate comprehensive analysis and optimization of dotfiles with intelligent, context-aware recommendations. Reads the dotfiles path from `.claude/dotfiles-optimizer.local.md` (defaults to `~/.dotfiles`).
 
 ## Arguments
 
@@ -36,14 +32,7 @@ When invoked via `/optimize`, the following arguments are supported:
 - `--performance` - Focus analysis on performance optimization only
 - `--modern-tools` - Focus on modern tool recommendations only
 
-**Examples**:
-```bash
-/optimize                    # Full analysis of all components
-/optimize zsh                # Analyze shell configuration only
-/optimize --security         # Security audit across all components
-/optimize zsh --apply        # Analyze shell and auto-apply fixes
-/optimize --performance      # Performance optimization focus
-```
+**Examples**: `/optimize`, `/optimize zsh`, `/optimize --security`, `/optimize zsh --apply`, `/optimize --performance`
 
 ## When to Use
 
@@ -56,329 +45,76 @@ Activate this skill when users request:
 
 ## Workflow
 
-Follow this orchestration workflow when activated:
-
 ### 1. Determine Scope
 
-**Context-aware scoping**: Analyze what the user is currently working on or explicitly requested:
-
-- **If user is editing a specific config file** (e.g., `.zshrc`, `tmux.conf`):
-  - Focus analysis on that component and related files
-  - Example: Editing `.zshrc` → analyze shell configuration (zsh.d/, aliases, functions)
-
-- **If user requests specific component** (e.g., "optimize my zsh"):
-  - Scope to that component only
-  - Components: shell (zsh), editor (nvim), multiplexer (tmux), git, terminal (kitty/ghostty)
-
-- **If user requests general optimization**:
-  - Analyze entire dotfiles structure
-  - Prioritize critical issues first, then component-by-component
-
-**Configuration loading**: Check for user settings in `.claude/dotfiles-optimizer.local.md`:
-- Default path: `/Users/kriscard/.dotfiles`
-- User can override with `dotfiles_path` field in frontmatter
-- User can disable proactive warnings with `enable_proactive_warnings: false`
+Infer scope from context: if user is editing a specific config file, focus there. If they request a specific component, scope to it. Otherwise analyze everything. Load dotfiles path from `.claude/dotfiles-optimizer.local.md` (default: `/Users/kriscard/.dotfiles`). Check for `dotfiles_path` override and `enable_proactive_warnings` setting.
 
 ### 2. Invoke Analysis Agent
 
-Call the `dotfiles-analyzer` agent to perform deep analysis:
-
-```
-Invoke dotfiles-analyzer agent with:
-- Scope: [determined above]
-- Depth: deep (2-3 minute comprehensive analysis)
-- Focus areas: security, performance, modern tools, configuration patterns
-```
-
-The agent will:
-- Parse configuration files
-- Check for security issues (exposed credentials, insecure permissions)
-- Identify performance bottlenecks (startup time, lazy loading opportunities)
-- Suggest modern CLI tool alternatives
-- Validate configuration patterns against best practices
+Call `dotfiles-analyzer` agent with the determined scope for deep analysis (2-3 min). The agent parses configs, checks security issues, identifies performance bottlenecks, suggests modern CLI alternatives, and validates patterns against best practices.
 
 ### 3. Reference Best Practices
 
-Consult the `dotfiles-best-practices` skill for knowledge about:
-- Modern CLI tools and their benefits
-- Shell performance optimization techniques
-- Security patterns for credential management
-- Configuration organization strategies
-- Git workflow improvements
-
-Use this knowledge to enhance the analyzer's findings with context and rationale.
+Consult `dotfiles-best-practices` skill for modern CLI tools, shell performance techniques, security patterns, config organization strategies, and git workflow improvements. Use this to enhance the analyzer's findings with context and rationale.
 
 ### 4. Generate Prioritized Recommendations
 
-Organize findings into three priority levels:
+Organize findings into three tiers:
+- **Critical**: Security vulnerabilities, insecure permissions, breaking errors, data loss risks
+- **Recommended**: Performance optimizations, modern tool suggestions, better patterns, missing best practices
+- **Optional**: Aesthetic improvements, nice-to-have features, alternative approaches
 
-**🔴 Critical Issues**
-- Security vulnerabilities (exposed API keys, passwords, tokens)
-- Insecure file permissions (should be 600/700 for sensitive files)
-- Breaking configuration errors
-- Data loss risks
-
-**🟡 Recommended Improvements**
-- Performance optimizations (lazy loading, startup time)
-- Modern tool suggestions (eza instead of ls)
-- Better configuration patterns (modular organization)
-- Missing best practices (git signing, env templates)
-
-**🟢 Optional Enhancements**
-- Aesthetic improvements (themes, prompts)
-- Nice-to-have features (additional plugins)
-- Alternative approaches (different tools)
-- Advanced configurations
-
-**Output format**:
-```
-## Analysis Results for [Scope]
-
-🔴 Critical Issues (N)
-  - Issue 1 with location and remediation
-  - Issue 2 with location and remediation
-
-🟡 Recommended Improvements (N)
-  - Improvement 1 with rationale and benefit
-  - Improvement 2 with rationale and benefit
-
-🟢 Optional Enhancements (N)
-  - Enhancement 1 with description
-  - Enhancement 2 with description
-```
+Format output as: `## Analysis Results for [Scope]` with each tier listing count and items with location/remediation/rationale.
 
 ### 5. Offer to Apply Fixes
 
-After presenting recommendations:
-
-**For Critical Issues**:
-- Strongly recommend immediate fixes
-- Offer to apply automatically with user confirmation
-- Explain risks of not fixing
-
-**For Recommended Improvements**:
-- Ask which improvements user wants to apply
-- Can apply all, selected, or none
-- Provide implementation guidance
-
-**For Optional Enhancements**:
-- Present as "nice-to-haves"
-- User can request specific ones
-- Don't push for these
-
-**Application workflow**:
-```
-Ask: "Which fixes would you like to apply?"
-Options:
-- All critical issues (recommended)
-- All recommended improvements
-- Specific items (let me choose)
-- None (just wanted the analysis)
-```
-
-**If `--apply` flag was passed**:
-- Apply all critical issues automatically
-- Apply all recommended improvements automatically
-- Skip optional enhancements (user can request separately)
-- Show progress for each fix applied
-
-If user chooses to apply interactively:
-- Use Read tool to examine current configs
-- Use Edit tool to make precise changes
-- Explain each change as it's made
-- Validate changes don't break syntax
-
-**Backup strategy** (always, before modifying any file):
-```bash
-cp ~/.dotfiles/.zshrc ~/.dotfiles/.zshrc.backup.$(date +%Y%m%d-%H%M%S)
-```
-Create timestamped backups so changes are always reversible.
+Present options: all critical (recommended), all improvements, specific items, or none. For `--apply` flag: auto-apply critical + recommended, skip optional. When applying: use Read/Edit tools, explain each change, validate syntax. Always create timestamped backups before modifying files.
 
 ### 6. Integration with Existing Tools
 
-The user has an existing `dotfiles` CLI script at `/Users/kriscard/.dotfiles/dotfiles`. Complement this tool:
+The user's `dotfiles` CLI (`/Users/kriscard/.dotfiles/dotfiles`) handles init, sync, backup, and doctor. This plugin provides analysis, security scanning, best practice validation, and modern tool suggestions. Defer to their script for mechanical operations.
 
-**This plugin provides**:
-- Intelligent analysis and recommendations
-- Security scanning
-- Best practice validation
-- Modern tool suggestions
+## Gotchas
 
-**The dotfiles script provides**:
-- Installation automation (`dotfiles init`)
-- Health checks (`dotfiles doctor`)
-- Syncing (`dotfiles sync`)
-- Backup management (`dotfiles backup`)
-
-**Recommendation**: When user needs to run init, sync, or backup operations, suggest using their existing `dotfiles` script. Focus this plugin on analysis and optimization guidance.
-
-## Component-Specific Analysis
-
-### Shell (Zsh)
-
-Analyze the modular configuration in `zsh/zsh.d/`:
-- `00-env.zsh` - Environment variables (check for exposed credentials)
-- `10-options.zsh` - Shell options (validate settings)
-- `20-completions.zsh` - Completion system (check for performance)
-- `30-plugins.zsh` - Plugin loading (identify slow plugins, suggest lazy loading)
-- `40-lazy.zsh` - Lazy loading patterns (validate implementation)
-- `50-keybindings.zsh` - Key mappings (check for conflicts)
-- `60-aliases.zsh` - Aliases (suggest modern tool alternatives)
-- `70-functions.zsh` - Functions (optimize complex functions)
-- `80-integrations.zsh` - External integrations (validate configurations)
-- `99-local.zsh.example` - Local overrides (check for security)
-
-**Key checks**:
-- Startup time profiling (should be <500ms)
-- Plugin lazy loading opportunities
-- Modern aliases (eza, bat, fd, ripgrep, zoxide)
-- Secure environment variable handling
-
-### Editor (Neovim)
-
-Analyze `.config/nvim/`:
-- LSP configurations (validate server setups)
-- Plugin management (check for outdated or conflicting plugins)
-- Performance (startup time, lazy loading)
-- Keybindings (identify conflicts)
-
-### Multiplexer (Tmux)
-
-Analyze `.config/tmux/`:
-- Plugin configuration
-- Keybinding sanity
-- Performance settings
-- Integration with sesh session manager
-
-### Git
-
-Analyze git configuration files:
-- `.gitconfig` - Main configuration
-- `.gitconfig-personal` - Personal settings
-- `.gitconfig-work` - Work settings
-- Check for exposed credentials
-- Validate signing configuration
-- Suggest workflow improvements
-
-### Terminal (Kitty/Ghostty)
-
-Analyze `.config/kitty/` and `.config/ghostty/`:
-- Theme consistency (Catppuccin Macchiato)
-- Font configuration
-- Performance settings
-- Key mappings
-
-## Modern Tool Recommendations
-
-Reference these tool replacements (from user's existing setup):
-
-| Traditional | Modern Alternative | User Has | Benefit |
-|-------------|-------------------|----------|---------|
-| `ls` | `eza` | ✅ | Git integration, icons |
-| `cat` | `bat` | ✅ | Syntax highlighting |
-| `find` | `fd` | ✅ | Faster, simpler syntax |
-| `grep` | `ripgrep` | ✅ | Blazing fast search |
-| `cd` | `zoxide` | ✅ | Smart jumping |
-
-Validate these are properly aliased and configured. Suggest additional modern tools if relevant.
-
-## Security Validation
-
-Always check for:
-1. **Exposed credentials**: API keys, tokens, passwords in plain text
-2. **File permissions**: Sensitive files should be 600 (user read/write only)
-3. **History settings**: Ensure sensitive commands aren't logged
-4. **Git safety**: Validate `.gitignore` patterns for secrets
-5. **Environment files**: Check `.env` vs `.env.example` patterns
-
-## Performance Optimization
-
-Check for:
-1. **Shell startup time**: Profile and identify slow components
-2. **Lazy loading**: Defer loading of tools not used in every session
-3. **Completion caching**: Validate completion cache strategies
-4. **Plugin efficiency**: Identify slow or redundant plugins
+- Always create timestamped backups before modifying any file -- changes to shell config can break the terminal
+- The user has an existing `dotfiles` CLI script -- complement it, don't duplicate its functionality (init, sync, backup)
+- Default dotfiles path is `/Users/kriscard/.dotfiles` -- check `.claude/dotfiles-optimizer.local.md` for overrides
+- Security issues (exposed credentials) are ALWAYS critical priority -- never downgrade them
+- Don't suggest replacing tools the user already has configured -- check existing aliases first
 
 ## Output Best Practices
 
-**Be specific**:
-- Include file paths and line numbers
-- Show before/after examples
-- Explain why changes help
+- Include file paths and line numbers; show before/after examples
+- Provide exact commands or edits; link to docs when relevant
+- Explain rationale -- help user learn, not just fix
 
-**Be actionable**:
-- Provide exact commands or edits
-- Link to documentation when relevant
-- Offer to make changes
+## Reference Files
 
-**Be educational**:
-- Explain rationale for recommendations
-- Reference best practices
-- Help user learn, not just fix
+| File | Contents |
+|------|----------|
+| `references/component-analysis.md` | Per-component analysis details, modern tool table, security and performance checklists |
+| `references/analysis-patterns.md` | Credential detection regex, lazy loading templates, tool configs, common issue fixes |
 
-## Additional Resources
+## Related
 
-### Related Skills
-
-- **dotfiles-best-practices** - Detailed knowledge base for patterns and modern tools
-
-### Agent Invocation
-
-Use the `dotfiles-analyzer` agent for deep analysis:
-- Activated by this orchestrator
-- Can also trigger proactively on critical security issues
-- Provides detailed, file-by-file analysis
-
-### Commands
-
-Users can also invoke explicitly via commands:
-- `/optimize` - Full workflow (same as this skill)
-- `/audit` - Read-only analysis without offering fixes
+- **Skill**: `dotfiles-best-practices` -- knowledge base for patterns and modern tools
+- **Agent**: `dotfiles-analyzer` -- deep file-by-file analysis, activated by this orchestrator
+- **Commands**: `/optimize` (full workflow), `/audit` (read-only analysis)
 
 ## Example Session
 
 ```
 User: "Optimize my dotfiles"
 
-1. Determine scope: Entire dotfiles (no specific context)
-2. Invoke dotfiles-analyzer agent for comprehensive analysis
+1. Scope: Entire dotfiles (no specific context)
+2. Invoke dotfiles-analyzer for comprehensive analysis
 3. Reference dotfiles-best-practices for context
-4. Generate findings:
-
-   🔴 Critical Issues (2)
-     - API key in zsh.d/00-env.zsh line 45: GITHUB_TOKEN=ghp_xxx
-     - .gitconfig-work has permissions 644, should be 600
-
-   🟡 Recommended Improvements (5)
-     - Enable lazy loading for nvm (saves ~300ms startup)
-     - Use eza with git integration (already installed, needs alias)
-     - Modularize .zshrc further (move local config to 99-local.zsh)
-     - Add .env.example template for safe credential patterns
-     - Enable git commit signing for security
-
-   🟢 Optional Enhancements (3)
-     - Consider starship prompt for better performance
-     - Add bat theme matching Catppuccin setup
-     - Configure tmux plugin manager (tpm) for easier plugin management
-
-5. Ask: "Which fixes would you like to apply?"
-   User: "All critical and recommended"
-
-6. Apply fixes with explanations:
-   - Move GITHUB_TOKEN to .env (not committed)
-   - Update .gitconfig-work permissions to 600
-   - Add lazy loading wrapper for nvm
-   - Create eza alias with --git flag
-   - [Continue for each fix...]
-
+4. Findings:
+   Critical (2): API key in zsh.d/00-env.zsh:45, .gitconfig-work perms 644->600
+   Recommended (5): Lazy load nvm (-300ms), eza alias, modularize .zshrc,
+     .env.example template, git commit signing
+   Optional (3): starship prompt, bat Catppuccin theme, tpm for tmux
+5. User: "All critical and recommended"
+6. Apply each fix with backup, explanation, and syntax validation
 7. Verify changes and confirm completion
 ```
-
-## Notes
-
-- Always load dotfiles path from user settings or default to `/Users/kriscard/.dotfiles`
-- Respect existing `dotfiles` CLI script - complement, don't replace
-- Focus on intelligent analysis - let user's script handle mechanical operations
-- Prioritize security issues always
-- Be context-aware - don't over-analyze when user has specific request
-- Provide education along with fixes

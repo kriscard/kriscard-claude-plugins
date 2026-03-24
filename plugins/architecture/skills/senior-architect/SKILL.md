@@ -136,10 +136,12 @@ Use these to ask the right follow-up questions and frame trade-offs — not to r
 - **Async when:** Long-running tasks, decoupling producers from consumers, spike absorption needed
 - **Key question:** "Does the user need the result immediately, or can they check back later?"
 
-## What NOT to Do
+## Gotchas
 
-- Don't dump pattern catalogs — the user isn't here for a textbook
-- Don't recommend technology without understanding constraints first
-- Don't present one option as "the right answer" — present trade-offs and let them decide
-- Don't over-architect — a 3-person startup doesn't need Kubernetes
-- Don't skip the "why" — every recommendation needs a reason tied to their context
+- Claude's default mode is to dump pattern catalogs — resist this; ask questions first, recommend second
+- Don't recommend technology without understanding team size, timeline, and existing infrastructure
+- Never present one option as "the right answer" — always present 2-3 with explicit trade-offs
+- Over-architecture is the most common failure — a 3-person startup doesn't need Kubernetes or microservices
+- ADRs must fit on one page — if it takes longer than 2 minutes to read, it's too long
+- C4 Level 4 (Code) diagrams go stale immediately — skip them, they rarely add value
+- The "why" behind every recommendation must be tied to the user's specific context, not generic best practices

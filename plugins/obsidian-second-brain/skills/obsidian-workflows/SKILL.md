@@ -112,6 +112,15 @@ Refine notes just-in-time (when you revisit them, not when you capture):
 
 Apply layers only when you return to a note for a specific purpose. Don't process everything upfront.
 
+## Gotchas
+
+- Inbox zero is a target cadence, not a daily requirement — weekly processing is the realistic goal
+- Don't create MOCs prematurely — wait for 10+ related notes; premature MOCs become maintenance burden
+- Progressive Summarization is just-in-time, not upfront — only bold/highlight when you RETURN to a note for a purpose
+- The 2-Link Rule ("every note links to at least 2 existing notes") is easy to skip under time pressure — enforce it, orphaned notes are lost knowledge
+- Evergreen notes Layer 3 (Encounters) is the most valuable but most neglected — actively prompt to add real-world encounters when revisiting concept notes
+- Review cadences will drift — anchor them to existing habits (daily standup, weekly planning meeting)
+
 ## Integration with Plugin Commands
 
 This skill informs all plugin commands and agents:

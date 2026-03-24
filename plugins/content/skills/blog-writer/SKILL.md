@@ -101,3 +101,12 @@ Read `references/story-circle.md` and look for:
 - Over-explain basic concepts
 - Start with "In this post..." or "As we all know..."
 - Force humor or excessive emojis
+
+## Gotchas
+
+- Claude defaults to "In this post, we'll explore..." openings — always check the opening against voice guide
+- Tendency to over-explain basics to the audience — assume readers are experienced developers
+- Always load `references/voice-tone.md` before writing — without it, output sounds generic
+- Claude often produces uniform paragraph lengths — vary intentionally (short punchy + longer detailed)
+- SEO optimization should be subtle — don't keyword-stuff or write for search engines over humans
+- Code examples should be real and runnable, not pseudocode — readers will copy-paste them

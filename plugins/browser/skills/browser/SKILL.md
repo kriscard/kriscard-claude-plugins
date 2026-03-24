@@ -13,9 +13,7 @@ version: 0.1.0
 
 ## Overview
 
-The browser skill uses the `agent-browser` CLI — a native Rust binary for browser automation — to inspect, debug, and profile web pages. All operations run via the Bash tool calling `agent-browser` commands. No MCP server or Node.js required.
-
-Use this skill when working on frontend applications to inspect live pages, debug JavaScript errors, analyze performance bottlenecks, monitor network requests, capture visual state, compare pages, or record interactions.
+Uses the `agent-browser` CLI — a native Rust binary controlling Chrome via DevTools Protocol — to inspect, debug, and profile web pages. All operations run via Bash tool calls. No MCP server or Node.js required.
 
 ## When to Use This Skill
 
@@ -31,235 +29,15 @@ Activate this skill when:
 
 ## Core Concepts
 
-### agent-browser CLI
+**CLI basics** — Binary at `/opt/homebrew/bin/agent-browser`. Runs a persistent daemon; browser stays open between commands for multi-step workflows.
 
-The `agent-browser` binary (at `/opt/homebrew/bin/agent-browser`) controls Chrome via the Chrome DevTools Protocol. It runs a persistent daemon — the browser stays open between commands, enabling multi-step workflows.
+**Command chaining** — Use `&&` to chain: `agent-browser open "$URL" && agent-browser wait --load networkidle`. Browser also persists across separate Bash calls.
 
-All commands are executed via the Bash tool:
-```bash
-agent-browser <command> [args] [--flags]
-```
+**Structured output** — All commands support `--json` for structured JSON output.
 
-### Command Chaining
+**Element references** — `agent-browser snapshot` returns an a11y tree with refs like `@e1`, `@e2`. Use them in follow-up commands: `agent-browser click @e1`, `agent-browser fill @e2 "value"`.
 
-Chain commands with `&&` for multi-step workflows:
-```bash
-agent-browser open "http://localhost:3000" && agent-browser wait --load networkidle
-```
-
-The browser persists between separate Bash calls too — you can run commands sequentially:
-```bash
-# Call 1
-agent-browser open "http://localhost:3000" && agent-browser wait --load networkidle
-# Call 2
-agent-browser screenshot --full page.png
-# Call 3
-agent-browser errors
-```
-
-### Structured Output
-
-All commands support `--json` for structured JSON output:
-```bash
-agent-browser errors --json
-agent-browser network requests --type fetch,xhr --json
-agent-browser snapshot --json
-```
-
-### Element References
-
-`agent-browser snapshot` returns an accessibility tree with element references like `@e1`, `@e2`. Use these refs in subsequent commands:
-```bash
-agent-browser snapshot       # Shows @e1: button "Submit", @e2: textbox "Email", etc.
-agent-browser click @e1      # Click the Submit button
-agent-browser fill @e2 "user@example.com"  # Fill the Email field
-```
-
-### Annotated Screenshots
-
-`--annotate` overlays numbered labels on interactive elements — designed for AI:
-```bash
-agent-browser screenshot --full --annotate page.png
-# Shows [1] Submit button, [2] Email field, etc.
-```
-
-## Common Workflows
-
-### Page Inspection
-
-Full page inspection (screenshot + DOM + console + network):
-
-```bash
-# Navigate and wait for page load
-agent-browser open "$URL" && agent-browser wait --load networkidle
-
-# Visual capture
-agent-browser screenshot --full inspection.png
-
-# DOM structure
-agent-browser snapshot
-
-# Console errors
-agent-browser errors
-
-# API calls
-agent-browser network requests --type fetch,xhr
-```
-
-Use `/browser:inspect <url>` to run this automatically.
-
-### Console Debugging
-
-Investigating JavaScript errors:
-
-```bash
-agent-browser open "$URL" && agent-browser wait --load networkidle
-
-# Errors only (uncaught exceptions, console.error)
-agent-browser errors
-
-# All messages (log, warn, error, info)
-agent-browser console
-```
-
-Use `/browser:console <url>` for automated error checking.
-
-### Performance Analysis
-
-Measuring Core Web Vitals:
-
-```bash
-agent-browser open "$URL" && agent-browser wait --load networkidle
-
-# Extract metrics via JavaScript eval
-cat <<'EOF' | agent-browser eval --stdin
-const fcp = performance.getEntriesByType('paint')
-  .find(entry => entry.name === 'first-contentful-paint');
-fcp ? { fcp_ms: Math.round(fcp.startTime) } : null;
-EOF
-
-# Resource analysis
-agent-browser network requests --json
-
-# Optional: record a trace for flame chart analysis
-agent-browser trace start
-agent-browser reload && agent-browser wait --load networkidle
-agent-browser trace stop trace.json
-```
-
-Use `/browser:performance <url>` for automated Web Vitals extraction with recommendations.
-
-### Screenshot Capture
-
-```bash
-agent-browser open "$URL" && agent-browser wait --load networkidle
-
-# Full page
-agent-browser screenshot --full page.png
-
-# Annotated (with element labels)
-agent-browser screenshot --full --annotate annotated.png
-
-# Save as PDF
-agent-browser pdf page.pdf
-```
-
-Use `/browser:screenshot <url>` for quick captures.
-
-### Network Monitoring
-
-```bash
-agent-browser open "$URL" && agent-browser wait --load networkidle
-
-# API calls only
-agent-browser network requests --type fetch,xhr
-
-# Failed requests
-agent-browser network requests --status 4xx
-agent-browser network requests --status 5xx
-
-# Full request/response detail
-agent-browser network request <requestId>
-
-# HAR recording for waterfall analysis
-agent-browser network har start
-agent-browser reload && agent-browser wait --load networkidle
-agent-browser network har stop waterfall.har
-```
-
-### Page Comparison
-
-```bash
-# Compare two URLs
-agent-browser diff url "http://localhost:3000" "https://staging.example.com"
-
-# Snapshot diff (before/after on same page)
-agent-browser open "$URL" && agent-browser wait --load networkidle
-agent-browser screenshot --full baseline.png
-# ... make changes ...
-agent-browser reload && agent-browser wait --load networkidle
-agent-browser diff screenshot --baseline baseline.png
-agent-browser diff snapshot
-```
-
-Use `/browser:diff <url1> <url2>` for automated comparison.
-
-### Video Recording
-
-```bash
-agent-browser open "$URL" && agent-browser wait --load networkidle
-agent-browser record start recording.webm
-
-# Perform interactions...
-agent-browser click "#login-button"
-agent-browser fill "#email" "user@example.com"
-agent-browser wait 1000
-
-agent-browser record stop
-```
-
-Use `/browser:record <url>` for guided recording sessions.
-
-### Device Emulation
-
-```bash
-# Mobile
-agent-browser set device "iPhone 14"
-agent-browser open "$URL" && agent-browser wait --load networkidle
-agent-browser screenshot --full mobile.png
-
-# Tablet
-agent-browser set device "iPad Pro"
-agent-browser reload && agent-browser wait --load networkidle
-agent-browser screenshot --full tablet.png
-
-# Custom viewport
-agent-browser set viewport 1440 900
-agent-browser reload && agent-browser wait --load networkidle
-
-# Dark mode
-agent-browser set media dark
-agent-browser reload && agent-browser wait --load networkidle
-```
-
-### Form Interaction
-
-```bash
-# Get form structure
-agent-browser snapshot -i  # Interactive elements only
-
-# Fill using CSS selectors
-agent-browser fill "#email" "user@example.com"
-agent-browser fill "#password" "secret123"
-agent-browser click "#submit"
-
-# Or use semantic locators
-agent-browser find label "Email" fill "user@example.com"
-agent-browser find role button click --name "Submit"
-
-# Wait for navigation after submit
-agent-browser wait --url "/dashboard"
-```
+**Annotated screenshots** — `--annotate` overlays numbered labels on interactive elements. Designed for AI consumption, not human sharing.
 
 ## Commands
 
@@ -272,9 +50,7 @@ agent-browser wait --url "/dashboard"
 | `/browser:diff <url1> <url2>` | Visual and structural page comparison |
 | `/browser:record <url>` | Video recording of browser interactions |
 
-## Tips and Best Practices
-
-### Smart Waiting
+## Smart Waiting
 
 Prefer event-based waiting over arbitrary delays:
 
@@ -295,57 +71,12 @@ agent-browser wait "#main-content"
 agent-browser wait 3000
 ```
 
-### JavaScript Evaluation
+## Gotchas
 
-For simple expressions, use inline:
-```bash
-agent-browser eval "document.title"
-```
-
-For multi-line scripts, use heredoc with `--stdin`:
-```bash
-cat <<'EOF' | agent-browser eval --stdin
-const links = document.querySelectorAll('a');
-Array.from(links).map(l => ({ href: l.href, text: l.textContent.trim() }));
-EOF
-```
-
-Note: single quotes around `'EOF'` prevent shell variable expansion inside the JS.
-
-### Network Filtering
-
-```bash
-# API calls only (most common)
-agent-browser network requests --type fetch,xhr
-
-# Filter by URL pattern
-agent-browser network requests --filter "api"
-
-# Filter by HTTP method
-agent-browser network requests --method POST
-
-# Filter by status
-agent-browser network requests --status 4xx
-```
-
-### Session Management
-
-Use `--session` for isolated browser contexts:
-```bash
-agent-browser open "http://localhost:3000" --session testing
-agent-browser screenshot --full test.png --session testing
-```
-
-### Resetting State
-
-If the browser gets stuck or you need a fresh state:
-```bash
-agent-browser close
-```
-
-This kills the daemon. The next command will start a fresh browser.
-
-## Troubleshooting
+- `agent-browser` must be installed at `/opt/homebrew/bin/agent-browser`
+- First command after `agent-browser close` starts a fresh daemon — previous page state is lost
+- HAR recording must be started BEFORE navigation to capture all requests
+- `--annotate` screenshots are designed for AI consumption, not human sharing
 
 **Browser won't start:**
 - Ensure Chrome is installed
@@ -376,26 +107,9 @@ This kills the daemon. The next command will start a fresh browser.
 - Requests that completed before `open` won't be captured
 - Use HAR recording for comprehensive capture: `agent-browser network har start` before navigation
 
-## Additional Resources
+## Reference Files
 
-### Example Files
-
-Working examples in `examples/`:
-- **`cli-reference.md`** — Complete agent-browser command reference
-- **`inspection-workflow.md`** — Detailed inspection workflow patterns
-- **`performance-analysis.md`** — Performance analysis techniques
-
-### Related Commands
-
-- `/browser:inspect` — Full page inspection
-- `/browser:screenshot` — Screenshot capture
-- `/browser:console` — Console debugging
-- `/browser:performance` — Performance analysis
-- `/browser:diff` — Page comparison
-- `/browser:record` — Video recording
-
-### agent-browser Resources
-
-- [agent-browser GitHub](https://github.com/vercel-labs/agent-browser)
-- [Chrome DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/)
-- [Web Performance Metrics](https://web.dev/metrics/)
+| File | Contents |
+|------|----------|
+| [`references/cli-reference.md`](references/cli-reference.md) | Full command syntax: element refs, annotated screenshots, JS eval, network filtering, sessions, device emulation, form interaction |
+| [`references/workflows.md`](references/workflows.md) | Step-by-step workflows: page inspection, console debugging, performance analysis, screenshots, network monitoring, page comparison, video recording, device emulation, form interaction |

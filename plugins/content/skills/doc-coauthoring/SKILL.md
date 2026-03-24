@@ -95,3 +95,11 @@ Constraints: [timeline, format, politics]
 4. Draft → user feedback → surgical edits
 5. Repeat until satisfied
 ```
+
+## Gotchas
+
+- Don't skip Stage 1 (Context Gathering) — jumping straight to writing produces documents that miss critical context
+- Info dumping without curating creates bloated docs — always brainstorm THEN let the user curate before drafting
+- After 3 iterations with no changes, ask what can be REMOVED — docs grow indefinitely without pruning pressure
+- Surgical edits means changing specific sentences, not reprinting the whole section — saves tokens and shows the user exactly what changed
+- Reader Testing (Stage 3) is easy to skip but catches the biggest blind spots — the author always thinks the doc is clearer than it is

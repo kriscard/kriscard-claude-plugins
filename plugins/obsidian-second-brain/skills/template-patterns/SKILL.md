@@ -86,6 +86,14 @@ Purpose: Makes notes living documents that grow with experience.
 
 **Manually:** Open template file, copy content, paste into new note.
 
+## Gotchas
+
+- Wrong template selection wastes time — use the decision tree, don't guess based on note title alone
+- The Related section is required for concept notes — skipping it creates orphaned knowledge that's hard to find later
+- Encounters section only belongs on evergreen/learning notes, not on meeting notes or daily notes
+- Templates are in `Templates/` at vault root — don't confuse with the PARA folders
+- When creating from template via CLI, use `template=` parameter — don't manually copy-paste template content
+
 ## Integration with Plugin Commands
 
 - `/daily-startup` → auto-applies `Daily Notes.md`

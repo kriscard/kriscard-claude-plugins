@@ -72,6 +72,13 @@ After showing slides:
 - Verify story flow makes sense
 - Adjust based on feedback
 
+## Gotchas
+
+- Story Circle steps 3-4 (Exploration/Experimentation) are where most talks lose structure — ensure the "struggle" before the solution is clear
+- iA Presenter syntax requires tabs before visible content — content without tabs becomes speaker notes only
+- Code on slides must be readable on bad projectors — break across multiple slides, use large font
+- Don't skip the iterate step — first draft outlines always have pacing issues
+
 ## Key Principles
 
 **Tell a Story**: Focus on how you approached a problem and solved it.

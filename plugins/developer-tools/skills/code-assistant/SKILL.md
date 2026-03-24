@@ -206,6 +206,14 @@ Users can explicitly request specific agents:
 
 When explicit request is made, orchestrator defers to user choice.
 
+## Gotchas
+
+- Don't over-route simple tasks — if the user just wants a quick fix, do it directly instead of spawning a specialist agent
+- Agent overhead adds ~5 seconds — for trivial changes (rename, add a log, fix a typo), skip orchestration entirely
+- The selection algorithm is a guideline, not rigid rules — use judgment when context suggests a different agent
+- Multi-agent coordination is sequential — don't promise parallel execution
+- When the user explicitly names an agent ("use the debugger"), defer to their choice immediately
+
 ## Fallback Behavior
 
 If no clear agent match:

@@ -159,6 +159,14 @@ spec-phase-1.md          # Phase 1 implementation spec
 spec-phase-2.md          # Phase 2 implementation spec
 ```
 
+## Gotchas
+
+- Confidence scores tend to inflate — score conservatively; a genuine 95% means you could write tests for every success criterion
+- Don't skip the question loop when confidence is 85-94 — those "minor gaps" often hide major ambiguity
+- The user's brain dump may contain contradictions — surface these explicitly rather than silently picking one interpretation
+- Phase boundaries matter: don't generate PRDs before the contract is approved — each phase builds on confirmed outputs
+- Scope creep during question rounds — stay focused on the lowest-scoring dimension, don't expand scope with new ideas
+
 ## Important Notes
 
 - **ALWAYS use `AskUserQuestion` tool for clarifications and approvals.**

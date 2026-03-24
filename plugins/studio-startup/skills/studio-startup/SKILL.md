@@ -464,6 +464,15 @@ Before invoking external plugins:
 - If invocation fails, catch error and handle gracefully
 - Provide installation guidance
 
+## Gotchas
+
+- Over-engineering small projects is the main failure mode — a simple side project doesn't need 8 full phases; detect project scope in Phase 0 and calibrate depth
+- Phase ceremony ("Moving to Product Strategy phase...") should be brief, not theatrical — announce transitions in one line
+- Don't re-run validation and design phases if the user just wants to tweak the tech stack — only re-run what's actually invalidated
+- The user may already have artifacts from earlier work — always check before regenerating (ask "do you have existing requirements?")
+- Plugin dependencies (ideation, architecture) may not be installed — fail gracefully with install instructions, don't crash the workflow
+- Settings in `.claude/studio-startup.local.md` should be loaded once at start, not re-read at every phase
+
 ## Best Practices
 
 1. **Clear phase announcements**: Always announce phase transitions
