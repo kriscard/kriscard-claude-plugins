@@ -1,19 +1,23 @@
-Check console errors and warnings for $ARGUMENTS:
+Check console errors and warnings for $ARGUMENTS using agent-browser CLI:
 
 ## Workflow
 
-1. Navigate to page:
-   - Use `mcp__plugin_chromedev-tools_cdt__navigate_page` with url: "$ARGUMENTS"
+1. Navigate to page and wait for load:
+   ```bash
+   agent-browser open "$ARGUMENTS" && agent-browser wait --load networkidle
+   ```
 
-2. Wait for JavaScript execution:
-   - Use `mcp__plugin_chromedev-tools_cdt__wait_for` with time: 3 (allows time for JavaScript to run and log messages)
+2. Get page errors (uncaught exceptions, console.error):
+   ```bash
+   agent-browser errors
+   ```
 
-3. Get console messages:
-   - Use `mcp__plugin_chromedev-tools_cdt__list_console_messages` with level: "warning" (includes both errors and warnings)
+3. Get all console messages for full context:
+   ```bash
+   agent-browser console
+   ```
 
 ## Output Format
-
-Report console status:
 
 **Console Messages for:** $ARGUMENTS
 
@@ -65,4 +69,4 @@ If reference errors found:
 - Missing dependencies
 - Incorrect imports
 
-If user did not provide a URL, prompt them with: "Please provide a URL to check. Usage: /chromedev:console <url>"
+If user did not provide a URL, prompt them with: "Please provide a URL to check. Usage: /browser:console <url>"
