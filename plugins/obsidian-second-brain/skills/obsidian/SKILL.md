@@ -1,11 +1,15 @@
 ---
 name: obsidian
 description: >-
-  Performs all Obsidian vault operations — reading notes, creating files, appending
-  content, searching, and listing files — using CLI-first approach. Make sure
-  to use this skill whenever the user mentions obsidian, vault,
-  notes, daily note, or any vault file operation. If the user mentions Obsidian in
-  any context, use this skill.
+  Performs Obsidian vault FILE OPERATIONS via CLI — reading notes, creating files,
+  appending content, searching across the vault, listing folders, fetching daily/weekly
+  notes. Use when the user wants to read, write, search, or list vault files; work
+  with daily/weekly notes; run backlink/link queries; or process inbox files. Triggers:
+  "read my daily note", "search the vault for X", "create a note in [folder]", "list
+  files in...", "what's in my inbox", "append to today's note". Do NOT use for Obsidian
+  Markdown syntax authoring (wikilinks, callouts, frontmatter properties, embeds, tag
+  syntax) — defer to the obsidian-markdown skill for those. Do NOT use for .base or
+  .canvas file authoring — defer to obsidian-bases / json-canvas skills.
 ---
 
 # Obsidian Operations Skill
