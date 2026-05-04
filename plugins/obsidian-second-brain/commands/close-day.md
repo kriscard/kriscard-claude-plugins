@@ -14,7 +14,47 @@ obsidian daily:read
 
 Parse everything captured: free-form writing, meeting notes, ideas, commitments, tasks mentioned, people referenced.
 
-## Step 2: Vault Connection Discovery
+## Step 2: Read Today's Claude Session Log
+
+Session logs auto-capture decisions, lessons, and action items from every Claude session — they're often a richer signal than the daily note itself.
+
+```bash
+# Path: 2 - Areas/Daily Ops/<year>/Claude Sessions/YYYY-MM-DD.md
+obsidian read path="2 - Areas/Daily Ops/$(date +%Y)/Claude Sessions/$(date +%Y-%m-%d).md"
+```
+
+Each session block follows: `## HH:MM — <project>` with bullet sections for **Decisions**, **Lessons**, **Action items**, **Files touched**.
+
+### 2a. Identify active projects (needed for filtering)
+
+```bash
+obsidian files folder="1 - Projects/" format=json
+```
+
+Build a set of project keywords (folder names, primary tags, common aliases).
+
+### 2b. Match-then-summarize filter
+
+Split session blocks into two buckets:
+
+**Bucket A — On-project sessions** (project header matches an active project):
+- Ingest in full. Merge their Decisions, Lessons, Action items into the Step 4 extraction.
+- These feed Step 5 project updates directly.
+
+**Bucket B — Off-project sessions** (everything else: dotfiles, neovim, plugin work, etc.):
+- Present as a one-line summary each: `[HH:MM — project] <one-line takeaway from Lessons or Decisions>`
+- Ask user: "Capture any of these as TIL / resource notes?" — proceed only on explicit pick.
+
+### 2c. Cross-reference with daily note
+
+Surface anything from on-project sessions that's **not** reflected in today's daily note:
+- Decisions made in a session but not recorded
+- Action items committed to in a session but not in the daily checklist
+- Insights worth promoting
+
+Present as: "From Claude sessions today, these aren't in your daily note yet — capture them?" (proposes additions, does not auto-write to the daily note).
+
+## Step 3: Vault Connection Discovery
 
 After reading today's note, run these queries:
 
@@ -32,7 +72,9 @@ Surface findings as: "Today you wrote about X. This connects to [[note]] from [d
 
 Flag recurring themes: "This is the third time [topic] has come up in the past two weeks."
 
-## Step 3: Extract & Categorize
+## Step 4: Extract & Categorize
+
+Sources: today's daily note (Step 1) + on-project Claude sessions (Step 2, Bucket A).
 
 ### Action Items
 - Things promised to others
@@ -60,28 +102,26 @@ obsidian tasks todo daily
 ```
 Cross-reference extracted action items against existing tasks — flag any that are missing or incomplete.
 
-## Step 4: Update Project Notes
+## Step 5: Update Project Notes
 
-Cross-reference today's daily note with active projects and update their notes in-place, respecting the existing template structure.
+Cross-reference today's daily note + on-project sessions with active projects and update their notes in-place, respecting the existing template structure.
 
-### 4a. List active projects
+### 5a. Reuse the active-projects list from Step 2a
 
-```bash
-obsidian files folder="1 - Projects/" format=json
-```
+(No need to re-list — already in context.)
 
-### 4b. Match projects mentioned today
+### 5b. Match projects mentioned today
 
-From the extracted content (Step 3), identify which active projects were worked on — by name, topic, or task context. Include both explicit mentions and implied work (e.g., coding on a feature that belongs to a project).
+From the extracted content (Step 4), identify which active projects were worked on — by name, topic, or task context. Include both explicit mentions and implied work (e.g., coding on a feature that belongs to a project).
 
-### 4c. Read matched project notes
+### 5c. Read matched project notes
 
 For each matched project, read its main note to understand current structure and content:
 ```bash
 obsidian read path="1 - Projects/<project-name>/<main-note>.md"
 ```
 
-### 4d. Update project sections in-place
+### 5d. Update project sections in-place
 
 For each matched project, update the relevant template sections. **Never append raw entries at the bottom — always patch existing sections.**
 
@@ -108,17 +148,53 @@ obsidian patch path="1 - Projects/<project-name>/<main-note>.md" heading="📝 N
 - Use the user's own language from the daily note
 - If a project note doesn't follow the standard template, adapt — find the closest matching sections and update those
 
-### 4e. Report what was updated
+### 5e. Discover related notes (QMD semantic search)
+
+For each matched project, surface vault notes that are conceptually related but not yet linked from the project's `🔗 Links & References` section.
+
+```bash
+# Run per project — use the project name + 1-2 distinguishing keywords
+qmd query "<project name> <topic keyword>" --json -n 5
+```
+
+Then check which links already exist in the project note:
+
+```bash
+obsidian links file="1 - Projects/<project-name>/<main-note>.md"
+```
+
+**Filter rules:**
+- Drop hits whose path starts with `2 - Areas/Daily Ops/` (those are session/daily noise, not durable references).
+- Drop hits already present in the project's outgoing links.
+- Drop hits with `source: claude-memory` frontmatter unless the user explicitly opts in (per `AGENTS.md`, those are agent-written and need human curation before being elevated to project links).
+- Keep at most 3 candidates per project — quality over quantity.
+
+**Propose, don't write.** Surface as:
+
+```
+[[Project A]] — related notes worth linking:
+  - [[note-1]] (folder: 3 - Resources/...) — <why this matches: shared topic / shared tag>
+  - [[note-2]] (folder: 3 - Resources/...) — <why>
+Approve any to append to 🔗 Links & References?
+```
+
+Only after explicit approval, append the chosen ones:
+
+```bash
+obsidian patch path="1 - Projects/<project-name>/<main-note>.md" heading="🔗 Links & References" operation=append content="\n- [[<note-name>]]"
+```
+
+### 5f. Report what was updated
 
 Present a summary:
 ```
 Updated project notes:
-- [[Project A]] — status + in-progress updated
+- [[Project A]] — status + in-progress updated, 2 related notes linked
 - [[Project B]] — new decision logged
 Skipped (mentioned but no actionable progress): Project C
 ```
 
-## Step 5: Suggest Filing Locations
+## Step 6: Suggest Filing Locations
 
 For each extracted item, recommend where it should live in PARA:
 
@@ -128,7 +204,7 @@ For each extracted item, recommend where it should live in PARA:
 | ... | Task | Daily note tasks section | Add checkbox |
 | ... | Idea | `0 - Inbox/` or existing note | Add to running log |
 
-## Step 6: Suggest Backlinks
+## Step 7: Suggest Backlinks
 
 ```bash
 # Check existing outgoing links before suggesting new ones
@@ -142,7 +218,7 @@ Identify terms in today's note that should link to existing notes (skip links th
 
 Present as: "Consider adding these backlinks: [[Person]], [[Project]], [[Concept]]"
 
-## Step 7: Carry Forward
+## Step 8: Carry Forward
 
 ### What to carry into tomorrow
 Based on today's note:
@@ -165,13 +241,22 @@ If the Quick Wrap section wasn't filled in today's daily note, draft answers:
 ## Output Format
 
 ### Today's Extraction
-[Categorized list of items pulled from the note]
+[Categorized list of items pulled from the daily note + on-project sessions]
+
+### Claude Sessions — Off-Project Highlights
+[One-liners from off-project sessions; user picks any to capture]
+
+### Session ↔ Daily Note Gaps
+[Decisions / action items from sessions not yet in daily note — propose adding]
 
 ### Vault Connections
 [Recurring themes, connections to older notes]
 
 ### Project Notes Updated
-[List of projects updated with progress entries]
+[List of projects updated with progress entries + related notes linked]
+
+### Related Notes (proposed, not written)
+[Per-project candidates from QMD semantic search — awaiting approval]
 
 ### Filing Suggestions
 [Table of where things should go]
