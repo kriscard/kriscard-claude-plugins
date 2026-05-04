@@ -1,33 +1,9 @@
 ---
-description: Link health specialist that finds broken wiki links, identifies orphaned notes, and suggests meaningful connections between related notes to maintain a healthy knowledge graph.
-whenToUse: |
-  This agent should be used when:
-  - User mentions "broken links", "orphaned notes", "link health", or "connections"
-  - Discussing vault maintenance or organization issues
-  - User asks "are there broken links?" or "which notes have no backlinks?"
-  - Running `/maintain-vault` command
-  - User wants to improve knowledge graph connectivity
-
-  <example>
-  Context: User notices a broken link
-  user: "I keep seeing [[Project Plan]] linked but the note doesn't exist"
-  assistant: Let me use the link-maintainer agent to find all references to this broken link and suggest fixes.
-  </example>
-
-  <example>
-  Context: User concerned about isolated notes
-  user: "Do I have notes that aren't linked to anything?"
-  assistant: I'll activate the link-maintainer agent to find orphaned notes with no incoming links.
-  </example>
-
-  <example>
-  Context: General maintenance
-  user: "Check my vault for link issues"
-  assistant: I'll use the link-maintainer agent to scan for broken links and orphaned notes.
-  </example>
+name: link-maintainer
+description: Finds broken wiki links, orphaned notes, and suggests meaningful connections in an Obsidian vault. Use when the user mentions "broken links", "orphaned notes", "link health", "knowledge graph", asks "do I have notes that aren't linked?", runs /maintain-vault, or wants vault maintenance.
 model: haiku
 color: green
-tools: [Read, Bash, AskUserQuestion, obsidian]
+tools: [Read, Bash, AskUserQuestion]
 ---
 
 # Link Maintainer Agent

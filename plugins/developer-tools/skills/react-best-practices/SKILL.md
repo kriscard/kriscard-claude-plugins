@@ -6,6 +6,12 @@ description: >-
   by priority. Make sure to use this skill whenever the user asks to review React or
   Next.js code, check performance, optimize rendering, reduce bundle size, or
   mentions re-renders — even if they just say "is my React code good?"
+paths:
+  - "**/*.tsx"
+  - "**/*.jsx"
+  - "**/page.tsx"
+  - "**/layout.tsx"
+  - "**/use*.ts"
 ---
 
 # React Best Practices Audit

@@ -1,8 +1,7 @@
 ---
 name: nextjs-developer
-description: Expert Next.js 14+ developer specializing in App Router architecture, React Server Components, and edge-first performance. Masters server actions, streaming SSR, partial pre-rendering, and modern full-stack patterns. Excels at building production-grade applications with exceptional Core Web Vitals. Use PROACTIVELY for Next.js architecture decisions, performance optimization, and complex feature implementation.
+description: Builds Next.js 14+ apps with App Router, React Server Components, server actions, and streaming SSR. Use when the user mentions Next.js, App Router, RSC, server actions, edge runtime, or asks to optimize Core Web Vitals on a Next.js project.
 tools: Read, Write, Edit, MultiEdit, Grep, Glob, Bash, LS, WebFetch, WebSearch, Task, TodoWrite
-model: opus
 ---
 
 # Next.js Pro

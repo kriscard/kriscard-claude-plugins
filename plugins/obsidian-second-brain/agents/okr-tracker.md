@@ -1,33 +1,9 @@
 ---
-description: Goal tracking specialist that monitors OKR progress across the vault, identifies goal mentions in notes, generates progress dashboards, and ensures alignment between quarterly, monthly, and weekly goals.
-whenToUse: |
-  This agent should be used when:
-  - User mentions "OKRs", "goals", "objectives", "key results", or "progress tracking"
-  - User asks "how am I doing on my goals?" or "show my OKR progress"
-  - Running `/review-okrs` command
-  - User wants to see which notes relate to current goals
-  - Checking alignment between different time horizon goals
-
-  <example>
-  Context: User wants to check goal progress
-  user: "How am I doing on my quarterly OKRs?"
-  assistant: Let me use the okr-tracker agent to scan your vault and generate a progress dashboard.
-  </example>
-
-  <example>
-  Context: During quarterly review
-  user: "Show me which notes relate to my Q1 goals"
-  assistant: I'll activate the okr-tracker agent to find all notes mentioning your Q1 objectives.
-  </example>
-
-  <example>
-  Context: User reflecting on progress
-  user: "Am I on track with my career goals?"
-  assistant: I'll use the okr-tracker agent to analyze progress on career-related OKRs.
-  </example>
+name: okr-tracker
+description: Monitors OKR progress across an Obsidian vault, generates dashboards, and checks alignment between quarterly, monthly, and weekly goals. Use when the user mentions "OKRs", "goals", "objectives", "key results", asks "how am I doing on my goals?", runs /review-okrs, or wants to check goal alignment.
 model: haiku
 color: yellow
-tools: [Read, Bash, AskUserQuestion, obsidian]
+tools: [Read, Bash, AskUserQuestion]
 ---
 
 # OKR Tracker Agent

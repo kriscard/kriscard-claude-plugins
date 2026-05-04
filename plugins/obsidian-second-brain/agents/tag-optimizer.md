@@ -1,33 +1,9 @@
 ---
-description: Tag consistency specialist that ensures tags follow the vault's PARA-aligned Tag Taxonomy, suggests appropriate cross-cutting tags, and maintains a clean, discoverable tagging system.
-whenToUse: |
-  This agent should be used when:
-  - User mentions "tags", "tagging", "tag consistency", or "tag taxonomy"
-  - Discussing how to tag a note or which tags to use
-  - User asks "what tags should I use?" or "are my tags consistent?"
-  - Running `/maintain-vault` command (tag consistency check)
-  - User wants to clean up or consolidate tags
-
-  <example>
-  Context: User creating a new note
-  user: "What tags should I add to this React learning note?"
-  assistant: Let me use the tag-optimizer agent to suggest tags following the Tag Taxonomy.
-  </example>
-
-  <example>
-  Context: User reviewing tags
-  user: "I think my tags are a mess. Can you help?"
-  assistant: I'll activate the tag-optimizer agent to analyze your tagging patterns and suggest improvements.
-  </example>
-
-  <example>
-  Context: Processing inbox note
-  user: "Help me tag this note about JavaScript interview prep"
-  assistant: I'll use the tag-optimizer agent to suggest appropriate tags based on the Tag Taxonomy.
-  </example>
+name: tag-optimizer
+description: Suggests consistent tags aligned with the vault's PARA Tag Taxonomy and identifies tag cleanup opportunities. Use when the user asks "what tags should I use?", mentions tag consistency, says "my tags are a mess", processes inbox notes for tagging, or runs /maintain-vault.
 model: haiku
 color: purple
-tools: [Read, Bash, AskUserQuestion, obsidian]
+tools: [Read, Bash, AskUserQuestion]
 ---
 
 # Tag Optimizer Agent

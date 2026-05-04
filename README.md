@@ -19,7 +19,6 @@ claude plugin install essentials@kriscard           # Core workflow tools
 claude plugin install developer-tools@kriscard      # Coding agents
 claude plugin install testing@kriscard              # Test specialists
 claude plugin install assistant@kriscard            # Staff Engineer workflow assistant
-claude plugin install browser@kriscard               # Browser automation & inspection
 claude plugin install til@kriscard                  # TIL documentation
 claude plugin install architecture@kriscard         # System design
 claude plugin install obsidian-second-brain@kriscard # Knowledge management
@@ -62,7 +61,6 @@ Then reinstall the plugins you need. This workaround is needed because Claude Co
 | [neovim-advisor](./plugins/neovim-advisor) | Neovim configuration optimization and best practices | **Commands:** `/nvim-check-config`, `/nvim-perf`, `/nvim-plugins`, `/nvim-lsp`<br>**Natural language:** "Optimize my neovim config", "Why is startup slow?" |
 | [dotfiles-optimizer](./plugins/dotfiles-optimizer) | Analyze and optimize dotfiles with security checks and modern tool recommendations | **Commands:** `/dotfiles-optimize`, `/dotfiles-audit`<br>**Natural language:** "Check my dotfiles", "Optimize my shell config" |
 | [obsidian-second-brain](./plugins/obsidian-second-brain) | Obsidian vault manager - PARA, daily workflows, OKR tracking | **Commands:** `/daily-startup`, `/close-day`, `/process-inbox`, `/review-okrs`, `/maintain-vault`, `/extract-ideas`, `/weekly-learnings`, `/learned`, `/money`, `/spot-drift`, `/find-ideas`, `/connect-notes`<br>**Auto-runs:** Daily note reminder on startup |
-| [browser](./plugins/browser) | Browser automation and inspection using agent-browser CLI — screenshots, console debugging, performance analysis, page diff, video recording | **Commands:** `/browser:inspect`, `/browser:screenshot`, `/browser:console`, `/browser:performance`, `/browser:diff`, `/browser:record`<br>**Natural language:** "Inspect the page", "Check console errors", "Why is this page slow?", "Compare these pages" |
 | [studio-startup](./plugins/studio-startup) | Complete startup workflow orchestration from idea to MVP - coordinates product strategy, requirements, tech stack selection, architecture, and implementation across web, mobile, API, and CLI projects | **Commands:** `/studio-startup:new`<br>**Natural language:** "Start a project", "New startup", "Build an MVP", "Create an app"<br>**Workflow:** Strategy → Requirements → Tech → Validation → Design → Implementation |
 | [til](./plugins/til) | Create TIL (Today I Learned) documentation notes in Obsidian from session learnings | **Commands:** `/til`, `/til "Project Name"`<br>**Auto-creates:** Engaging story-like notes with architecture diagrams, code snippets, and lessons learned |
 | [interactive-learning](./plugins/interactive-learning) | Interactive tutorial system for learning technologies through guided Q&A with documentation fetching | **Commands:** `/learn <topic>`, `/learn done`<br>**Natural language:** "Learn React hooks", "Teach me TypeScript generics"<br>**Creates:** Obsidian learning notes with concepts and code examples |

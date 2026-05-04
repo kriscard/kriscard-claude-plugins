@@ -1,4 +1,5 @@
 {
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "obsidian-second-brain",
   "version": "0.2.0",
   "description": "Comprehensive Obsidian vault manager for PARA organization, daily workflows, OKR tracking, knowledge synthesis, and thinking analysis",
@@ -17,5 +18,18 @@
     "daily-notes",
     "vault-organization"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "userConfig": {
+    "vault_path": {
+      "type": "string",
+      "title": "Obsidian vault path",
+      "description": "Absolute path to your Obsidian vault (e.g. /Users/you/Documents/Vault). Used by all obsidian commands and agents."
+    },
+    "daily_notes_folder": {
+      "type": "string",
+      "title": "Daily notes folder",
+      "description": "Folder within the vault where daily notes live (relative to vault root, e.g. '2 - Areas/Daily Ops/Daily Notes')",
+      "default": "2 - Areas/Daily Ops/Daily Notes"
+    }
+  }
 }

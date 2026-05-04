@@ -7,33 +7,58 @@ This is a Claude Code plugin marketplace repository.
 ```
 kriscard-claude-plugins/
 ├── .claude-plugin/
-│   └── marketplace.json      # Marketplace manifest
+│   └── marketplace.json         # Marketplace manifest (auto-generated)
 ├── plugins/
-│   ├── essentials/           # Core workflow tools
-│   ├── ideation/             # Brain dump → specs
-│   ├── content/              # Blog + talks
-│   ├── architecture/         # System design
-│   ├── ai-development/       # LLM/RAG tools
-│   ├── developer-tools/      # Coding agents
-│   └── testing/              # Test agents
+│   ├── ai-development/          # LLM/RAG, prompt engineering
+│   ├── architecture/            # System design, ADRs, C4 diagrams
+│   ├── assistant/               # Personal assistant, status tracking
+│   ├── content/                 # Blog posts, docs, conference talks
+│   ├── developer-tools/         # Coding agents (TS, React, Next.js, debugger, reviewer)
+│   ├── dotfiles-optimizer/      # Shell config audit and optimization
+│   ├── essentials/              # Core workflow tools (commit, researcher, simplifier)
+│   ├── ideation/                # Brain dump → contracts → PRDs → specs
+│   ├── interactive-learning/    # /learn sessions with Excalidraw diagrams
+│   ├── neovim-advisor/          # Neovim config validation and optimization
+│   ├── obsidian-second-brain/   # PARA, OKR tracking, vault maintenance
+│   ├── studio-startup/          # End-to-end startup workflow
+│   ├── testing/                 # Unit, integration, E2E test agents
+│   └── til/                     # Today I Learned capture
 ├── scripts/
-│   └── sync-marketplace.ts   # Auto-sync script
+│   └── sync-marketplace.ts      # Auto-sync script
 └── package.json
 ```
 
 ## Plugin Structure
 
-Each plugin follows this structure:
+Each plugin follows this structure (per [Anthropic plugin spec](https://code.claude.com/docs/en/plugins-reference)):
 
 ```
 plugins/<name>/
 ├── .claude-plugin/
-│   └── plugin.json           # Plugin manifest
-├── README.md                 # Plugin documentation
-├── commands/                 # Slash commands (*.md)
-├── skills/                   # Skills (*/SKILL.md)
-└── agents/                   # Agents (*.md)
+│   └── plugin.json              # Plugin manifest (only file in here)
+├── README.md                    # Plugin documentation
+├── skills/                      # Skills as <name>/SKILL.md (preferred)
+├── commands/                    # Legacy flat .md files (use skills/ for new plugins)
+├── agents/                      # Subagent definitions (*.md)
+├── hooks/                       # Event handlers (hooks.json)
+├── monitors/                    # Background monitors (v2.1.105+)
+├── .mcp.json                    # MCP server configurations
+└── settings.json                # Default settings (e.g., default agent)
 ```
+
+### Frontmatter rules (verified against official docs)
+
+**Skills (`SKILL.md`):**
+- Required: `name`, `description`
+- Recommended: trigger phrases in description ("Use when..." / "Make sure to use this skill whenever...")
+- Optional: `paths` (glob auto-activation), `argument-hint`, `disable-model-invocation`, `user-invocable`, `allowed-tools`, `effort`
+- Description budget: combined `description` + `when_to_use` truncated at **1,536 characters**
+
+**Agents (in `agents/`):**
+- Required: `name`, `description`
+- Optional: `tools`, `disallowedTools`, `model` (default `inherit`), `color`, `effort`, `skills` (preload)
+- **NOT supported on plugin-shipped agents:** `mcpServers`, `hooks`, `permissionMode` (silently ignored — security restriction)
+- Default `model: inherit` respects user session preference. Use `model: haiku` only for genuinely lightweight read-only agents.
 
 ## Development Commands
 

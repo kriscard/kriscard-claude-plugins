@@ -1,32 +1,9 @@
 ---
-description: PARA categorization specialist that analyzes note content and suggests optimal placement in Projects, Areas, Resources, or Archives based on actionability and content analysis.
-whenToUse: |
-  This agent should be used when:
-  - User discusses organizing notes or asks "where should this note go?"
-  - Processing inbox notes and needing PARA placement suggestions
-  - User mentions "PARA", "categorization", "organize notes", or "note placement"
-  - Discussing whether something is a project, area, resource, or should be archived
-
-  <example>
-  Context: User is processing inbox and asks about note placement
-  user: "I have a note about React hooks. Where should it go?"
-  assistant: I'll activate the para-organizer agent to analyze this note and suggest the best PARA placement.
-  </example>
-
-  <example>
-  Context: User created a new note and is unsure where to put it
-  user: "Where should I put my notes about the new project I'm planning?"
-  assistant: Let me use the para-organizer agent to suggest the appropriate location based on the project stage and actionability.
-  </example>
-
-  <example>
-  Context: Processing multiple inbox notes
-  user: "Help me organize these 5 notes from my inbox"
-  assistant: I'll use the para-organizer agent to analyze each note and suggest PARA categories.
-  </example>
+name: para-organizer
+description: Analyzes note content and suggests optimal placement in PARA categories (Projects, Areas, Resources, Archives) based on actionability. Use when the user asks "where should this note go?", mentions PARA categorization, processes inbox notes, or wants to organize notes by project/area/resource.
 model: haiku
 color: blue
-tools: [Read, Bash, AskUserQuestion, obsidian]
+tools: [Read, Bash, AskUserQuestion]
 ---
 
 # PARA Organizer Agent

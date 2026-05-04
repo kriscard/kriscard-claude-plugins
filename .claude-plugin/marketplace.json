@@ -63,27 +63,6 @@
       ]
     },
     {
-      "name": "browser",
-      "source": "./plugins/browser",
-      "description": "Browser automation and inspection for frontend development using agent-browser CLI — inspect pages, debug console, analyze performance, capture screenshots, diff pages, record sessions",
-      "version": "0.1.0",
-      "author": {
-        "name": "Chris Cardoso",
-        "email": "contact@christophercardoso.dev"
-      },
-      "keywords": [
-        "browser",
-        "agent-browser",
-        "frontend",
-        "debugging",
-        "performance",
-        "inspection",
-        "screenshots",
-        "diff",
-        "recording"
-      ]
-    },
-    {
       "name": "content",
       "source": "./plugins/content",
       "description": "Content creation toolkit: blog posts, documentation, and conference talks",

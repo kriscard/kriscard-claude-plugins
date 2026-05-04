@@ -8,7 +8,6 @@ description: >-
   configuration, plugin validation, community skills, or setting up a new Claude
   Code environment.
 tools: Read, Glob, Grep, Bash
-model: opus
 ---
 
 # Claude Code Analyzer

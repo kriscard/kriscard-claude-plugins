@@ -1,10 +1,7 @@
 ---
 name: conference-talk-builder
-disable-model-invocation: true
 user-invocable: false
-description: >-
-  Reference skill for structuring conference talks using the Story Circle narrative
-  framework and iA Presenter slide decks. Used by the create-talk command.
+description: Structures conference talks using the Story Circle narrative framework and generates iA Presenter markdown slide decks. Loaded as reference when the create-talk command runs, or when the user asks to outline a talk, draft conference slides, build a narrative arc for a presentation, or mentions Story Circle, iA Presenter, or talk outlining.
 ---
 
 # Conference Talk Builder
