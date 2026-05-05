@@ -17,6 +17,25 @@ description: >-
 CLI-first approach to all vault operations. Always use `obsidian` commands directly.
 If commands fail, tell the user: "Obsidian CLI isn't working — update Obsidian with CLI enabled."
 
+## Vault Rules (read this first)
+
+Before any vault write or proposal, read the vault's `AGENTS.md` once per session:
+
+```bash
+obsidian read path="AGENTS.md"
+```
+
+It defines what you can write without asking and what requires explicit user approval:
+- **Auto-write set** (no per-write permission): session logs in `2 - Areas/Daily Ops/<year>/Claude Sessions/`, `MEMORY.md`, the Claude Memory MOC, the `## 💬 Sessions` wikilink in today's daily note.
+- **Permission-required writes**: everything else — new notes in `3 - Resources/`, edits to existing PARA notes, any deletion. Always ask BEFORE the write.
+- **Search-before-write**: run `qmd query "<topic>" --json -n 8` (fallback `obsidian search:context`) before proposing any new note. Match without `source: claude-memory` frontmatter = human note → don't modify; suggest backlinks in MOC instead.
+- **Provenance**: agent-written notes carry `source: claude-memory` frontmatter. Notes WITHOUT it are human-curated — do not modify.
+- **Templates/ is read-only.**
+
+Read-only operations (read / search / list) do NOT need this precondition — proceed directly.
+
+If `obsidian read path="AGENTS.md"` fails, stop and confirm the vault path with the user before proceeding with any write.
+
 ## Quick Reference
 
 | Operation | CLI Command |
