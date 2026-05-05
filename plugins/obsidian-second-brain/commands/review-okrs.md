@@ -6,6 +6,32 @@ Facilitate quarterly, monthly, or weekly OKR reviews with progress tracking and 
 
 Use Obsidian CLI commands directly via Bash. If a CLI command fails, tell the user "Obsidian CLI isn't working — update Obsidian with CLI enabled."
 
+## OKR Context (auto-loaded)
+
+### Vault rules
+
+!`obsidian read path="AGENTS.md" 2>/dev/null || echo "(AGENTS.md not found)"`
+
+### Current quarter's OKRs
+
+!`obsidian read path="2 - Areas/Goals/Quarterly/Quaterly Goals - Q$((($(date +%-m) - 1) / 3 + 1)) $(date +%Y).md" 2>/dev/null || echo "(no quarterly OKR file for current quarter)"`
+
+### Current month's goals
+
+!`obsidian read path="2 - Areas/Goals/Monthly/$(date +%-m) - $(date +%B) $(date +%Y).md" 2>/dev/null || echo "(no monthly goals file for current month)"`
+
+### Current week's planning
+
+!`obsidian read path="2 - Areas/Daily Ops/Weekly/$(date +%-m) - $(date +%B) $(date +%Y)/$(date +%G-W%V).md" 2>/dev/null || echo "(no weekly planning file for current week)"`
+
+### OKR Dashboard
+
+!`obsidian base:query path="2 - Areas/Goals/OKR Dashboard.base" format=json 2>/dev/null || echo "[]"`
+
+### Active projects
+
+!`obsidian files folder="1 - Projects/" format=json 2>/dev/null || echo "[]"`
+
 ## Workflow
 
 ### Step 1: Select Review Level

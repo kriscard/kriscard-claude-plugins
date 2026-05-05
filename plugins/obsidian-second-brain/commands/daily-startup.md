@@ -10,25 +10,43 @@ Guide the user through their daily startup routine efficiently. Auto-create all 
 
 Use Obsidian CLI commands directly via Bash. If a CLI command fails, tell the user "Obsidian CLI isn't working — update Obsidian with CLI enabled."
 
+## Today's Context (auto-loaded)
+
+### Vault rules
+
+!`obsidian read path="AGENTS.md" 2>/dev/null || echo "(AGENTS.md not found)"`
+
+### Today's daily note (may not exist yet)
+
+!`obsidian daily:read 2>/dev/null || echo "(today's daily note doesn't exist yet — Step 1 will create it)"`
+
+### Yesterday's daily note (for carry-forward)
+
+!`obsidian read path="2 - Areas/Daily Ops/$(date +%Y)/$(date -v-1d +%Y-%m-%d).md" 2>/dev/null || echo "(yesterday's note not found)"`
+
+### Inbox
+
+!`obsidian files folder="0 - Inbox/" format=json 2>/dev/null || echo "[]"`
+
+### Active projects
+
+!`obsidian files folder="1 - Projects/" format=json 2>/dev/null || echo "[]"`
+
+### Today's date variables
+
+!`echo "TODAY=$(date +%Y-%m-%d) DOW=$(date +%u) DOM=$(date +%d) MONTH=$(date +%m) YEAR=$(date +%Y) WEEK=$(date +%G-W%V) QUARTER=$((($(date +%-m) - 1) / 3 + 1))"`
+
 ## Workflow
 
 ### Step 1: Batch Check & Create Periodic Notes (FAST)
 
 **IMPORTANT: Execute this step efficiently with minimal round-trips.**
 
-**1a. Detect which periods apply today (single date calculation):**
+**1a. Detect which periods apply today:**
+
+Date variables are pre-loaded above (`TODAY`, `DOW`, `DOM`, `MONTH`, `YEAR`, `WEEK`, `QUARTER`). For today's daily note path:
 
 ```bash
-# Calculate all dates at once
-TODAY=$(date +%Y-%m-%d)
-DOW=$(date +%u)           # 1=Monday
-DOM=$(date +%d)           # Day of month
-MONTH=$(date +%m)
-YEAR=$(date +%Y)
-WEEK=$(date +%G-W%V)      # ISO week
-QUARTER=$((($MONTH - 1) / 3 + 1))
-
-# Get today's daily note path (native command)
 obsidian daily:path
 ```
 
@@ -87,23 +105,17 @@ Single summary: "Created: daily (2026-01-27), weekly (2026-W05)" or "All periodi
 
 **CRITICAL: Always check yesterday's carry-forward before setting today's priorities.**
 
-```bash
-# Read yesterday's daily note for carry-forward items
-YESTERDAY=$(date -v-1d +%Y-%m-%d)
-obsidian read path="2 - Areas/Daily Ops/$YEAR/$YESTERDAY.md"
-```
-
-Parse the "Carry Forward → Tomorrow" section. If items exist, prepend them to today's note:
+Yesterday's daily note is pre-loaded above. Parse the "Carry Forward → Tomorrow" section. If items exist, prepend them to today's note:
 
 ```bash
 obsidian daily:prepend content="**Carry forward from yesterday:**\n- [ ] Item 1\n- [ ] Item 2"
 ```
 
-### Step 3: Gather Context (PARALLEL)
+### Step 3: Gather Context
+
+Inbox and active projects are pre-loaded above. Fetch the remaining dynamic context:
 
 ```bash
-# Inbox and project status
-obsidian files folder="0 - Inbox/" format=json
 obsidian base:query path="MOCs/Active Projects.base" format=json
 
 # Today's open tasks (from daily note and projects)

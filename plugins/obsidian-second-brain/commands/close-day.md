@@ -6,34 +6,35 @@ Review today's daily note, extract what matters, file it properly, and set up to
 
 Use Obsidian CLI commands directly via Bash. If a CLI command fails, tell the user "Obsidian CLI isn't working — update Obsidian with CLI enabled."
 
-## Step 1: Read Today's Daily Note
+## Today's Context (auto-loaded)
 
-```bash
-obsidian daily:read
-```
+### Vault rules
 
-Parse everything captured: free-form writing, meeting notes, ideas, commitments, tasks mentioned, people referenced.
+!`obsidian read path="AGENTS.md" 2>/dev/null || echo "(AGENTS.md not found — confirm vault path before any write)"`
 
-## Step 2: Read Today's Claude Session Log
+### Today's daily note
 
-Session logs auto-capture decisions, lessons, and action items from every Claude session — they're often a richer signal than the daily note itself.
+!`obsidian daily:read 2>/dev/null || echo "(no daily note for today — run /daily-startup first)"`
 
-```bash
-# Path: 2 - Areas/Daily Ops/<year>/Claude Sessions/YYYY-MM-DD.md
-obsidian read path="2 - Areas/Daily Ops/$(date +%Y)/Claude Sessions/$(date +%Y-%m-%d).md"
-```
+### Today's Claude session log
 
-Each session block follows: `## HH:MM — <project>` with bullet sections for **Decisions**, **Lessons**, **Action items**, **Files touched**.
+!`obsidian read path="2 - Areas/Daily Ops/$(date +%Y)/Claude Sessions/$(date +%Y-%m-%d).md" 2>/dev/null || echo "(no Claude session log today)"`
 
-### 2a. Identify active projects (needed for filtering)
+Session blocks follow: `## HH:MM — <project>` with **Decisions**, **Lessons**, **Action items**, **Files touched**.
 
-```bash
-obsidian files folder="1 - Projects/" format=json
-```
+### Active projects
 
-Build a set of project keywords (folder names, primary tags, common aliases).
+!`obsidian files folder="1 - Projects/" format=json 2>/dev/null || echo "[]"`
 
-### 2b. Match-then-summarize filter
+## Step 1: Parse Today's Daily Note
+
+The daily note is loaded above. Parse everything captured: free-form writing, meeting notes, ideas, commitments, tasks mentioned, people referenced.
+
+## Step 2: Process Claude Session Log
+
+The session log is loaded above. Use the active-projects list (also loaded above) to build keyword set for filtering.
+
+### 2a. Match-then-summarize filter
 
 Split session blocks into two buckets:
 
@@ -45,7 +46,7 @@ Split session blocks into two buckets:
 - Present as a one-line summary each: `[HH:MM — project] <one-line takeaway from Lessons or Decisions>`
 - Ask user: "Capture any of these as TIL / resource notes?" — proceed only on explicit pick.
 
-### 2c. Cross-reference with daily note
+### 2b. Cross-reference with daily note
 
 Surface anything from on-project sessions that's **not** reflected in today's daily note:
 - Decisions made in a session but not recorded
@@ -106,9 +107,9 @@ Cross-reference extracted action items against existing tasks — flag any that 
 
 Cross-reference today's daily note + on-project sessions with active projects and update their notes in-place, respecting the existing template structure.
 
-### 5a. Reuse the active-projects list from Step 2a
+### 5a. Reuse the active-projects list
 
-(No need to re-list — already in context.)
+(Loaded in the "Active projects" section at the top — no need to re-fetch.)
 
 ### 5b. Match projects mentioned today
 

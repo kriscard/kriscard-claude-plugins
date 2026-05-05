@@ -6,6 +6,35 @@ Surface patterns, insights, and candidate topics from the week's daily notes. Ou
 
 Use Obsidian CLI commands directly via Bash. If a CLI command fails, tell the user "Obsidian CLI isn't working — update Obsidian with CLI enabled."
 
+## Week Context (auto-loaded)
+
+### Vault rules
+
+!`obsidian read path="AGENTS.md" 2>/dev/null || echo "(AGENTS.md not found)"`
+
+### Past 7 days of daily notes
+
+```!
+for i in 0 1 2 3 4 5 6; do
+  D=$(date -v-${i}d +%Y-%m-%d)
+  Y=$(date -v-${i}d +%Y)
+  echo "===== $D ====="
+  obsidian read path="2 - Areas/Daily Ops/$Y/$D.md" 2>/dev/null || echo "(no note for $D)"
+done
+```
+
+### Current weekly planning
+
+!`obsidian read path="2 - Areas/Daily Ops/Weekly/$(date +%-m) - $(date +%B) $(date +%Y)/$(date +%G-W%V).md" 2>/dev/null || echo "(no weekly note for current week)"`
+
+### Current month's goals
+
+!`obsidian read path="2 - Areas/Goals/Monthly/$(date +%-m) - $(date +%B) $(date +%Y).md" 2>/dev/null || echo "(no monthly goals file)"`
+
+### Active projects
+
+!`obsidian files folder="1 - Projects/" format=json 2>/dev/null || echo "[]"`
+
 ## Step 1: Read Previous Weekly Learnings (Continuity)
 
 ```bash
@@ -19,17 +48,9 @@ Extract:
 - Things promised ("I'll write more about this soon")
 - The tone and style
 
-## Step 2: Read Daily Notes (Past 7 Days)
+## Step 2: Parse Daily Notes (already loaded above)
 
-```bash
-# Read today's daily note
-obsidian daily:read
-
-# Read each of the past 6 days using manual paths
-obsidian read path="2 - Areas/Daily Ops/YYYY/YYYY-MM-DD.md"
-```
-
-Extract:
+The past 7 days of daily notes are pre-loaded in the Week Context section. Extract:
 - What was actually worked on (not planned, what happened)
 - Conversations and meetings that shifted thinking
 - Ideas that emerged (especially ones with energy)
@@ -38,13 +59,11 @@ Extract:
 - Frustrations, breakthroughs, and realizations
 - Anything surprising
 
-## Step 3: Load Context
+## Step 3: Connect to Strategic Context
 
-Read OKRs and active project context:
+Active projects, current weekly planning, and current month's goals are pre-loaded above. For deeper context if needed:
+
 ```bash
-obsidian files folder="1 - Projects/" format=json
-obsidian read path="2 - Areas/Goals/Monthly/[current month].md"
-obsidian read path="2 - Areas/Daily Ops/Weekly/[current month folder]/[current week].md"
 obsidian base:query path="MOCs/Active Projects.base" format=json
 obsidian tasks todo daily
 ```
