@@ -35,16 +35,48 @@ vault rather than answer from training data:
    `MOCs/Claude Memory MOC.md`. Scan it first — if the topic is listed, jump
    straight to the linked note.
 
-2. **QMD semantic + hybrid search** — primary recall engine:
+2. **QMD semantic + hybrid search** — primary recall engine.
+
+   **If the `qmd` skill is available, prefer it** for query construction —
+   it covers the full grammar (lex/vec/hyde combos, collection filters,
+   `--explain` debugging). When it isn't loaded, use the cheatsheet below.
+
+   Default one-liner (auto-expansion does lex+vec+rerank for you):
 
    ```bash
    qmd query "<topic>" --json -n 8
    ```
 
-   QMD does BM25 + vector + LLM reranking, all local. Inspect the top results:
+   Score thresholds for ranking the results:
    - `score` ≥ 0.7 → high confidence match, definitely relevant
    - `score` 0.5–0.7 → probable match, surface as possibly-relevant
    - `score` < 0.5 → weak signal, treat as no match
+
+   ### Inline cheatsheet (when the qmd skill isn't available)
+
+   **Pick the query type by what you have:**
+
+   | Type   | Use when                              | Example                              |
+   |--------|---------------------------------------|--------------------------------------|
+   | `lex`  | You know exact terms / names / code   | `qmd search "rate limiter burst"`    |
+   | `vec`  | You have a natural-language question  | `"how does the cache invalidate"`    |
+   | `hyde` | Recall is failing — write the answer  | 50-100 words of what you'd expect    |
+
+   **Combine for tough recall** (first query gets 2× fusion weight):
+
+   ```bash
+   qmd query --json -n 8 $'lex: TypeScript generics constrained\nvec: when to prefer constrained generics over unknown'
+   ```
+
+   **Disambiguate overloaded topics with `intent`** — vault terms like
+   "performance" or "review" mean different things in different contexts:
+
+   ```bash
+   qmd query --json -n 8 $'lex: performance\nintent: code-review feedback on PRs, not athletic training'
+   ```
+
+   When in doubt: run the one-liner first, escalate to structured/intent
+   only if the top hits look off-topic.
 
 3. **Read the top hits.** For each strong result, fetch the full content:
 
