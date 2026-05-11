@@ -23,14 +23,6 @@ for i in 0 1 2 3 4 5 6; do
 done
 ```
 
-### Current weekly planning
-
-!`obsidian read path="2 - Areas/Daily Ops/Weekly/$(date +%-m) - $(date +%B) $(date +%Y)/$(date +%G-W%V).md" 2>/dev/null || echo "(no weekly note for current week)"`
-
-### Current month's goals
-
-!`obsidian read path="2 - Areas/Goals/Monthly/$(date +%-m) - $(date +%B) $(date +%Y).md" 2>/dev/null || echo "(no monthly goals file)"`
-
 ### Active projects
 
 !`obsidian files folder="1 - Projects/" format=json 2>/dev/null || echo "[]"`
@@ -61,9 +53,11 @@ The past 7 days of daily notes are pre-loaded in the Week Context section. Extra
 
 ## Step 3: Connect to Strategic Context
 
-Active projects, current weekly planning, and current month's goals are pre-loaded above. For deeper context if needed:
+Active projects are pre-loaded above. Read current weekly planning and current month's goals at runtime (compute paths from today's date in context):
 
 ```bash
+obsidian read path="2 - Areas/Daily Ops/Weekly/$(date +%-m) - $(date +%B) $(date +%Y)/$(date +%G-W%V).md"
+obsidian read path="2 - Areas/Goals/Monthly/$(date +%-m) - $(date +%B) $(date +%Y).md"
 obsidian base:query path="MOCs/Active Projects.base" format=json
 obsidian tasks todo daily
 ```

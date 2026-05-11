@@ -20,10 +20,6 @@ Use Obsidian CLI commands directly via Bash. If a CLI command fails, tell the us
 
 !`obsidian daily:read 2>/dev/null || echo "(today's daily note doesn't exist yet — Step 1 will create it)"`
 
-### Yesterday's daily note (for carry-forward)
-
-!`obsidian read path="2 - Areas/Daily Ops/$(date +%Y)/$(date -v-1d +%Y-%m-%d).md" 2>/dev/null || echo "(yesterday's note not found)"`
-
 ### Inbox
 
 !`obsidian files folder="0 - Inbox/" format=json 2>/dev/null || echo "[]"`
@@ -31,10 +27,6 @@ Use Obsidian CLI commands directly via Bash. If a CLI command fails, tell the us
 ### Active projects
 
 !`obsidian files folder="1 - Projects/" format=json 2>/dev/null || echo "[]"`
-
-### Today's date variables
-
-!`echo "TODAY=$(date +%Y-%m-%d) DOW=$(date +%u) DOM=$(date +%d) MONTH=$(date +%m) YEAR=$(date +%Y) WEEK=$(date +%G-W%V) QUARTER=$((($(date +%-m) - 1) / 3 + 1))"`
 
 ## Workflow
 
@@ -44,7 +36,7 @@ Use Obsidian CLI commands directly via Bash. If a CLI command fails, tell the us
 
 **1a. Detect which periods apply today:**
 
-Date variables are pre-loaded above (`TODAY`, `DOW`, `DOM`, `MONTH`, `YEAR`, `WEEK`, `QUARTER`). For today's daily note path:
+Compute date variables from today's date (injected in context): `TODAY` (YYYY-MM-DD), `DOW` (1-7, Mon=1), `DOM`, `MONTH` (MM), `YEAR`, `WEEK` (YYYY-Www), `QUARTER` ((MONTH-1)/3 + 1). For today's daily note path:
 
 ```bash
 obsidian daily:path
@@ -105,7 +97,13 @@ Single summary: "Created: daily (2026-01-27), weekly (2026-W05)" or "All periodi
 
 **CRITICAL: Always check yesterday's carry-forward before setting today's priorities.**
 
-Yesterday's daily note is pre-loaded above. Parse the "Carry Forward → Tomorrow" section. If items exist, prepend them to today's note:
+Read yesterday's daily note:
+
+```bash
+obsidian read path="2 - Areas/Daily Ops/$YEAR/$(date -v-1d +%Y-%m-%d).md"
+```
+
+Parse the "Carry Forward → Tomorrow" section. If items exist, prepend them to today's note:
 
 ```bash
 obsidian daily:prepend content="**Carry forward from yesterday:**\n- [ ] Item 1\n- [ ] Item 2"

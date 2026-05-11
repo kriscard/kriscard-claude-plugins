@@ -16,12 +16,6 @@ Use Obsidian CLI commands directly via Bash. If a CLI command fails, tell the us
 
 !`obsidian daily:read 2>/dev/null || echo "(no daily note for today — run /daily-startup first)"`
 
-### Today's Claude session log
-
-!`obsidian read path="2 - Areas/Daily Ops/$(date +%Y)/Claude Sessions/$(date +%Y-%m-%d).md" 2>/dev/null || echo "(no Claude session log today)"`
-
-Session blocks follow: `## HH:MM — <project>` with **Decisions**, **Lessons**, **Action items**, **Files touched**.
-
 ### Active projects
 
 !`obsidian files folder="1 - Projects/" format=json 2>/dev/null || echo "[]"`
@@ -32,7 +26,13 @@ The daily note is loaded above. Parse everything captured: free-form writing, me
 
 ## Step 2: Process Claude Session Log
 
-The session log is loaded above. Use the active-projects list (also loaded above) to build keyword set for filtering.
+Read today's Claude session log:
+
+```bash
+obsidian read path="2 - Areas/Daily Ops/$(date +%Y)/Claude Sessions/$(date +%Y-%m-%d).md"
+```
+
+Session blocks follow: `## HH:MM — <project>` with **Decisions**, **Lessons**, **Action items**, **Files touched**. Use the active-projects list (loaded above) to build keyword set for filtering.
 
 ### 2a. Match-then-summarize filter
 
