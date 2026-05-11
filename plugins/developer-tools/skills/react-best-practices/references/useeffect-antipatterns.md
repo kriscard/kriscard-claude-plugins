@@ -1,5 +1,9 @@
 # useEffect Anti-Patterns
 
+> **Read this when:** the user mentions `useEffect`, "should I use useEffect for...", side effects, stale closures, "double renders in dev mode," `useLayoutEffect`, flickering after a measurement, or data fetching that smells off.
+>
+> **Not the right file?** If the issue is *why this re-renders too often* → `re-renders-and-memoization.md`. If it's *slow initial load or bundle* → `bundle-and-perf-investigation.md`.
+
 The 12 canonical anti-patterns from [react.dev — "You Might Not Need an Effect"](https://react.dev/learn/you-might-not-need-an-effect), plus two advanced patterns from Nadia Makarevich's posts.
 
 ## The decision tree

@@ -1,11 +1,15 @@
 ---
 name: react-best-practices
 description: >-
-  Audits React and Next.js components for performance issues, unnecessary
-  re-renders, bundle size problems, and waterfall patterns using 57 rules organized
-  by priority. Make sure to use this skill whenever the user asks to review React or
-  Next.js code, check performance, optimize rendering, reduce bundle size, or
-  mentions re-renders — even if they just say "is my React code good?"
+  Audits React and Next.js code for useEffect anti-patterns, unnecessary
+  re-renders, memoization issues, bundle size, modal/portal positioning and
+  stacking context bugs, rendering model choice (SSR/CSR/SSG/RSC), Server
+  Actions misuse, hydration mismatches, and 57 prioritized performance rules.
+  Make sure to use this skill whenever the user asks to review React or Next.js
+  code, audit performance, check useEffect smells, reduce bundle size, debug
+  re-renders, fix modal/dialog z-index issues, choose a rendering strategy, or
+  asks about Server Components and Server Actions — even if they just say "is
+  my React code good?"
 paths:
   - "**/*.tsx"
   - "**/*.jsx"
@@ -16,7 +20,20 @@ paths:
 
 # React Best Practices Audit
 
-Performance optimization guide for React and Next.js, maintained by Vercel Engineering. 57 actionable rules organized by priority.
+Comprehensive React/Next.js audit guide. Combines Vercel Engineering's 57 prioritized rules with thematic deep-dives on effects, re-renders, perf investigation, portals, and rendering models.
+
+## Universal Checks (always run these)
+
+For **any** React audit, regardless of size or specific intent, check these six universal pitfalls. These are the highest-leverage bugs and they reliably appear across codebases. Don't skip them even on a short review — they take seconds to scan for and catch the most common mistakes.
+
+1. **Components defined inside other components** — they're re-created every render, lose all memoization and state. Extract them.
+2. **Array index as `key` in dynamic lists** — breaks identity tracking on insert/delete/reorder. Use stable IDs. (Acceptable only for genuinely static lists.)
+3. **Derived state via `useState` + `useEffect`** — compute during render instead. See `useeffect-antipatterns.md` for the full pattern.
+4. **Fetching data inside `useEffect` without cleanup** — race conditions corrupt state. Prefer TanStack Query, framework loaders, or RSC. If you must keep the effect, use an `ignore` flag for cleanup.
+5. **Unmemoized Context provider value** — every consumer re-renders on every parent render. Wrap in `useMemo`, or split data/API into separate providers.
+6. **Server Actions for client-side data reads** — they serialize requests and kill parallelism. Use REST + TanStack Query for reads; reserve Server Actions for mutations.
+
+These six should fire on every audit. Anything more specific routes to a deep-dive reference below.
 
 ## When to Use
 
@@ -36,6 +53,10 @@ This skill triggers when you need to:
 - "optimize this React code"
 - "check for waterfalls"
 - "bundle size issues"
+- "why does this re-render"
+- "this modal appears behind"
+- "should I use SSR or CSR"
+- "is this useEffect right"
 
 ## Audit Process
 

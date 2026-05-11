@@ -1,5 +1,9 @@
 # Portals and Stacking Context
 
+> **Read this when:** the user mentions modal, dialog, tooltip, popover, dropdown, z-index, "appears behind the header", "stuck behind", portals, `createPortal`, or native `<dialog>`.
+>
+> **Not the right file?** This covers *positioning and stacking* specifically. For general modal accessibility (focus trap, ARIA), pair with WCAG resources. For why a modal *re-renders* too often → `re-renders-and-memoization.md`.
+
 Portals exist primarily because **stacking context cannot be escaped with CSS alone** — not, as commonly cited, because of `overflow: hidden`. Built from Nadia Makarevich's [Positioning and Portals in React](https://www.developerway.com/posts/positioning-and-portals-in-react).
 
 ## The stacking context trap

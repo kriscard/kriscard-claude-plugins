@@ -1,5 +1,9 @@
 # Re-renders and Memoization
 
+> **Read this when:** the user asks "why does this re-render", mentions `useMemo` / `useCallback` / `React.memo`, React Compiler, prop reference identity, Context perf, or a component re-rendering despite props looking the same.
+>
+> **Not the right file?** If the cause is effect-related (`useEffect` doing the re-rendering work) → `useeffect-antipatterns.md`. If it's bundle/initial-load slowness → `bundle-and-perf-investigation.md`.
+
 How to reason about unnecessary re-renders, and when `useMemo` / `useCallback` / `React.memo` actually do anything. Two eras to consider: pre-Compiler and post-Compiler.
 
 ## The Compiler era changes the framing

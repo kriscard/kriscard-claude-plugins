@@ -1,5 +1,9 @@
 # Bundle Size & Performance Investigation
 
+> **Read this when:** the user mentions bundle size, "initial load is slow", lazy loading, code splitting, flame graphs, profiling, Core Web Vitals (LCP/INP/CLS), or wants to investigate *what* is making their app slow.
+>
+> **Not the right file?** If the slowness is specifically about re-renders, not initial load → `re-renders-and-memoization.md`. If it's about choosing SSR vs CSR vs RSC → `rendering-models.md`.
+
 Concrete diagnostic workflows from Nadia Makarevich's [bundle investigation](https://www.developerway.com/posts/bundle-size-investigation) and [flame graph](https://www.developerway.com/posts/client-side-rendering-flame-graph) posts.
 
 ## Bundle size investigation

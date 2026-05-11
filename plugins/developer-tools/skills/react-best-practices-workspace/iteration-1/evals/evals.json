@@ -1,0 +1,49 @@
+{
+  "skill_name": "react-best-practices",
+  "iteration": 1,
+  "purpose": "Verify the routing table in SKILL.md causes each test prompt to load the expected reference file, and that the universal-checks tier fires on ambient prompts.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "useeffect-derived-state",
+      "prompt": "I have a UserProfile component:\n\n```tsx\nfunction UserProfile({ user }) {\n  const [fullName, setFullName] = useState('');\n  useEffect(() => {\n    setFullName(`${user.firstName} ${user.lastName}`);\n  }, [user]);\n  return <h1>{fullName}</h1>;\n}\n```\n\nI'm seeing double renders in dev mode and the component feels weird. Is this code right?",
+      "expected_reference": "useeffect-antipatterns.md",
+      "expected_universal_check": "derived-state-via-useEffect"
+    },
+    {
+      "id": 2,
+      "name": "memo-chain-broken",
+      "prompt": "My ProductList component re-renders every time the parent does, even though I'm passing the same products array. I wrapped it in React.memo but it still re-renders. The parent uses it like:\n\n```tsx\n<ProductList\n  items={products}\n  onSelect={(id) => setSelectedId(id)}\n  style={{ marginTop: 12 }}\n/>\n```\n\nWhat am I doing wrong?",
+      "expected_reference": "re-renders-and-memoization.md"
+    },
+    {
+      "id": 3,
+      "name": "modal-behind-navbar",
+      "prompt": "My modal dialog appears BEHIND the sticky navbar even though I set z-index: 99999 on the modal. The navbar's parent container has `transform: translateY(0)` for a slide-in animation. How do I fix this?",
+      "expected_reference": "portals-and-stacking-context.md"
+    },
+    {
+      "id": 4,
+      "name": "rendering-model-choice",
+      "prompt": "We're building an internal admin dashboard for ~500 enterprise users (no public SEO, auth-gated, heavy data tables and forms). Should we use Next.js App Router with RSC, or just Vite SPA with React Router? Most users are on slow corporate VPNs.",
+      "expected_reference": "rendering-models.md"
+    },
+    {
+      "id": 5,
+      "name": "bundle-size-investigation",
+      "prompt": "Our Next.js app's initial JS is 1.2MB. Lighthouse LCP on mobile is 4.8s. The bundle analyzer shows our main chunk is 800kb. We're using shadcn/ui, date-fns, recharts, and tRPC. How do I figure out what to trim first?",
+      "expected_reference": "bundle-and-perf-investigation.md"
+    },
+    {
+      "id": 6,
+      "name": "ambient-review",
+      "prompt": "Review this component for me:\n\n```tsx\nfunction Dashboard({ user }) {\n  function StatCard({ value, label }) {\n    return <div>{label}: {value}</div>;\n  }\n\n  const [stats, setStats] = useState([]);\n\n  useEffect(() => {\n    fetch('/api/stats').then(r => r.json()).then(setStats);\n  }, []);\n\n  return (\n    <div>\n      {stats.map((s, i) => <StatCard key={i} value={s.value} label={s.label} />)}\n    </div>\n  );\n}\n```",
+      "expected_universal_checks": [
+        "components-inside-components (StatCard nested)",
+        "index-as-key (key={i})",
+        "fetch-in-useEffect-no-cleanup"
+      ],
+      "expected_reference": "may also load useeffect-antipatterns.md for the fetch pattern"
+    }
+  ]
+}

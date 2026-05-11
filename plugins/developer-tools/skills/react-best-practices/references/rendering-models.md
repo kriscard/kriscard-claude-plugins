@@ -1,5 +1,9 @@
 # Rendering Models: CSR vs SSR vs SSG vs RSC
 
+> **Read this when:** the user mentions SSR, CSR, SSG, ISR, RSC, Server Components, Server Actions, hydration, hydration mismatch, "Next.js vs Vite", "should I use App Router", or is choosing a rendering strategy.
+>
+> **Not the right file?** For client-side perf investigation (flame graph, bundle) once a rendering choice is made → `bundle-and-perf-investigation.md`. For why hydrated pages flicker → `useeffect-antipatterns.md` (specifically the `useLayoutEffect` section).
+
 The decision framework for *where* React renders. Built from [react.dev](https://react.dev), [patterns.dev](https://www.patterns.dev/react/react-2026), and Nadia Makarevich's [SSR deep dive](https://www.developerway.com/posts/ssr-deep-dive-for-react-developers).
 
 ## The models
