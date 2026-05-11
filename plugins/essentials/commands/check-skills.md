@@ -66,7 +66,7 @@ Use this to identify candidates, then narrow down to the most specific 1-3.
 
 **Content:**
 - `blog-writer` — brain dump to blog post with SEO
-- `doc-coauthoring` — RFCs, proposals, ADRs
+- `tech-document-creator` — RFCs, product design docs, architecture proposals, ADRs
 
 **AI / LLM:**
 - `ai-engineer` — RAG, vector search, agent orchestration

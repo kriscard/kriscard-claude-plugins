@@ -257,7 +257,7 @@ Brief explanation for the user.
 
 | Plugin Type | Recommended Pattern | Example |
 |-------------|---------------------|---------|
-| **Content Creation** | Skill-based | blog-writer, doc-coauthoring |
+| **Content Creation** | Skill-based | blog-writer, tech-document-creator |
 | **Daily Workflows** | Command-based | daily-startup, process-inbox |
 | **Advisory/Consulting** | Hybrid | senior-architect, cto-advisor |
 | **Specialist Tools** | Agent-only → Add orchestrator if selection needed | typescript-coder, debugger |

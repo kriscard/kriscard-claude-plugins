@@ -136,6 +136,16 @@ Use these to ask the right follow-up questions and frame trade-offs — not to r
 - **Async when:** Long-running tasks, decoupling producers from consumers, spike absorption needed
 - **Key question:** "Does the user need the result immediately, or can they check back later?"
 
+### Rendering Model (web apps)
+- **CSR when:** Rich interactivity, no SEO need, slow data source (offload from server)
+- **SSR when:** SEO + dynamic per-request data, fast network expected, strong infra/ops support to handle the cost
+- **SSG when:** Static content, changes rarely (marketing, docs, blogs)
+- **ISR when:** Static-mostly content with periodic updates
+- **RSC when:** Mix of static and dynamic; want to reduce client bundle while preserving interactivity
+- **Key question:** "Where does the latency budget go — TTFB or interactivity, and on what network do real users actually live?"
+- **Counter-intuitive:** SSR can be *worse* than CSR on slow networks with fast clients (LCP +500ms in real testing). Don't default to SSR without measuring.
+- For React-specific implementation depth (hydration pitfalls, Server Actions caveats, RSC trade-offs), see `react-best-practices/references/rendering-models.md` in the developer-tools plugin.
+
 ## Gotchas
 
 - Claude's default mode is to dump pattern catalogs — resist this; ask questions first, recommend second

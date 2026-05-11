@@ -150,11 +150,21 @@ After checking all rules, provide:
    - Pass/Needs Work/Critical Issues
    - Estimated performance improvement if all fixes applied
 
-## Quick Reference
+## Deep-Dive References
 
-For detailed rule explanations with code examples, see:
-- `references/vercel-rules.md` - All 57 rules with incorrect/correct patterns
+The audit checklist above is the always-check baseline. For deeper analysis, **load only the reference(s) that match the user's intent** — don't load all of them, and don't load any unless the intent matches.
+
+| User mentions / intent | Load this reference | What it covers |
+|---|---|---|
+| `useEffect`, side effects, "do I need an effect", stale closures, flicker after measurement | `references/useeffect-antipatterns.md` | 12 canonical anti-patterns from react.dev, the stale-closure ref-trick, `useLayoutEffect` for DOM measurements, ESLint rule mapping |
+| Re-renders, `useMemo`, `useCallback`, `React.memo`, React Compiler, "why does this re-render", prop reference identity | `references/re-renders-and-memoization.md` | Nadia's 4-category taxonomy, the chain rule, prop-identity teaching (`<Child onClick={() => ...} />`), Compiler era guidance |
+| Bundle size, lazy loading, code splitting, "slow initial load", flame graph, profiling, Web Vitals | `references/bundle-and-perf-investigation.md` | Bundle investigation workflow, common culprits checklist (wildcard imports, non-ESM, duplicates), DevTools flame graph workflow |
+| Modal, dialog, tooltip, popover, dropdown, z-index, "appears behind the header", portal | `references/portals-and-stacking-context.md` | Stacking context trap, properties that create new contexts, the form-submission gotcha, native `<dialog>` vs portal |
+| SSR, CSR, SSG, ISR, RSC, Server Components, Server Actions, hydration mismatch, rendering choice | `references/rendering-models.md` | CSR/SSR/SSG/RSC decision framework, Nadia's SSR perf paradox, hydration pitfalls, Server Actions for mutations only |
+| Full audit, comprehensive review, "check every rule" | `references/vercel-rules.md` | All 57 rules with incorrect/correct code examples (Vercel Engineering) |
+
+If multiple intents match, load them in order of specificity (most-specific first). The audit checklist above remains the always-check baseline regardless of which references load.
 
 ## Attribution
 
-Rules sourced from Vercel Engineering's React performance guidelines.
+Priority checklist sourced from Vercel Engineering's React performance guidelines. Deep-dive references additionally draw on react.dev, Nadia Makarevich (developerway), TkDodo, Kent C. Dodds (Epic Web), and patterns.dev.

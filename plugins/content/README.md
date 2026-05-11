@@ -83,13 +83,14 @@ Transform brain dumps into polished technical blog posts with SEO optimization.
 - Post type templates (tutorial, showcase, opinion, TIL, comparison)
 - SEO checklist
 
-### doc-coauthoring
-Structured workflow for co-authoring specs, proposals, and decision docs.
+### tech-document-creator
+Co-authors technical documents — RFCs, product design docs, architecture proposals, and ADRs — built to be shared with developer teams for discussion.
 
-**Three-stage workflow:**
-1. Context Gathering - Close knowledge gaps
-2. Refinement - Build iteratively through brainstorm/curate/draft/edit
-3. Reader Testing - Verify with fresh perspective
+**Workflow:**
+0. Pick the document type (RFC / design doc / arch proposal / ADR) — loads the matching template
+1. Context Gathering — Close knowledge gaps
+2. Refinement — Build iteratively through brainstorm/curate/draft/edit
+3. Reader Testing — Verify with fresh perspective
 
 ### conference-talk-builder
 Create conference talk outlines and iA Presenter markdown slides using Story Circle.
