@@ -22,7 +22,7 @@ Identify the **1-3 most specific** skills that directly address the request. Pre
 
 1. **Pick the most specific skill first** — if the user asks about LSP config, load `nvim-lsp`, not `neovim-best-practices`
 2. **Only add a second/third skill if it covers a clearly different aspect** of the prompt
-3. **Never load a general skill when a specific one exists** — e.g. don't load `code-assistant` when `react-best-practices` covers it
+3. **Never load a general skill when a specific one exists** — e.g. prefer `react-best-practices` over a broader code-review skill when the user is asking about React
 4. **Cap at 3 skills max** — if you think you need more, pick the 3 most relevant
 5. **If nothing matches closely, say so** — don't force-load unrelated skills
 
@@ -43,12 +43,12 @@ Use this to identify candidates, then narrow down to the most specific 1-3.
 - `nvim-check-config` — config validation, best practices audit
 
 **Frontend / React / Next.js:**
-- `react-best-practices` — component audit, patterns, performance rules
-- `code-assistant` — orchestrates frontend-developer, nextjs-developer, frontend-security-coder agents
+- `react-best-practices` — component audit, patterns, performance rules (universal checks + 12 thematic references)
+- (For building: `frontend-developer` / `nextjs-developer` agents invoked directly via Task tool)
 
 **TypeScript / Code Quality:**
-- `code-assistant` — orchestrates typescript-coder, code-reviewer, debugger, refactoring agents
 - `de-slopify` — remove AI-generated comments
+- (For typing: `typescript-coder` agent invoked directly via Task tool)
 
 **Architecture:**
 - `senior-architect` — system design, C4 diagrams, ADRs
@@ -97,12 +97,12 @@ Use this to identify candidates, then narrow down to the most specific 1-3.
 | Prompt | Load | Skip |
 |--------|------|------|
 | "My LSP feels slow opening React files" | `nvim-lsp`, `nvim-perf` | `neovim-best-practices` |
-| "Is this React component good?" | `react-best-practices` | `code-assistant` |
-| "Write unit tests for this service" | `test-suite` | `code-assistant` |
-| "Create a blog post about streaming" | `blog-writer` | `code-assistant` |
+| "Is this React component good?" | `react-best-practices` | (none — invoke agent directly) |
+| "Write unit tests for this service" | `test-suite` | (none — invoke agent directly) |
+| "Create a blog post about streaming" | `blog-writer` | (none — invoke agent directly) |
 | "Optimize my Neovim startup" | `nvim-perf`, `lazy-nvim-optimization` | `neovim-best-practices` |
 | "Help me build a RAG pipeline" | `ai-engineer` | `prompt-engineer` |
-| "Review this PR comment tone" | `check-communication` | `code-assistant` |
+| "Review this PR comment tone" | `check-communication` | (none — invoke agent directly) |
 
 ## Step 2: Load Skills
 

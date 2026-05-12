@@ -99,7 +99,7 @@ This marketplace uses **context-appropriate orchestration** - different patterns
 | **Hybrid** | Need both implicit and explicit entry points | Skills + Commands | `architecture`, `ai-development` |
 | **Agent-only** | Components work independently, no coordination needed | Context-based | `developer-tools`* |
 
-*Developer-tools now includes `code-assistant` skill orchestrator for intelligent agent selection.
+*Developer-tools is agent-only. Slash commands handle explicit multi-step workflows (`/react-best-practices`, `/pr-review`); the model picks the right specialist agent for direct requests.
 
 ### Design Principles
 
@@ -138,7 +138,7 @@ Output Layer (files, summaries, actions)
 **Skill-based Orchestration:**
 - `ideation` - Confidence scoring → questions → contract → PRDs → specs
 - `blog-writer` - Brain dump → polished blog post with SEO
-- `code-assistant` - Auto-selects best specialist agent for coding task
+- (Coding work uses slash commands and direct agent invocation — no mega-orchestrator skill, per the official Anthropic marketplace pattern)
 
 **Command-based Orchestration:**
 - `/daily-startup` - Coordinates agents + skills + MCP for morning workflow

@@ -1,76 +1,63 @@
 # Developer Tools Plugin
 
-Development agents for coding, frontend, and debugging with intelligent orchestration.
+Specialist agents and skills for coding, debugging, and frontend audit work.
 
-## Orchestration
+## Components
 
-### code-assistant (Skill)
+### Slash commands
 
-**NEW!** Intelligent orchestrator that automatically selects the best specialist agent based on your request.
+| Command | What it does |
+|---|---|
+| `/react-best-practices` | Explicit invocation of the React audit skill (universal checks + thematic references) |
+| `/pr-review` | Comprehensive PR audit: code-reviewer agent + react-best-practices skill for React/TSX files |
 
-**How it works:**
-- Analyzes your coding request (language, framework, task type)
-- Automatically selects the optimal agent
-- Coordinates multi-agent workflows for complex tasks
-- Provides fallback options when ambiguous
+### Skills
 
-**Example:**
-```
-You: "I need to debug this React component"
-  → Automatically invokes: debugger agent
+| Skill | Triggers on | Purpose |
+|---|---|---|
+| `react-best-practices` | React/Next.js audit intent, performance, useEffect, modals, SSR/CSR, bundle size | Audits React code — universal checks always; deep-dive references lazy-loaded per intent |
 
-You: "Create a secure Next.js form with TypeScript"
-  → Coordinates: nextjs-developer + typescript-coder + frontend-security-coder
-```
+### Agents
 
-**Manual override:** You can still directly request specific agents:
-- "Use typescript-coder for this"
-- "Let the nextjs-developer handle it"
+| Agent | Lens | When to use |
+|---|---|---|
+| `coder` | Spec-driven, methodical | "Implement this exact PRD/ADR/brief" |
+| `frontend-developer` | Opinionated React patterns | "Build a React feature with modern defaults" |
+| `typescript-coder` | Type system specialist | Complex types, generics, "inevitable code" |
+| `nextjs-developer` | Next.js / App Router / RSC | Next.js-specific work |
+| `frontend-security-coder` | XSS / CSP / sanitization | Client-side security |
+| `debugger` | Bug diagnosis | "Why is this broken?" |
+| `code-reviewer` | Code quality, security | PR review, quality assurance |
+| `code-refactoring-specialist` | Clean code patterns | Reduce complexity, improve naming |
+| `ui-ux-designer` | Interface design | Design systems, accessibility |
 
-## Agents
+## How the pieces compose (workflows)
 
-### coder
-General implementation agent for translating specifications into production code.
+The marketplace doesn't ship a mega-orchestrator. The model picks the right specialist when you describe what you want. For multi-step work, use the slash commands or invoke agents directly.
 
-### typescript-coder
-Expert TypeScript developer focused on writing "inevitable code" - TypeScript that feels natural and effortless to understand.
+**Build a React feature**
+- Direct: ask Claude → it routes to `frontend-developer` (or `nextjs-developer` for App Router work)
+- With a spec: use `coder` agent for strict spec-following
 
-### frontend-developer
-Expert modern frontend developer specializing in React 19+, Vue 3, and cutting-edge web development.
+**Audit existing code**
+- React/Next.js: `/react-best-practices` (or the skill auto-triggers from "is this good?")
+- Mixed: `/pr-review` for comprehensive coverage
 
-**Specialties:**
-- Component composition
-- Performance optimization
-- Modern tooling (Vite, Vitest, Biome)
-- Accessible, type-safe applications
+**Debug an issue**
+- Direct: `debugger` agent
+- For React perf specifically: `react-best-practices` skill loads diagnostic references (bundle, flame graph, re-renders)
 
-### nextjs-developer
-Expert Next.js 14+ developer specializing in App Router architecture.
+**Refactor**
+- Direct: `code-refactoring-specialist` agent
+- For React patterns specifically: pair with `react-best-practices` for opinion
 
-**Specialties:**
-- React Server Components
-- Server Actions
-- Streaming SSR
-- Core Web Vitals optimization
+## Philosophy
 
-### frontend-security-coder
-Expert in secure frontend coding practices.
+- **Single-purpose components** — each agent and skill has one clear job
+- **No orchestrator skills** — the model picks the right specialist when intent is clear
+- **Slash commands for explicit chains** — when you want a specific multi-step workflow, type the command
+- **Lazy-loaded references** — react-best-practices skill loads only the deep-dive file that matches the user's intent (see `skills/react-best-practices/SKILL.md`)
 
-**Specialties:**
-- XSS prevention
-- Output sanitization
-- Client-side security patterns
+## Installation
 
-### debugger
-Debugging specialist for errors, test failures, and unexpected behavior.
-
-## Usage
-
-These agents are automatically available when you install the plugin. Use them when:
-
-- Implementing features from specs
-- Writing TypeScript code
-- Building frontend applications
-- Working with Next.js
-- Debugging issues
-- Security-focused frontend work
+These components are auto-available when you install the plugin. Use them by describing the task or invoking commands/agents directly.

@@ -177,40 +177,40 @@ The senior-architect will:
 
 #### For Web Applications
 
-Invoke both `frontend-design` and `code-assistant` skills:
+Invoke `frontend-design` skill (for UI) and the `coder` agent (for backend/integration):
 
 ```
 Skill tool → "frontend-design"
 Prompt: "Design and implement the UI for this [app type]. Requirements in docs/ideation/, architecture in docs/architecture.md. Use [selected stack]. Focus on core MVP features."
 
-Skill tool → "developer-tools:code-assistant"
+Task tool → coder agent (subagent_type: "coder")
 Prompt: "Implement the complete web application based on frontend design and architecture. Include authentication, API routes, database setup, and core features from requirements."
 ```
 
 #### For Mobile Applications
 
-Invoke `code-assistant`:
+Invoke the `coder` agent via the Task tool:
 
 ```
-Skill tool → "developer-tools:code-assistant"
+Task tool → coder agent (subagent_type: "coder")
 Prompt: "Implement mobile app using [selected stack]. Requirements in docs/ideation/, architecture in docs/architecture.md. Include navigation, screens, state management, and API integration for core features."
 ```
 
 #### For APIs/Backend
 
-Invoke `code-assistant`:
+Invoke the `coder` agent via the Task tool:
 
 ```
-Skill tool → "developer-tools:code-assistant"
+Task tool → coder agent (subagent_type: "coder")
 Prompt: "Implement API service using [selected stack]. Requirements in docs/ideation/, architecture in docs/architecture.md. Include endpoints, data models, authentication, and database integration."
 ```
 
 #### For CLI Tools
 
-Invoke `code-assistant`:
+Invoke the `coder` agent via the Task tool:
 
 ```
-Skill tool → "developer-tools:code-assistant"
+Task tool → coder agent (subagent_type: "coder")
 Prompt: "Implement CLI tool using [selected stack]. Requirements in docs/ideation/, architecture in docs/architecture.md. Include command structure, argument parsing, and core functionality."
 ```
 
@@ -292,7 +292,7 @@ Prompt: "Implement CLI tool using [selected stack]. Requirements in docs/ideatio
    5. Deploy to [recommended platforms]
 
    💡 To iterate: Use the generated documentation as foundation
-      and continue development with code-assistant or specialized agents.
+      and continue development with the `coder` agent or specialized agents (frontend-developer, nextjs-developer, etc.).
    ```
 
 ## Settings Integration
@@ -454,7 +454,7 @@ Use Task tool for agent invocation:
 Task(subagent_type="tech-stack-advisor", prompt="...", description="...")
 
 # For agents in other plugins (use full identifier)
-Task(subagent_type="developer-tools/code-assistant", prompt="...", description="...")
+Task(subagent_type="coder", prompt="...", description="...")
 ```
 
 ### Plugin Availability

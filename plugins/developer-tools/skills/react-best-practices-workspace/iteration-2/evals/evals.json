@@ -1,0 +1,61 @@
+{
+  "skill_name": "react-best-practices",
+  "iteration": 2,
+  "purpose": "Verify the expanded routing table (5 conceptual + 7 rule-level + universal checks) correctly routes intents to the right reference. Specifically tests the new rule-level files and the boundary between conceptual and rule-level references.",
+  "changes_since_iteration_1": [
+    "Added universal-checks tier to SKILL.md body",
+    "Added per-reference Read this when... headers",
+    "Split vercel-rules.md into 7 new thematic rule-level references",
+    "Routing table now has 12 entries split into Conceptual and Rule-level tiers"
+  ],
+  "evals": [
+    {
+      "id": 1,
+      "name": "waterfalls-sequential-awaits",
+      "prompt": "My dashboard route handler does this:\n\n```ts\nexport async function GET() {\n  const user = await db.user.findFirst()\n  const posts = await db.posts.findMany()\n  const notifications = await db.notifications.findMany()\n  return Response.json({ user, posts, notifications })\n}\n```\n\nResponse is slow (~600ms). What's the issue and the fix?",
+      "expected_reference": "waterfalls.md"
+    },
+    {
+      "id": 2,
+      "name": "bundle-optimization-rules",
+      "prompt": "I have a heavy MarkdownEditor component that's only used when users click 'Edit'. Currently I import it at the top of CreatePost. Should I keep it that way or change something? What's the rule for components like this?",
+      "expected_reference": "bundle-optimization.md"
+    },
+    {
+      "id": 3,
+      "name": "server-rsc-dedup",
+      "prompt": "In my Next.js App Router app, both <Header /> and <Sidebar /> fetch the same user via getUser(). Two database queries per page. How do I dedupe within a single render?",
+      "expected_reference": "server-and-rsc.md"
+    },
+    {
+      "id": 4,
+      "name": "client-fetching-listeners",
+      "prompt": "I have ~30 components on my page each registering their own window.addEventListener('scroll', ...) for various tracking purposes. Performance is degrading. What's the pattern to fix this?",
+      "expected_reference": "client-fetching.md"
+    },
+    {
+      "id": 5,
+      "name": "re-render-rule-specific",
+      "prompt": "Code review question: should I wrap `items.length > 0` in useMemo? What about `firstName + ' ' + lastName`? My team has been wrapping everything in useMemo and I think it's wrong.",
+      "expected_reference": "re-render-patterns.md"
+    },
+    {
+      "id": 6,
+      "name": "re-renders-conceptual",
+      "prompt": "I wrapped my ProductList in React.memo but it still re-renders every time the parent updates. Same products array, same callbacks. What's the underlying reason — is React.memo not working?",
+      "expected_reference": "re-renders-and-memoization.md"
+    },
+    {
+      "id": 7,
+      "name": "rendering-perf-hydration",
+      "prompt": "My <Timestamp date={new Date()} /> shows a hydration mismatch warning AND causes a layout flash because the timestamp briefly shows the server value then jumps to the client value. How do I fix both?",
+      "expected_reference": "rendering-performance.md"
+    },
+    {
+      "id": 8,
+      "name": "javascript-perf-hot-loop",
+      "prompt": "I have this in a hot loop:\n\n```ts\nfor (const user of activeUsers) {\n  const userPosts = posts.find(p => p.userId === user.id)\n  process(user, userPosts)\n}\n```\n\nWith 10k users and 50k posts, this is slow. What's the fix?",
+      "expected_reference": "javascript-performance.md"
+    }
+  ]
+}

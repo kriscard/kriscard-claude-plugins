@@ -12,7 +12,7 @@ Studio Startup follows the **conductor pattern** - the skill acts as a conductor
 - **cto-advisor**: Technical validation
 - **senior-architect**: System design
 - **frontend-design**: UI/UX implementation
-- **code-assistant**: Code generation
+- **coder agent**: Code generation
 
 ### Why Orchestrate vs. Implement?
 
@@ -129,15 +129,15 @@ Some phases may skip or vary based on project type:
 
 ```python
 if project_type == "web":
-    # Invoke frontend-design + code-assistant
+    # Invoke frontend-design + coder agent
     Skill(skill="frontend-design")
-    Skill(skill="code-assistant")
+    Task(subagent_type="coder")
 elif project_type == "mobile":
-    # Invoke code-assistant only
-    Skill(skill="code-assistant")
+    # Invoke coder agent only
+    Task(subagent_type="coder")
 elif project_type == "api":
-    # Different prompting for code-assistant
-    Skill(skill="code-assistant")  # Backend-focused prompt
+    # Different prompting for coder agent
+    Task(subagent_type="coder")  # Backend-focused prompt
 ```
 
 **Implementation**:
@@ -432,17 +432,17 @@ Implementation Phase:
 If project_type == "web":
     If has_ui_requirements:
         Invoke: frontend-design
-    Invoke: code-assistant (full-stack mode)
+    Invoke: coder agent (full-stack mode)
 
 Elif project_type == "mobile":
     If ui_complexity == "high":
         Consider: ui-ux-designer for wireframes first
-    Invoke: code-assistant (mobile mode)
+    Invoke: coder agent (mobile mode)
 
 Elif project_type == "api":
     If needs_documentation:
         Invoke: api-documentation-generator (if available)
-    Invoke: code-assistant (backend mode)
+    Invoke: coder agent (backend mode)
 ```
 
 ### Progressive Detailing
@@ -642,7 +642,7 @@ Orchestration:
 6. Phase 5: senior-architect
    Output: Simple component structure, local state
 7. Phase 6: Ask output path: ~/projects/todo-app
-8. Phase 7: frontend-design + code-assistant
+8. Phase 7: frontend-design + coder agent
    Implement full app with components, API routes
 9. Phase 8: Generate README, commit, done
 
@@ -670,7 +670,7 @@ Orchestration:
 7. Phase 6: Create in ~/projects/feedback-platform
 8. Phase 7: Extensive implementation
    - frontend-design for UI/UX
-   - code-assistant for full implementation
+   - coder agent for full implementation
    - Include testing setup (from settings)
 9. Phase 8: Comprehensive docs, git init, initial commit
 
@@ -694,7 +694,7 @@ Orchestration:
 4. Confirm with user: "I see you chose React Native + Expo. Proceed?"
    User: Yes
 5. Skip to Phase 7 (Implementation)
-   - code-assistant for mobile app
+   - coder agent for mobile app
    - Use docs/ as context
 6. Phase 8: Finalization (README, manifest, etc.)
 

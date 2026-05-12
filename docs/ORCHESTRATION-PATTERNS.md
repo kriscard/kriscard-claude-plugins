@@ -177,13 +177,16 @@ debugger agent auto-activates
 Works independently
 ```
 
-**When orchestration WOULD help:**
+**When the user is unsure which agent to invoke:**
 ```
 User: "Help me build a new feature"
        ↓
 ??? Which agent: coder, typescript-coder, frontend-developer ???
        ↓
-Consider adding: code-assistant skill that selects best agent
+Trust the model — given a clear description of the task, it picks the
+right specialist. For explicit multi-step workflows, add slash commands
+(e.g. /pr-review chaining code-reviewer + react-best-practices) rather
+than another orchestrator skill.
 ```
 
 **Pros:**
@@ -275,13 +278,16 @@ Better: Let agent trigger on context
   User: "debug this" → debugger agent auto-activates
 ```
 
-### ❌ Under-Orchestration
+### ❌ Adding orchestrator skills as a band-aid
 ```
-Bad: 9 independent agents, user must choose
-  "Should I use coder, typescript-coder, or frontend-developer?"
+Bad reasoning: "9 independent agents, user must choose — let's add an
+  orchestrator skill that picks for them."
 
-Better: Add selection skill
-  code-assistant skill → analyzes context → selects best agent
+Better: The model picks the right agent from clear descriptions. If a
+  multi-step chain is genuinely useful, add a slash command (explicit,
+  user-controlled) instead of a skill (another routing layer). See
+  the Anthropic official marketplace pattern: focused single-purpose
+  plugins, not mega-orchestrators.
 ```
 
 ### ❌ Wrong Entry Point

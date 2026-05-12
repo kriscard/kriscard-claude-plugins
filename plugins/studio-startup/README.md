@@ -251,7 +251,7 @@ Studio Startup coordinates these marketplace plugins:
 - **cto-advisor** - Technical validation and architecture guidance
 - **architecture:senior-architect** - Detailed system design
 - **frontend-design** - UI/UX implementation (web/mobile)
-- **developer-tools/code-assistant** - Code generation and implementation
+- **developer-tools/coder** (agent) - Spec-driven code generation and implementation
 
 These plugins must be available in your marketplace for full functionality.
 

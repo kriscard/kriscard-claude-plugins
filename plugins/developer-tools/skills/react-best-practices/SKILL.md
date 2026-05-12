@@ -175,17 +175,35 @@ After checking all rules, provide:
 
 The audit checklist above is the always-check baseline. For deeper analysis, **load only the reference(s) that match the user's intent** — don't load all of them, and don't load any unless the intent matches.
 
-| User mentions / intent | Load this reference | What it covers |
-|---|---|---|
-| `useEffect`, side effects, "do I need an effect", stale closures, flicker after measurement | `references/useeffect-antipatterns.md` | 12 canonical anti-patterns from react.dev, the stale-closure ref-trick, `useLayoutEffect` for DOM measurements, ESLint rule mapping |
-| Re-renders, `useMemo`, `useCallback`, `React.memo`, React Compiler, "why does this re-render", prop reference identity | `references/re-renders-and-memoization.md` | Nadia's 4-category taxonomy, the chain rule, prop-identity teaching (`<Child onClick={() => ...} />`), Compiler era guidance |
-| Bundle size, lazy loading, code splitting, "slow initial load", flame graph, profiling, Web Vitals | `references/bundle-and-perf-investigation.md` | Bundle investigation workflow, common culprits checklist (wildcard imports, non-ESM, duplicates), DevTools flame graph workflow |
-| Modal, dialog, tooltip, popover, dropdown, z-index, "appears behind the header", portal | `references/portals-and-stacking-context.md` | Stacking context trap, properties that create new contexts, the form-submission gotcha, native `<dialog>` vs portal |
-| SSR, CSR, SSG, ISR, RSC, Server Components, Server Actions, hydration mismatch, rendering choice | `references/rendering-models.md` | CSR/SSR/SSG/RSC decision framework, Nadia's SSR perf paradox, hydration pitfalls, Server Actions for mutations only |
-| Full audit, comprehensive review, "check every rule" | `references/vercel-rules.md` | All 57 rules with incorrect/correct code examples (Vercel Engineering) |
+### Conceptual / framework references
 
-If multiple intents match, load them in order of specificity (most-specific first). The audit checklist above remains the always-check baseline regardless of which references load.
+| User mentions / intent | Load this reference |
+|---|---|
+| `useEffect`, side effects, "do I need an effect", stale closures, flicker after measurement | `references/useeffect-antipatterns.md` |
+| Re-renders, `useMemo`/`useCallback`/`React.memo`, React Compiler, "why does this re-render", prop reference identity | `references/re-renders-and-memoization.md` |
+| Bundle size investigation, "slow initial load", flame graph, profiling workflow, Web Vitals | `references/bundle-and-perf-investigation.md` |
+| Modal, dialog, tooltip, popover, dropdown, z-index, "appears behind the header", portal | `references/portals-and-stacking-context.md` |
+| SSR, CSR, SSG, ISR, RSC choice, hydration mismatch, rendering model decision | `references/rendering-models.md` |
+
+### Rule-level references (sourced from Vercel Engineering's 57 rules)
+
+| User mentions / intent | Load this reference |
+|---|---|
+| Sequential awaits, parallel data fetching, Suspense streaming, waterfall chains | `references/waterfalls.md` (5 rules) |
+| Barrel imports, dynamic imports, third-party script weight, preload on intent | `references/bundle-optimization.md` (5 rules) |
+| Server Actions, RSC serialization, `React.cache`, LRU caching, `after()` | `references/server-and-rsc.md` (7 rules) |
+| SWR / TanStack Query deduplication, scroll/touch listeners, `localStorage` versioning | `references/client-fetching.md` (4 rules) |
+| Concrete re-render rules (functional setState, narrow deps, transitions, lazy init, derived state) | `references/re-render-patterns.md` (12 rules) |
+| Hydration handling, `content-visibility`, SVG perf, `useTransition` for UI pending states | `references/rendering-performance.md` (9 rules) |
+| JS micro-optimizations (layout thrashing, Set/Map, `toSorted`, RegExp hoisting, `useEffectEvent`) | `references/javascript-performance.md` (15 rules) |
+
+### Routing rules
+
+- If multiple intents match, load them in **order of specificity** (most-specific first)
+- The conceptual references contain frameworks/why; the rule references contain concrete code patterns — they complement each other
+- **Conceptual vs. rule-level — discriminator:** if the user asks *"should I do X?"*, *"is this a good pattern?"*, *"do I need to wrap this in useMemo?"* — that's a **rule-level** question → load the corresponding rule-level file. If they ask *"why does this re-render?"*, *"why isn't React.memo working?"*, *"how does the Compiler change this?"* — that's **conceptual** → load the conceptual file. When in doubt, load both.
+- The audit checklist above remains the always-check baseline regardless of which references load
 
 ## Attribution
 
-Priority checklist sourced from Vercel Engineering's React performance guidelines. Deep-dive references additionally draw on react.dev, Nadia Makarevich (developerway), TkDodo, Kent C. Dodds (Epic Web), and patterns.dev.
+Priority checklist + rule-level references sourced from Vercel Engineering's React performance guidelines. Conceptual references additionally draw on react.dev, Nadia Makarevich (developerway), TkDodo, Kent C. Dodds (Epic Web), and patterns.dev.
