@@ -16,7 +16,7 @@ Build React applications using contemporary tooling (Vite, Vitest, Biome, Next.j
 - **Measure first.** Don't memoize, optimize, or refactor without profiling data.
 - **Type safety.** TypeScript strict mode is the floor, not the ceiling.
 - **Accessibility from day one.** WCAG 2.2 AA target, semantic HTML, keyboard navigation, screen-reader tested.
-- **Platform first.** CSS handles more than developers assume — see `react-check` for the cases where CSS replaces React state.
+- **Platform first.** CSS handles more than developers assume — see `react-patterns` for the cases where CSS replaces React state.
 - **Composition over inheritance.** Hooks and small components over HOCs and class hierarchies.
 
 ## React: 18 vs 19 features
@@ -65,7 +65,7 @@ GA October 2025. Build-time tool that automates memoization.
 - Context value churn (still split your providers)
 - Data fetching / error handling
 
-For deep memoization rules pre- and post-Compiler, see [react-check/references/re-renders-and-memoization.md](../skills/react-check/references/re-renders-and-memoization.md).
+For deep memoization rules pre- and post-Compiler, see [react-patterns/references/re-renders-and-memoization.md](../skills/react-patterns/references/re-renders-and-memoization.md).
 
 ## Composition patterns (priority order)
 
@@ -161,7 +161,7 @@ const { register, handleSubmit, formState: { errors } } =
 - styled-components (in maintenance mode)
 - Emotion (still works, but ecosystem moving away)
 
-**CSS-first thinking:** Many React patterns can be replaced with CSS — `:has()` for state-based styling, transitions for hover/focus changes, `<dialog>` for native modals. "Sometimes the best React code is no React code." See [css/no-React-state patterns](../skills/react-check/references/portals-and-stacking-context.md) for examples.
+**CSS-first thinking:** Many React patterns can be replaced with CSS — `:has()` for state-based styling, transitions for hover/focus changes, `<dialog>` for native modals. "Sometimes the best React code is no React code." See [css/no-React-state patterns](../skills/react-patterns/references/portals-and-stacking-context.md) for examples.
 
 ## Build & tooling
 
@@ -183,7 +183,7 @@ Two-tier workflow:
 | **[react-doctor](https://github.com/millionco/react-doctor)** | CI / Static | AST analysis, 0–100 health score across state/effects, perf, architecture, security, a11y, dead code. Honors `eslint-plugin-react-hooks` and `eslint-plugin-react-you-might-not-need-an-effect`. |
 | **Bundle analyzer** | Build | Rollup Plugin Visualizer (Vite), `@next/bundle-analyzer` (Next.js). |
 
-For detailed workflows, defer to `react-check` skill — it contains the full diagnostic playbooks.
+For detailed workflows, defer to `react-patterns` skill — it contains the full diagnostic playbooks.
 
 ## Accessibility
 
@@ -209,7 +209,7 @@ When using AI for React debugging or code generation (per Nadia's "Debugging wit
 - **Class components** for new code → use functional + hooks
 - **Components defined inside other components** → extract, even with Compiler
 - **Index as `key` in dynamic lists** → use stable IDs (acceptable only for static lists)
-- **`useEffect` for derived state, event-triggered logic, or parent notification** → see [useeffect-antipatterns reference](../skills/react-check/references/useeffect-antipatterns.md)
+- **`useEffect` for derived state, event-triggered logic, or parent notification** → see [useeffect-antipatterns reference](../skills/react-patterns/references/useeffect-antipatterns.md)
 - **`useEffect` for DOM measurements** → use `useLayoutEffect` to avoid flicker
 - **Server Actions for reads** → use TanStack Query
 - **`localStorage` as state management** → it's persistence, not state
@@ -274,7 +274,7 @@ For deeper patterns and the *why* behind decisions:
 4. Build accessible by default
 5. Optimize when there's a measured problem, not speculatively
 6. Include tests with Vitest + Testing Library
-7. Reference `react-check` skill for deep diagnostic workflows
+7. Reference `react-patterns` skill for deep diagnostic workflows
 
 ## Integration with other agents
 
@@ -283,7 +283,7 @@ For deeper patterns and the *why* behind decisions:
 - **Refactoring**: `code-refactoring-specialist` for restructuring
 - **Unit tests**: `unit-test-developer`
 - **E2E tests**: `automation-test-developer`
-- **Performance audit**: trigger the `react-check` skill for full audit with the 5 reference workflows
+- **Performance audit**: trigger the `react-patterns` skill for full audit with the 5 reference workflows
 
 ## Behavioral traits
 

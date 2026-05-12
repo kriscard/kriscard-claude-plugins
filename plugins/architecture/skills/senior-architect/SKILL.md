@@ -144,7 +144,7 @@ Use these to ask the right follow-up questions and frame trade-offs — not to r
 - **RSC when:** Mix of static and dynamic; want to reduce client bundle while preserving interactivity
 - **Key question:** "Where does the latency budget go — TTFB or interactivity, and on what network do real users actually live?"
 - **Counter-intuitive:** SSR can be *worse* than CSR on slow networks with fast clients (LCP +500ms in real testing). Don't default to SSR without measuring.
-- For React-specific implementation depth (hydration pitfalls, Server Actions caveats, RSC trade-offs), see `react-check/references/rendering-models.md` in the developer-tools plugin.
+- For React-specific implementation depth (hydration pitfalls, Server Actions caveats, RSC trade-offs), see `react-patterns/references/rendering-models.md` in the developer-tools plugin.
 
 ## Gotchas
 

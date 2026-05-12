@@ -1,5 +1,5 @@
 ---
-description: Comprehensive PR review combining code-reviewer agent + react-check skill
+description: Comprehensive PR review combining code-reviewer agent + react-patterns skill
 argument-hint: [PR number, branch name, or omit for current branch]
 ---
 
@@ -16,7 +16,7 @@ Run a thorough PR audit covering both general code quality and React-specific co
 
 2. **Audit in parallel:**
    - **For all changed files** → spawn the `code-reviewer` agent for security, correctness, and quality concerns
-   - **For React/TypeScript files** (`.tsx`, `.jsx`, hooks) → invoke the `react-check` skill
+   - **For React/TypeScript files** (`.tsx`, `.jsx`, hooks) → invoke the `react-patterns` skill
 
 3. **Synthesize findings** grouped by priority:
    - **CRITICAL** — security holes, correctness bugs, data loss risks

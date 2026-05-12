@@ -1,15 +1,15 @@
 ---
-description: Audit React/Next.js code against the react-check skill (universal checks + thematic deep-dives)
+description: Audit React/Next.js code against the react-patterns skill (universal checks + thematic deep-dives)
 argument-hint: [optional file path or scope]
 ---
 
-# /react-check
+# /react-patterns
 
-Run a React/Next.js audit using the `react-check` skill.
+Run a React/Next.js audit using the `react-patterns` skill.
 
 ## What this does
 
-Explicit invocation of the `react-check` skill. The skill applies:
+Explicit invocation of the `react-patterns` skill. The skill applies:
 
 1. **Universal checks** (always run) — 6 high-leverage pitfalls that fire on any React audit
 2. **Deep-dive references** loaded selectively based on what the code suggests:

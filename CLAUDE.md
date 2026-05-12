@@ -97,7 +97,7 @@ Skills use progressive disclosure: lean SKILL.md body + lazy-loaded references.
 - **References do NOT auto-load** — the model must call Read on them; the routing table is what makes that decision
 - **Each reference starts with `> **Read this when:** ...`** so the model can verify it picked the right file
 - **Split large references by user intent (thematic)**, not by vendor or priority (e.g., `waterfalls.md`, not `vercel-rules.md`)
-- **Canonical example:** `plugins/developer-tools/skills/react-check/SKILL.md`
+- **Canonical example:** `plugins/developer-tools/skills/react-patterns/SKILL.md`
 
 ## Orchestration Philosophy
 
@@ -112,7 +112,7 @@ This marketplace uses **context-appropriate orchestration** - different patterns
 | **Hybrid** | Need both implicit and explicit entry points | Skills + Commands | `architecture`, `ai-development` |
 | **Agent-only** | Components work independently, no coordination needed | Context-based | `developer-tools`* |
 
-*Developer-tools is agent-only. Slash commands handle explicit multi-step workflows (`/react-check`, `/pr-review`); the model picks the right specialist agent for direct requests.
+*Developer-tools is agent-only. Slash commands handle explicit multi-step workflows (`/react-patterns`, `/pr-review`); the model picks the right specialist agent for direct requests.
 
 ### Design Principles
 

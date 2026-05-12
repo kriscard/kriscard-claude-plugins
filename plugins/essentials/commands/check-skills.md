@@ -22,7 +22,7 @@ Identify the **1-3 most specific** skills that directly address the request. Pre
 
 1. **Pick the most specific skill first** — if the user asks about LSP config, load `nvim-lsp`, not `neovim-best-practices`
 2. **Only add a second/third skill if it covers a clearly different aspect** of the prompt
-3. **Never load a general skill when a specific one exists** — e.g. prefer `react-check` over a broader code-review skill when the user is asking about React
+3. **Never load a general skill when a specific one exists** — e.g. prefer `react-patterns` over a broader code-review skill when the user is asking about React
 4. **Cap at 3 skills max** — if you think you need more, pick the 3 most relevant
 5. **If nothing matches closely, say so** — don't force-load unrelated skills
 
@@ -43,7 +43,7 @@ Use this to identify candidates, then narrow down to the most specific 1-3.
 - `nvim-check-config` — config validation, best practices audit
 
 **Frontend / React / Next.js:**
-- `react-check` — component audit, patterns, performance rules (universal checks + 12 thematic references)
+- `react-patterns` — component audit, patterns, performance rules (universal checks + 12 thematic references)
 - (For building: `frontend-developer` / `nextjs-developer` agents invoked directly via Task tool)
 
 **TypeScript / Code Quality:**
@@ -97,7 +97,7 @@ Use this to identify candidates, then narrow down to the most specific 1-3.
 | Prompt | Load | Skip |
 |--------|------|------|
 | "My LSP feels slow opening React files" | `nvim-lsp`, `nvim-perf` | `neovim-best-practices` |
-| "Is this React component good?" | `react-check` | (none — invoke agent directly) |
+| "Is this React component good?" | `react-patterns` | (none — invoke agent directly) |
 | "Write unit tests for this service" | `test-suite` | (none — invoke agent directly) |
 | "Create a blog post about streaming" | `blog-writer` | (none — invoke agent directly) |
 | "Optimize my Neovim startup" | `nvim-perf`, `lazy-nvim-optimization` | `neovim-best-practices` |
