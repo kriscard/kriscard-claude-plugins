@@ -38,7 +38,7 @@ plugins/<name>/
 │   └── plugin.json              # Plugin manifest (only file in here)
 ├── README.md                    # Plugin documentation
 ├── skills/                      # Skills as <name>/SKILL.md (preferred)
-├── commands/                    # Legacy flat .md files (use skills/ for new plugins)
+├── commands/                    # Slash commands for explicit user-controlled workflows (.md files)
 ├── agents/                      # Subagent definitions (*.md)
 ├── hooks/                       # Event handlers (hooks.json)
 ├── monitors/                    # Background monitors (v2.1.105+)
@@ -85,6 +85,19 @@ When adding new skills, commands, or agents:
 - Command files: kebab-case.md (e.g., `analyze-repo.md`)
 - Skill directories: kebab-case (e.g., `blog-writer/`)
 - Agent files: kebab-case.md (e.g., `code-simplifier.md`)
+- Skills and agents must not share names (e.g., don't have a `frontend-developer` skill if a `frontend-developer` agent exists)
+- Avoid redundant suffixes (`skill`, `agent`) in names — the directory already conveys the type
+
+## Skill Architecture
+
+Skills use progressive disclosure: lean SKILL.md body + lazy-loaded references.
+
+- **SKILL.md body** under 500 lines — universal/always-fire content inline, deep content in `references/`
+- **`references/<topic>.md`** files — the model decides what to load via the routing table in SKILL.md
+- **References do NOT auto-load** — the model must call Read on them; the routing table is what makes that decision
+- **Each reference starts with `> **Read this when:** ...`** so the model can verify it picked the right file
+- **Split large references by user intent (thematic)**, not by vendor or priority (e.g., `waterfalls.md`, not `vercel-rules.md`)
+- **Canonical example:** `plugins/developer-tools/skills/react-check/SKILL.md`
 
 ## Orchestration Philosophy
 
@@ -120,6 +133,7 @@ Skip orchestration when:
 - ❌ Components work perfectly fine independently
 - ❌ Orchestration adds complexity without value
 - ❌ Users know exactly which specialist they need
+- ❌ The "orchestrator" just routes to agents — the model picks specialists from clear descriptions, and routing skills add a layer of indirection (the Anthropic official marketplace ships zero orchestrator skills). Use slash commands for explicit multi-step chains instead.
 
 ### Layered Architecture
 
@@ -148,3 +162,9 @@ Output Layer (files, summaries, actions)
 - `architecture` - Commands for docs, skills for advisory
 
 See [docs/ORCHESTRATION-PATTERNS.md](./docs/ORCHESTRATION-PATTERNS.md) for detailed guidance.
+
+## Practices
+
+- **Test before committing non-trivial changes** — file integrity check, cross-reference validation, `pnpm run typecheck`. For skill routing changes, run an eval (spawn 6-8 subagents with the skill loaded, verify each loads the expected reference).
+- **When architectural debate gets complex, check the industry pattern.** The Anthropic official marketplace ships focused single-purpose plugins, not orchestrators. Top community plugins succeed at one job done well. Simpler is usually right.
+- **Layer-appropriate tooling:** skills for auto-triggered domain expertise (audit, advisory), agents for execution specialists (build, debug, refactor), slash commands for explicit user-controlled multi-step workflows. Pick the right layer — don't stack.
