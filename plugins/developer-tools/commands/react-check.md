@@ -1,15 +1,15 @@
 ---
-description: Audit React/Next.js code against the react-best-practices skill (universal checks + thematic deep-dives)
+description: Audit React/Next.js code against the react-check skill (universal checks + thematic deep-dives)
 argument-hint: [optional file path or scope]
 ---
 
-# /react-best-practices
+# /react-check
 
-Run a React/Next.js audit using the `react-best-practices` skill.
+Run a React/Next.js audit using the `react-check` skill.
 
 ## What this does
 
-Explicit invocation of the `react-best-practices` skill. The skill applies:
+Explicit invocation of the `react-check` skill. The skill applies:
 
 1. **Universal checks** (always run) — 6 high-leverage pitfalls that fire on any React audit
 2. **Deep-dive references** loaded selectively based on what the code suggests:

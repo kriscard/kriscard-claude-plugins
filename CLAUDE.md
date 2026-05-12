@@ -99,7 +99,7 @@ This marketplace uses **context-appropriate orchestration** - different patterns
 | **Hybrid** | Need both implicit and explicit entry points | Skills + Commands | `architecture`, `ai-development` |
 | **Agent-only** | Components work independently, no coordination needed | Context-based | `developer-tools`* |
 
-*Developer-tools is agent-only. Slash commands handle explicit multi-step workflows (`/react-best-practices`, `/pr-review`); the model picks the right specialist agent for direct requests.
+*Developer-tools is agent-only. Slash commands handle explicit multi-step workflows (`/react-check`, `/pr-review`); the model picks the right specialist agent for direct requests.
 
 ### Design Principles
 

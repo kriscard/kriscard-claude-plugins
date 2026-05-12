@@ -1,5 +1,5 @@
 ---
-name: react-best-practices
+name: react-check
 description: >-
   Audits React and Next.js code for useEffect anti-patterns, unnecessary
   re-renders, memoization issues, bundle size, modal/portal positioning and

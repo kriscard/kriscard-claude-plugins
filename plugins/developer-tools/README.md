@@ -8,14 +8,14 @@ Specialist agents and skills for coding, debugging, and frontend audit work.
 
 | Command | What it does |
 |---|---|
-| `/react-best-practices` | Explicit invocation of the React audit skill (universal checks + thematic references) |
-| `/pr-review` | Comprehensive PR audit: code-reviewer agent + react-best-practices skill for React/TSX files |
+| `/react-check` | Explicit invocation of the React audit skill (universal checks + thematic references) |
+| `/pr-review` | Comprehensive PR audit: code-reviewer agent + react-check skill for React/TSX files |
 
 ### Skills
 
 | Skill | Triggers on | Purpose |
 |---|---|---|
-| `react-best-practices` | React/Next.js audit intent, performance, useEffect, modals, SSR/CSR, bundle size | Audits React code — universal checks always; deep-dive references lazy-loaded per intent |
+| `react-check` | React/Next.js audit intent, performance, useEffect, modals, SSR/CSR, bundle size | Audits React code — universal checks always; deep-dive references lazy-loaded per intent |
 
 ### Agents
 
@@ -40,23 +40,23 @@ The marketplace doesn't ship a mega-orchestrator. The model picks the right spec
 - With a spec: use `coder` agent for strict spec-following
 
 **Audit existing code**
-- React/Next.js: `/react-best-practices` (or the skill auto-triggers from "is this good?")
+- React/Next.js: `/react-check` (or the skill auto-triggers from "is this good?")
 - Mixed: `/pr-review` for comprehensive coverage
 
 **Debug an issue**
 - Direct: `debugger` agent
-- For React perf specifically: `react-best-practices` skill loads diagnostic references (bundle, flame graph, re-renders)
+- For React perf specifically: `react-check` skill loads diagnostic references (bundle, flame graph, re-renders)
 
 **Refactor**
 - Direct: `code-refactoring-specialist` agent
-- For React patterns specifically: pair with `react-best-practices` for opinion
+- For React patterns specifically: pair with `react-check` for opinion
 
 ## Philosophy
 
 - **Single-purpose components** — each agent and skill has one clear job
 - **No orchestrator skills** — the model picks the right specialist when intent is clear
 - **Slash commands for explicit chains** — when you want a specific multi-step workflow, type the command
-- **Lazy-loaded references** — react-best-practices skill loads only the deep-dive file that matches the user's intent (see `skills/react-best-practices/SKILL.md`)
+- **Lazy-loaded references** — react-check skill loads only the deep-dive file that matches the user's intent (see `skills/react-check/SKILL.md`)
 
 ## Installation
 

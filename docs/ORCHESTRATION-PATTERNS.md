@@ -185,7 +185,7 @@ User: "Help me build a new feature"
        ↓
 Trust the model — given a clear description of the task, it picks the
 right specialist. For explicit multi-step workflows, add slash commands
-(e.g. /pr-review chaining code-reviewer + react-best-practices) rather
+(e.g. /pr-review chaining code-reviewer + react-check) rather
 than another orchestrator skill.
 ```
 
