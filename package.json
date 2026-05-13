@@ -21,5 +21,30 @@
     "prettier": "^3.4.2",
     "tsx": "^4.19.2",
     "typescript": "^5.7.2"
+  },
+  "dependencies": {
+    "typebox": "^1.1.24"
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*"
+  },
+  "peerDependenciesMeta": {
+    "@earendil-works/pi-coding-agent": {
+      "optional": true
+    }
+  },
+  "keywords": [
+    "pi-package"
+  ],
+  "pi": {
+    "skills": [
+      "plugins/*/skills"
+    ],
+    "prompts": [
+      "plugins/*/commands/*.md"
+    ],
+    "extensions": [
+      "pi/extensions/*.ts"
+    ]
   }
 }
