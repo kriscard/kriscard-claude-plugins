@@ -46,6 +46,22 @@ rm -rf ~/.claude/plugins/cache/kriscard
 
 Then reinstall the plugins you need. This workaround is needed because Claude Code's automatic plugin updates don't always work correctly ([tracking issue](https://github.com/anthropics/claude-code/issues/17361)).
 
+## Using with Pi
+
+This repo is also a [Pi](https://github.com/mariozechner/pi-coding-agent) package. Install it directly:
+
+```bash
+pi install git:github.com/kriscard/kriscard-claude-plugins
+```
+
+Pi has some discrepancies with Claude Code and some tools needs to be polyfilled for full compatibility , Thanks Nick Nisi once again for `pi/extensions/claude-compat.ts` wich will allow Claude Code compatibility with PI for differents tools like `AskUserQuestion`, `WebFetch`, `WebSearch`, `TodoWrite`, and file-backed `Task*` tools.
+
+For skills that rely on Claude Code's `Task`/`Agent` subagent workflow, you must install `pi-subagents` once:
+
+```bash
+pi install npm:pi-subagents
+```
+
 ## Plugins
 
 | Plugin | Description | How to Use |
