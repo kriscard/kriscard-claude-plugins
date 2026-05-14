@@ -239,6 +239,46 @@ If the Quick Wrap section wasn't filled in today's daily note, draft answers:
 - What bottleneck became obvious?
 - One thing to carry into tomorrow?
 
+## Step 9: Distill session log to wiki (optional)
+
+After the daily-note and project-note work is done, ask whether to compile today's session log into wiki concept notes via `memory_compile.py`. This is the Karpathy "ingest → wiki" step for self-generated content.
+
+**Always ask explicitly — do not auto-run.** The compile is a real LLM cost (~$0.02–0.05) and writes new notes to `3 - Resources/<topic>/` plus appends to `index.md` and `log.md`.
+
+### Ask the user:
+
+> Want to distill today's session log into wiki concept notes? This runs a dry-run first so you can review the plan before any writes. _[y/N]_
+
+If yes, run the dry-run:
+
+```bash
+uv run ~/.dotfiles/.claude/scripts/memory_compile.py --date $(date +%Y-%m-%d) 2>&1 | tail -60
+```
+
+Surface a tight summary of the plan: number of concepts extracted, how many `new-note` vs `moc-backlink` actions, any flagged false-positive matches (qmd score 0.88–0.95 to unrelated notes).
+
+### Then ask whether to apply:
+
+> The plan above proposes N new wiki notes and M backlinks. Apply? Skip backlinks if they look noisy? _[y / skip-backlinks / N]_
+
+If yes:
+
+```bash
+uv run ~/.dotfiles/.claude/scripts/memory_compile.py --date $(date +%Y-%m-%d) --apply --yes
+```
+
+If "skip-backlinks":
+
+```bash
+uv run ~/.dotfiles/.claude/scripts/memory_compile.py --date $(date +%Y-%m-%d) --apply --yes --skip-backlinks
+```
+
+If no: state that the plan is saved at `~/.claude/state/memory-compile-plans/$(date +%Y-%m-%d).json` and can be applied later with `mcompile --date $(date +%Y-%m-%d)`.
+
+After apply, surface: how many notes landed, paths to new files, what got skipped.
+
+---
+
 ## Output Format
 
 ### Today's Extraction
@@ -270,5 +310,8 @@ If the Quick Wrap section wasn't filled in today's daily note, draft answers:
 
 ### Quick Wrap (if not completed)
 [Draft answers to reflection questions]
+
+### Wiki Distillation (if user opted in)
+[mcompile plan summary, applied actions, paths of new concept notes, anything skipped]
 
 Keep output concise. Focus on filing and surfacing what matters, not summarizing the day.
