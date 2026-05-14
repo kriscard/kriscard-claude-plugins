@@ -1,7 +1,4 @@
-import type {
-  ExtensionAPI,
-  ExtensionContext,
-} from '@earendil-works/pi-coding-agent';
+import type { ExtensionAPI, ExtensionContext } from '@earendil-works/pi-coding-agent';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { Type } from 'typebox';
@@ -42,9 +39,7 @@ function truncateText(text: string, maxBytes = MAX_TOOL_TEXT_BYTES) {
 }
 
 function optionDisplay(option: QuestionOption) {
-  return option.description
-    ? `${option.label} — ${option.description}`
-    : option.label;
+  return option.description ? `${option.label} — ${option.description}` : option.label;
 }
 
 async function askQuestions(ctx: ExtensionContext, questions: Question[]) {
@@ -65,7 +60,7 @@ async function askQuestions(ctx: ExtensionContext, questions: Question[]) {
               .map(
                 (q, i) =>
                   `${i + 1}. ${q.question}\n` +
-                  q.options.map(o => `   - ${optionDisplay(o)}`).join('\n'),
+                  q.options.map((o) => `   - ${optionDisplay(o)}`).join('\n')
               )
               .join('\n\n'),
         },
@@ -83,16 +78,12 @@ async function askQuestions(ctx: ExtensionContext, questions: Question[]) {
         const done = selected.length > 0 ? 'Done' : 'Skip';
         const choices = [...remaining.map(optionDisplay), done];
         const choice = await ctx.ui.select(
-          selected.length > 0
-            ? `${q.question} (selected: ${selected.join(', ')})`
-            : q.question,
-          choices,
+          selected.length > 0 ? `${q.question} (selected: ${selected.join(', ')})` : q.question,
+          choices
         );
 
         if (!choice || choice === done) break;
-        const index = remaining.findIndex(
-          option => optionDisplay(option) === choice,
-        );
+        const index = remaining.findIndex((option) => optionDisplay(option) === choice);
         if (index >= 0) {
           selected.push(remaining[index]!.label);
           remaining.splice(index, 1);
@@ -107,9 +98,7 @@ async function askQuestions(ctx: ExtensionContext, questions: Question[]) {
     } else {
       const choices = q.options.map(optionDisplay);
       const choice = await ctx.ui.select(q.question, choices);
-      const option = q.options.find(
-        candidate => optionDisplay(candidate) === choice,
-      );
+      const option = q.options.find((candidate) => optionDisplay(candidate) === choice);
       answers.push({
         header: q.header,
         question: q.question,
@@ -125,10 +114,8 @@ async function askQuestions(ctx: ExtensionContext, questions: Question[]) {
         text:
           'User answered structured questions:\n' +
           answers
-            .map(answer => {
-              const value = Array.isArray(answer.answer)
-                ? answer.answer.join(', ')
-                : answer.answer;
+            .map((answer) => {
+              const value = Array.isArray(answer.answer) ? answer.answer.join(', ') : answer.answer;
               return `- ${answer.header}: ${value}`;
             })
             .join('\n'),
@@ -162,7 +149,7 @@ function withTaskMutation<T>(fn: () => Promise<T>): Promise<T> {
   const run = taskQueue.then(fn, fn);
   taskQueue = run.then(
     () => undefined,
-    () => undefined,
+    () => undefined
   );
   return run;
 }
@@ -170,11 +157,8 @@ function withTaskMutation<T>(fn: () => Promise<T>): Promise<T> {
 function formatTasks(tasks: CompatTask[]) {
   if (tasks.length === 0) return 'No tasks.';
   return tasks
-    .map(task => {
-      const blocked =
-        task.blockedBy.length > 0
-          ? ` blockedBy=${task.blockedBy.join(',')}`
-          : '';
+    .map((task) => {
+      const blocked = task.blockedBy.length > 0 ? ` blockedBy=${task.blockedBy.join(',')}` : '';
       return `- ${task.id} [${task.status}]${blocked} ${task.subject}`;
     })
     .join('\n');
@@ -201,8 +185,7 @@ function registerAskUserQuestion(pi: ExtensionAPI, name: string) {
     label: name,
     description:
       'Ask the user 1-4 structured clarifying questions with 2-4 options each. Claude Code compatibility shim for AskUserQuestion.',
-    promptSnippet:
-      'Ask the user structured clarifying questions with selectable options',
+    promptSnippet: 'Ask the user structured clarifying questions with selectable options',
     promptGuidelines: [
       `Use ${name} when a loaded skill asks for AskUserQuestion or structured user clarification.`,
     ],
@@ -220,11 +203,11 @@ function registerAskUserQuestion(pi: ExtensionAPI, name: string) {
               label: Type.String(),
               description: Type.Optional(Type.String()),
             }),
-            { minItems: 2, maxItems: 4 },
+            { minItems: 2, maxItems: 4 }
           ),
           multiSelect: Type.Boolean(),
         }),
-        { minItems: 1, maxItems: 4 },
+        { minItems: 1, maxItems: 4 }
       ),
     }),
     async execute(_toolCallId, params, _signal, _onUpdate, ctx) {
@@ -234,7 +217,7 @@ function registerAskUserQuestion(pi: ExtensionAPI, name: string) {
 }
 
 export default function claudeCompat(pi: ExtensionAPI) {
-  pi.on('before_agent_start', event => ({
+  pi.on('before_agent_start', (event) => ({
     systemPrompt:
       event.systemPrompt +
       `\n\nClaude Code compatibility shims are installed for this session. When a loaded Claude Code plugin/skill mentions Claude tool names, map them as follows:\n- AskUserQuestion: use the AskUserQuestion compatibility tool.\n- WebFetch/WebSearch/TodoWrite/TaskCreate/TaskUpdate/TaskList/TaskGet: use the same-named compatibility tools.\n- Task or Agent subagents: use Pi's subagent tool from pi-subagents when available.\n- Glob: use find. Grep: use grep. LS: use ls. MultiEdit: use edit with multiple edits[].\n- MCP tools are not automatically emulated unless a dedicated Pi extension provides them; use available web/search/subagent/bash fallbacks instead.`,
@@ -248,15 +231,13 @@ export default function claudeCompat(pi: ExtensionAPI) {
     description:
       'Fetch a URL and return readable text. Claude Code compatibility shim for WebFetch; output is truncated to 50KB.',
     promptSnippet: 'Fetch a URL and return readable text content',
-    promptGuidelines: [
-      "Use WebFetch when a loaded skill asks for Claude Code's WebFetch tool.",
-    ],
+    promptGuidelines: ["Use WebFetch when a loaded skill asks for Claude Code's WebFetch tool."],
     parameters: Type.Object({
       url: Type.String({ description: 'HTTP or HTTPS URL to fetch' }),
       prompt: Type.Optional(
         Type.String({
           description: 'Optional extraction/summarization instruction',
-        }),
+        })
       ),
     }),
     async execute(_toolCallId, params, signal) {
@@ -276,7 +257,7 @@ export default function claudeCompat(pi: ExtensionAPI) {
           {
             type: 'text' as const,
             text: truncateText(
-              `${prompt}Fetched ${url.toString()} (${response.status} ${response.statusText}, ${contentType || 'unknown content-type'})\n\n${text}`,
+              `${prompt}Fetched ${url.toString()} (${response.status} ${response.statusText}, ${contentType || 'unknown content-type'})\n\n${text}`
             ),
           },
         ],
@@ -290,8 +271,7 @@ export default function claudeCompat(pi: ExtensionAPI) {
     label: 'WebSearch',
     description:
       'Best-effort web search via DuckDuckGo HTML. Claude Code compatibility shim for lightweight research.',
-    promptSnippet:
-      'Search the web and return result titles, URLs, and snippets',
+    promptSnippet: 'Search the web and return result titles, URLs, and snippets',
     promptGuidelines: [
       "Use WebSearch when a loaded skill asks for Claude Code's WebSearch tool, but prefer dedicated researcher tools when available.",
     ],
@@ -308,19 +288,14 @@ export default function claudeCompat(pi: ExtensionAPI) {
         headers: { 'user-agent': 'pi-claude-compat/0.1' },
       });
       const html = await response.text();
-      const results: Array<{ title: string; url: string; snippet: string }> =
-        [];
+      const results: Array<{ title: string; url: string; snippet: string }> = [];
       const linkRe =
         /<a[^>]+class="result__a"[^>]+href="([^"]+)"[^>]*>([\s\S]*?)<\/a>[\s\S]*?<a[^>]+class="result__snippet"[^>]*>([\s\S]*?)<\/a>/gi;
       const allowed = new Set(
-        (params.allowed_domains ?? []).map((domain: string) =>
-          domain.toLowerCase(),
-        ),
+        (params.allowed_domains ?? []).map((domain: string) => domain.toLowerCase())
       );
       const blocked = new Set(
-        (params.blocked_domains ?? []).map((domain: string) =>
-          domain.toLowerCase(),
-        ),
+        (params.blocked_domains ?? []).map((domain: string) => domain.toLowerCase())
       );
 
       for (const match of html.matchAll(linkRe)) {
@@ -332,17 +307,11 @@ export default function claudeCompat(pi: ExtensionAPI) {
           const host = new URL(resultUrl).hostname.toLowerCase();
           if (
             allowed.size > 0 &&
-            ![...allowed].some(
-              domain => host === domain || host.endsWith(`.${domain}`),
-            )
+            ![...allowed].some((domain) => host === domain || host.endsWith(`.${domain}`))
           ) {
             continue;
           }
-          if (
-            [...blocked].some(
-              domain => host === domain || host.endsWith(`.${domain}`),
-            )
-          ) {
+          if ([...blocked].some((domain) => host === domain || host.endsWith(`.${domain}`))) {
             continue;
           }
         } catch {
@@ -367,7 +336,7 @@ export default function claudeCompat(pi: ExtensionAPI) {
                 : results
                     .map(
                       (result, index) =>
-                        `${index + 1}. ${result.title}\n${result.url}\n${result.snippet}`,
+                        `${index + 1}. ${result.title}\n${result.url}\n${result.snippet}`
                     )
                     .join('\n\n'),
           },
@@ -380,12 +349,9 @@ export default function claudeCompat(pi: ExtensionAPI) {
   pi.registerTool({
     name: 'TodoWrite',
     label: 'TodoWrite',
-    description:
-      'Maintain an in-session todo list. Claude Code compatibility shim for TodoWrite.',
+    description: 'Maintain an in-session todo list. Claude Code compatibility shim for TodoWrite.',
     promptSnippet: 'Record or update a todo list for the current task',
-    promptGuidelines: [
-      "Use TodoWrite when a loaded skill asks for Claude Code's TodoWrite tool.",
-    ],
+    promptGuidelines: ["Use TodoWrite when a loaded skill asks for Claude Code's TodoWrite tool."],
     parameters: Type.Object({
       todos: Type.Array(Type.Object({}, { additionalProperties: true })),
     }),
@@ -406,8 +372,7 @@ export default function claudeCompat(pi: ExtensionAPI) {
   pi.registerTool({
     name: 'TaskList',
     label: 'TaskList',
-    description:
-      'List file-backed compatibility tasks stored in .pi/claude-compat/tasks.json.',
+    description: 'List file-backed compatibility tasks stored in .pi/claude-compat/tasks.json.',
     parameters: Type.Object({}),
     async execute(_toolCallId, _params, _signal, _onUpdate, ctx) {
       const tasks = await readTasks(ctx);
@@ -425,12 +390,10 @@ export default function claudeCompat(pi: ExtensionAPI) {
     parameters: Type.Object({ id: Type.String() }),
     async execute(_toolCallId, params, _signal, _onUpdate, ctx) {
       const tasks = await readTasks(ctx);
-      const task = tasks.find(candidate => candidate.id === params.id);
+      const task = tasks.find((candidate) => candidate.id === params.id);
       if (!task) throw new Error(`Task not found: ${params.id}`);
       return {
-        content: [
-          { type: 'text' as const, text: JSON.stringify(task, null, 2) },
-        ],
+        content: [{ type: 'text' as const, text: JSON.stringify(task, null, 2) }],
         details: { task },
       };
     },
@@ -439,8 +402,7 @@ export default function claudeCompat(pi: ExtensionAPI) {
   pi.registerTool({
     name: 'TaskCreate',
     label: 'TaskCreate',
-    description:
-      'Create a file-backed compatibility task in .pi/claude-compat/tasks.json.',
+    description: 'Create a file-backed compatibility task in .pi/claude-compat/tasks.json.',
     parameters: Type.Object({
       subject: Type.String(),
       description: Type.Optional(Type.String()),
@@ -482,8 +444,7 @@ export default function claudeCompat(pi: ExtensionAPI) {
   pi.registerTool({
     name: 'TaskUpdate',
     label: 'TaskUpdate',
-    description:
-      'Update a file-backed compatibility task in .pi/claude-compat/tasks.json.',
+    description: 'Update a file-backed compatibility task in .pi/claude-compat/tasks.json.',
     parameters: Type.Object({
       id: Type.String(),
       subject: Type.Optional(Type.String()),
@@ -498,23 +459,19 @@ export default function claudeCompat(pi: ExtensionAPI) {
     async execute(_toolCallId, params, _signal, _onUpdate, ctx) {
       return withTaskMutation(async () => {
         const tasks = await readTasks(ctx);
-        const task = tasks.find(candidate => candidate.id === params.id);
+        const task = tasks.find((candidate) => candidate.id === params.id);
         if (!task) throw new Error(`Task not found: ${params.id}`);
 
         if (params.subject !== undefined) task.subject = params.subject;
-        if (params.description !== undefined)
-          task.description = params.description;
-        if (params.activeForm !== undefined)
-          task.activeForm = params.activeForm;
+        if (params.description !== undefined) task.description = params.description;
+        if (params.activeForm !== undefined) task.activeForm = params.activeForm;
         if (params.status !== undefined) task.status = params.status;
         if (params.blockedBy !== undefined) task.blockedBy = params.blockedBy;
         if (params.addBlockedBy !== undefined)
-          task.blockedBy = [
-            ...new Set([...task.blockedBy, ...params.addBlockedBy]),
-          ];
+          task.blockedBy = [...new Set([...task.blockedBy, ...params.addBlockedBy])];
         if (params.removeBlockedBy !== undefined) {
           const remove = new Set(params.removeBlockedBy);
-          task.blockedBy = task.blockedBy.filter(id => !remove.has(id));
+          task.blockedBy = task.blockedBy.filter((id) => !remove.has(id));
         }
         if (params.metadata !== undefined) task.metadata = params.metadata;
         task.updatedAt = new Date().toISOString();
